@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		6F842DCB29C64E3E00DBBC7B /* ListenbrainzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F842DCA29C64E3E00DBBC7B /* ListenbrainzApp.swift */; };
-		6F842DCD29C64E3E00DBBC7B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F842DCC29C64E3E00DBBC7B /* ContentView.swift */; };
+		6F842DCD29C64E3E00DBBC7B /* ListensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F842DCC29C64E3E00DBBC7B /* ListensView.swift */; };
 		6F842DCF29C64E3F00DBBC7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F842DCE29C64E3F00DBBC7B /* Assets.xcassets */; };
-		6F842DD229C64E3F00DBBC7B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F842DD129C64E3F00DBBC7B /* Preview Assets.xcassets */; };
 		6F842DDC29C64E3F00DBBC7B /* ListenbrainzTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F842DDB29C64E3F00DBBC7B /* ListenbrainzTests.swift */; };
 		6F842DE629C64E3F00DBBC7B /* ListenbrainzUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F842DE529C64E3F00DBBC7B /* ListenbrainzUITests.swift */; };
 		6F842DE829C64E3F00DBBC7B /* ListenbrainzUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F842DE729C64E3F00DBBC7B /* ListenbrainzUITestsLaunchTests.swift */; };
+		6F842DF629C64EF200DBBC7B /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 6F842DF529C64EF200DBBC7B /* SpotifyiOS */; };
+		6F842DF929C6509300DBBC7B /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F842DF829C6509300DBBC7B /* SpotifyManager.swift */; };
+		6F842DFB29C650A600DBBC7B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F842DFA29C650A600DBBC7B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,14 +38,16 @@
 /* Begin PBXFileReference section */
 		6F842DC729C64E3E00DBBC7B /* Listenbrainz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Listenbrainz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F842DCA29C64E3E00DBBC7B /* ListenbrainzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenbrainzApp.swift; sourceTree = "<group>"; };
-		6F842DCC29C64E3E00DBBC7B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6F842DCC29C64E3E00DBBC7B /* ListensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListensView.swift; sourceTree = "<group>"; };
 		6F842DCE29C64E3F00DBBC7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6F842DD129C64E3F00DBBC7B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6F842DD729C64E3F00DBBC7B /* ListenbrainzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ListenbrainzTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F842DDB29C64E3F00DBBC7B /* ListenbrainzTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenbrainzTests.swift; sourceTree = "<group>"; };
 		6F842DE129C64E3F00DBBC7B /* ListenbrainzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ListenbrainzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F842DE529C64E3F00DBBC7B /* ListenbrainzUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenbrainzUITests.swift; sourceTree = "<group>"; };
 		6F842DE729C64E3F00DBBC7B /* ListenbrainzUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenbrainzUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6F842DF829C6509300DBBC7B /* SpotifyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
+		6F842DFA29C650A600DBBC7B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6F842DFC29C6516800DBBC7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F842DF629C64EF200DBBC7B /* SpotifyiOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +76,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F7620A029C66C6600CDA3E8 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				6F842DCA29C64E3E00DBBC7B /* ListenbrainzApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		6F7620A129C66C7300CDA3E8 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6F7620A329C66C8000CDA3E8 /* Screens */,
+				6F7620A229C66C7900CDA3E8 /* Components */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		6F7620A229C66C7900CDA3E8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		6F7620A329C66C8000CDA3E8 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				6F842DCC29C64E3E00DBBC7B /* ListensView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		6F842DBE29C64E3E00DBBC7B = {
 			isa = PBXGroup;
 			children = (
@@ -94,20 +131,13 @@
 		6F842DC929C64E3E00DBBC7B /* Listenbrainz */ = {
 			isa = PBXGroup;
 			children = (
-				6F842DCA29C64E3E00DBBC7B /* ListenbrainzApp.swift */,
-				6F842DCC29C64E3E00DBBC7B /* ContentView.swift */,
-				6F842DCE29C64E3F00DBBC7B /* Assets.xcassets */,
-				6F842DD029C64E3F00DBBC7B /* Preview Content */,
+				6F7620A129C66C7300CDA3E8 /* UI */,
+				6F7620A029C66C6600CDA3E8 /* Application */,
+				6F842E0029C6551900DBBC7B /* Resources */,
+				6F842DFD29C651D400DBBC7B /* ViewModel */,
+				6F842DF729C6508600DBBC7B /* Utils */,
 			);
 			path = Listenbrainz;
-			sourceTree = "<group>";
-		};
-		6F842DD029C64E3F00DBBC7B /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				6F842DD129C64E3F00DBBC7B /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		6F842DDA29C64E3F00DBBC7B /* ListenbrainzTests */ = {
@@ -127,6 +157,31 @@
 			path = ListenbrainzUITests;
 			sourceTree = "<group>";
 		};
+		6F842DF729C6508600DBBC7B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6F842DFA29C650A600DBBC7B /* Constants.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		6F842DFD29C651D400DBBC7B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6F842DF829C6509300DBBC7B /* SpotifyManager.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6F842E0029C6551900DBBC7B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6F842DCE29C64E3F00DBBC7B /* Assets.xcassets */,
+				6F842DFC29C6516800DBBC7B /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +198,9 @@
 			dependencies = (
 			);
 			name = Listenbrainz;
+			packageProductDependencies = (
+				6F842DF529C64EF200DBBC7B /* SpotifyiOS */,
+			);
 			productName = Listenbrainz;
 			productReference = 6F842DC729C64E3E00DBBC7B /* Listenbrainz.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +273,9 @@
 				Base,
 			);
 			mainGroup = 6F842DBE29C64E3E00DBBC7B;
+			packageReferences = (
+				6F842DF429C64EF200DBBC7B /* XCRemoteSwiftPackageReference "ios-sdk" */,
+			);
 			productRefGroup = 6F842DC829C64E3E00DBBC7B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -231,7 +292,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F842DD229C64E3F00DBBC7B /* Preview Assets.xcassets in Resources */,
 				6F842DCF29C64E3F00DBBC7B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,8 +317,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F842DCD29C64E3E00DBBC7B /* ContentView.swift in Sources */,
+				6F842DF929C6509300DBBC7B /* SpotifyManager.swift in Sources */,
+				6F842DCD29C64E3E00DBBC7B /* ListensView.swift in Sources */,
 				6F842DCB29C64E3E00DBBC7B /* ListenbrainzApp.swift in Sources */,
+				6F842DFB29C650A600DBBC7B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,11 +478,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Listenbrainz/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 8D89TSJ88H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Listenbrainz/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ListenBrainz;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -429,8 +493,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.metabrainz.Listenbrainz;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.listenbrainz.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -445,11 +509,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Listenbrainz/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 8D89TSJ88H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Listenbrainz/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ListenBrainz;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -458,8 +524,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.metabrainz.Listenbrainz;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.listenbrainz.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -583,6 +649,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6F842DF429C64EF200DBBC7B /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spotify/ios-sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6F842DF529C64EF200DBBC7B /* SpotifyiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6F842DF429C64EF200DBBC7B /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			productName = SpotifyiOS;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6F842DBF29C64E3E00DBBC7B /* Project object */;
 }

@@ -16,42 +16,38 @@ struct ContentView: View {
     }
     
     var body: some View {
-        ZStack {
-            Color.black
-                .ignoresSafeArea()
-            TabView {
-                HomeView()
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
-                    }
-                VStack(spacing: 0) {
-                    PlayerView()
-                        .edgesIgnoringSafeArea(.all)
-                    
-                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 6, alignment: .center)
+        TabView {
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
                 }
-                    .tabItem {
-                        
-                        
-                        Label("Player", systemImage: "opticaldisc.fill")
-                    }
-                ListensView()
-                    .tabItem {
-                        Label("Listen", systemImage: "person.wave.2")
-                    }
-                VStack(spacing: 0) {
-                                  ProfileView()
-                                      .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 6, alignment: .center)
-                              }
-                              .tabItem {
-                                  
-                                  Label("Profile", systemImage: "beats.headphones")
-                              }
-            
+            VStack(spacing: 0) {
+                PlayerView()
+                    .edgesIgnoringSafeArea(.all)
+                
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 6, alignment: .center)
             }
-            .accentColor(Color.gray)
+            .tabItem {
+                
+                
+                Label("Player", systemImage: "opticaldisc.fill")
+            }
+            ListensView()
+                .tabItem {
+                    Label("Listen", systemImage: "person.wave.2")
+                }
+            VStack(spacing: 0) {
+                ProfileView()
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 6, alignment: .center)
+            }
+            .tabItem {
+                
+                Label("Profile", systemImage: "beats.headphones")
+            }
+            
         }
-
+        .accentColor(Color.gray)
     }
+    
 }
 

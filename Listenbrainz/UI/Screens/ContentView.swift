@@ -11,7 +11,6 @@ import UIKit
 struct ContentView: View {
     
     init() {
-        UITabBar.appearance().unselectedItemTintColor = UIColor.systemBlue
         UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
         UITabBar.appearance().clipsToBounds = true
     }
@@ -50,7 +49,7 @@ struct ContentView: View {
                               }
             
             }
-            .accentColor(Color.orange)
+            .accentColor(Color.gray)
         }
 
     }

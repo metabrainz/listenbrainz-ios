@@ -14,7 +14,7 @@ struct ListenbrainzApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ListensView()
+            ContentView()
                 .environmentObject(spotifyManager)
                 .onAppear(perform: handleSpotifySession)
                 .onOpenURL { url in

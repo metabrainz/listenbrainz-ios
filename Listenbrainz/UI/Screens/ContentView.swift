@@ -21,12 +21,11 @@ struct ContentView: View {
                 .tabItem {
                     Label("Home", systemImage: "house.fill")
                 }
-            VStack(spacing: 0) {
                 PlayerView()
                     .edgesIgnoringSafeArea(.all)
                 
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 6, alignment: .center)
-            }
+           
             .tabItem {
                 
                 
@@ -36,10 +35,10 @@ struct ContentView: View {
                 .tabItem {
                     Label("Listen", systemImage: "person.wave.2")
                 }
-            VStack(spacing: 0) {
+            
                 ProfileView()
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 6, alignment: .center)
-            }
+          
             .tabItem {
                 
                 Label("Profile", systemImage: "beats.headphones")

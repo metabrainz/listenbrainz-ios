@@ -11,8 +11,12 @@ struct ListensView: View {
   @ObservedObject var homeViewModel: HomeViewModel = HomeViewModel(repository: HomeRepositoryImpl())
     @EnvironmentObject var spotifyManager: SpotifyManager
     @State private var spotifyID: String = "https://open.spotify.com/track/0DHh3p0g7qmNNfNdRNwL6N"
+    @State private var maxTimeStamp:String = "john"
+    @State private var minTimeStamp:String = "123456"
     
-    let params = ["max_ts":"john", "min_ts":"123456"] as Dictionary<String, String>
+  var params: [String: String] {
+      return ["max_ts": maxTimeStamp, "min_ts":minTimeStamp]
+  }
 
 
     

@@ -8,10 +8,7 @@
 import SwiftUI
 import UIKit
 
-
-
 struct ContentView: View {
-
  
   let screenWidth = UIScreen.main.bounds.size.width
   let screenHeight = UIScreen.main.bounds.size.height
@@ -46,10 +43,6 @@ struct ContentView: View {
           .tabItem {
             Label("Listens", systemImage: "person.wave.2")
           }
-
-
-
-
         
         ProfileView()
           .frame(width: screenWidth, height: screenHeight, alignment: .center)
@@ -61,9 +54,6 @@ struct ContentView: View {
         
       }
       .accentColor(Color.gray)
-      
-      
     }
-    
   }
 }

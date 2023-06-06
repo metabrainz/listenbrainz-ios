@@ -12,7 +12,7 @@ struct AdditionalInfo: Codable {
     let artistNames: [String]
     let discnumber, durationMS: Int
     let isrc: String
-    let musicService: MusicService
+    let musicService: String
     let originURL: String
     let recordingMsid, releaseArtistName: String
     let releaseArtistNames: [String]
@@ -20,7 +20,7 @@ struct AdditionalInfo: Codable {
     let spotifyAlbumID: String
     let spotifyArtistIDS: [String]
     let spotifyID: String
-    let submissionClient: SubmissionClient
+    let submissionClient: String
     let tracknumber: Int
 
     enum CodingKeys: String, CodingKey {

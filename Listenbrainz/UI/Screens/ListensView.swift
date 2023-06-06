@@ -18,12 +18,6 @@ struct ListensView: View {
       return ["max_ts": maxTimeStamp, "min_ts":minTimeStamp]
   }
 
-
-    
-    
-    
-    
-
     var body: some View {
         VStack {
           NavigationView {

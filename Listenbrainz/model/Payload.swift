@@ -12,7 +12,7 @@ import Foundation
 struct Payload: Codable {
     let count, latestListenTs: Int
     let listens: [Listen]
-    let userID: User
+    let userID: String
 
     enum CodingKeys: String, CodingKey {
         case count

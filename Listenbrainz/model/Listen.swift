@@ -13,7 +13,7 @@ struct Listen: Codable {
     let insertedAt, listenedAt: Int
     let recordingMsid: String
     let trackMetadata: TrackMetadata
-    let userName: User
+    let userName: String
 
     enum CodingKeys: String, CodingKey {
         case insertedAt = "inserted_at"

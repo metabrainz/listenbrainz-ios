@@ -5,15 +5,13 @@
 //  Created by avataar on 19/03/23.
 //
 
-import SpotifyiOS
+
 
 import SwiftUI
 import Combine
 import SpotifyiOS
 
-import SwiftUI
-import Combine
-import SpotifyiOS
+
 
 class SpotifyManager: NSObject, ObservableObject, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate, SPTSessionManagerDelegate {
     private let clientID = Constants.SPOTIFY_CLIENT_ID

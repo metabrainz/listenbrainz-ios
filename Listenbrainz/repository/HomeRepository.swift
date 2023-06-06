@@ -13,6 +13,6 @@ import Alamofire
 protocol HomeRepository {
 
 
-    func fetchMusicData() -> AnyPublisher<MusicModel, AFError>
+  func fetchMusicData(userName:String) -> AnyPublisher<MusicModel, AFError>
 }
 

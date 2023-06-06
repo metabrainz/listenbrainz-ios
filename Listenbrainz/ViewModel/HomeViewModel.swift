@@ -22,7 +22,7 @@ class HomeViewModel : ObservableObject {
 
 
     func requestMusicData() {
-        repository.fetchMusicData()
+        repository.fetchMusicData(userName: "gb1307")
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 print(completion)

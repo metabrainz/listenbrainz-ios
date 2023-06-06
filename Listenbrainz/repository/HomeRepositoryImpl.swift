@@ -11,8 +11,9 @@ import Combine
 
 class HomeRepositoryImpl: HomeRepository {
 
-    func fetchMusicData() -> AnyPublisher<MusicModel, AFError> {
-        let url = URL(string: "https://api.listenbrainz.org/1/user/gb1307/listens")!
+  func fetchMusicData(userName:String) -> AnyPublisher<MusicModel, AFError> {
+        let url = URL(string: "https://api.listenbrainz.org/1/user/\(userName)/listens")!
+
 
         return AF.request(url, method: .get)
             .validate()

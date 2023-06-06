@@ -26,6 +26,15 @@
 		BB2A4F5529EB48CC006933BC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F5429EB48CC006933BC /* HomeView.swift */; };
 		BB2A4F5729EB48DF006933BC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F5629EB48DF006933BC /* ProfileView.swift */; };
 		BB2A4F5929EB48ED006933BC /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F5829EB48ED006933BC /* PlayerView.swift */; };
+		BBD28DD12A2F9D9B00AD57C6 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DD02A2F9D9B00AD57C6 /* Album.swift */; };
+		BBD28DD32A2F9DC400AD57C6 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DD22A2F9DC400AD57C6 /* Artist.swift */; };
+		BBD28DD52A2F9DDC00AD57C6 /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DD42A2F9DDC00AD57C6 /* Payload.swift */; };
+		BBD28DD72A2F9E0A00AD57C6 /* Listen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DD62A2F9E0A00AD57C6 /* Listen.swift */; };
+		BBD28DD92A2F9E2E00AD57C6 /* TrackMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DD82A2F9E2E00AD57C6 /* TrackMetadata.swift */; };
+		BBD28DDB2A2F9E5400AD57C6 /* AdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DDA2A2F9E5400AD57C6 /* AdditionalInfo.swift */; };
+		BBD28DDD2A2F9E8B00AD57C6 /* MbidMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DDC2A2F9E8B00AD57C6 /* MbidMapping.swift */; };
+		BBD28DDF2A2F9EA300AD57C6 /* ArtistElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DDE2A2F9EA300AD57C6 /* ArtistElement.swift */; };
+		BBD28DE12A2F9EB900AD57C6 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DE02A2F9EB900AD57C6 /* Track.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +76,15 @@
 		BB2A4F5429EB48CC006933BC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BB2A4F5629EB48DF006933BC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		BB2A4F5829EB48ED006933BC /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		BBD28DD02A2F9D9B00AD57C6 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		BBD28DD22A2F9DC400AD57C6 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		BBD28DD42A2F9DDC00AD57C6 /* Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payload.swift; sourceTree = "<group>"; };
+		BBD28DD62A2F9E0A00AD57C6 /* Listen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listen.swift; sourceTree = "<group>"; };
+		BBD28DD82A2F9E2E00AD57C6 /* TrackMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMetadata.swift; sourceTree = "<group>"; };
+		BBD28DDA2A2F9E5400AD57C6 /* AdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfo.swift; sourceTree = "<group>"; };
+		BBD28DDC2A2F9E8B00AD57C6 /* MbidMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MbidMapping.swift; sourceTree = "<group>"; };
+		BBD28DDE2A2F9EA300AD57C6 /* ArtistElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistElement.swift; sourceTree = "<group>"; };
+		BBD28DE02A2F9EB900AD57C6 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +232,15 @@
 			isa = PBXGroup;
 			children = (
 				BB0586562A2504AD00744FF0 /* musicModel.swift */,
+				BBD28DD02A2F9D9B00AD57C6 /* Album.swift */,
+				BBD28DD22A2F9DC400AD57C6 /* Artist.swift */,
+				BBD28DD42A2F9DDC00AD57C6 /* Payload.swift */,
+				BBD28DD62A2F9E0A00AD57C6 /* Listen.swift */,
+				BBD28DD82A2F9E2E00AD57C6 /* TrackMetadata.swift */,
+				BBD28DDA2A2F9E5400AD57C6 /* AdditionalInfo.swift */,
+				BBD28DDC2A2F9E8B00AD57C6 /* MbidMapping.swift */,
+				BBD28DDE2A2F9EA300AD57C6 /* ArtistElement.swift */,
+				BBD28DE02A2F9EB900AD57C6 /* Track.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -364,17 +391,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD28DD72A2F9E0A00AD57C6 /* Listen.swift in Sources */,
+				BBD28DE12A2F9EB900AD57C6 /* Track.swift in Sources */,
 				6F842DF929C6509300DBBC7B /* SpotifyManager.swift in Sources */,
 				BB2A4F5329EB48BE006933BC /* ContentView.swift in Sources */,
+				BBD28DDF2A2F9EA300AD57C6 /* ArtistElement.swift in Sources */,
+				BBD28DD52A2F9DDC00AD57C6 /* Payload.swift in Sources */,
+				BBD28DDD2A2F9E8B00AD57C6 /* MbidMapping.swift in Sources */,
+				BBD28DD92A2F9E2E00AD57C6 /* TrackMetadata.swift in Sources */,
 				6F842DCD29C64E3E00DBBC7B /* ListensView.swift in Sources */,
+				BBD28DD32A2F9DC400AD57C6 /* Artist.swift in Sources */,
 				BB0586532A25042C00744FF0 /* HomeViewModel.swift in Sources */,
 				BB05865A2A25052600744FF0 /* HomeRepository.swift in Sources */,
+				BBD28DD12A2F9D9B00AD57C6 /* Album.swift in Sources */,
 				BB2A4F5929EB48ED006933BC /* PlayerView.swift in Sources */,
 				BB05864E2A25034200744FF0 /* SongDetailView.swift in Sources */,
 				BB2A4F5529EB48CC006933BC /* HomeView.swift in Sources */,
 				6F842DCB29C64E3E00DBBC7B /* ListenbrainzApp.swift in Sources */,
 				BB0586572A2504AD00744FF0 /* musicModel.swift in Sources */,
 				BB2A4F5729EB48DF006933BC /* ProfileView.swift in Sources */,
+				BBD28DDB2A2F9E5400AD57C6 /* AdditionalInfo.swift in Sources */,
 				6F842DFB29C650A600DBBC7B /* Constants.swift in Sources */,
 				BB05865C2A25053600744FF0 /* HomeRepositoryImpl.swift in Sources */,
 			);

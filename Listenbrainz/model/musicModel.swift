@@ -11,6 +11,22 @@ struct MusicModel: Codable {
     let payload: Payload
 }
 
+// MARK: - Album
+struct Album: Codable {
+    let name: String
+    let artist: Artist
+    let tracks: [Track]
+}
+
+// MARK: - Artist
+struct Artist: Codable {
+    let payload: Payload?
+    let name: String?
+    let founded: Int?
+    let members: [String]?
+}
+
+//MARK: - Payload
 struct Payload: Codable {
     let count, latestListenTs: Int
     let listens: [Listen]
@@ -24,6 +40,8 @@ struct Payload: Codable {
     }
 }
 
+
+//MARK: - Listen
 struct Listen: Codable {
     let insertedAt, listenedAt: Int
     let recordingMsid: String
@@ -39,6 +57,7 @@ struct Listen: Codable {
     }
 }
 
+//MARK: - TrackMetadata
 struct TrackMetadata: Codable {
     let additionalInfo: AdditionalInfo
     let artistName: String
@@ -54,6 +73,7 @@ struct TrackMetadata: Codable {
     }
 }
 
+//MARK: - AdditionalInfo
 struct AdditionalInfo: Codable {
     let artistNames: [String]
     let discnumber, durationMS: Int
@@ -97,10 +117,10 @@ enum SubmissionClient: String, Codable {
 }
 
 struct MbidMapping: Codable {
-    let artistMbids: [String]
-    let artists: [Artist]
-    let caaID: Int
-    let caaReleaseMbid, recordingMbid, recordingName, releaseMbid: String
+    let artistMbids: [String]?
+    let artists: [ArtistElement]?
+    let caaID: Int?
+    let caaReleaseMbid, recordingMbid, recordingName, releaseMbid: String?
 
     enum CodingKeys: String, CodingKey {
         case artistMbids = "artist_mbids"
@@ -113,9 +133,9 @@ struct MbidMapping: Codable {
     }
 }
 
-struct Artist: Codable {
-    let artistCreditName, artistMbid: String
-    let joinPhrase: JoinPhrase
+//MARK: - ArtistElement
+struct ArtistElement: Codable {
+    let artistCreditName, artistMbid, joinPhrase: String
 
     enum CodingKeys: String, CodingKey {
         case artistCreditName = "artist_credit_name"
@@ -133,3 +153,8 @@ enum User: String, Codable {
     case gb1307 = "gb1307"
 }
 
+// MARK: - Track
+struct Track: Codable {
+    let name: String
+    let duration: Int
+}

@@ -27,11 +27,15 @@ struct HomeView : View{
 
     NavigationView{
       ScrollView{
+
+//       .padding(.top, 12).padding(.horizontal)
+
         VStack(alignment: .center ,spacing: 0){
 
 
 
-          AdaptiveImage(light: Image("listenBrainzLight"), dark: Image("listenBrainzDark"))
+          AdaptiveImage(light: Image("listenBrainzLight")
+            , dark: Image("listenBrainzDark"))
 
 
 
@@ -47,8 +51,8 @@ struct HomeView : View{
           .fontWeight(.bold)
 
         }
-        .padding(.all)
-        .navigationTitle("ListenBrainz")
+//        .padding(.all)
+//        .navigationTitle("ListenBrainz")
 
         VStack(spacing: 10){
           HStack(alignment: .center, spacing: 0) {
@@ -97,9 +101,45 @@ struct HomeView : View{
         }
 
       }
+      .toolbar{
+        HStack(spacing: 0) {
+          Button(action: {  }) {
+              Image("listenBrainzDark")
+              .resizable()
+              .frame(width: 40, height: 40)
+              .padding(12)
+              .cornerRadius(20)
+              .clipShape(Circle())
+          }
+            Text("ListenBrainz")
+            .font(.system(size:28))
+            .fontWeight(.bold)
+        }
 
+
+        HStack(spacing: 2){
+            Button(action: {  }) {
+              Image(systemName: "info.circle")
+            }
+            Button(action: {  }) {
+              Image(systemName: "exclamationmark.circle")
+            }
+            Button(action: {  }) {
+              Image(systemName: "gear")
+              //                .resizable().frame(width: 26, height: 26)
+              //                    .padding(12)
+              //                    .cornerRadius(20)
+            }
+          }
+        .foregroundColor(.init(red: 0.86, green: 0.49, blue: 0.29))
+        }
 
       }
+
+
+
+
+
     }
   }
 

@@ -28,7 +28,6 @@ struct HomeView : View{
     NavigationView{
       ScrollView{
 
-//       .padding(.top, 12).padding(.horizontal)
 
         VStack(alignment: .center ,spacing: 0){
 
@@ -41,18 +40,17 @@ struct HomeView : View{
 
           HStack(spacing: 0){
             Text("Listen")
-              .foregroundColor(.init(red: 0.20, green: 0.19, blue: 0.42))
+              .foregroundColor(Color.color_2)
 
             Text("Brainz")
-              .foregroundColor(.init(red: 0.86, green: 0.49, blue: 0.29))
+              .foregroundColor(Color.color_1)
 
           }
           .font(.largeTitle)
           .fontWeight(.bold)
 
         }
-//        .padding(.all)
-//        .navigationTitle("ListenBrainz")
+
 
         VStack(spacing: 10){
           HStack(alignment: .center, spacing: 0) {
@@ -60,7 +58,7 @@ struct HomeView : View{
               .resizable()
               .scaledToFit()
               .frame(width: 80, height: 65).cornerRadius(16)
-              .foregroundColor(.init(red: 0.86, green: 0.49, blue: 0.29))
+              .foregroundColor(Color.color_1)
             VStack(alignment: .leading, spacing: 8) {
               Text("Year in Music")
                 .lineLimit(1)
@@ -82,7 +80,7 @@ struct HomeView : View{
               .resizable()
               .scaledToFit()
               .frame(width: 80, height: 65).cornerRadius(16)
-              .foregroundColor(.init(red: 0.86, green: 0.49, blue: 0.29))
+              .foregroundColor(Color.color_1)
             VStack(alignment: .leading, spacing: 8) {
               Text("News")
                 .lineLimit(1)
@@ -126,24 +124,25 @@ struct HomeView : View{
             }
             Button(action: {  }) {
               Image(systemName: "gear")
-              //                .resizable().frame(width: 26, height: 26)
-              //                    .padding(12)
-              //                    .cornerRadius(20)
             }
           }
-        .foregroundColor(.init(red: 0.86, green: 0.49, blue: 0.29))
+        .foregroundColor(Color.color_1)
         }
 
       }
-
-
-
 
 
     }
   }
 
 
+
+extension Color{
+
+  static let color_1 = Color(red: 0.86, green: 0.49, blue: 0.29)
+  static let color_2 = Color(red: 0.20, green: 0.19, blue: 0.42)
+
+}
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

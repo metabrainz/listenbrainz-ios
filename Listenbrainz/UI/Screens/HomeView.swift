@@ -22,7 +22,7 @@ struct AdaptiveImage: View {
     }
 }
 struct HomeView : View{
-
+  
 @State private var isSettingsPressed = false
 
   var body: some View{
@@ -102,7 +102,7 @@ struct HomeView : View{
 
       }
       .sheet(isPresented: $isSettingsPressed,
-              content: { PlayerView() })
+              content: { SettingsView() })
       .toolbar{
         HStack(spacing: 0) {
           Button(action: {  }) {

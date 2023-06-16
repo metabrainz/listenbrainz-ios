@@ -11,14 +11,16 @@ import SpotifyiOS
 @main
 struct ListenbrainzApp: App {
     @StateObject var spotifyManager = SpotifyManager()
-    
+  @AppStorage("isDarkMode") private var isDarkMode = false
     var body: some Scene {
         WindowGroup {
             ContentView()
+            .preferredColorScheme(isDarkMode ? .dark : .light)
                 .environmentObject(spotifyManager)
                 .onAppear(perform: handleSpotifySession)
                 .onOpenURL { url in
                     spotifyManager.sessionManager.application(UIApplication.shared, open: url, options: [:])
+
                 }
         }
     }

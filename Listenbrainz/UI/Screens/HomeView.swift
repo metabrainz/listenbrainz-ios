@@ -23,6 +23,8 @@ struct AdaptiveImage: View {
 }
 struct HomeView : View{
 
+@State private var isSettingsPressed = false
+
   var body: some View{
 
     NavigationView{
@@ -99,6 +101,8 @@ struct HomeView : View{
         }
 
       }
+      .sheet(isPresented: $isSettingsPressed,
+              content: { PlayerView() })
       .toolbar{
         HStack(spacing: 0) {
           Button(action: {  }) {
@@ -122,7 +126,7 @@ struct HomeView : View{
             Button(action: {  }) {
               Image(systemName: "exclamationmark.circle")
             }
-            Button(action: {  }) {
+          Button(action: { self.isSettingsPressed = true }) {
               Image(systemName: "gear")
             }
           }

@@ -9,22 +9,33 @@ import SwiftUI
 
 
 struct SettingsView: View {
-@AppStorage("isDarkMode") private var isDarkMode = false
+  @AppStorage("isDarkMode") private var isDarkMode = false
 
-  @State private var userName: String = ""
+  @State private var userToken:String = ""
 
-var body: some View  {
-     NavigationView {
-        List{
-           HStack{
-                 Toggle("Dark Mode", isOn: $isDarkMode)
-               }
+  var body: some View  {
+    NavigationView {
+      Form{
+        Section(header: Text("Turn On Dark Mode"),
+                content: {
+          HStack{
+            Toggle("Dark Mode", isOn: $isDarkMode)
+          }
+        })
+        Section(header: Text("Enter User Token"),
+                footer: Text("Enter User Token from https://listenbrainz.org/profile/"),
+                content: {
+          TextField("Enter User Token", text: $userToken)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding()
 
-         }
+        })
+      }
+      .navigationBarTitle(Text("Settings"))
     }
+
   }
 }
-
  
 
 struct SettingsView_Previews: PreviewProvider {

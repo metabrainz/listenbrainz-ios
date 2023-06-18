@@ -18,7 +18,6 @@ struct SongDetailView: View {
         TextField("Enter Username", text: $userNameInput)
           .textFieldStyle(RoundedBorderTextFieldStyle())
           .frame(height: 10)
-
           .padding()
 
 

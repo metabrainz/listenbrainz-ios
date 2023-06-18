@@ -8,21 +8,26 @@
 import Foundation
 import Combine
 
+
 class HomeViewModel : ObservableObject {
 
     @Published var listens: [Listen] = []
+
 
     private var subscriptions: Set<AnyCancellable> = []
 
     var repository: HomeRepository
 
+
     init(repository: HomeRepository) {
         self.repository = repository
+
     }
 
 
-    func requestMusicData() {
-        repository.fetchMusicData(userName: "akshaaatt")
+
+  func requestMusicData(userName:String) {
+      repository.fetchMusicData(userName: userName)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 print(completion)
@@ -32,3 +37,6 @@ class HomeViewModel : ObservableObject {
             .store(in: &subscriptions)
     }
 }
+
+
+

@@ -11,18 +11,21 @@ import SwiftUI
 struct SettingsView: View {
 @AppStorage("isDarkMode") private var isDarkMode = false
 
+  @State private var userName: String = ""
 
-  
 var body: some View  {
      NavigationView {
         List{
            HStack{
                  Toggle("Dark Mode", isOn: $isDarkMode)
                }
+
          }
     }
   }
 }
+
+ 
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {

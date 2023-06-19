@@ -25,6 +25,7 @@ struct HomeView : View{
   
 @State private var isSettingsPressed = false
 
+
   var body: some View{
 
     NavigationView{
@@ -36,7 +37,7 @@ struct HomeView : View{
 
 
           AdaptiveImage(light: Image("listenBrainzLight")
-            , dark: Image("listenBrainzDark"))
+                        , dark: Image("listenBrainzDark"))
 
 
 
@@ -101,43 +102,47 @@ struct HomeView : View{
         }
 
       }
-      .sheet(isPresented: $isSettingsPressed,
-              content: { SettingsView() })
-      .toolbar{
-        HStack(spacing: 0) {
-          Button(action: {  }) {
-              Image("listenBrainzDark")
-              .resizable()
-              .frame(width: 40, height: 40)
-              .padding(12)
-              .cornerRadius(20)
-              .clipShape(Circle())
-          }
-            Text("ListenBrainz")
-            .font(.system(size:28))
-            .fontWeight(.bold)
-        }
+      .toolbar {
+                      ToolbarItem(placement: .navigationBarLeading) {
+                          Button(action: {}) {
+                              Image("listenBrainzDark")
+                                  .resizable()
+                                  .frame(width: 40, height: 40)
+                                  .padding(12)
+                                  .cornerRadius(20)
+                                  .clipShape(Circle())
+                          }
+                      }
+                      ToolbarItem(placement: .navigationBarLeading) {
+                          Text("ListenBrainz")
+                              .font(.system(size: 26))
+                              .fontWeight(.bold)
+                      }
 
-
-        HStack(spacing: 2){
-            Button(action: {  }) {
+        ToolbarItemGroup(placement: .navigationBarTrailing) {
+          HStack{
+            Button(action: {}) {
               Image(systemName: "info.circle")
             }
-            Button(action: {  }) {
+            Button(action: {}) {
               Image(systemName: "exclamationmark.circle")
             }
-          Button(action: { self.isSettingsPressed = true }) {
+            Button(action: { self.isSettingsPressed = true }) {
               Image(systemName: "gear")
             }
           }
-        .foregroundColor(Color.color_1)
+          .foregroundColor(Color.color_1)
         }
 
+                  }
+
+              }
+              .sheet(isPresented: $isSettingsPressed) {
+                  SettingsView()
+              }
+          }
       }
 
-
-    }
-  }
 
 
 

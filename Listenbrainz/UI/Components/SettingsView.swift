@@ -12,6 +12,7 @@ struct SettingsView: View {
   @AppStorage("isDarkMode") private var isDarkMode = false
 
   @State private var userToken:String = ""
+  @Environment(\.presentationMode) var presentationMode
 
   var body: some View  {
     NavigationView {
@@ -31,10 +32,18 @@ struct SettingsView: View {
 
         })
       }
-      .navigationBarTitle(Text("Settings"))
+      .navigationBarItems(
+          trailing: Button(action: {
+
+              self.presentationMode.wrappedValue.dismiss()
+          }, label: {
+              Text("Save")
+          }))
+          .navigationBarTitle(Text("Settings"))
     }
 
   }
+
 }
  
 

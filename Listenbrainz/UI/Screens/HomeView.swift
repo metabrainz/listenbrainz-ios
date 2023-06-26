@@ -9,22 +9,21 @@ import SwiftUI
 
 
 struct AdaptiveImage: View {
-    @Environment(\.colorScheme) var colorScheme
-    let light: Image
-    let dark: Image
+  @Environment(\.colorScheme) var colorScheme
+  let light: Image
+  let dark: Image
 
-    @ViewBuilder var body: some View {
-        if colorScheme == .light {
-            light
-        } else {
-            dark
-        }
+  @ViewBuilder var body: some View {
+    if colorScheme == .light {
+      light
+    } else {
+      dark
     }
+  }
 }
 struct HomeView : View{
   
-@State private var isSettingsPressed = false
-
+  @State private var isSettingsPressed = false
 
   var body: some View{
 
@@ -103,21 +102,21 @@ struct HomeView : View{
 
       }
       .toolbar {
-                      ToolbarItem(placement: .navigationBarLeading) {
-                          Button(action: {}) {
-                              Image("listenBrainzDark")
-                                  .resizable()
-                                  .frame(width: 40, height: 40)
-                                  .padding(12)
-                                  .cornerRadius(20)
-                                  .clipShape(Circle())
-                          }
-                      }
-                      ToolbarItem(placement: .navigationBarLeading) {
-                          Text("ListenBrainz")
-                              .font(.system(size: 26))
-                              .fontWeight(.bold)
-                      }
+        ToolbarItem(placement: .navigationBarLeading) {
+          Button(action: {}) {
+            Image("listenBrainzDark")
+              .resizable()
+              .frame(width: 40, height: 40)
+              .padding(12)
+              .cornerRadius(20)
+              .clipShape(Circle())
+          }
+        }
+        ToolbarItem(placement: .navigationBarLeading) {
+          Text("ListenBrainz")
+            .font(.system(size: 26))
+            .fontWeight(.bold)
+        }
 
         ToolbarItemGroup(placement: .navigationBarTrailing) {
           HStack{
@@ -134,14 +133,14 @@ struct HomeView : View{
           .foregroundColor(Color.color_1)
         }
 
-                  }
-
-              }
-              .sheet(isPresented: $isSettingsPressed) {
-                  SettingsView()
-              }
-          }
       }
+
+    }
+    .sheet(isPresented: $isSettingsPressed) {
+      SettingsView()
+    }
+  }
+}
 
 
 
@@ -154,8 +153,8 @@ extension Color{
 }
 
 struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
+  static var previews: some View {
+    HomeView()
 
-    }
+  }
 }

@@ -10,9 +10,11 @@ import SwiftUI
 
 struct SettingsView: View {
   @AppStorage("isDarkMode") private var isDarkMode = false
-
-  @State private var userToken:String = ""
+  @AppStorage("userToken") private var userToken:String = ""
+  @State private var userName:String = ""
   @Environment(\.presentationMode) var presentationMode
+  @EnvironmentObject var homeViewModel: HomeViewModel
+  
 
   var body: some View  {
     NavigationView {
@@ -27,14 +29,15 @@ struct SettingsView: View {
                 footer: Text("Enter User Token from https://listenbrainz.org/profile/"),
                 content: {
           TextField("Enter User Token", text: $userToken)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            .padding()
-
+        })
+        Section(header: Text("Enter User Name"),
+                content: {
+          TextField("Enter User Name", text: $userName)
         })
       }
       .navigationBarItems(
           trailing: Button(action: {
-
+            homeViewModel.requestMusicData(userName: userName)
               self.presentationMode.wrappedValue.dismiss()
           }, label: {
               Text("Save")
@@ -50,5 +53,6 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+
     }
 }

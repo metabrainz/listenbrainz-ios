@@ -32,7 +32,7 @@ class HomeViewModel : ObservableObject {
             .sink(receiveCompletion: { completion in
                 print(completion)
             }, receiveValue: { value in
-                self.listens = value.payload.listens
+              self.listens = value.payload.listens
             })
             .store(in: &subscriptions)
     }

@@ -26,6 +26,7 @@ struct AdditionalInfo: Codable {
     let tracknumber: Int?
     let mediaPlayer: String?
     let submissionClientVersion: String?
+  let musicServiceName: String?
 
 
     enum CodingKeys: String, CodingKey {
@@ -46,6 +47,7 @@ struct AdditionalInfo: Codable {
         case tracknumber
         case mediaPlayer = "media_player"
         case submissionClientVersion = "submission_client_version"
+      case musicServiceName = "music_service_name"
     }
 }
 
@@ -57,4 +59,5 @@ enum SubmissionClient: String, Codable {
     case listenbrainz = "listenbrainz"
     case orgListenbrainzAndroid = "org.listenbrainz.android"
     case listenBrainzAndroid = "ListenBrainz Android"
+  case brainzPlayer = "BrainzPlayer"
 }

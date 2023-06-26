@@ -12,7 +12,7 @@ struct SettingsView: View {
   @AppStorage("isDarkMode") private var isDarkMode = false
   @AppStorage("userToken") private var userToken:String = ""
   @State private var userName:String = ""
-  @Environment(\.presentationMode) var presentationMode
+  @Environment(\.dismiss) var dismiss
   @EnvironmentObject var homeViewModel: HomeViewModel
   
 
@@ -38,7 +38,7 @@ struct SettingsView: View {
       .navigationBarItems(
           trailing: Button(action: {
             homeViewModel.requestMusicData(userName: userName)
-              self.presentationMode.wrappedValue.dismiss()
+            dismiss()
           }, label: {
               Text("Save")
           }))

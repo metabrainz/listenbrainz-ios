@@ -8,42 +8,42 @@
 import SwiftUI
 
 struct SongDetailView: View {
+  
+  @EnvironmentObject var homeViewModel: HomeViewModel
 
-    @EnvironmentObject var homeViewModel: HomeViewModel
 
-    var body: some View {
-        List {
-            ForEach(homeViewModel.listens, id: \.recordingMsid) { listen in
-                HStack {
-                    Image(systemName: "music.note")
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundColor(.orange)
-                        .scaledToFit()
-                        .frame(height: 22)
-                        .padding(4)
+  var body: some View {
 
-                    VStack(alignment: .leading) {
-                        Text(listen.trackMetadata.trackName)
-                            .lineLimit(1)
-                            .font(.headline)
-                        Text(listen.trackMetadata.artistName)
-                            .lineLimit(1)
-                            .foregroundColor(.secondary)
-                    }
-                }
+    VStack {
+      List {
+        ForEach(homeViewModel.listens, id: \.recordingMsid) { listen in
+          HStack {
+            Image(systemName: "music.note")
+              .resizable()
+              .renderingMode(.template)
+              .foregroundColor(.orange)
+              .scaledToFit()
+              .frame(height: 22)
+              .padding(4)
+
+            VStack(alignment: .leading) {
+              Text(listen.trackMetadata.trackName)
+                .lineLimit(1)
+                .font(.headline)
+              Text(listen.trackMetadata.artistName)
+                .lineLimit(1)
+                .foregroundColor(.secondary)
             }
+          }
         }
+
+
         .navigationTitle("Songs")
-        .onAppear {
-            homeViewModel.requestMusicData()
-        }
-    }
-}
 
-struct SongDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        SongDetailView()
-    }
-}
 
+      }
+    }
+  }
+
+
+}

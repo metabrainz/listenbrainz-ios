@@ -9,19 +9,25 @@ import Foundation
 
 //MARK: - AdditionalInfo
 struct AdditionalInfo: Codable {
-    let artistNames: [String]
-    let discnumber, durationMS: Int
-    let isrc: String
-    let musicService: String
-    let originURL: String
-    let recordingMsid, releaseArtistName: String
-    let releaseArtistNames: [String]
-    let spotifyAlbumArtistIDS: [String]
-    let spotifyAlbumID: String
-    let spotifyArtistIDS: [String]
-    let spotifyID: String
-    let submissionClient: String
-    let tracknumber: Int
+    let artistNames: [String]?
+    let discnumber:Int?
+    let durationMS: Int?
+    let isrc: String?
+    let musicService: MusicService?
+    let originURL: String?
+    let recordingMsid: String
+    let releaseArtistName: String?
+    let releaseArtistNames: [String]?
+    let spotifyAlbumArtistIDS: [String]?
+    let spotifyAlbumID: String?
+    let spotifyArtistIDS: [String]?
+    let spotifyID: String?
+    let submissionClient: SubmissionClient
+    let tracknumber: Int?
+    let mediaPlayer: String?
+    let submissionClientVersion: String?
+  let musicServiceName: String?
+
 
     enum CodingKeys: String, CodingKey {
         case artistNames = "artist_names"
@@ -39,5 +45,19 @@ struct AdditionalInfo: Codable {
         case spotifyID = "spotify_id"
         case submissionClient = "submission_client"
         case tracknumber
+        case mediaPlayer = "media_player"
+        case submissionClientVersion = "submission_client_version"
+      case musicServiceName = "music_service_name"
     }
+}
+
+enum MusicService: String, Codable {
+    case spotifyCOM = "spotify.com"
+}
+
+enum SubmissionClient: String, Codable {
+    case listenbrainz = "listenbrainz"
+    case orgListenbrainzAndroid = "org.listenbrainz.android"
+    case listenBrainzAndroid = "ListenBrainz Android"
+  case brainzPlayer = "BrainzPlayer"
 }

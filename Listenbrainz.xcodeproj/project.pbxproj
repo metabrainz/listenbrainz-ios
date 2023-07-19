@@ -36,6 +36,8 @@
 		BBD28DDD2A2F9E8B00AD57C6 /* MbidMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DDC2A2F9E8B00AD57C6 /* MbidMapping.swift */; };
 		BBD28DDF2A2F9EA300AD57C6 /* ArtistElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DDE2A2F9EA300AD57C6 /* ArtistElement.swift */; };
 		BBD28DE12A2F9EB900AD57C6 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DE02A2F9EB900AD57C6 /* Track.swift */; };
+		BBE975B12A67FACD000908B1 /* MediaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE975B02A67FACD000908B1 /* MediaItemView.swift */; };
+		BBE975B32A67FAF3000908B1 /* ShazamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE975B22A67FAF3000908B1 /* ShazamViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,9 @@
 		BBD28DDC2A2F9E8B00AD57C6 /* MbidMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MbidMapping.swift; sourceTree = "<group>"; };
 		BBD28DDE2A2F9EA300AD57C6 /* ArtistElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistElement.swift; sourceTree = "<group>"; };
 		BBD28DE02A2F9EB900AD57C6 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		BBE975AF2A67FA7F000908B1 /* Listenbrainz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Listenbrainz.entitlements; sourceTree = "<group>"; };
+		BBE975B02A67FACD000908B1 /* MediaItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemView.swift; sourceTree = "<group>"; };
+		BBE975B22A67FAF3000908B1 /* ShazamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +155,7 @@
 				BB2A4F5629EB48DF006933BC /* ProfileView.swift */,
 				BB05864D2A25034200744FF0 /* SongDetailView.swift */,
 				BB2A4F5829EB48ED006933BC /* PlayerView.swift */,
+				BBE975B02A67FACD000908B1 /* MediaItemView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -177,6 +183,7 @@
 		6F842DC929C64E3E00DBBC7B /* Listenbrainz */ = {
 			isa = PBXGroup;
 			children = (
+				BBE975AF2A67FA7F000908B1 /* Listenbrainz.entitlements */,
 				6F7620A129C66C7300CDA3E8 /* UI */,
 				6F7620A029C66C6600CDA3E8 /* Application */,
 				BB0586582A2504CC00744FF0 /* repository */,
@@ -218,6 +225,7 @@
 			children = (
 				6F842DF829C6509300DBBC7B /* SpotifyManager.swift */,
 				BB0586522A25042C00744FF0 /* HomeViewModel.swift */,
+				BBE975B22A67FAF3000908B1 /* ShazamViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -402,6 +410,8 @@
 				BBD28DDF2A2F9EA300AD57C6 /* ArtistElement.swift in Sources */,
 				BBD28DD52A2F9DDC00AD57C6 /* Payload.swift in Sources */,
 				BBD28DDD2A2F9E8B00AD57C6 /* MbidMapping.swift in Sources */,
+				BBE975B12A67FACD000908B1 /* MediaItemView.swift in Sources */,
+				BBE975B32A67FAF3000908B1 /* ShazamViewModel.swift in Sources */,
 				BBD28DD92A2F9E2E00AD57C6 /* TrackMetadata.swift in Sources */,
 				6F842DCD29C64E3E00DBBC7B /* ListensView.swift in Sources */,
 				BBD28DD32A2F9DC400AD57C6 /* Artist.swift in Sources */,
@@ -572,15 +582,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Listenbrainz/Listenbrainz.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 8D89TSJ88H;
+				DEVELOPMENT_TEAM = 735VK94359;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Listenbrainz/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ListenBrainz;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = Shazam;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -603,15 +615,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Listenbrainz/Listenbrainz.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 8D89TSJ88H;
+				DEVELOPMENT_TEAM = 735VK94359;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Listenbrainz/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ListenBrainz;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = Shazam;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

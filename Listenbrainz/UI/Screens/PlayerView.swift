@@ -50,6 +50,12 @@ struct PlayerView: View {
             .background(Color.color_1)
             .cornerRadius(10)
         }
+        Button(viewModel.isMatching ? "Matching…" : "Match Custom audio", action: viewModel.startMatching)
+                 .disabled(viewModel.isMatching)
+                 .tint(.blue)
+                 .padding(.vertical)
+                 .buttonStyle(.borderless)
+                 .offset(y:90)
       }
     }
   }

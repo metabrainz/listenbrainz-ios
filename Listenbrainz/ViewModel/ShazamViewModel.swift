@@ -38,11 +38,17 @@ final class ShazamViewModel: NSObject, ObservableObject {
     private lazy var audioEngine: AVAudioEngine = .init()
     private lazy var inputNode = self.audioEngine.inputNode
     private lazy var bus: AVAudioNodeBus = 0
+    @Published private(set) var isMatching = false
+    private let audioFileURL = Bundle.main.url(forResource: "ird", withExtension: "mp3")
+
+  //MARK:- Init
 
     override init() {
         super.init()
         session.delegate = self
     }
+
+  //MARK:- Methods
 
     func start() {
         switch audioSession.recordPermission {
@@ -90,23 +96,78 @@ final class ShazamViewModel: NSObject, ObservableObject {
             self.error = error
         }
     }
+
+  func startMatching() {
+      guard let signature = signature(), isMatching == false else { return }
+      isMatching = true
+      session.match(signature)
+  }
+
+  //MARK:- Private Methods
+
+  private func buffer(audioFile: AVAudioFile, outputFormat: AVAudioFormat) -> AVAudioPCMBuffer? {
+      let frameCount = AVAudioFrameCount((1024 * 64) / (audioFile.processingFormat.streamDescription.pointee.mBytesPerFrame))
+      let outputFrameCapacity = AVAudioFrameCount(12 * audioFile.fileFormat.sampleRate)
+      guard let inputBuffer = AVAudioPCMBuffer(pcmFormat: audioFile.processingFormat, frameCapacity: frameCount),
+            let outputBuffer = AVAudioPCMBuffer(pcmFormat: outputFormat, frameCapacity: outputFrameCapacity),
+            let converter = AVAudioConverter(from: audioFile.processingFormat, to: outputFormat) else { return nil }
+      while true {
+          let status = converter.convert(to: outputBuffer, error: nil) { inNumPackets, outStatus in
+              do {
+                  try audioFile.read(into: inputBuffer)
+                  outStatus.pointee = .haveData
+                  return inputBuffer
+              } catch {
+                  if audioFile.framePosition >= audioFile.length {
+                      outStatus.pointee = .endOfStream
+                      return nil
+                  } else {
+                      outStatus.pointee = .noDataNow
+                      return nil
+                  }
+              }
+          }
+          switch status {
+          case .endOfStream, .error: return nil
+          default: return outputBuffer
+          }
+      }
+  }
+
+  private func signature() -> SHSignature? {
+      guard let audioFileURL = audioFileURL,
+            let audioFile = try? AVAudioFile(forReading: audioFileURL),
+            let audioFormat = AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 1),
+            let buffer = buffer(audioFile: audioFile, outputFormat: audioFormat) else { return nil }
+      let signatureGenerator = SHSignatureGenerator()
+      try? signatureGenerator.append(buffer, at: nil)
+      return signatureGenerator.signature()
+  }
 }
+
+//MARK:- Extensions
 
 extension ShazamViewModel: SHSessionDelegate {
 
     func session(_ session: SHSession, didFind match: SHMatch) {
-        DispatchQueue.main.async {
-            if let mediaItem = match.mediaItems.first {
-                self.mediaItem = mediaItem
-                self.stop()
-            }
+        guard let matchedMediaItem = match.mediaItems.first else { return }
+        DispatchQueue.main.async { [weak self] in
+            // Use 'self?.mediaItem' instead of 'mediaItem'
+            self?.mediaItem = matchedMediaItem
+            self?.stop()
+            self?.isMatching = false
+
         }
+
     }
 
     func session(_ session: SHSession, didNotFindMatchFor signature: SHSignature, error: Error?) {
-        DispatchQueue.main.async {
-            self.error = error
-            self.stop()
+        print(String(describing: error))
+        DispatchQueue.main.async { [weak self] in
+            // Use 'self?.isMatching' and 'self?.error' instead of 'isMatching' and 'error'
+            self?.isMatching = false
+            self?.error = error
+            self?.stop()
         }
     }
 }

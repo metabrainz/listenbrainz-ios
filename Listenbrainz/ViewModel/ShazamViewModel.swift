@@ -26,6 +26,7 @@ final class ShazamViewModel: NSObject, ObservableObject {
 
     @Published var matching: Bool = false
     @Published var mediaItem: SHMatchedMediaItem?
+  @Published var selectedAudioURL: URL?
     @Published var error: Error? {
         didSet {
             hasError = error != nil
@@ -39,7 +40,7 @@ final class ShazamViewModel: NSObject, ObservableObject {
     private lazy var inputNode = self.audioEngine.inputNode
     private lazy var bus: AVAudioNodeBus = 0
     @Published private(set) var isMatching = false
-    private let audioFileURL = Bundle.main.url(forResource: "ird", withExtension: "mp3")
+   
 
   //MARK:- Init
 
@@ -98,11 +99,10 @@ final class ShazamViewModel: NSObject, ObservableObject {
     }
 
   func startMatching() {
-      guard let signature = signature(), isMatching == false else { return }
-      isMatching = true
-      session.match(signature)
-  }
-
+        guard let signature = signature(from: selectedAudioURL!), isMatching == false else { return }
+        isMatching = true
+        session.match(signature)
+    }
   //MARK:- Private Methods
 
   private func buffer(audioFile: AVAudioFile, outputFormat: AVAudioFormat) -> AVAudioPCMBuffer? {
@@ -134,15 +134,15 @@ final class ShazamViewModel: NSObject, ObservableObject {
       }
   }
 
-  private func signature() -> SHSignature? {
-      guard let audioFileURL = audioFileURL,
-            let audioFile = try? AVAudioFile(forReading: audioFileURL),
-            let audioFormat = AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 1),
-            let buffer = buffer(audioFile: audioFile, outputFormat: audioFormat) else { return nil }
-      let signatureGenerator = SHSignatureGenerator()
-      try? signatureGenerator.append(buffer, at: nil)
-      return signatureGenerator.signature()
-  }
+
+  private func signature(from audioFileURL: URL) -> SHSignature? {
+       guard let audioFile = try? AVAudioFile(forReading: audioFileURL),
+             let audioFormat = AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 1),
+             let buffer = buffer(audioFile: audioFile, outputFormat: audioFormat) else { return nil }
+       let signatureGenerator = SHSignatureGenerator()
+       try? signatureGenerator.append(buffer, at: nil)
+       return signatureGenerator.signature()
+   }
 }
 
 //MARK:- Extensions
@@ -152,7 +152,7 @@ extension ShazamViewModel: SHSessionDelegate {
     func session(_ session: SHSession, didFind match: SHMatch) {
         guard let matchedMediaItem = match.mediaItems.first else { return }
         DispatchQueue.main.async { [weak self] in
-            // Use 'self?.mediaItem' instead of 'mediaItem'
+
             self?.mediaItem = matchedMediaItem
             self?.stop()
             self?.isMatching = false
@@ -164,7 +164,7 @@ extension ShazamViewModel: SHSessionDelegate {
     func session(_ session: SHSession, didNotFindMatchFor signature: SHSignature, error: Error?) {
         print(String(describing: error))
         DispatchQueue.main.async { [weak self] in
-            // Use 'self?.isMatching' and 'self?.error' instead of 'isMatching' and 'error'
+            
             self?.isMatching = false
             self?.error = error
             self?.stop()

@@ -26,7 +26,6 @@
 		BB2A4F5529EB48CC006933BC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F5429EB48CC006933BC /* HomeView.swift */; };
 		BB2A4F5729EB48DF006933BC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F5629EB48DF006933BC /* ProfileView.swift */; };
 		BB2A4F5929EB48ED006933BC /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F5829EB48ED006933BC /* PlayerView.swift */; };
-		BBBE93232A6B1A5700DAA79A /* ird.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BBBE93222A6B1A5700DAA79A /* ird.mp3 */; };
 		BBD20D5B2A3C7D57007C0C71 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD20D5A2A3C7D57007C0C71 /* SettingsView.swift */; };
 		BBD28DD12A2F9D9B00AD57C6 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DD02A2F9D9B00AD57C6 /* Album.swift */; };
 		BBD28DD32A2F9DC400AD57C6 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DD22A2F9DC400AD57C6 /* Artist.swift */; };
@@ -80,7 +79,6 @@
 		BB2A4F5429EB48CC006933BC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BB2A4F5629EB48DF006933BC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		BB2A4F5829EB48ED006933BC /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
-		BBBE93222A6B1A5700DAA79A /* ird.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ird.mp3; sourceTree = "<group>"; };
 		BBD20D5A2A3C7D57007C0C71 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BBD28DD02A2F9D9B00AD57C6 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		BBD28DD22A2F9DC400AD57C6 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 			isa = PBXGroup;
 			children = (
 				6F842DCE29C64E3F00DBBC7B /* Assets.xcassets */,
-				BBBE93222A6B1A5700DAA79A /* ird.mp3 */,
 				6F842DFC29C6516800DBBC7B /* Info.plist */,
 			);
 			path = Resources;
@@ -380,7 +377,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBBE93232A6B1A5700DAA79A /* ird.mp3 in Resources */,
 				6F842DCF29C64E3F00DBBC7B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

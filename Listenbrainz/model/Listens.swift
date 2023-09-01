@@ -8,6 +8,22 @@
 import Foundation
 
 struct Listens: Codable {
-    let payload: Payload
+    let payload: ListensPayload
 }
+
+
+
+struct CombinedModel: Codable {
+    let listensPayload: ListensPayload
+    let feedPayload: FeedPayload
+}
+
+// MARK: - Album
+struct Album: Codable {
+    let name: String
+    let artist: Artist
+    let tracks: [Track]
+}
+
+
 

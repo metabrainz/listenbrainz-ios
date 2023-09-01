@@ -1,19 +1,18 @@
 //
-//  TrackMetadata.swift
+//  FeedTrackMetadata.swift
 //  Listenbrainz
 //
-//  Created by Gaurav Bhardwaj on 06/06/23.
+//  Created by Gaurav Bhardwaj on 31/08/23.
 //
 
 import Foundation
 
 
-
 //MARK: - TrackMetadata
-struct TrackMetadata: Codable {
-    let additionalInfo: AdditionalInfo
+struct FeedTrackMetadata: Codable {
+    let additionalInfo: FeedAdditionalInfo?
     let artistName: String
-    let mbidMapping: MbidMapping?
+    let mbidMapping: FeedMbidMapping
     let releaseName: String?
     let  trackName: String
 

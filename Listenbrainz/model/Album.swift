@@ -8,9 +8,7 @@
 import Foundation
 
 
-// MARK: - Album
-struct Album: Codable {
-    let name: String
-    let artist: Artist
-    let tracks: [Track]
+struct ListensAlbum: Codable {
+    let payload: FeedPayload
+
 }

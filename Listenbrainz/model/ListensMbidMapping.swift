@@ -8,12 +8,14 @@
 import Foundation
 
 
-//MARK: - MbidMapping
-struct MbidMapping: Codable {
-    let artistMbids: [String]?
-    let artists: [ArtistElement]?
+//MARK: - ListensMbidMapping
+struct ListensMbidMapping: Codable {
+    let artistMbids: [String]
+    let artists: [Artist]
     let caaID: Int?
-    let caaReleaseMbid, recordingMbid, recordingName, releaseMbid: String?
+    let caaReleaseMbid: String?
+    let recordingMbid, recordingName: String
+    let releaseMbid: String?
 
     enum CodingKeys: String, CodingKey {
         case artistMbids = "artist_mbids"
@@ -25,3 +27,4 @@ struct MbidMapping: Codable {
         case releaseMbid = "release_mbid"
     }
 }
+

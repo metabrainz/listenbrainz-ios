@@ -1,18 +1,18 @@
-//
+
 //  Payload.swift
 //  Listenbrainz
 //
 //  Created by Gaurav Bhardwaj on 06/06/23.
-//
+
 
 import Foundation
 
 
-//MARK: - Payload
-struct Payload: Codable {
+// MARK: - ListensPayload
+struct ListensPayload: Codable {
     let count, latestListenTs: Int
     let listens: [Listen]
-    let userID: String
+    let userID: User
 
     enum CodingKeys: String, CodingKey {
         case count

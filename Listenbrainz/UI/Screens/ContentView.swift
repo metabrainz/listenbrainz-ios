@@ -13,6 +13,7 @@ struct ContentView: View {
   let screenWidth = UIScreen.main.bounds.size.width
   let screenHeight = UIScreen.main.bounds.size.height
   @EnvironmentObject var homeViewModel: HomeViewModel
+  @EnvironmentObject var feedViewModel: FeedViewModel
   
   init() {
     UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
@@ -41,7 +42,8 @@ struct ContentView: View {
             Label("Listens", systemImage: "person.wave.2")
           }
         
-        ProfileView()
+        FeedView()
+          .environmentObject(feedViewModel)
           .frame(width: screenWidth, height: screenHeight, alignment: .center)
           .tabItem {
             Label("Profile", systemImage: "beats.headphones")

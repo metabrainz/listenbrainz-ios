@@ -41,8 +41,3 @@ struct Metadata: Codable {
         case blurbContent = "blurb_content"
     }
 }
-enum User: String, Codable {
-    case akshaaatt = "akshaaatt"
-    case gb1307 = "gb1307"
-    case jasjeet = "Jasjeet"
-}

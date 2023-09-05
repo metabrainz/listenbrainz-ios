@@ -8,7 +8,6 @@
 import Foundation
 
 
-// MARK: - AdditionalInfo
 struct FeedAdditionalInfo: Codable {
     let artistMbids: JSONNull?
     let discnumber, durationMS: Int?

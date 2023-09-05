@@ -20,8 +20,14 @@ struct FeedArtist: Codable {
 }
 
 enum JoinPhrase: String, Codable {
-    case empty = ", "
+    case empty = ""
     case feat = " feat. "
     case joinPhrase = " & "
-    case purple = ""
+    case purple = ", "
+}
+
+enum User: String, Codable {
+    case akshaaatt = "akshaaatt"
+    case gb1307 = "gb1307"
+    case jasjeet = "Jasjeet"
 }

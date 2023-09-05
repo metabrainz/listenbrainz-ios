@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct ListensAlbum: Codable {
+struct FeedAlbum: Codable {
     let payload: FeedPayload
 
 }

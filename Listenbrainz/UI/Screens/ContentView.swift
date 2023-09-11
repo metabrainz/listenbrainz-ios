@@ -15,6 +15,7 @@ struct ContentView: View {
   @EnvironmentObject var homeViewModel: HomeViewModel
   @EnvironmentObject var feedViewModel: FeedViewModel
   
+  
   init() {
     UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
     UITabBar.appearance().clipsToBounds = true
@@ -46,7 +47,7 @@ struct ContentView: View {
           .environmentObject(feedViewModel)
           .frame(width: screenWidth, height: screenHeight, alignment: .center)
           .tabItem {
-            Label("Profile", systemImage: "beats.headphones")
+            Label("Feed", systemImage: "bolt")
           }
       }
       .accentColor(Color.gray)

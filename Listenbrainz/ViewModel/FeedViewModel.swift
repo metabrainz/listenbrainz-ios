@@ -11,20 +11,27 @@ import Foundation
 
 
 class FeedViewModel: ObservableObject {
-    @Published var feedData: ListensAlbum?
+    @Published var feedData: FeedAlbum?
     @Published var events: [Event] = []
 
   private var subscriptions: Set<AnyCancellable> = []
+  var repository: FeedRepository
 
-    private let repository: FeedRepository = FeedRepositoryImpl()
 
-    func fetchFeedEvents(username: String) {
-        repository.fetchMusicData(userName: username)
+  init(repository: FeedRepository) {
+      self.repository = repository
+
+  }
+
+
+
+  func fetchFeedEvents(username: String,userToken:String) {
+        repository.fetchFeedData(userName: username,userToken: userToken)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:
-                    break // Handle finished if needed
+                    break
                 case .failure(let error):
                     print("API Error: \(error)")
                 }

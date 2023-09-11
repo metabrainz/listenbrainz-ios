@@ -24,6 +24,7 @@ struct AdaptiveImage: View {
 struct HomeView : View{
   
   @State private var isSettingsPressed = false
+  @State private var userToken: String = ""
 
   var body: some View{
 
@@ -137,7 +138,7 @@ struct HomeView : View{
 
     }
     .sheet(isPresented: $isSettingsPressed) {
-      SettingsView()
+      SettingsView(userToken: userToken)
     }
   }
 }

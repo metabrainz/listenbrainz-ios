@@ -35,7 +35,6 @@
 		BB66C2012A9F3F0900BB4CBA /* FeedRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C2002A9F3F0900BB4CBA /* FeedRepositoryImpl.swift */; };
 		BB66C2032A9F3F8700BB4CBA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C2022A9F3F8700BB4CBA /* Event.swift */; };
 		BB66C2052A9F3FD500BB4CBA /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C2042A9F3FD500BB4CBA /* Metadata.swift */; };
-		BB66C2072A9F401000BB4CBA /* Encode:Decode Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C2062A9F401000BB4CBA /* Encode:Decode Helpers.swift */; };
 		BB66C2092AA0F56600BB4CBA /* FeedPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C2082AA0F56600BB4CBA /* FeedPayload.swift */; };
 		BB66C20B2AA0F5AD00BB4CBA /* FeedTrackMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C20A2AA0F5AD00BB4CBA /* FeedTrackMetadata.swift */; };
 		BB66C20D2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C20C2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift */; };
@@ -103,7 +102,6 @@
 		BB66C2002A9F3F0900BB4CBA /* FeedRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRepositoryImpl.swift; sourceTree = "<group>"; };
 		BB66C2022A9F3F8700BB4CBA /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		BB66C2042A9F3FD500BB4CBA /* Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
-		BB66C2062A9F401000BB4CBA /* Encode:Decode Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encode:Decode Helpers.swift"; sourceTree = "<group>"; };
 		BB66C2082AA0F56600BB4CBA /* FeedPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPayload.swift; sourceTree = "<group>"; };
 		BB66C20A2AA0F5AD00BB4CBA /* FeedTrackMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTrackMetadata.swift; sourceTree = "<group>"; };
 		BB66C20C2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAdditionalInfo.swift; sourceTree = "<group>"; };
@@ -332,7 +330,6 @@
 				BB66C20E2AA0F63800BB4CBA /* FeedMbidMapping.swift */,
 				BBD28DDE2A2F9EA300AD57C6 /* ArtistElement.swift */,
 				BBD28DE02A2F9EB900AD57C6 /* Track.swift */,
-				BB66C2062A9F401000BB4CBA /* Encode:Decode Helpers.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -530,7 +527,6 @@
 				BB05865A2A25052600744FF0 /* HomeRepository.swift in Sources */,
 				BBD28DD12A2F9D9B00AD57C6 /* FeedAlbum.swift in Sources */,
 				BB086C712AA6FDE9000A8720 /* TrackInfoView.swift in Sources */,
-				BB66C2072A9F401000BB4CBA /* Encode:Decode Helpers.swift in Sources */,
 				BB66C20F2AA0F63800BB4CBA /* FeedMbidMapping.swift in Sources */,
 				BB2A4F5929EB48ED006933BC /* PlayerView.swift in Sources */,
 				BB66C1FF2A9F3EFD00BB4CBA /* FeedRepository.swift in Sources */,

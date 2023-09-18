@@ -138,7 +138,7 @@ struct HomeView : View{
 
     }
     .sheet(isPresented: $isSettingsPressed) {
-      SettingsView(userToken: userToken)
+      SettingsView()
     }
   }
 }

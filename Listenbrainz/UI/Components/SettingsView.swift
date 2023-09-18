@@ -10,8 +10,8 @@ import SwiftUI
 
 struct SettingsView: View {
   @AppStorage("isDarkMode") private var isDarkMode = false
-  @State  var userToken: String
-  @State private var userName:String = ""
+  @AppStorage("userToken") private var userToken:String = ""
+  @AppStorage("userName") private var userName:String = ""
   @Environment(\.dismiss) var dismiss
   @EnvironmentObject var homeViewModel: HomeViewModel
   @EnvironmentObject var feedViewModel: FeedViewModel

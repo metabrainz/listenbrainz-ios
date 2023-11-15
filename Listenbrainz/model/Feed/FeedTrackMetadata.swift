@@ -10,9 +10,9 @@ import Foundation
 
 // MARK: - TrackMetadata
 struct FeedTrackMetadata: Codable {
-    let additionalInfo: FeedAdditionalInfo?
+    let additionalInfo: FeedAdditionalInfo
     let artistName: String
-    let mbidMapping: FeedMbidMapping
+    let mbidMapping: FeedMbidMapping?
     let releaseName, trackName: String
 
     enum CodingKeys: String, CodingKey {

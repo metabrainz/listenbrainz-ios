@@ -15,7 +15,7 @@ struct Event: Codable {
   let hidden: Bool
   let id: Int?
   let metadata: Metadata
-  let userName: User
+  let userName: String
 
   enum CodingKeys: String, CodingKey {
       case created
@@ -23,4 +23,6 @@ struct Event: Codable {
       case hidden, id, metadata
       case userName = "user_name"
   }
+}
+
 }

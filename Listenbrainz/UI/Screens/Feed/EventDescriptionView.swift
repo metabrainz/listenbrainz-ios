@@ -26,6 +26,8 @@ struct EventDescriptionView: View {
       return "\(event.userName) reviewed a track"
     case "recording_pin":
       return "\(event.userName) pinned a track"
+    case "follow":
+      return "\(event.metadata.userName0!) started following \(event.metadata.userName1!)"
     default:
       return "An event occurred"
     }

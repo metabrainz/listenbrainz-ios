@@ -10,7 +10,7 @@ import Foundation
 // MARK: - FeedArtist
 struct FeedArtist: Codable {
     let artistCreditName, artistMbid: String
-    let joinPhrase: JoinPhrase
+    let joinPhrase: String
 
     enum CodingKeys: String, CodingKey {
         case artistCreditName = "artist_credit_name"
@@ -19,15 +19,4 @@ struct FeedArtist: Codable {
     }
 }
 
-enum JoinPhrase: String, Codable {
-    case empty = ""
-    case feat = " feat. "
-    case joinPhrase = " & "
-    case purple = ", "
-}
 
-enum User: String, Codable {
-    case akshaaatt = "akshaaatt"
-    case gb1307 = "gb1307"
-    case jasjeet = "Jasjeet"
-}

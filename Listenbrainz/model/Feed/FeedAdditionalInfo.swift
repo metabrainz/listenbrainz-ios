@@ -8,24 +8,25 @@
 import Foundation
 
 
+
 struct FeedAdditionalInfo: Codable {
-    let artistMbids: JSONNull?
+    let artistMbids: [String]?
     let discnumber, durationMS: Int?
-    let isrc: String?
-    let listeningFrom: JSONNull?
+    let isrc, listeningFrom: String?
     let originURL: String?
-    let recordingMbid: JSONNull?
+    let recordingMbid: String?
     let recordingMsid: String
     let releaseArtistName: String?
     let releaseArtistNames: [String]?
-    let releaseGroupMbid, releaseMbid: JSONNull?
+    let releaseGroupMbid, releaseMbid: String?
     let spotifyAlbumArtistIDS: [String]?
     let spotifyAlbumID: String?
     let spotifyArtistIDS: [String]?
     let spotifyID: String?
-    let tags, trackMbid: JSONNull?
-    let tracknumber: String?
-    let workMbids, youtubeID: JSONNull?
+    let tags: JSONNull?
+    let trackMbid, tracknumber: String?
+    let workMbids: [String]?
+    let youtubeID: JSONNull?
 
     enum CodingKeys: String, CodingKey {
         case artistMbids = "artist_mbids"
@@ -51,4 +52,3 @@ struct FeedAdditionalInfo: Codable {
         case youtubeID = "youtube_id"
     }
 }
-

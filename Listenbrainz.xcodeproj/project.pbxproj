@@ -309,7 +309,6 @@
 				BB0586562A2504AD00744FF0 /* Listens.swift */,
 				BB66C2102AA0F6C500BB4CBA /* ListensArtist.swift */,
 				BBD28DD42A2F9DDC00AD57C6 /* ListensPayload.swift */,
-				BB66C2022A9F3F8700BB4CBA /* Event.swift */,
 				BBD28DD62A2F9E0A00AD57C6 /* Listen.swift */,
 				BBD28DD82A2F9E2E00AD57C6 /* ListensTrackMetadata.swift */,
 				BBD28DDA2A2F9E5400AD57C6 /* ListensAdditionalInfo.swift */,
@@ -329,6 +328,7 @@
 				BB66C20C2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift */,
 				BB66C20E2AA0F63800BB4CBA /* FeedMbidMapping.swift */,
 				BBD28DDE2A2F9EA300AD57C6 /* ArtistElement.swift */,
+				BB66C2022A9F3F8700BB4CBA /* Event.swift */,
 				BBD28DE02A2F9EB900AD57C6 /* Track.swift */,
 			);
 			path = Feed;

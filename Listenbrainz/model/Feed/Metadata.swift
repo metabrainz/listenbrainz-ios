@@ -7,21 +7,20 @@
 
 import Foundation
 
-
+// MARK: - Metadata
 struct Metadata: Codable {
+    let message: String?
     let insertedAt, listenedAt: Int?
     let listenedAtISO, playingNow: JSONNull?
     let trackMetadata: FeedTrackMetadata?
-    let userName: User?
+    let userName: String?
     let created: Int?
     let relationshipType: String?
-    let userName0: User?
-    let userName1, entityID, entityName, entityType: String?
-    let rating: Int?
-    let reviewMbid, text: String?
-    let blurbContent: String?
+    let userName0: String?
+    let userName1, blurbContent: String?
 
     enum CodingKeys: String, CodingKey {
+        case message
         case insertedAt = "inserted_at"
         case listenedAt = "listened_at"
         case listenedAtISO = "listened_at_iso"
@@ -32,12 +31,6 @@ struct Metadata: Codable {
         case relationshipType = "relationship_type"
         case userName0 = "user_name_0"
         case userName1 = "user_name_1"
-        case entityID = "entity_id"
-        case entityName = "entity_name"
-        case entityType = "entity_type"
-        case rating
-        case reviewMbid = "review_mbid"
-        case text
         case blurbContent = "blurb_content"
     }
 }

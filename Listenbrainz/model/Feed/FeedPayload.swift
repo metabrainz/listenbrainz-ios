@@ -12,7 +12,7 @@ import Foundation
 struct FeedPayload: Codable {
   let count: Int
   let events: [Event]
-  let userID: User
+  let userID: String
 
   enum CodingKeys: String, CodingKey {
       case count, events

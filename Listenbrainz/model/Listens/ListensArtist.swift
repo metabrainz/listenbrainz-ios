@@ -9,10 +9,22 @@ import Foundation
 
 
 // MARK: - Artist
-struct Artist: Codable {
-    let payload: ListensPayload?
-    let name: String?
-    let founded: Int?
-    let members: [String]?
+struct ListensArtist: Codable {
+    let artistCreditName, artistMbid: String
+    let joinPhrase: JoinPhrase
+
+    enum CodingKeys: String, CodingKey {
+        case artistCreditName = "artist_credit_name"
+        case artistMbid = "artist_mbid"
+        case joinPhrase = "join_phrase"
+    }
 }
+
+enum JoinPhrase: String, Codable {
+    case empty = ""
+    case feat = " feat. "
+    case featuring = " featuring "
+    case joinPhrase = " & "
+}
+
 

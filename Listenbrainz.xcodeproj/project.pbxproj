@@ -50,6 +50,7 @@
 		BBD28DDD2A2F9E8B00AD57C6 /* ListensMbidMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DDC2A2F9E8B00AD57C6 /* ListensMbidMapping.swift */; };
 		BBD28DDF2A2F9EA300AD57C6 /* ArtistElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DDE2A2F9EA300AD57C6 /* ArtistElement.swift */; };
 		BBD28DE12A2F9EB900AD57C6 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DE02A2F9EB900AD57C6 /* Track.swift */; };
+		BBE9630E2B0560FC00AA4219 /* BrainzPlayerMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE9630D2B0560FC00AA4219 /* BrainzPlayerMetadata.swift */; };
 		BBE975B12A67FACD000908B1 /* MediaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE975B02A67FACD000908B1 /* MediaItemView.swift */; };
 		BBE975B32A67FAF3000908B1 /* ShazamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE975B22A67FAF3000908B1 /* ShazamViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -117,6 +118,7 @@
 		BBD28DDC2A2F9E8B00AD57C6 /* ListensMbidMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListensMbidMapping.swift; sourceTree = "<group>"; };
 		BBD28DDE2A2F9EA300AD57C6 /* ArtistElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistElement.swift; sourceTree = "<group>"; };
 		BBD28DE02A2F9EB900AD57C6 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		BBE9630D2B0560FC00AA4219 /* BrainzPlayerMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainzPlayerMetadata.swift; sourceTree = "<group>"; };
 		BBE975AF2A67FA7F000908B1 /* Listenbrainz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Listenbrainz.entitlements; sourceTree = "<group>"; };
 		BBE975B02A67FACD000908B1 /* MediaItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemView.swift; sourceTree = "<group>"; };
 		BBE975B22A67FAF3000908B1 /* ShazamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamViewModel.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				BBD28DD42A2F9DDC00AD57C6 /* ListensPayload.swift */,
 				BBD28DD62A2F9E0A00AD57C6 /* Listen.swift */,
 				BBD28DD82A2F9E2E00AD57C6 /* ListensTrackMetadata.swift */,
+				BBE9630D2B0560FC00AA4219 /* BrainzPlayerMetadata.swift */,
 				BBD28DDA2A2F9E5400AD57C6 /* ListensAdditionalInfo.swift */,
 				BBD28DDC2A2F9E8B00AD57C6 /* ListensMbidMapping.swift */,
 			);
@@ -533,6 +536,7 @@
 				BB05864E2A25034200744FF0 /* SongDetailView.swift in Sources */,
 				BB66C2092AA0F56600BB4CBA /* FeedPayload.swift in Sources */,
 				BB2A4F5529EB48CC006933BC /* HomeView.swift in Sources */,
+				BBE9630E2B0560FC00AA4219 /* BrainzPlayerMetadata.swift in Sources */,
 				6F842DCB29C64E3E00DBBC7B /* ListenbrainzApp.swift in Sources */,
 				BB0586572A2504AD00744FF0 /* Listens.swift in Sources */,
 				BB2A4F5729EB48DF006933BC /* ProfileView.swift in Sources */,

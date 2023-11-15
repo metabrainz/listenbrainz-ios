@@ -25,4 +25,4 @@ struct Event: Codable {
   }
 }
 
-}
+

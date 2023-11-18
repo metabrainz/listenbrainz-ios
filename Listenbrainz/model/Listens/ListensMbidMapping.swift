@@ -12,8 +12,8 @@ import Foundation
 struct ListensMbidMapping: Codable {
     let artistMbids: [String]
     let artists: [ListensArtist]
-    let caaID: Int
-    let caaReleaseMbid, recordingMbid, recordingName, releaseMbid: String
+    let caaID: Int?
+    let caaReleaseMbid, recordingMbid, recordingName, releaseMbid: String?
 
     enum CodingKeys: String, CodingKey {
         case artistMbids = "artist_mbids"

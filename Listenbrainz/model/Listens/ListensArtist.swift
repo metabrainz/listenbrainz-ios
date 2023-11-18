@@ -11,7 +11,7 @@ import Foundation
 // MARK: - Artist
 struct ListensArtist: Codable {
     let artistCreditName, artistMbid: String
-    let joinPhrase: JoinPhrase
+    let joinPhrase: String
 
     enum CodingKeys: String, CodingKey {
         case artistCreditName = "artist_credit_name"

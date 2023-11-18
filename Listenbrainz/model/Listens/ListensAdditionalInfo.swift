@@ -11,7 +11,7 @@ import Foundation
 struct ListensAdditionalInfo: Codable {
     let artistNames: [String]?
     let discnumber: Int?
-    let durationMS: Int
+    let durationMS: Int?
     let isrc: String?
     let musicService: MusicService?
     let originURL: String?
@@ -22,7 +22,7 @@ struct ListensAdditionalInfo: Codable {
     let spotifyAlbumID: String?
     let spotifyArtistIDS: [String]?
     let spotifyID: String?
-    let submissionClient: SubmissionClient?
+    let submissionClient: String?
     let tracknumber: Int?
     let mediaPlayer, submissionClientVersion, musicServiceName: String?
 

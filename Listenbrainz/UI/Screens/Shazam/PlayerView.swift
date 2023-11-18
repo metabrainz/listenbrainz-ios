@@ -9,12 +9,12 @@
 import SwiftUI
 import ShazamKit
 
-extension SHMatchedMediaItem: Identifiable {
-
-    public var id: String {
-        shazamID ?? ""
-    }
-}
+//extension SHMatchedMediaItem: Identifiable {
+//
+//    public var id: String {
+//        shazamID ?? ""
+//    }
+//}
 
 struct PlayerView: View {
   @State private var fileName = ""

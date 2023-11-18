@@ -9,18 +9,20 @@ import Foundation
 
 
 // MARK: - Event
-struct Event: Codable {
+struct Event: Codable, Identifiable {
   let created: Int
   let eventType: String
   let hidden: Bool
-  let id: Int?
   let metadata: Metadata
   let userName: String
+  var id: Int {
+    created
+  }
 
   enum CodingKeys: String, CodingKey {
       case created
       case eventType = "event_type"
-      case hidden, id, metadata
+      case hidden, metadata
       case userName = "user_name"
   }
 }

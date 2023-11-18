@@ -20,20 +20,22 @@ struct ListenbrainzApp: App {
     
     var body: some Scene {
         WindowGroup {
-          ContentView()
-            .environmentObject(homeViewModel)
-            .environmentObject(feedViewModel)
-            .preferredColorScheme(isDarkMode ? .dark : .light)
-                .environmentObject(spotifyManager)
-                .onAppear {
-                    handleSpotifySession()
-                    homeViewModel.requestMusicData(userName: userName)
-                    feedViewModel.fetchFeedEvents(username: userName, userToken: userToken)
-                }
-                .onOpenURL { url in
-                    spotifyManager.sessionManager.application(UIApplication.shared, open: url, options: [:])
-
-                }
+            NavigationView {
+                ContentView()
+                    .environmentObject(homeViewModel)
+                    .environmentObject(feedViewModel)
+                    .preferredColorScheme(isDarkMode ? .dark : .light)
+                    .environmentObject(spotifyManager)
+                    .onAppear {
+                        handleSpotifySession()
+                        homeViewModel.requestMusicData(userName: userName)
+                        feedViewModel.fetchFeedEvents(username: userName, userToken: userToken)
+                    }
+                    .onOpenURL { url in
+                        spotifyManager.sessionManager.application(UIApplication.shared, open: url, options: [:])
+                        
+                    }
+            }
         }
     }
     

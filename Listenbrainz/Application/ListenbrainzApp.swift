@@ -10,11 +10,14 @@ import SpotifyiOS
 
 @main
 struct ListenbrainzApp: App {
-  @StateObject var homeViewModel =  HomeViewModel(repository: HomeRepositoryImpl())
-  @StateObject var feedViewModel = FeedViewModel(repository: FeedRepositoryImpl())
+    @StateObject var homeViewModel =  HomeViewModel(repository: HomeRepositoryImpl())
+    @StateObject var feedViewModel = FeedViewModel(repository: FeedRepositoryImpl())
 
     @StateObject var spotifyManager = SpotifyManager()
-  @AppStorage("isDarkMode") private var isDarkMode = false
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    @AppStorage("userName") private var userName:String = ""
+    @AppStorage("userToken") private var userToken:String = ""
+    
     var body: some Scene {
         WindowGroup {
           ContentView()
@@ -22,7 +25,11 @@ struct ListenbrainzApp: App {
             .environmentObject(feedViewModel)
             .preferredColorScheme(isDarkMode ? .dark : .light)
                 .environmentObject(spotifyManager)
-                .onAppear(perform: handleSpotifySession)
+                .onAppear {
+                    handleSpotifySession()
+                    homeViewModel.requestMusicData(userName: userName)
+                    feedViewModel.fetchFeedEvents(username: userName, userToken: userToken)
+                }
                 .onOpenURL { url in
                     spotifyManager.sessionManager.application(UIApplication.shared, open: url, options: [:])
 

@@ -21,7 +21,7 @@ struct CombinedModel: Codable {
 // MARK: - Album
 struct Album: Codable {
     let name: String
-    let artist: Artist
+    let artist: ListensArtist
     let tracks: [Track]
 }
 

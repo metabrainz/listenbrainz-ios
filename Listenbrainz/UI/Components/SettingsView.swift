@@ -11,9 +11,10 @@ import SwiftUI
 struct SettingsView: View {
   @AppStorage("isDarkMode") private var isDarkMode = false
   @AppStorage("userToken") private var userToken:String = ""
-  @State private var userName:String = ""
+  @AppStorage("userName") private var userName:String = ""
   @Environment(\.dismiss) var dismiss
   @EnvironmentObject var homeViewModel: HomeViewModel
+  @EnvironmentObject var feedViewModel: FeedViewModel
   
 
   var body: some View  {
@@ -38,6 +39,7 @@ struct SettingsView: View {
       .navigationBarItems(
           trailing: Button(action: {
             homeViewModel.requestMusicData(userName: userName)
+            feedViewModel.fetchFeedEvents(username: userName, userToken: userToken)
             dismiss()
           }, label: {
               Text("Save")
@@ -50,9 +52,9 @@ struct SettingsView: View {
 }
  
 
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
-
-    }
-}
+//struct SettingsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SettingsView()
+//
+//    }
+//}

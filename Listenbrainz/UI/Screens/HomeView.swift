@@ -24,6 +24,7 @@ struct AdaptiveImage: View {
 struct HomeView : View{
   
   @State private var isSettingsPressed = false
+  @State private var userToken: String = ""
 
   var body: some View{
 

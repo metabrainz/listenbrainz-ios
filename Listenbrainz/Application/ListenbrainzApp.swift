@@ -11,12 +11,15 @@ import SpotifyiOS
 @main
 struct ListenbrainzApp: App {
   @StateObject var homeViewModel =  HomeViewModel(repository: HomeRepositoryImpl())
+  @StateObject var feedViewModel = FeedViewModel(repository: FeedRepositoryImpl())
+
     @StateObject var spotifyManager = SpotifyManager()
   @AppStorage("isDarkMode") private var isDarkMode = false
     var body: some Scene {
         WindowGroup {
           ContentView()
             .environmentObject(homeViewModel)
+            .environmentObject(feedViewModel)
             .preferredColorScheme(isDarkMode ? .dark : .light)
                 .environmentObject(spotifyManager)
                 .onAppear(perform: handleSpotifySession)

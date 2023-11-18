@@ -7,10 +7,10 @@
 
 import Foundation
 
-//MARK: - AdditionalInfo
-struct AdditionalInfo: Codable {
+// MARK: - ListensAdditionalInfo
+struct ListensAdditionalInfo: Codable {
     let artistNames: [String]?
-    let discnumber:Int?
+    let discnumber: Int?
     let durationMS: Int?
     let isrc: String?
     let musicService: MusicService?
@@ -22,12 +22,9 @@ struct AdditionalInfo: Codable {
     let spotifyAlbumID: String?
     let spotifyArtistIDS: [String]?
     let spotifyID: String?
-    let submissionClient: SubmissionClient
+    let submissionClient: String?
     let tracknumber: Int?
-    let mediaPlayer: String?
-    let submissionClientVersion: String?
-  let musicServiceName: String?
-
+    let mediaPlayer, submissionClientVersion, musicServiceName: String?
 
     enum CodingKeys: String, CodingKey {
         case artistNames = "artist_names"
@@ -47,17 +44,17 @@ struct AdditionalInfo: Codable {
         case tracknumber
         case mediaPlayer = "media_player"
         case submissionClientVersion = "submission_client_version"
-      case musicServiceName = "music_service_name"
+        case musicServiceName = "music_service_name"
     }
 }
 
 enum MusicService: String, Codable {
     case spotifyCOM = "spotify.com"
+    case youtubeCOM = "youtube.com"
 }
 
 enum SubmissionClient: String, Codable {
-    case listenbrainz = "listenbrainz"
-    case orgListenbrainzAndroid = "org.listenbrainz.android"
+    case brainzPlayer = "BrainzPlayer"
     case listenBrainzAndroid = "ListenBrainz Android"
-  case brainzPlayer = "BrainzPlayer"
+    case listenbrainz = "listenbrainz"
 }

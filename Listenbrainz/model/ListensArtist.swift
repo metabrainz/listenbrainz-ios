@@ -1,16 +1,18 @@
 //
-//  Artist.swift
+//  ListensArtist.swift
 //  Listenbrainz
 //
-//  Created by Gaurav Bhardwaj on 06/06/23.
+//  Created by Gaurav Bhardwaj on 31/08/23.
 //
 
 import Foundation
 
+
 // MARK: - Artist
 struct Artist: Codable {
-    let payload: Payload?
+    let payload: ListensPayload?
     let name: String?
     let founded: Int?
     let members: [String]?
 }
+

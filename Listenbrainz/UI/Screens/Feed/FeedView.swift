@@ -9,36 +9,39 @@ import SwiftUI
 
 struct FeedView: View {
   @EnvironmentObject var viewModel: FeedViewModel
+  @State private var isSettingsPressed = false
 
   var body: some View {
-    NavigationView {
-      List {
-        ForEach(viewModel.events, id: \.id) { event in
-          VStack(alignment: .leading){
-            HStack(spacing: 20) {
-              EventImageView(eventType: event.eventType)
-                .frame(width: 18, height: 18)
-              EventDescriptionView(event: event)
+    VStack{
+
+      TopBar(isSettingsPressed:$isSettingsPressed)
+      
+      NavigationView {
+        List {
+          ForEach(viewModel.events, id: \.id) { event in
+            VStack(alignment: .leading){
+              HStack(spacing: 20) {
+                EventImageView(eventType: event.eventType)
+                  .frame(width: 18, height: 18)
+                EventDescriptionView(event: event)
+
+              }
+
+              TrackInfoView(event: event)
+
 
             }
 
-            TrackInfoView(event: event)
-
-
           }
-
         }
+        .sheet(isPresented: $isSettingsPressed) {
+                      SettingsView()
+                  }
+        .listStyle(PlainListStyle())
+        .listRowSeparator(.hidden)
+        .listRowInsets(EdgeInsets(top: 0, leading: 36, bottom: 0, trailing: 16))
       }
-      .background(Color.orange.opacity(0.8))
-      .listStyle(PlainListStyle())
-      .listRowSeparator(.hidden)
-      .listRowInsets(EdgeInsets(top: 0, leading: 36, bottom: 0, trailing: 16))
-
-//      .onAppear {
-//        viewModel.fetchFeedEvents(username: "gb1307")
-//      }
-      .navigationTitle("Feed")
     }
   }
-}
 
+}

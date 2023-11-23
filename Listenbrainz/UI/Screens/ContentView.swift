@@ -14,21 +14,23 @@ struct ContentView: View {
   let screenHeight = UIScreen.main.bounds.size.height
   @EnvironmentObject var homeViewModel: HomeViewModel
   @EnvironmentObject var feedViewModel: FeedViewModel
-  
-  
+
+
   init() {
     UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
     UITabBar.appearance().clipsToBounds = true
   }
-  
+
   var body: some View {
     ZStack{
       TabView {
-        HomeView()
-          .tabItem {
-            Label("Home", systemImage: "house.fill")
-          }
 
+        FeedView()
+          .environmentObject(feedViewModel)
+          .frame(width: screenWidth, height: screenHeight, alignment: .center)
+          .tabItem {
+            Label("Feed", systemImage: "bolt")
+          }
         PlayerView()
           .edgesIgnoringSafeArea(.all)
           .frame(width: screenWidth, height: screenHeight, alignment: .center)
@@ -42,13 +44,8 @@ struct ContentView: View {
           .tabItem {
             Label("Listens", systemImage: "person.wave.2")
           }
+
         
-        FeedView()
-          .environmentObject(feedViewModel)
-          .frame(width: screenWidth, height: screenHeight, alignment: .center)
-          .tabItem {
-            Label("Feed", systemImage: "bolt")
-          }
       }
       .accentColor(Color.gray)
     }

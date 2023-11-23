@@ -5,13 +5,9 @@
 //  Created by avataar on 19/03/23.
 //
 
-
-
 import SwiftUI
 import Combine
 import SpotifyiOS
-
-
 
 class SpotifyManager: NSObject, ObservableObject, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate, SPTSessionManagerDelegate {
     private let clientID = Constants.SPOTIFY_CLIENT_ID
@@ -25,11 +21,8 @@ class SpotifyManager: NSObject, ObservableObject, SPTAppRemoteDelegate, SPTAppRe
 
     override init() {
         let configuration = SPTConfiguration(clientID: clientID, redirectURL: redirectURI)
-
-        let tokenSwapURL = URL(string: Constants.SPOTIFY_TOKEN_SWAP_URL)!
-        let tokenRefreshURL = URL(string: Constants.SPOTIFY_TOKEN_REFRESH_URL)!
-        configuration.tokenSwapURL = tokenSwapURL
-        configuration.tokenRefreshURL = tokenRefreshURL
+        configuration.tokenSwapURL = nil
+        configuration.tokenRefreshURL = nil
 
         appRemote = SPTAppRemote(configuration: configuration, logLevel: .debug)
         sessionManager = SPTSessionManager(configuration: configuration, delegate: nil)
@@ -44,6 +37,7 @@ class SpotifyManager: NSObject, ObservableObject, SPTAppRemoteDelegate, SPTAppRe
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
         print("Session initiated")
         self.session = session
+        saveSession(session)
         connect()
     }
 
@@ -88,17 +82,37 @@ class SpotifyManager: NSObject, ObservableObject, SPTAppRemoteDelegate, SPTAppRe
     // MARK: - Custom methods
 
     func connect() {
-        appRemote.delegate = self
-        appRemote.connect()
-    }
-
-    func isSessionValid() -> Bool {
-        guard let session = session else { return false }
-        return session.expirationDate > Date()
-    }
+         if isSessionValid(), let accessToken = getAccessToken() {
+             appRemote.connectionParameters.accessToken = accessToken
+             appRemote.connect()
+         } else {
+             initiateSession()
+         }
+     }
 
     func playSong(spotifyID: String) {
         guard appRemote.isConnected else { return }
         appRemote.playerAPI?.play(spotifyID, callback: nil)
     }
+    
+    func saveSession(_ session: SPTSession) {
+           UserDefaults.standard.set(session.accessToken, forKey: "spotifyAccessToken")
+           UserDefaults.standard.set(session.expirationDate, forKey: "spotifyExpirationDate")
+       }
+
+   func initiateSession() {
+       let scope: SPTScope = [.appRemoteControl, .userLibraryRead, .playlistReadPrivate, .userLibraryModify]
+       sessionManager.initiateSession(with: scope, options: .default)
+   }
+
+    func isSessionValid() -> Bool {
+          guard let expirationDate = UserDefaults.standard.object(forKey: "spotifyExpirationDate") as? Date else {
+              return false
+          }
+          return Date() < expirationDate
+      }
+
+      func getAccessToken() -> String? {
+          UserDefaults.standard.string(forKey: "spotifyAccessToken")
+      }
 }

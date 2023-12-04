@@ -22,8 +22,10 @@ struct EventImageView: View {
       imageName = "eye"
     case "recording_pin":
       imageName = "pin"
+    case "follow":
+      imageName = "person.fill"
     default:
-      imageName = "default_icon"
+      imageName = "headphones.circle"
     }
 
     return Image(systemName: imageName)

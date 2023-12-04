@@ -26,9 +26,9 @@ struct FeedView: View {
                 EventDescriptionView(event: event)
 
               }
-
-              TrackInfoView(event: event)
-
+              if event.eventType != "follow"{
+                TrackInfoView(event: event)
+              }
 
             }
 

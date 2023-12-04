@@ -44,7 +44,7 @@ struct Metadata: Codable {
         case relationshipType = "relationship_type"
         case reviewMbid = "review_mbid"
         case text
-        case trackMetadata
+        case trackMetadata = "track_metadata"
         case username
         case usersList = "users"
         case userName0 = "user_name_0"

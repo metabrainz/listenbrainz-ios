@@ -33,7 +33,7 @@ struct EventImageView: View {
       .scaledToFit()
       .frame(width: 22, height: 22)
       .foregroundColor(.white)
-      .background(.purple.opacity(0.7))
+      .background(Color.color_2)
       .cornerRadius(20)
       .clipShape(Circle())
   }

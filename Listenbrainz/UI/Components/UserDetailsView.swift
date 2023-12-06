@@ -14,6 +14,9 @@ struct UserDetailsView: View {
   @AppStorage("isOnboarding") var isOnboarding: Bool?
   @AppStorage("userToken") private var userToken: String = ""
   @AppStorage("userName") private var userName: String = ""
+  var isGetStartedButtonEnabled: Bool {
+          return !userName.isEmpty && !userToken.isEmpty
+      }
 
   var body: some View {
     VStack {
@@ -71,6 +74,7 @@ struct UserDetailsView: View {
           .foregroundColor(.white)
           .cornerRadius(20)
       }
+      .disabled(!isGetStartedButtonEnabled)
 
       Spacer()
     }

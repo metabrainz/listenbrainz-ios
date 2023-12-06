@@ -12,13 +12,15 @@ struct TopBar: View {
 
   var body: some View {
     HStack {
-      Image("listenBrainzDark")
-        .resizable()
-        .frame(width: 40, height: 40)
-        .padding(12)
-        .cornerRadius(20)
-        .clipShape(Circle())
+      HStack(spacing:0){
+        LBIcon2()
+          .fill(Color.color_1)
+        LBIcon1()
+          .fill(Color.color_2)
+      }
+      .frame(width: 40, height: 40)
 
+      Spacer()
 
       HStack(spacing: 0){
         Text("Listen")
@@ -35,7 +37,6 @@ struct TopBar: View {
       Spacer()
 
       Button(action: {
-        // Open SettingsView
         isSettingsPressed.toggle()
       }) {
         Image(systemName: "gear")

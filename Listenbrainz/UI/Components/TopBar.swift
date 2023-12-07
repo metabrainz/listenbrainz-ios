@@ -14,9 +14,9 @@ struct TopBar: View {
     HStack {
       HStack(spacing:0){
         LBIcon2()
-          .fill(Color.color_1)
-        LBIcon1()
           .fill(Color.color_2)
+        LBIcon1()
+          .fill(Color.color_1)
       }
       .frame(width: 40, height: 40)
 

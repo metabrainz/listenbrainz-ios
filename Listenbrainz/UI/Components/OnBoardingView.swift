@@ -15,7 +15,7 @@ struct OnBoardingView : View{
 
       HStack {
         LBIcon2()
-          .fill(Color.color_1)
+          .fill(Color.color_2)
           .scaleEffect(iconsScale)
           .onAppear {
             withAnimation(.easeInOut(duration: 1.0)) {
@@ -24,7 +24,7 @@ struct OnBoardingView : View{
           }
 
         LBIcon1()
-          .fill(Color.color_2)
+          .fill(Color.color_1)
           .scaleEffect(iconsScale)
           .onAppear {
             withAnimation(.easeInOut(duration: 1.0)) {

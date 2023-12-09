@@ -32,7 +32,7 @@ struct SongDetailView: View {
                 .font(.headline)
               Text(listen.trackMetadata.artistName)
                 .lineLimit(1)
-                .foregroundColor(.secondary)
+                
             }
           }
         }

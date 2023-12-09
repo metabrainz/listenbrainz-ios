@@ -26,7 +26,7 @@ struct TrackInfoView: View {
           .font(.headline)
         Text(event.metadata.trackMetadata?.artistName ?? "Unknown Artist")
           .lineLimit(1)
-          .foregroundColor(.secondary)
+          
       }
     }
   }

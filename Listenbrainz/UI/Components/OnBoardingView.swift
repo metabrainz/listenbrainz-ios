@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct OnBoardingView: View {
-  @State private var iconsScale: CGFloat = 0.5
 
   var body: some View {
     VStack {
@@ -13,29 +12,9 @@ struct OnBoardingView: View {
 
       Spacer()
 
-      HStack(spacing: -120) {
-        Image("secondaryIcon")
-          .resizable()
-          .scaledToFit()
-          .scaleEffect(iconsScale)
-          .frame(width: 250 , height: 250 )
-          .onTapGesture {
-            withAnimation(.easeInOut(duration: 1.0)) {
-              iconsScale = 1.0
-            }
-          }
+      AdaptiveImage(light: Image("listenBrainzLight")
+                    , dark: Image("listenBrainzDark"))
 
-        Image("primaryIcon")
-          .resizable()
-          .scaledToFit()
-          .scaleEffect(iconsScale)
-          .frame(width: 250, height:250)
-          .onTapGesture {
-            withAnimation(.easeInOut(duration: 1.0)) {
-              iconsScale = 1.0
-            }
-          }
-      }
 
       Spacer()
 
@@ -48,11 +27,6 @@ struct OnBoardingView: View {
 
 
       Spacer()
-    }
-    .onAppear {
-      withAnimation(.easeInOut(duration: 1.0)) {
-        iconsScale = 1.0
-      }
     }
   }
 }

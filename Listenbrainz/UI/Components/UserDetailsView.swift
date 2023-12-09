@@ -11,12 +11,13 @@ import SwiftUI
 struct UserDetailsView: View {
 
   // MARK: - PROPERTIES
-  @AppStorage("isOnboarding") var isOnboarding: Bool?
-  @AppStorage("userToken") private var userToken: String = ""
-  @AppStorage("userName") private var userName: String = ""
+  @AppStorage(Strings.AppStorageKeys.isOnboarding) var isOnboarding: Bool?
+  @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
+  @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
+  
   var isGetStartedButtonEnabled: Bool {
-          return !userName.isEmpty && !userToken.isEmpty
-      }
+    return !userName.isEmpty && !userToken.isEmpty
+  }
 
   var body: some View {
     VStack {

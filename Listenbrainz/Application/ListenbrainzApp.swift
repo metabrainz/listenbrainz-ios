@@ -10,19 +10,19 @@ import SpotifyiOS
 
 @main
 struct ListenbrainzApp: App {
-    @StateObject var homeViewModel =  HomeViewModel(repository: HomeRepositoryImpl())
-    @StateObject var feedViewModel = FeedViewModel(repository: FeedRepositoryImpl())
-    @AppStorage("isOnboarding") var isOnboarding: Bool = true
+  @StateObject var homeViewModel =  HomeViewModel(repository: HomeRepositoryImpl())
+  @StateObject var feedViewModel = FeedViewModel(repository: FeedRepositoryImpl())
+  @AppStorage(Strings.AppStorageKeys.isOnboarding) var isOnboarding: Bool = true
 
 
-    //@StateObject var spotifyManager = SpotifyManager()
-    @AppStorage("isDarkMode") private var isDarkMode = false
-    @AppStorage("userName") private var userName:String = ""
-    @AppStorage("userToken") private var userToken:String = ""
-    
+  //@StateObject var spotifyManager = SpotifyManager()
+  @AppStorage(Strings.AppStorageKeys.isDarkMode) private var isDarkMode = true
+  @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
+  @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
+
   var body: some Scene {
     WindowGroup {
-      
+
       NavigationView {
         if isOnboarding {
           OnBoardingView()
@@ -46,8 +46,8 @@ struct ListenbrainzApp: App {
     }
   }
 
-    private func handleSpotifySession() {
-        //spotifyManager.connect()
-    }
+  private func handleSpotifySession() {
+    //spotifyManager.connect()
+  }
 
 }

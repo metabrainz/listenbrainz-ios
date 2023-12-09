@@ -1,10 +1,8 @@
 // ContentView.swift
 import SwiftUI
-import UIKit
+
 
 struct ContentView: View {
-    @State private var hasCompletedOnboarding: Bool = false
-    @State private var userName: String = ""
     let screenWidth = UIScreen.main.bounds.size.width
     let screenHeight = UIScreen.main.bounds.size.height
     @EnvironmentObject var homeViewModel: HomeViewModel

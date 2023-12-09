@@ -36,8 +36,8 @@ struct PlayerView: View {
     var content: some View {
         if viewModel.matching {
             ProgressView("Listening...")
-                .tint(Color.color_1)
-                .foregroundColor(Color.color_2)
+                .tint(Color.primary)
+                .foregroundColor(Color.secondary)
         }
         else {
             VStack(spacing:40) {
@@ -68,11 +68,11 @@ struct PlayerView: View {
                         .foregroundColor(.white)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 35)
-                        .background(Color.color_2.opacity(0.7))
+                        .background(Color.secondary.opacity(0.7))
                         .clipShape(Capsule())
                 })
                 Text(fileName)
-                    .foregroundColor(Color.color_1)
+                    .foregroundColor(Color.primary)
                 Button {
                     if viewModel.selectedAudioURL != nil {
                         viewModel.startMatching()
@@ -82,7 +82,7 @@ struct PlayerView: View {
                         .foregroundColor(.white)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 35)
-                        .background(Color.color_1.opacity(0.7))
+                        .background(Color.primary.opacity(0.7))
                         .clipShape(Capsule())
                 }
                 

@@ -14,9 +14,9 @@ struct TopBar: View {
     HStack {
       HStack(spacing:0){
         LBIcon2()
-          .fill(Color.color_2)
+          .fill(Color.secondary)
         LBIcon1()
-          .fill(Color.color_1)
+          .fill(Color.primary)
       }
       .frame(width: 40, height: 40)
 
@@ -24,10 +24,10 @@ struct TopBar: View {
 
       HStack(spacing: 0){
         Text("Listen")
-          .foregroundColor(Color.color_2)
+          .foregroundColor(Color.secondary)
 
         Text("Brainz")
-          .foregroundColor(Color.color_1)
+          .foregroundColor(Color.primary)
 
       }
 
@@ -43,7 +43,7 @@ struct TopBar: View {
           .resizable()
           .frame(width: 30, height: 30)
           .padding(.trailing)
-          .foregroundColor(Color.color_1)
+          .foregroundColor(Color.primary)
 
       }
     }

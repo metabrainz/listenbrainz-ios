@@ -70,7 +70,7 @@ struct UserDetailsView: View {
           .font(.headline)
           .padding()
           .frame(maxWidth: .infinity)
-          .background(Color.color_2.opacity(0.7))
+          .background(Color.secondary.opacity(0.7))
           .foregroundColor(.white)
           .cornerRadius(20)
       }

@@ -12,13 +12,19 @@ struct TopBar: View {
 
   var body: some View {
     HStack {
-      HStack(spacing:0){
-        LBIcon2()
-          .fill(Color.secondary)
-        LBIcon1()
-          .fill(Color.primary)
+
+      HStack(spacing:-18){
+        Image("secondaryIcon")
+          .resizable()
+          .scaledToFit()
+          .frame(width: 40, height: 40)
+        Image("primaryIcon")
+          .resizable()
+          .scaledToFit()
+          .frame(width: 40, height: 40)
       }
-      .frame(width: 40, height: 40)
+
+
 
       Spacer()
 

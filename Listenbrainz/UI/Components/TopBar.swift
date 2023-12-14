@@ -12,20 +12,28 @@ struct TopBar: View {
 
   var body: some View {
     HStack {
-      Image("listenBrainzDark")
-        .resizable()
-        .frame(width: 40, height: 40)
-        .padding(12)
-        .cornerRadius(20)
-        .clipShape(Circle())
 
+      HStack(spacing:-18){
+        Image("secondaryIcon")
+          .resizable()
+          .scaledToFit()
+          .frame(width: 40, height: 40)
+        Image("primaryIcon")
+          .resizable()
+          .scaledToFit()
+          .frame(width: 40, height: 40)
+      }
+
+
+
+      Spacer()
 
       HStack(spacing: 0){
         Text("Listen")
-          .foregroundColor(Color.color_2)
+          .foregroundColor(Color.secondary)
 
         Text("Brainz")
-          .foregroundColor(Color.color_1)
+          .foregroundColor(Color.primary)
 
       }
 
@@ -35,14 +43,13 @@ struct TopBar: View {
       Spacer()
 
       Button(action: {
-        // Open SettingsView
         isSettingsPressed.toggle()
       }) {
         Image(systemName: "gear")
           .resizable()
           .frame(width: 30, height: 30)
           .padding(.trailing)
-          .foregroundColor(Color.color_1)
+          .foregroundColor(Color.primary)
 
       }
     }

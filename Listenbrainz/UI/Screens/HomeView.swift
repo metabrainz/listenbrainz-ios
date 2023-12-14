@@ -43,10 +43,10 @@ struct HomeView : View{
 
           HStack(spacing: 0){
             Text("Listen")
-              .foregroundColor(Color.color_2)
+              .foregroundColor(Color.secondary)
 
             Text("Brainz")
-              .foregroundColor(Color.color_1)
+              .foregroundColor(Color.primary)
 
           }
           .font(.largeTitle)
@@ -61,7 +61,7 @@ struct HomeView : View{
               .resizable()
               .scaledToFit()
               .frame(width: 80, height: 65).cornerRadius(16)
-              .foregroundColor(Color.color_1)
+              .foregroundColor(Color.primary)
             VStack(alignment: .leading, spacing: 8) {
               Text("Year in Music")
                 .lineLimit(1)
@@ -83,7 +83,7 @@ struct HomeView : View{
               .resizable()
               .scaledToFit()
               .frame(width: 80, height: 65).cornerRadius(16)
-              .foregroundColor(Color.color_1)
+              .foregroundColor(Color.primary)
             VStack(alignment: .leading, spacing: 8) {
               Text("News")
                 .lineLimit(1)
@@ -131,7 +131,7 @@ struct HomeView : View{
               Image(systemName: "gear")
             }
           }
-          .foregroundColor(Color.color_1)
+          .foregroundColor(Color.primary)
         }
 
       }

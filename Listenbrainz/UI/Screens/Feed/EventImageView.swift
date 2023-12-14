@@ -22,8 +22,10 @@ struct EventImageView: View {
       imageName = "eye"
     case "recording_pin":
       imageName = "pin"
+    case "follow":
+      imageName = "person.fill"
     default:
-      imageName = "default_icon"
+      imageName = "headphones.circle"
     }
 
     return Image(systemName: imageName)
@@ -31,7 +33,7 @@ struct EventImageView: View {
       .scaledToFit()
       .frame(width: 22, height: 22)
       .foregroundColor(.white)
-      .background(.purple.opacity(0.7))
+      .background(Color.secondary)
       .cornerRadius(20)
       .clipShape(Circle())
   }

@@ -13,7 +13,8 @@ struct FeedTrackMetadata: Codable {
     //let additionalInfo: FeedAdditionalInfo
     let artistName: String
    // let mbidMapping: FeedMbidMapping?
-    let releaseName, trackName: String
+  let releaseName:String?
+   let trackName: String
 
     enum CodingKeys: String, CodingKey {
        // case additionalInfo = "additional_info"

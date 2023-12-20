@@ -12,6 +12,8 @@ struct SettingsView: View {
   @AppStorage(Strings.AppStorageKeys.isDarkMode) private var isDarkMode = true
   @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
   @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
+  @EnvironmentObject var homeViewModel: HomeViewModel
+  @EnvironmentObject var feedViewModel: FeedViewModel
   @Environment(\.dismiss) var dismiss
 
 
@@ -36,6 +38,8 @@ struct SettingsView: View {
       }
       .navigationBarItems(
         trailing: Button(action: {
+          homeViewModel.requestMusicData(userName: userName)
+          feedViewModel.fetchFeedEvents(username: userName, userToken: userToken)
           dismiss()
         }, label: {
           Text("Save")

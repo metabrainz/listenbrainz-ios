@@ -45,6 +45,7 @@
 		BB66C20D2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C20C2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift */; };
 		BB66C20F2AA0F63800BB4CBA /* FeedMbidMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C20E2AA0F63800BB4CBA /* FeedMbidMapping.swift */; };
 		BB66C2112AA0F6C500BB4CBA /* ListensArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C2102AA0F6C500BB4CBA /* ListensArtist.swift */; };
+		BB7833642B3F2DB3005D7266 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7833632B3F2DB3005D7266 /* ImageLoader.swift */; };
 		BBD20D5B2A3C7D57007C0C71 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD20D5A2A3C7D57007C0C71 /* SettingsView.swift */; };
 		BBD28DD12A2F9D9B00AD57C6 /* FeedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DD02A2F9D9B00AD57C6 /* FeedAlbum.swift */; };
 		BBD28DD32A2F9DC400AD57C6 /* FeedArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DD22A2F9DC400AD57C6 /* FeedArtist.swift */; };
@@ -118,6 +119,7 @@
 		BB66C20C2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAdditionalInfo.swift; sourceTree = "<group>"; };
 		BB66C20E2AA0F63800BB4CBA /* FeedMbidMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMbidMapping.swift; sourceTree = "<group>"; };
 		BB66C2102AA0F6C500BB4CBA /* ListensArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListensArtist.swift; sourceTree = "<group>"; };
+		BB7833632B3F2DB3005D7266 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		BBD20D5A2A3C7D57007C0C71 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BBD28DD02A2F9D9B00AD57C6 /* FeedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAlbum.swift; sourceTree = "<group>"; };
 		BBD28DD22A2F9DC400AD57C6 /* FeedArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArtist.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			children = (
 				6F842DFA29C650A600DBBC7B /* Constants.swift */,
 				6F155CA92B08E32A005FE042 /* Extensions.swift */,
+				BB7833632B3F2DB3005D7266 /* ImageLoader.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				BB2A4F5529EB48CC006933BC /* HomeView.swift in Sources */,
 				BBE9630E2B0560FC00AA4219 /* BrainzPlayerMetadata.swift in Sources */,
 				6F842DCB29C64E3E00DBBC7B /* ListenbrainzApp.swift in Sources */,
+				BB7833642B3F2DB3005D7266 /* ImageLoader.swift in Sources */,
 				BB0586572A2504AD00744FF0 /* Listens.swift in Sources */,
 				BB519BAD2B1DE78200766F01 /* WelcomeView.swift in Sources */,
 				BB519BAF2B1DE95E00766F01 /* UserDetailsView.swift in Sources */,

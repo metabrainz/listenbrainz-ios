@@ -7,29 +7,60 @@
 
 import SwiftUI
 
+
 struct EventDescriptionView: View {
-  let event: Event
+    @Environment(\.colorScheme) var colorScheme
+    let event: Event
 
-  var body: some View {
-    Text(eventDescription(for: event))
-      .font(.subheadline)
-      .foregroundColor(.blue)
-  }
-
-  private func eventDescription(for event: Event) -> String {
-    switch event.eventType {
-    case "listen":
-      return "\(event.userName) listened to a track"
-    case "recording_recommendation":
-      return "\(event.userName) recommended a track"
-    case "critiquebrainz_review":
-      return "\(event.userName) reviewed a track"
-    case "recording_pin":
-      return "\(event.userName) pinned a track"
-    case "follow":
-      return "\(event.metadata.userName0!) started following \(event.metadata.userName1!)"
-    default:
-      return "An event occurred"
+    var body: some View {
+        eventDescription(for: event)
+            .font(.subheadline)
+            .foregroundColor(foregroundColor)
     }
-  }
+
+    private var foregroundColor: Color {
+        return colorScheme == .dark ? .white : .black
+    }
+
+    private func eventDescription(for event: Event) -> Text {
+        let usernameText = Text(event.userName)
+            .foregroundColor(.blue)
+
+        switch event.eventType {
+        case "listen":
+            return usernameText
+                + Text(" listened to a track ")
+                .foregroundColor(foregroundColor)
+
+        case "recording_recommendation":
+            return usernameText
+                + Text(" recommended a track ")
+                .foregroundColor(foregroundColor)
+
+        case "critiquebrainz_review":
+            return usernameText
+                + Text(" reviewed a track ")
+                .foregroundColor(foregroundColor)
+
+        case "recording_pin":
+            return usernameText
+                + Text(" pinned a track ")
+                .foregroundColor(foregroundColor)
+
+        case "follow":
+            let username0Text = Text(event.metadata.userName0 ?? "")
+                .foregroundColor(.blue)
+            let username1Text = Text(event.metadata.userName1 ?? "")
+                .foregroundColor(.blue)
+
+            return username0Text
+                + Text(" started following ")
+                .foregroundColor(foregroundColor)
+                + username1Text
+
+        default:
+            return Text("An event occurred")
+                .foregroundColor(foregroundColor)
+        }
+    }
 }

@@ -17,11 +17,11 @@ struct TopBar: View {
         Image("secondaryIcon")
           .resizable()
           .scaledToFit()
-          .frame(width: 40, height: 40)
+          .frame(width: 30, height: 30)
         Image("primaryIcon")
           .resizable()
           .scaledToFit()
-          .frame(width: 40, height: 40)
+          .frame(width: 30, height: 30)
       }
 
 

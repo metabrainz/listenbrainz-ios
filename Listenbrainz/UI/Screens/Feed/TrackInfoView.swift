@@ -9,24 +9,63 @@ import SwiftUI
 
 struct TrackInfoView: View {
   let event: Event
+  @StateObject private var imageLoader = ImageLoader.shared
+  @State private var isLoading = true
 
   var body: some View {
     HStack {
-      Image(systemName: "music.note")
-        .resizable()
-        .renderingMode(.template)
-        .foregroundColor(.orange)
-        .scaledToFit()
-        .frame(height: 22)
-        .padding(4)
+      if let coverArtURL = event.metadata.trackMetadata?.coverArtURL {
+        AsyncImage(
+          url: coverArtURL,
+          scale: 0.1,
+          transaction: Transaction(animation: nil),
+          content: { phase in
+            switch phase {
+            case .success(let image):
+              image
+                .resizable()
+                .scaledToFit()
+                .frame(width: 40, height: 40)
+                .onAppear {
+                  imageLoader.loadImage(url: coverArtURL) { loadedImage in
+                    if let uiImage = loadedImage {
+                      ImageCache.shared.insertImage(uiImage, for: coverArtURL)
+                    }
+                  }
+                }
+            default:
+              if let cachedImage = ImageCache.shared.image(for: coverArtURL) {
+                Image(uiImage: cachedImage)
+                  .resizable()
+                  .scaledToFit()
+                  .frame(width: 40, height: 40)
+              } else {
+                Image(systemName: "music.note")
+                  .resizable()
+                  .renderingMode(.template)
+                  .foregroundColor(.orange)
+                  .scaledToFit()
+                  .frame(width: 40, height: 40)
+              }
+            }
+          }
+        )
+        .frame(width: 40, height: 40)
+      } else {
+        Image(systemName: "music.note")
+          .resizable()
+          .renderingMode(.template)
+          .foregroundColor(.orange)
+          .scaledToFit()
+          .frame(width: 40, height: 40)
+      }
 
-      VStack(alignment:.leading) {
+      VStack(alignment: .leading) {
         Text(event.metadata.trackMetadata?.trackName ?? "Unknown Track")
           .lineLimit(1)
           .font(.headline)
         Text(event.metadata.trackMetadata?.artistName ?? "Unknown Artist")
           .lineLimit(1)
-          
       }
     }
   }

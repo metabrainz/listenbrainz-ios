@@ -27,4 +27,11 @@ struct ListensTrackMetadata: Codable {
         case mbidMapping = "mbid_mapping"
         case brainzplayerMetadata = "brainzplayer_metadata"
     }
+
+  var coverArtURL: URL? {
+        guard let caaReleaseMbid = mbidMapping?.caaReleaseMbid, let caaID = mbidMapping?.caaID else {
+            return nil
+        }
+        return URL(string: "https://coverartarchive.org/release/\(caaReleaseMbid)/\(caaID)-250.jpg")
+    }
 }

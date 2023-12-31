@@ -12,10 +12,10 @@ struct SettingsView: View {
   @AppStorage(Strings.AppStorageKeys.isDarkMode) private var isDarkMode = true
   @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
   @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
-  @Environment(\.dismiss) var dismiss
   @EnvironmentObject var homeViewModel: HomeViewModel
   @EnvironmentObject var feedViewModel: FeedViewModel
-  
+  @Environment(\.dismiss) var dismiss
+
 
   var body: some View  {
     NavigationView {
@@ -37,24 +37,24 @@ struct SettingsView: View {
         })
       }
       .navigationBarItems(
-          trailing: Button(action: {
-            homeViewModel.requestMusicData(userName: userName)
-            feedViewModel.fetchFeedEvents(username: userName, userToken: userToken)
-            dismiss()
-          }, label: {
-              Text("Save")
-          }))
-          .navigationBarTitle(Text("Settings"))
+        trailing: Button(action: {
+          homeViewModel.requestMusicData(userName: userName)
+          feedViewModel.fetchFeedEvents(username: userName, userToken: userToken)
+          dismiss()
+        }, label: {
+          Text("Save")
+        }))
+      .navigationBarTitle(Text("Settings"))
     }
-
+    .preferredColorScheme(isDarkMode ? .dark : .light)
   }
 
 }
- 
 
-//struct SettingsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingsView()
-//
-//    }
-//}
+
+struct SettingsView_Previews: PreviewProvider {
+  static var previews: some View {
+    SettingsView()
+
+  }
+}

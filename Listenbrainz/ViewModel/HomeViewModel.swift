@@ -26,7 +26,7 @@ class HomeViewModel: ObservableObject {
       }, receiveValue: { value in
         self.listens = value.payload.listens
         if let firstListen = self.listens.first,
-           let coverArtURL = firstListen.trackMetadata.coverArtURL {
+           let coverArtURL = firstListen.trackMetadata?.coverArtURL {
           self.fetchCoverArt(url: coverArtURL) { result in
             switch result {
             case .success(_):

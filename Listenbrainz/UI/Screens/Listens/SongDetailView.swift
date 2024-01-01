@@ -10,7 +10,7 @@ struct SongDetailView: View {
             List {
                 ForEach(homeViewModel.listens, id: \.recordingMsid) { listen in
                     HStack {
-                        if let coverArtURL = listen.trackMetadata.coverArtURL {
+                      if let coverArtURL = listen.trackMetadata?.coverArtURL {
                             AsyncImage(
                                 url: coverArtURL,
                                 scale: 0.1,
@@ -58,10 +58,10 @@ struct SongDetailView: View {
                         }
 
                         VStack(alignment: .leading) {
-                            Text(listen.trackMetadata.trackName)
+                          Text(listen.trackMetadata!.trackName)
                                 .lineLimit(1)
                                 .font(.headline)
-                            Text(listen.trackMetadata.artistName)
+                          Text(listen.trackMetadata!.artistName)
                                 .lineLimit(1)
                         }
                     }
@@ -76,7 +76,7 @@ struct SongDetailView: View {
             Task {
                 await withTaskGroup(of: Void.self) { group in
                     for listen in homeViewModel.listens {
-                        if let coverArtURL = listen.trackMetadata.coverArtURL {
+                      if let coverArtURL = listen.trackMetadata?.coverArtURL {
                             group.addTask {
                                 await imageLoader.loadImage(url: coverArtURL) { _ in }
                             }

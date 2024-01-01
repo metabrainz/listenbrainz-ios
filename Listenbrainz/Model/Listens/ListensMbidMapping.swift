@@ -10,8 +10,8 @@ import Foundation
 
 //MARK: - ListensMbidMapping
 struct ListensMbidMapping: Codable {
-    let artistMbids: [String]
-    let artists: [ListensArtist]
+    let artistMbids: [String]?
+    let artists: [ListensArtist]?
     let caaID: Int?
     let caaReleaseMbid, recordingMbid, recordingName, releaseMbid: String?
 

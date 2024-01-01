@@ -7,10 +7,12 @@
 
 // MARK: - BrainzplayerMetadata
 struct BrainzplayerMetadata: Codable {
-    let trackName: String
+    let trackName: String?
+    let artistName: String?
 
     enum CodingKeys: String, CodingKey {
         case trackName = "track_name"
+        case artistName = "artist_name"
     }
 }
 

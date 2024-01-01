@@ -13,7 +13,7 @@ struct ListensAdditionalInfo: Codable {
   let discnumber: Int?
   let durationMS: Int?
   let isrc: String?
-  let musicService: MusicService?
+  let musicService: String?
   let originURL: String?
   let recordingMsid: String
   let releaseArtistName: String?
@@ -48,14 +48,4 @@ struct ListensAdditionalInfo: Codable {
   }
 }
 
-enum MusicService: String, Codable {
-  case spotifyCOM = "spotify.com"
-  case youtubeCOM = "youtube.com"
-  case soundcloudCOM = "soundcloud.com"
-}
 
-enum SubmissionClient: String, Codable {
-  case brainzPlayer = "BrainzPlayer"
-  case listenBrainzAndroid = "ListenBrainz Android"
-  case listenbrainz = "listenbrainz"
-}

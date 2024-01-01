@@ -12,7 +12,7 @@ import Foundation
 
 //MARK: - ListensTrackMetadata
 struct ListensTrackMetadata: Codable {
-    let additionalInfo: ListensAdditionalInfo
+    let additionalInfo: ListensAdditionalInfo?
     let artistName: String
     let releaseName: String?
     let trackName: String

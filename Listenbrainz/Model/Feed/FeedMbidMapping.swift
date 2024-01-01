@@ -10,9 +10,9 @@ import Foundation
 
 // MARK: - FeedMbidMapping
 struct FeedMbidMapping: Codable {
-    let artistMbids: [String]
-    let artists: [FeedArtist]
-    let recordingMbid: String
+    let artistMbids: [String]?
+    let artists: [FeedArtist]?
+    let recordingMbid: String?
     let recordingName: String?
     let caaID: Int?
     let caaReleaseMbid, releaseMbid: String?

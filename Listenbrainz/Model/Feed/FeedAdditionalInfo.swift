@@ -10,7 +10,7 @@ import Foundation
 
 
 struct FeedAdditionalInfo: Codable {
-    let artistMbids: [String]?
+//    let artistMbids: [String]?
     let discnumber, durationMS: Int?
     let isrc, listeningFrom: String?
     let originURL: String?
@@ -29,7 +29,7 @@ struct FeedAdditionalInfo: Codable {
     let youtubeID: JSONNull?
 
     enum CodingKeys: String, CodingKey {
-        case artistMbids = "artist_mbids"
+//        case artistMbids = "artist_mbids"
         case discnumber
         case durationMS = "duration_ms"
         case isrc

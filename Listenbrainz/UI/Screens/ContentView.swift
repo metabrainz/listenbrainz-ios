@@ -7,12 +7,11 @@ struct ContentView: View {
     let screenHeight = UIScreen.main.bounds.size.height
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var feedViewModel: FeedViewModel
-    @StateObject var yimViewModel: YIMViewModel
+  @StateObject var yimViewModel = YIMViewModel(repository: YIMRepositoryImpl())
 
     init() {
         UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
         UITabBar.appearance().clipsToBounds = true
-      _yimViewModel = StateObject(wrappedValue: YIMViewModel(repository: YIMRepositoryImpl()))
   }
 
     var body: some View {

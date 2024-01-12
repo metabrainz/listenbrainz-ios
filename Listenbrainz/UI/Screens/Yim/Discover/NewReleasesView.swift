@@ -57,7 +57,7 @@ struct NewReleasesView: View {
             }
             
 
-            VStack(spacing:10){
+            VStack(spacing:-40){
 
               Text("new albums from my top artists".uppercased())
                 .font(.system(size: 25, weight: .bold))

@@ -41,6 +41,7 @@ struct TopArtistsView: View {
                             .foregroundColor(Color.white)
                     }
                 }
+                .padding(.leading,30)
 
                 Spacer()
 

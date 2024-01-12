@@ -53,7 +53,8 @@ struct MusicBuddiesView: View {
           .position(x: geometry.size.width / 2, y: geometry.size.height / 2.2)
         }
 
-        VStack(spacing: -20) {
+
+        VStack(spacing: -70) {
           Text("my music buddies".uppercased())
             .font(.system(size: 25, weight: .bold))
             .tracking(14)

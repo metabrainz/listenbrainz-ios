@@ -20,6 +20,7 @@ struct TopAlbumsView: View {
           VStack(alignment:.leading) {
             Spacer()
                 TopYimView(viewModel: viewModel)
+              .padding(.top,-10)
 
                 Spacer()
             Spacer()
@@ -31,7 +32,7 @@ struct TopAlbumsView: View {
                                 .weight(.bold)
                         )
                         .foregroundColor(Color.yimBeige)
-                        .padding(.horizontal)
+                        .padding(.leading,40)
                 }
 
                 Spacer()

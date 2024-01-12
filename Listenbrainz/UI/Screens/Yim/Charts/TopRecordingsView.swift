@@ -23,6 +23,7 @@ struct TopRecordingsView: View {
 
           VStack(alignment: .leading, spacing: -2) {
               TopYimView(viewModel: viewModel)
+              .padding(.top,-30)
 
             Spacer()
 
@@ -46,6 +47,7 @@ struct TopRecordingsView: View {
                       }
                   }
               }
+              .padding(.leading,30)
 
 
            Spacer()

@@ -23,6 +23,7 @@ struct TopArtistsView: View {
 
 
                TopYimView(viewModel: viewModel)
+                .padding(.top,-20)
 
               Spacer()
 

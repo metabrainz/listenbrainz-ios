@@ -93,9 +93,9 @@ struct TopDiscoveriesView: View {
 
                 BottomYimView()
                     .padding(.bottom, 30)
-                    .onAppear {
-                        viewModel.fetchYIMData(userName: "theflash_")
-                    }
+//                    .onAppear {
+//                        viewModel.fetchYIMData(userName: "theflash_")
+//                    }
             }
 
             if isShowingList {

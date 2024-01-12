@@ -88,7 +88,7 @@ struct CoverArtGridView: View {
 
 
     private func makeCoverArtURL(caaReleaseMbid: String, caaID: Int) -> URL? {
-        // Ensure both caaReleaseMbid and caaID are non-nil
+        
         guard !caaReleaseMbid.isEmpty, caaID > 0 else {
             return nil
         }

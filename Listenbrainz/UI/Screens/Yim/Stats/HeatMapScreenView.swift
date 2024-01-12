@@ -85,7 +85,6 @@ struct HeatMapView: View {
     var body: some View {
       ScrollView(.horizontal) {
 
-          // Display your heat map here using listensPerDay data
         LazyHGrid(rows: Array(repeating: GridItem(.flexible()), count: 7), spacing: 1) {
             ForEach(listensPerDay, id: \.timeRange) { listenData in
               Rectangle()
@@ -120,7 +119,7 @@ struct HeatMapView: View {
 
 struct HeatMapScreenView_Previews: PreviewProvider {
     static var previews: some View {
-      let viewModel = YIMViewModel(repository: YIMRepositoryImpl()) // Assuming you have a default initializer for your YIMViewModel
+      let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
         return HeatMapScreenView(viewModel: viewModel)
     }
 }

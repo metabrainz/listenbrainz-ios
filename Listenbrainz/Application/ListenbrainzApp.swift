@@ -13,8 +13,6 @@ struct ListenbrainzApp: App {
   @StateObject var homeViewModel =  HomeViewModel(repository: HomeRepositoryImpl())
   @StateObject var feedViewModel = FeedViewModel(repository: FeedRepositoryImpl())
   @AppStorage(Strings.AppStorageKeys.isOnboarding) var isOnboarding: Bool = true
-
-
   //@StateObject var spotifyManager = SpotifyManager()
   @AppStorage(Strings.AppStorageKeys.isDarkMode) private var isDarkMode = true
   @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""

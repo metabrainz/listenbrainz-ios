@@ -7,11 +7,13 @@ struct ContentView: View {
     let screenHeight = UIScreen.main.bounds.size.height
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var feedViewModel: FeedViewModel
+    @StateObject var yimViewModel: YIMViewModel
 
     init() {
         UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
         UITabBar.appearance().clipsToBounds = true
-    }
+      _yimViewModel = StateObject(wrappedValue: YIMViewModel(repository: YIMRepositoryImpl()))
+  }
 
     var body: some View {
         ZStack {
@@ -22,12 +24,13 @@ struct ContentView: View {
                     .tabItem {
                         Label("Feed", systemImage: "bolt")
                     }
-                PlayerView()
+              PlayerView(viewModel: yimViewModel)
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: screenWidth, height: screenHeight, alignment: .center)
                     .tabItem {
-                        Label("Player", systemImage: "opticaldisc.fill")
+                        Label("Explore", systemImage: "safari")
                     }
+
                 ListensView()
                     .environmentObject(homeViewModel)
                     .frame(width: screenWidth, height: screenHeight, alignment: .center)

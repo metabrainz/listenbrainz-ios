@@ -19,13 +19,14 @@ struct ListeningChartView: View {
 
             VStack {
                 TopYimView(viewModel: viewModel)
-                .padding(.top)
+                .padding(.top,-10)
               Spacer()
+              
 
               if let maxCount = viewModel.mostListenedYear.values.max() {
                   Text("Most of the songs I listened to were from 2023 (\(maxCount))")
                   .font(
-                  Font.custom("Roboto", size: 32)
+                  Font.custom("Roboto", size: 24)
                   .weight(.light)
                   )
                   .multilineTextAlignment(.center)
@@ -67,7 +68,7 @@ struct ListeningChartView: View {
             }
         }
 //        .onAppear{
-//          viewModel.fetchYIMData(userName: "Jasjeet")
+//          viewModel.fetchYIMData(userName: "akshaaatt")
 //        }
 
     }
@@ -79,19 +80,21 @@ struct BarChartView: View {
     var body: some View {
         VStack {
             HStack(alignment: .bottom, spacing: 0) {
+                let maxCount = data.values.max() ?? 1 // Default to 1 if max value is nil
+
                 ForEach(data.sorted(by: { $0.key < $1.key }), id: \.key) { year, count in
                     VStack {
                         Rectangle()
                             .fill(Color.orange)
                             .border(Color.white, width: 1)
-                            .frame(width: 15, height: barHeight(for: count))
+                            .frame(width: 15, height: barHeight(for: count, maxCount: maxCount))
                     }
                 }
             }
             .padding(.bottom, 20)
 
             HStack {
-                ForEach((1960...2000).filter { $0 % 5 == 0 }.map { "\($0)" }, id: \.self) { year in
+                ForEach((1980...2020).filter { $0 % 5 == 0 }.map { "\($0)" }, id: \.self) { year in
                     Spacer()
                     Text(year)
                         .font(.caption)
@@ -102,20 +105,12 @@ struct BarChartView: View {
         }
     }
 
-    private func barHeight(for count: Int) -> CGFloat {
-        switch count {
-        case 0...300:
-          return CGFloat(count) / 2
-        case 301...600:
-          return CGFloat(count) / 2.5
-        case 601...900:
-          return CGFloat(count) / 3
-
-        default:
-          return CGFloat(count) / 8.5
-        }
+    private func barHeight(for count: Int, maxCount: Int) -> CGFloat {
+        let scaleFactor: CGFloat = 1500
+        return CGFloat(count) / CGFloat(maxCount * 8) * scaleFactor
     }
 }
+
 
 
 

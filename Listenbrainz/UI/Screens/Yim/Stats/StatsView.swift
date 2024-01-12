@@ -70,7 +70,7 @@ struct StatsView: View{
 
                 )
 
-              Text("was my cover art color")
+              Text("was my top genre")
                 .font(Font.custom("Roboto", size: 20).weight(.bold))
                 .foregroundColor(Color.yimBeige)
                 .frame(width:150)
@@ -178,7 +178,7 @@ struct StatsView: View{
 
                 )
 
-              Text("was my cover art color")
+              Text("artists got my attention")
                 .font(Font.custom("Roboto", size: 20).weight(.bold))
                 .foregroundColor(Color.yimBeige)
                 .frame(width:150)

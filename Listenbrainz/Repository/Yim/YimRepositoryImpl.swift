@@ -10,7 +10,7 @@ import Alamofire
 
 class YIMRepositoryImpl: YIMRepository {
     func fetchYIMData(userName:String) -> AnyPublisher<YIMData, Error> {
-        let url = "https://beta-api.listenbrainz.org/1/stats/user/\(userName)/year-in-music/2023"
+      let url = "\(Constants.BETA_LISTENBRAINZ_BASE_URL)\(userName)/year-in-music/2023"
 
         return AF.request(url, method: .get)
             .validate()

@@ -45,6 +45,7 @@
 		BB66C20D2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C20C2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift */; };
 		BB66C20F2AA0F63800BB4CBA /* FeedMbidMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C20E2AA0F63800BB4CBA /* FeedMbidMapping.swift */; };
 		BB66C2112AA0F6C500BB4CBA /* ListensArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C2102AA0F6C500BB4CBA /* ListensArtist.swift */; };
+		BB6FF5812B52D3B40057F8C1 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6FF5802B52D3B40057F8C1 /* ExploreView.swift */; };
 		BB7833642B3F2DB3005D7266 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7833632B3F2DB3005D7266 /* ImageLoader.swift */; };
 		BBC5C7AA2B4FE801000A5EB1 /* YimRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7A92B4FE801000A5EB1 /* YimRepository.swift */; };
 		BBC5C7AC2B4FE80C000A5EB1 /* YimRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7AB2B4FE80C000A5EB1 /* YimRepositoryImpl.swift */; };
@@ -150,6 +151,7 @@
 		BB66C20C2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAdditionalInfo.swift; sourceTree = "<group>"; };
 		BB66C20E2AA0F63800BB4CBA /* FeedMbidMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMbidMapping.swift; sourceTree = "<group>"; };
 		BB66C2102AA0F6C500BB4CBA /* ListensArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListensArtist.swift; sourceTree = "<group>"; };
+		BB6FF5802B52D3B40057F8C1 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		BB7833632B3F2DB3005D7266 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		BBC5C7A92B4FE801000A5EB1 /* YimRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YimRepository.swift; sourceTree = "<group>"; };
 		BBC5C7AB2B4FE80C000A5EB1 /* YimRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YimRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -487,6 +489,7 @@
 				BBC5C7C82B4FEE95000A5EB1 /* TopYimView.swift */,
 				BBC5C7CA2B4FEE9D000A5EB1 /* BottomYimView.swift */,
 				BBC5C7E52B4FF1B8000A5EB1 /* MainView.swift */,
+				BB6FF5802B52D3B40057F8C1 /* ExploreView.swift */,
 			);
 			path = Yim;
 			sourceTree = "<group>";
@@ -716,6 +719,7 @@
 				BBC5C7C92B4FEE95000A5EB1 /* TopYimView.swift in Sources */,
 				BB05865A2A25052600744FF0 /* HomeRepository.swift in Sources */,
 				BBC5C7B52B4FE875000A5EB1 /* ListensPerDay.swift in Sources */,
+				BB6FF5812B52D3B40057F8C1 /* ExploreView.swift in Sources */,
 				BBC5C7E42B4FF11C000A5EB1 /* NewReleasesView.swift in Sources */,
 				BBD28DD12A2F9D9B00AD57C6 /* FeedAlbum.swift in Sources */,
 				BB086C712AA6FDE9000A8720 /* TrackInfoView.swift in Sources */,

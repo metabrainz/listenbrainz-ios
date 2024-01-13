@@ -119,7 +119,7 @@ struct TopDiscoveriesView: View {
             return nil
         }
 
-        return URL(string: "https://coverartarchive.org/release/\(caaReleaseMbid)/\(caaID)-250.jpg")
+        return URL(string: "\(Constants.COVER_ART_BASE_URL)\(caaReleaseMbid)/\(caaID)-250.jpg")
     }
 }
 

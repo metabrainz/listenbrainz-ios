@@ -10,6 +10,8 @@ import Foundation
 struct Constants {
     static let SPOTIFY_CLIENT_ID = "fadec988097f4480bd71608cac76d82c"
     static let SPOTIFY_REDIRECT_URI = "listenbrainz://"
+    static let BETA_LISTENBRAINZ_BASE_URL = "https://beta-api.listenbrainz.org/1/stats/user/"
+    static let COVER_ART_BASE_URL = "https://coverartarchive.org/release/"
 }
 
 

@@ -16,27 +16,34 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            TabView {
-                FeedView()
-                    .environmentObject(feedViewModel)
-                    .frame(width: screenWidth, height: screenHeight, alignment: .center)
-                    .tabItem {
-                        Label("Feed", systemImage: "bolt")
-                    }
-              PlayerView(viewModel: yimViewModel)
-                    .edgesIgnoringSafeArea(.all)
-                    .frame(width: screenWidth, height: screenHeight, alignment: .center)
-                    .tabItem {
-                        Label("Explore", systemImage: "safari")
-                    }
+          TabView {
+            FeedView()
+              .environmentObject(feedViewModel)
+              .frame(width: screenWidth, height: screenHeight, alignment: .center)
+              .tabItem {
+                Label("Feed", systemImage: "bolt")
+              }
+            ExploreView(viewModel: yimViewModel)
+              .edgesIgnoringSafeArea(.all)
+              .frame(width: screenWidth, height: screenHeight, alignment: .center)
+              .tabItem {
+                Label("Explore", systemImage: "safari")
+              }
 
-                ListensView()
-                    .environmentObject(homeViewModel)
-                    .frame(width: screenWidth, height: screenHeight, alignment: .center)
-                    .tabItem {
-                        Label("Listens", systemImage: "person.wave.2")
-                    }
-            }
+            PlayerView()
+              .edgesIgnoringSafeArea(.all)
+              .frame(width: screenWidth, height: screenHeight, alignment: .center)
+              .tabItem {
+                Label("Player", systemImage: "headphones")
+              }
+
+            ListensView()
+              .environmentObject(homeViewModel)
+              .frame(width: screenWidth, height: screenHeight, alignment: .center)
+              .tabItem {
+                Label("Listens", systemImage: "person.wave.2")
+              }
+          }
             .accentColor(Color.gray)
         }
     }

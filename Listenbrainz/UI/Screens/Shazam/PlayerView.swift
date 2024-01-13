@@ -15,7 +15,7 @@ struct PlayerView: View {
   @State private var openFile = false
   @StateObject private var shazamViewModel: ShazamViewModel = .init()
   @State private var animateShazamButton = false
-  @StateObject var viewModel: YIMViewModel
+  
 
   var body: some View {
     content
@@ -34,7 +34,7 @@ struct PlayerView: View {
         .tint(Color.primary)
         .foregroundColor(Color.secondary)
     } else {
-      VStack(spacing: 20) {
+      VStack(spacing: 40) {
         Spacer()
 
         Text("Tap icon to Shazam")
@@ -81,49 +81,7 @@ struct PlayerView: View {
             .clipShape(Capsule())
         }
 
-        NavigationLink(destination: MainView(viewModel: viewModel)) {
-          VStack {
-            HStack {
-              VStack(alignment: .leading) {
-                Text("Year In Music")
-                  .font(.headline)
-                  .fontWeight(.bold)
-                  .foregroundColor(Color.yimGreen)
-                  .padding(.top)
-
-                Text("Review")
-                  .foregroundColor(Color.yimGreen)
-              }
-              Spacer()
-
-              Image(systemName: "hands.sparkles")
-                  .resizable()
-                  .frame(width: 30, height: 30)
-                  .colorMultiply(Color.yimGreen)
-
-            }
-            .padding(.horizontal)
-            Spacer()
-
-            VStack{
-              Image("plant")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 80, height: 92)
-                .padding(.trailing,60)
-                .padding(.bottom,-60)
-              Image("2023Numeric")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 300, height: 90)
-            }
-           Spacer()
-          }
-          .frame(width: UIScreen.main.bounds.size.width, height: 200)
-          .background(Color.yimBeige)
-          .cornerRadius(10)
-          .shadow(radius: 10)
-        }
+        
 
         Spacer()
       }

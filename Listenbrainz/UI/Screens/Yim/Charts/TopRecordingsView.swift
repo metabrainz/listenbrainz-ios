@@ -36,7 +36,7 @@ struct TopRecordingsView: View {
                           .foregroundColor(Color.yimBeige)
                           .padding(.trailing, 10)
 
-                      VStack(alignment: .leading, spacing: 5) {
+                      VStack(alignment: .leading, spacing: 0) {
                           Text(recording.trackName.uppercased())
                               .font(.system(size: 16, weight: .bold))
                               .foregroundColor(Color.white)

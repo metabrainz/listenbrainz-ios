@@ -20,9 +20,8 @@ struct TopAlbumsView: View {
           VStack(alignment:.leading) {
             Spacer()
                 TopYimView(viewModel: viewModel)
-              .padding(.top,-10)
+              .padding(.top,-20)
 
-                Spacer()
             Spacer()
 
                 ForEach(viewModel.topReleaseGroups.prefix(5), id: \.self) { topReleaseGroup in

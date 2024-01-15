@@ -33,12 +33,12 @@ struct TopArtistsView: View {
                 ForEach(Array(viewModel.topArtists.prefix(10).enumerated()), id: \.element.artistName) { index, artist in
                     HStack {
                         Text(index == 9 ? "X" : "\(index + 1)")
-                            .font(.system(size: 26, weight: .bold))
+                            .font(.system(size: 24, weight: .bold))
                             .foregroundColor(Color.white)
                             .padding(.trailing, 10)
 
                         Text(artist.artistName.uppercased())
-                            .font(.system(size: 26, weight: .bold))
+                            .font(.system(size: 24, weight: .bold))
                             .foregroundColor(Color.white)
                     }
                 }

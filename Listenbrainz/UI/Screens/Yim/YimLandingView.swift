@@ -117,10 +117,10 @@ struct YimLandingView: View{
           VStack{
             Text(viewModel.userName)
               .font(
-                Font.custom("Inter", size: 28.30458)
+                Font.custom("Inter", size: 26)
                   .weight(.black)
               )
-              .kerning(17.2658)
+              .kerning(15)
               .multilineTextAlignment(.center)
               .foregroundColor(Color.yimBeige)
 

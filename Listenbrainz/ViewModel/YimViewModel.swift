@@ -68,28 +68,9 @@ class YIMViewModel: ObservableObject {
               self.similarUsers = data.payload.data.similarUsers
 
 
-                if let firstReleaseGroup = self.topReleaseGroups.first,
-                   let caaReleaseMbid = firstReleaseGroup.caaReleaseMbid,
-                   let caaID = firstReleaseGroup.caaID,
-                   let coverArtURL = URL(string: "https://coverartarchive.org/release/\(caaReleaseMbid)/\(caaID)-250.jpg") {
-                    self.fetchCoverArt(url: coverArtURL) { result in
-                        switch result {
-                        case .success(_):
-                            print("Cover art fetched successfully")
-                        case .failure(let error):
-                            print("Error fetching cover art: \(error)")
-                        }
-                    }
-                }
             }
             .store(in: &cancellables)
     }
 
-    private func fetchCoverArt(url: URL, completion: @escaping (Result<Data, AFError>) -> Void) {
-        AF.request(url, method: .get)
-            .validate()
-            .responseData { response in
-                completion(response.result)
-            }
-    }
+  
 }

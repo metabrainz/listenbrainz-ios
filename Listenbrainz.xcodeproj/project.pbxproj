@@ -45,7 +45,39 @@
 		BB66C20D2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C20C2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift */; };
 		BB66C20F2AA0F63800BB4CBA /* FeedMbidMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C20E2AA0F63800BB4CBA /* FeedMbidMapping.swift */; };
 		BB66C2112AA0F6C500BB4CBA /* ListensArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C2102AA0F6C500BB4CBA /* ListensArtist.swift */; };
+		BB6FF5812B52D3B40057F8C1 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6FF5802B52D3B40057F8C1 /* ExploreView.swift */; };
 		BB7833642B3F2DB3005D7266 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7833632B3F2DB3005D7266 /* ImageLoader.swift */; };
+		BBC5C7AA2B4FE801000A5EB1 /* YimRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7A92B4FE801000A5EB1 /* YimRepository.swift */; };
+		BBC5C7AC2B4FE80C000A5EB1 /* YimRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7AB2B4FE80C000A5EB1 /* YimRepositoryImpl.swift */; };
+		BBC5C7AE2B4FE817000A5EB1 /* YimViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7AD2B4FE817000A5EB1 /* YimViewModel.swift */; };
+		BBC5C7B12B4FE83D000A5EB1 /* YimData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7B02B4FE83D000A5EB1 /* YimData.swift */; };
+		BBC5C7B32B4FE861000A5EB1 /* DataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7B22B4FE861000A5EB1 /* DataClass.swift */; };
+		BBC5C7B52B4FE875000A5EB1 /* ListensPerDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7B42B4FE875000A5EB1 /* ListensPerDay.swift */; };
+		BBC5C7B72B4FE888000A5EB1 /* TopArtistElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7B62B4FE887000A5EB1 /* TopArtistElement.swift */; };
+		BBC5C7B92B4FE89E000A5EB1 /* NewRelasesOfTopArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7B82B4FE89E000A5EB1 /* NewRelasesOfTopArtist.swift */; };
+		BBC5C7BB2B4FE8AE000A5EB1 /* TopGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7BA2B4FE8AE000A5EB1 /* TopGenre.swift */; };
+		BBC5C7BD2B4FE8C0000A5EB1 /* TopRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7BC2B4FE8C0000A5EB1 /* TopRecording.swift */; };
+		BBC5C7BF2B4FE8D3000A5EB1 /* TopReleaseGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7BE2B4FE8D3000A5EB1 /* TopReleaseGroup.swift */; };
+		BBC5C7C12B4FE8F7000A5EB1 /* TopDiscoveries.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7C02B4FE8F7000A5EB1 /* TopDiscoveries.swift */; };
+		BBC5C7C42B4FEE53000A5EB1 /* YimLandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7C32B4FEE53000A5EB1 /* YimLandingView.swift */; };
+		BBC5C7C72B4FEE86000A5EB1 /* ChartsTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7C62B4FEE86000A5EB1 /* ChartsTitleView.swift */; };
+		BBC5C7C92B4FEE95000A5EB1 /* TopYimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7C82B4FEE95000A5EB1 /* TopYimView.swift */; };
+		BBC5C7CB2B4FEE9D000A5EB1 /* BottomYimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7CA2B4FEE9D000A5EB1 /* BottomYimView.swift */; };
+		BBC5C7CD2B4FEEC7000A5EB1 /* TopAlbumsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7CC2B4FEEC7000A5EB1 /* TopAlbumsGridView.swift */; };
+		BBC5C7CF2B4FEEDD000A5EB1 /* TopAlbumsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7CE2B4FEEDD000A5EB1 /* TopAlbumsView.swift */; };
+		BBC5C7D12B4FEEFC000A5EB1 /* TopRecordingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7D02B4FEEFC000A5EB1 /* TopRecordingsView.swift */; };
+		BBC5C7D32B4FEF1E000A5EB1 /* TopArtistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7D22B4FEF1E000A5EB1 /* TopArtistsView.swift */; };
+		BBC5C7D62B4FF031000A5EB1 /* StatsTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7D52B4FF031000A5EB1 /* StatsTitleView.swift */; };
+		BBC5C7D82B4FF037000A5EB1 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7D72B4FF037000A5EB1 /* StatsView.swift */; };
+		BBC5C7DA2B4FF03F000A5EB1 /* HeatMapScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7D92B4FF03F000A5EB1 /* HeatMapScreenView.swift */; };
+		BBC5C7DC2B4FF048000A5EB1 /* ListeningChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7DB2B4FF048000A5EB1 /* ListeningChartView.swift */; };
+		BBC5C7DF2B4FF09E000A5EB1 /* TopDiscoveriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7DE2B4FF09E000A5EB1 /* TopDiscoveriesView.swift */; };
+		BBC5C7E22B4FF0EE000A5EB1 /* MusicBuddiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7E12B4FF0EE000A5EB1 /* MusicBuddiesView.swift */; };
+		BBC5C7E42B4FF11C000A5EB1 /* NewReleasesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7E32B4FF11C000A5EB1 /* NewReleasesView.swift */; };
+		BBC5C7E62B4FF1B8000A5EB1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7E52B4FF1B8000A5EB1 /* MainView.swift */; };
+		BBC5C7E82B512ECD000A5EB1 /* DiscoverTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7E72B512ECD000A5EB1 /* DiscoverTitleView.swift */; };
+		BBC5C7EA2B512F85000A5EB1 /* PlaylistsTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7E92B512F85000A5EB1 /* PlaylistsTitleView.swift */; };
+		BBC5C7EC2B51311A000A5EB1 /* YimLastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7EB2B513119000A5EB1 /* YimLastView.swift */; };
 		BBD20D5B2A3C7D57007C0C71 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD20D5A2A3C7D57007C0C71 /* SettingsView.swift */; };
 		BBD28DD12A2F9D9B00AD57C6 /* FeedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DD02A2F9D9B00AD57C6 /* FeedAlbum.swift */; };
 		BBD28DD32A2F9DC400AD57C6 /* FeedArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DD22A2F9DC400AD57C6 /* FeedArtist.swift */; };
@@ -119,7 +151,39 @@
 		BB66C20C2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAdditionalInfo.swift; sourceTree = "<group>"; };
 		BB66C20E2AA0F63800BB4CBA /* FeedMbidMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMbidMapping.swift; sourceTree = "<group>"; };
 		BB66C2102AA0F6C500BB4CBA /* ListensArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListensArtist.swift; sourceTree = "<group>"; };
+		BB6FF5802B52D3B40057F8C1 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		BB7833632B3F2DB3005D7266 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		BBC5C7A92B4FE801000A5EB1 /* YimRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YimRepository.swift; sourceTree = "<group>"; };
+		BBC5C7AB2B4FE80C000A5EB1 /* YimRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YimRepositoryImpl.swift; sourceTree = "<group>"; };
+		BBC5C7AD2B4FE817000A5EB1 /* YimViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YimViewModel.swift; sourceTree = "<group>"; };
+		BBC5C7B02B4FE83D000A5EB1 /* YimData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YimData.swift; sourceTree = "<group>"; };
+		BBC5C7B22B4FE861000A5EB1 /* DataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataClass.swift; sourceTree = "<group>"; };
+		BBC5C7B42B4FE875000A5EB1 /* ListensPerDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListensPerDay.swift; sourceTree = "<group>"; };
+		BBC5C7B62B4FE887000A5EB1 /* TopArtistElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistElement.swift; sourceTree = "<group>"; };
+		BBC5C7B82B4FE89E000A5EB1 /* NewRelasesOfTopArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRelasesOfTopArtist.swift; sourceTree = "<group>"; };
+		BBC5C7BA2B4FE8AE000A5EB1 /* TopGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopGenre.swift; sourceTree = "<group>"; };
+		BBC5C7BC2B4FE8C0000A5EB1 /* TopRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRecording.swift; sourceTree = "<group>"; };
+		BBC5C7BE2B4FE8D3000A5EB1 /* TopReleaseGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopReleaseGroup.swift; sourceTree = "<group>"; };
+		BBC5C7C02B4FE8F7000A5EB1 /* TopDiscoveries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopDiscoveries.swift; sourceTree = "<group>"; };
+		BBC5C7C32B4FEE53000A5EB1 /* YimLandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YimLandingView.swift; sourceTree = "<group>"; };
+		BBC5C7C62B4FEE86000A5EB1 /* ChartsTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsTitleView.swift; sourceTree = "<group>"; };
+		BBC5C7C82B4FEE95000A5EB1 /* TopYimView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopYimView.swift; sourceTree = "<group>"; };
+		BBC5C7CA2B4FEE9D000A5EB1 /* BottomYimView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomYimView.swift; sourceTree = "<group>"; };
+		BBC5C7CC2B4FEEC7000A5EB1 /* TopAlbumsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAlbumsGridView.swift; sourceTree = "<group>"; };
+		BBC5C7CE2B4FEEDD000A5EB1 /* TopAlbumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAlbumsView.swift; sourceTree = "<group>"; };
+		BBC5C7D02B4FEEFC000A5EB1 /* TopRecordingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRecordingsView.swift; sourceTree = "<group>"; };
+		BBC5C7D22B4FEF1E000A5EB1 /* TopArtistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtistsView.swift; sourceTree = "<group>"; };
+		BBC5C7D52B4FF031000A5EB1 /* StatsTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTitleView.swift; sourceTree = "<group>"; };
+		BBC5C7D72B4FF037000A5EB1 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		BBC5C7D92B4FF03F000A5EB1 /* HeatMapScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMapScreenView.swift; sourceTree = "<group>"; };
+		BBC5C7DB2B4FF048000A5EB1 /* ListeningChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListeningChartView.swift; sourceTree = "<group>"; };
+		BBC5C7DE2B4FF09E000A5EB1 /* TopDiscoveriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopDiscoveriesView.swift; sourceTree = "<group>"; };
+		BBC5C7E12B4FF0EE000A5EB1 /* MusicBuddiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBuddiesView.swift; sourceTree = "<group>"; };
+		BBC5C7E32B4FF11C000A5EB1 /* NewReleasesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReleasesView.swift; sourceTree = "<group>"; };
+		BBC5C7E52B4FF1B8000A5EB1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		BBC5C7E72B512ECD000A5EB1 /* DiscoverTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTitleView.swift; sourceTree = "<group>"; };
+		BBC5C7E92B512F85000A5EB1 /* PlaylistsTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsTitleView.swift; sourceTree = "<group>"; };
+		BBC5C7EB2B513119000A5EB1 /* YimLastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YimLastView.swift; sourceTree = "<group>"; };
 		BBD20D5A2A3C7D57007C0C71 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BBD28DD02A2F9D9B00AD57C6 /* FeedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAlbum.swift; sourceTree = "<group>"; };
 		BBD28DD22A2F9DC400AD57C6 /* FeedArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArtist.swift; sourceTree = "<group>"; };
@@ -195,6 +259,7 @@
 		6F7620A329C66C8000CDA3E8 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				BBC5C7C22B4FEE31000A5EB1 /* Yim */,
 				BBA32A842AA1D6A500F86779 /* Shazam */,
 				BBA32A832AA1D69A00F86779 /* Feed */,
 				BBA32A822AA1D68E00F86779 /* Listens */,
@@ -273,6 +338,7 @@
 				BB0586522A25042C00744FF0 /* HomeViewModel.swift */,
 				BBE975B22A67FAF3000908B1 /* ShazamViewModel.swift */,
 				BB66C1FA2A9F3EE700BB4CBA /* FeedViewModel.swift */,
+				BBC5C7AD2B4FE817000A5EB1 /* YimViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -290,6 +356,7 @@
 		BB0586552A25049100744FF0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BBC5C7AF2B4FE81D000A5EB1 /* Yim */,
 				BBA32A812AA1D63100F86779 /* Feed */,
 				BBA32A802AA1D62700F86779 /* Listens */,
 			);
@@ -299,6 +366,7 @@
 		BB0586582A2504CC00744FF0 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				BBC5C7A82B4FE7EA000A5EB1 /* Yim */,
 				BBA32A7F2AA1D5F600F86779 /* Feed */,
 				BBA32A7D2AA1D5CE00F86779 /* Listens */,
 			);
@@ -384,6 +452,90 @@
 			path = Shazam;
 			sourceTree = "<group>";
 		};
+		BBC5C7A82B4FE7EA000A5EB1 /* Yim */ = {
+			isa = PBXGroup;
+			children = (
+				BBC5C7A92B4FE801000A5EB1 /* YimRepository.swift */,
+				BBC5C7AB2B4FE80C000A5EB1 /* YimRepositoryImpl.swift */,
+			);
+			path = Yim;
+			sourceTree = "<group>";
+		};
+		BBC5C7AF2B4FE81D000A5EB1 /* Yim */ = {
+			isa = PBXGroup;
+			children = (
+				BBC5C7B02B4FE83D000A5EB1 /* YimData.swift */,
+				BBC5C7B22B4FE861000A5EB1 /* DataClass.swift */,
+				BBC5C7B42B4FE875000A5EB1 /* ListensPerDay.swift */,
+				BBC5C7B62B4FE887000A5EB1 /* TopArtistElement.swift */,
+				BBC5C7B82B4FE89E000A5EB1 /* NewRelasesOfTopArtist.swift */,
+				BBC5C7BA2B4FE8AE000A5EB1 /* TopGenre.swift */,
+				BBC5C7BC2B4FE8C0000A5EB1 /* TopRecording.swift */,
+				BBC5C7BE2B4FE8D3000A5EB1 /* TopReleaseGroup.swift */,
+				BBC5C7C02B4FE8F7000A5EB1 /* TopDiscoveries.swift */,
+			);
+			path = Yim;
+			sourceTree = "<group>";
+		};
+		BBC5C7C22B4FEE31000A5EB1 /* Yim */ = {
+			isa = PBXGroup;
+			children = (
+				BBC5C7E02B4FF0BF000A5EB1 /* Discover */,
+				BBC5C7DD2B4FF092000A5EB1 /* Playlists */,
+				BBC5C7D42B4FF021000A5EB1 /* Stats */,
+				BBC5C7C52B4FEE6F000A5EB1 /* Charts */,
+				BBC5C7C32B4FEE53000A5EB1 /* YimLandingView.swift */,
+				BBC5C7EB2B513119000A5EB1 /* YimLastView.swift */,
+				BBC5C7C82B4FEE95000A5EB1 /* TopYimView.swift */,
+				BBC5C7CA2B4FEE9D000A5EB1 /* BottomYimView.swift */,
+				BBC5C7E52B4FF1B8000A5EB1 /* MainView.swift */,
+				BB6FF5802B52D3B40057F8C1 /* ExploreView.swift */,
+			);
+			path = Yim;
+			sourceTree = "<group>";
+		};
+		BBC5C7C52B4FEE6F000A5EB1 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				BBC5C7C62B4FEE86000A5EB1 /* ChartsTitleView.swift */,
+				BBC5C7CC2B4FEEC7000A5EB1 /* TopAlbumsGridView.swift */,
+				BBC5C7CE2B4FEEDD000A5EB1 /* TopAlbumsView.swift */,
+				BBC5C7D02B4FEEFC000A5EB1 /* TopRecordingsView.swift */,
+				BBC5C7D22B4FEF1E000A5EB1 /* TopArtistsView.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		BBC5C7D42B4FF021000A5EB1 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				BBC5C7D52B4FF031000A5EB1 /* StatsTitleView.swift */,
+				BBC5C7D72B4FF037000A5EB1 /* StatsView.swift */,
+				BBC5C7D92B4FF03F000A5EB1 /* HeatMapScreenView.swift */,
+				BBC5C7DB2B4FF048000A5EB1 /* ListeningChartView.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		BBC5C7DD2B4FF092000A5EB1 /* Playlists */ = {
+			isa = PBXGroup;
+			children = (
+				BBC5C7DE2B4FF09E000A5EB1 /* TopDiscoveriesView.swift */,
+				BBC5C7E92B512F85000A5EB1 /* PlaylistsTitleView.swift */,
+			);
+			path = Playlists;
+			sourceTree = "<group>";
+		};
+		BBC5C7E02B4FF0BF000A5EB1 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				BBC5C7E12B4FF0EE000A5EB1 /* MusicBuddiesView.swift */,
+				BBC5C7E72B512ECD000A5EB1 /* DiscoverTitleView.swift */,
+				BBC5C7E32B4FF11C000A5EB1 /* NewReleasesView.swift */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -452,7 +604,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					6F842DC629C64E3E00DBBC7B = {
 						CreatedOnToolsVersion = 14.2;
@@ -522,51 +674,83 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB086C6F2AA6FDE0000A8720 /* EventDescriptionView.swift in Sources */,
+				BBC5C7DC2B4FF048000A5EB1 /* ListeningChartView.swift in Sources */,
 				BBD28DD72A2F9E0A00AD57C6 /* Listen.swift in Sources */,
 				BB66C1FD2A9F3EEF00BB4CBA /* FeedView.swift in Sources */,
 				BBD20D5B2A3C7D57007C0C71 /* SettingsView.swift in Sources */,
+				BBC5C7D62B4FF031000A5EB1 /* StatsTitleView.swift in Sources */,
 				BB086C6D2AA6FDD3000A8720 /* EventImageView.swift in Sources */,
 				BBD28DE12A2F9EB900AD57C6 /* Track.swift in Sources */,
 				BB66C2032A9F3F8700BB4CBA /* Event.swift in Sources */,
+				BBC5C7D12B4FEEFC000A5EB1 /* TopRecordingsView.swift in Sources */,
+				BBC5C7B72B4FE888000A5EB1 /* TopArtistElement.swift in Sources */,
 				BB09C7C12B0BEB5C00BCF5A9 /* TopBar.swift in Sources */,
 				6F842DF929C6509300DBBC7B /* SpotifyManager.swift in Sources */,
+				BBC5C7E22B4FF0EE000A5EB1 /* MusicBuddiesView.swift in Sources */,
+				BBC5C7D82B4FF037000A5EB1 /* StatsView.swift in Sources */,
 				BB66C20B2AA0F5AD00BB4CBA /* FeedTrackMetadata.swift in Sources */,
 				BB2A4F5329EB48BE006933BC /* ContentView.swift in Sources */,
 				BBD28DDF2A2F9EA300AD57C6 /* ArtistElement.swift in Sources */,
 				BBD28DD52A2F9DDC00AD57C6 /* ListensPayload.swift in Sources */,
 				BB519BAB2B15E72F00766F01 /* OnBoardingView.swift in Sources */,
+				BBC5C7CB2B4FEE9D000A5EB1 /* BottomYimView.swift in Sources */,
 				BB66C20D2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift in Sources */,
 				BBD28DDD2A2F9E8B00AD57C6 /* ListensMbidMapping.swift in Sources */,
 				BBE975B12A67FACD000908B1 /* MediaItemView.swift in Sources */,
+				BBC5C7C12B4FE8F7000A5EB1 /* TopDiscoveries.swift in Sources */,
 				BBE975B32A67FAF3000908B1 /* ShazamViewModel.swift in Sources */,
 				BBD28DD92A2F9E2E00AD57C6 /* ListensTrackMetadata.swift in Sources */,
 				BB66C2012A9F3F0900BB4CBA /* FeedRepositoryImpl.swift in Sources */,
+				BBC5C7BD2B4FE8C0000A5EB1 /* TopRecording.swift in Sources */,
 				6F842DCD29C64E3E00DBBC7B /* ListensView.swift in Sources */,
+				BBC5C7CD2B4FEEC7000A5EB1 /* TopAlbumsGridView.swift in Sources */,
 				BB66C2112AA0F6C500BB4CBA /* ListensArtist.swift in Sources */,
 				BB66C1FB2A9F3EE700BB4CBA /* FeedViewModel.swift in Sources */,
+				BBC5C7BF2B4FE8D3000A5EB1 /* TopReleaseGroup.swift in Sources */,
+				BBC5C7B92B4FE89E000A5EB1 /* NewRelasesOfTopArtist.swift in Sources */,
+				BBC5C7E82B512ECD000A5EB1 /* DiscoverTitleView.swift in Sources */,
 				BB66C2052A9F3FD500BB4CBA /* Metadata.swift in Sources */,
 				BBD28DD32A2F9DC400AD57C6 /* FeedArtist.swift in Sources */,
+				BBC5C7CF2B4FEEDD000A5EB1 /* TopAlbumsView.swift in Sources */,
 				BB0586532A25042C00744FF0 /* HomeViewModel.swift in Sources */,
 				6F155CAA2B08E32A005FE042 /* Extensions.swift in Sources */,
+				BBC5C7B32B4FE861000A5EB1 /* DataClass.swift in Sources */,
+				BBC5C7D32B4FEF1E000A5EB1 /* TopArtistsView.swift in Sources */,
+				BBC5C7C92B4FEE95000A5EB1 /* TopYimView.swift in Sources */,
 				BB05865A2A25052600744FF0 /* HomeRepository.swift in Sources */,
+				BBC5C7B52B4FE875000A5EB1 /* ListensPerDay.swift in Sources */,
+				BB6FF5812B52D3B40057F8C1 /* ExploreView.swift in Sources */,
+				BBC5C7E42B4FF11C000A5EB1 /* NewReleasesView.swift in Sources */,
 				BBD28DD12A2F9D9B00AD57C6 /* FeedAlbum.swift in Sources */,
 				BB086C712AA6FDE9000A8720 /* TrackInfoView.swift in Sources */,
+				BBC5C7EA2B512F85000A5EB1 /* PlaylistsTitleView.swift in Sources */,
 				BB66C20F2AA0F63800BB4CBA /* FeedMbidMapping.swift in Sources */,
 				BB2A4F5929EB48ED006933BC /* PlayerView.swift in Sources */,
 				BB66C1FF2A9F3EFD00BB4CBA /* FeedRepository.swift in Sources */,
 				BB05864E2A25034200744FF0 /* SongDetailView.swift in Sources */,
 				BB66C2092AA0F56600BB4CBA /* FeedPayload.swift in Sources */,
+				BBC5C7DF2B4FF09E000A5EB1 /* TopDiscoveriesView.swift in Sources */,
+				BBC5C7BB2B4FE8AE000A5EB1 /* TopGenre.swift in Sources */,
+				BBC5C7AC2B4FE80C000A5EB1 /* YimRepositoryImpl.swift in Sources */,
 				BB2A4F5529EB48CC006933BC /* HomeView.swift in Sources */,
 				BBE9630E2B0560FC00AA4219 /* BrainzPlayerMetadata.swift in Sources */,
 				6F842DCB29C64E3E00DBBC7B /* ListenbrainzApp.swift in Sources */,
 				BB7833642B3F2DB3005D7266 /* ImageLoader.swift in Sources */,
+				BBC5C7AA2B4FE801000A5EB1 /* YimRepository.swift in Sources */,
+				BBC5C7E62B4FF1B8000A5EB1 /* MainView.swift in Sources */,
 				BB0586572A2504AD00744FF0 /* Listens.swift in Sources */,
+				BBC5C7DA2B4FF03F000A5EB1 /* HeatMapScreenView.swift in Sources */,
 				BB519BAD2B1DE78200766F01 /* WelcomeView.swift in Sources */,
 				BB519BAF2B1DE95E00766F01 /* UserDetailsView.swift in Sources */,
 				BB2A4F5729EB48DF006933BC /* ProfileView.swift in Sources */,
+				BBC5C7B12B4FE83D000A5EB1 /* YimData.swift in Sources */,
+				BBC5C7EC2B51311A000A5EB1 /* YimLastView.swift in Sources */,
 				BBD28DDB2A2F9E5400AD57C6 /* ListensAdditionalInfo.swift in Sources */,
 				6F842DFB29C650A600DBBC7B /* Constants.swift in Sources */,
+				BBC5C7C42B4FEE53000A5EB1 /* YimLandingView.swift in Sources */,
 				BB05865C2A25053600744FF0 /* HomeRepositoryImpl.swift in Sources */,
+				BBC5C7C72B4FEE86000A5EB1 /* ChartsTitleView.swift in Sources */,
+				BBC5C7AE2B4FE817000A5EB1 /* YimViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +791,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -668,6 +853,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

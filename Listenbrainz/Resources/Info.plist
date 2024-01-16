@@ -13,6 +13,8 @@
 			</array>
 		</dict>
 	</array>
+	<key>CONFIGURATION</key>
+	<string>$(CONFIGURATION)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>

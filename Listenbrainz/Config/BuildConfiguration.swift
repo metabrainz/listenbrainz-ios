@@ -39,7 +39,7 @@ class BuildConfiguration {
     }
     
     init() {
-        let currentConfiguration = Bundle.main.object(forInfoDictionaryKey: "Configuration") as! String
+        let currentConfiguration = Bundle.main.object(forInfoDictionaryKey: "CONFIGURATION") as! String
         
         environment = AppEnvironment(rawValue: currentConfiguration)!
     }

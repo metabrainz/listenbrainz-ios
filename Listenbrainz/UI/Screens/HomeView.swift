@@ -7,20 +7,6 @@
 
 import SwiftUI
 
-
-struct AdaptiveImage: View {
-  @Environment(\.colorScheme) var colorScheme
-  let light: Image
-  let dark: Image
-
-  @ViewBuilder var body: some View {
-    if colorScheme == .light {
-      light
-    } else {
-      dark
-    }
-  }
-}
 struct HomeView : View{
   
   @State private var isSettingsPressed = false
@@ -30,16 +16,12 @@ struct HomeView : View{
 
     NavigationView{
       ScrollView{
+        VStack(alignment: .center, spacing: 0){
 
-
-        VStack(alignment: .center ,spacing: 0){
-
-
-
-          AdaptiveImage(light: Image("listenBrainzLight")
-                        , dark: Image("listenBrainzDark"))
-
-
+          AdaptiveImage(
+            light: Image("listenBrainzLight"),
+            dark: Image("listenBrainzDark")
+          )
 
           HStack(spacing: 0){
             Text("Listen")
@@ -51,9 +33,7 @@ struct HomeView : View{
           }
           .font(.largeTitle)
           .fontWeight(.bold)
-
         }
-
 
         VStack(spacing: 10){
           HStack(alignment: .center, spacing: 0) {
@@ -62,14 +42,13 @@ struct HomeView : View{
               .scaledToFit()
               .frame(width: 80, height: 65).cornerRadius(16)
               .foregroundColor(Color.primary)
+              
             VStack(alignment: .leading, spacing: 8) {
               Text("Year in Music")
                 .lineLimit(1)
                 .font(.headline)
 
               Text("Your Whole Year Summarized")
-
-
             }
             .padding(.leading, 12)
             Spacer()
@@ -90,17 +69,13 @@ struct HomeView : View{
                 .font(.headline)
 
               Text("ListenBrainz News Updates")
-
-
             }
             .padding(.leading, 12)
             Spacer()
           }
           .padding(12)
           .background(Color.gray.opacity(0.15))
-
         }
-
       }
       .toolbar {
         ToolbarItem(placement: .navigationBarLeading) {
@@ -133,9 +108,7 @@ struct HomeView : View{
           }
           .foregroundColor(Color.primary)
         }
-
       }
-
     }
     .sheet(isPresented: $isSettingsPressed) {
       SettingsView()

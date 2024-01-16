@@ -8,7 +8,7 @@
 import Foundation
 
 enum AppEnvironment: String {
-    case dev = "Dev"
+    case dev = "Debug"
     case beta = "Beta"
     case qa = "QA"
     case release = "Release"

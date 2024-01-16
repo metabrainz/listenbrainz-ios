@@ -9,9 +9,9 @@ import SwiftUI
 import ShazamKit
 
 struct MediaItemView: View {
-
+    
     @State var mediaItem: SHMatchedMediaItem
-
+    
     var body: some View {
         GeometryReader { proxy in
             VStack(alignment: .leading) {
@@ -22,13 +22,13 @@ struct MediaItemView: View {
         }
         .padding()
     }
-
+    
     @ViewBuilder
     private var infoView: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text(mediaItem.title ?? "Unknown track")
-                .font(.largeTitle)
+                    .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
                 Text(mediaItem.artist ?? "Unknown artist")
@@ -38,7 +38,7 @@ struct MediaItemView: View {
             Spacer()
         }
     }
-
+    
     @ViewBuilder
     private func image(with proxy: GeometryProxy) -> some View {
         AsyncImage(url: mediaItem.artworkURL) { image in
@@ -52,11 +52,11 @@ struct MediaItemView: View {
                        height: proxy.size.width,
                        alignment: .center)
                 .background(Color(UIColor.secondarySystemBackground))
-
+            
         }
         .cornerRadius(10)
     }
-
+    
     private func add() {
         SHMediaLibrary.default.add([mediaItem]) { error in
             print(error ?? "Added successfully")

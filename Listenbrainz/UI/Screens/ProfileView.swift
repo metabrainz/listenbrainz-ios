@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct ProfileView : View{
+struct ProfileView : View {
     
-    var body: some View{
+    var body: some View {
         
         Text("Welcome to Listen Brainz")
     }

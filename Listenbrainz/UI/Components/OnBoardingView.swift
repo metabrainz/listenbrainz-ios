@@ -12,9 +12,10 @@ struct OnBoardingView: View {
 
       Spacer()
 
-      AdaptiveImage(light: Image("listenBrainzLight")
-                    , dark: Image("listenBrainzDark"))
-
+      AdaptiveImage(
+        light: Image("listenBrainzLight"),
+        dark: Image("listenBrainzDark")
+      )
 
       Spacer()
 

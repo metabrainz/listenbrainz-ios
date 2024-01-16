@@ -14,7 +14,7 @@ class HomeRepositoryImpl: HomeRepository {
 
   func fetchMusicData(userName:String) -> AnyPublisher<Listens, AFError> {
 
-    let url = URL(string: "https://api.listenbrainz.org/1/user/\(userName)/listens")!
+    let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/listens")!
 
 
     return AF.request(url, method: .get)

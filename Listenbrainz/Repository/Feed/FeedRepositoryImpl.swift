@@ -13,7 +13,7 @@ class FeedRepositoryImpl: FeedRepository {
 
 
   func fetchFeedData(userName: String,userToken:String) -> AnyPublisher<FeedAlbum, AFError> {
-        let url = URL(string: "https://api.listenbrainz.org/1/user/\(userName)/feed/events")!
+      let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/feed/events")!
         let headers: HTTPHeaders = [
             "Authorization": "Token \(userToken)"
         ]

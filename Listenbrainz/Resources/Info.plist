@@ -13,6 +13,10 @@
 			</array>
 		</dict>
 	</array>
+	<key>CONFIGURATION</key>
+	<string>$(CONFIGURATION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>spotify</string>
@@ -22,7 +26,5 @@
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 	</dict>
-    <key>ITSAppUsesNonExemptEncryption</key>
-    <false/>
 </dict>
 </plist>

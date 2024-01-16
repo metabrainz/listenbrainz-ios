@@ -2,7 +2,7 @@
 //  ListenbrainzUITests.swift
 //  ListenbrainzUITests
 //
-//  Created by avataar on 19/03/23.
+//  Created by Akshat Tiwari on 19/03/23.
 //
 
 import XCTest

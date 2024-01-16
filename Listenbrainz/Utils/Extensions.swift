@@ -2,7 +2,7 @@
 //  Extensions.swift
 //  Listenbrainz
 //
-//  Created by avataar on 18/11/23.
+//  Created by Akshat Tiwari on 18/11/23.
 //
 
 import Foundation

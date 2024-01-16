@@ -23,6 +23,7 @@ struct ContentView: View {
               .tabItem {
                 Label("Feed", systemImage: "bolt")
               }
+              
             ExploreView(viewModel: yimViewModel)
               .edgesIgnoringSafeArea(.all)
               .frame(width: screenWidth, height: screenHeight, alignment: .center)

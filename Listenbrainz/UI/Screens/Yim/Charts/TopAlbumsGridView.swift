@@ -86,15 +86,14 @@ struct CoverArtGridView: View {
     }
   }
 
+  private func makeCoverArtURL(caaReleaseMbid: String, caaID: Int) -> URL? {
 
-    private func makeCoverArtURL(caaReleaseMbid: String, caaID: Int) -> URL? {
-        
-        guard !caaReleaseMbid.isEmpty, caaID > 0 else {
-            return nil
-        }
+     guard !caaReleaseMbid.isEmpty, caaID > 0 else {
+         return nil
+     }
 
-      return URL(string: "\(Constants.COVER_ART_BASE_URL)\(caaReleaseMbid)/\(caaID)-250.jpg")
-    }
+   return URL(string: "\(Constants.COVER_ART_BASE_URL)\(caaReleaseMbid)/\(caaID)-250.jpg")
+ }
 }
 
 struct CoverArtView: View {

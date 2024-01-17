@@ -33,9 +33,7 @@ struct TopDiscoveriesView: View {
 
                     if !isShowingList {
                         VStack(spacing: 0) {
-                            if let topDiscoveries = viewModel.topDiscoveries,
-                               let playlist = topDiscoveries.playlist,
-                               let trackElements = playlist.track {
+                          if let trackElements = viewModel.playlistTopDiscoveriesForYear?.track {
 
                                 ForEach(0..<3) { j in
                                     HStack(spacing: 0) {
@@ -93,16 +91,16 @@ struct TopDiscoveriesView: View {
 
                 BottomYimView()
                     .padding(.bottom, 30)
-//                    .onAppear {
-//                        viewModel.fetchYIMData(userName: "theflash_")
-//                    }
+                    .onAppear {
+                        viewModel.fetchYIMData(userName: "theflash_")
+                    }
             }
 
             if isShowingList {
               GeometryReader { geometry in
                   AlbumListView(viewModel: viewModel, isShowingList: $isShowingList)
-                  .frame(width: min(geometry.size.width / 1.5, 300), height: min(geometry.size.height / 1.5, 300))
-                      .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                  .frame(width: min(300, 300), height: min(geometry.size.height / 1.5, 300))
+                  .position(x: geometry.size.width / 2, y: geometry.size.height / 2.5)
                       .transition(.move(edge: .bottom))
               }
 
@@ -140,24 +138,25 @@ struct AlbumListView: View {
 
     var body: some View {
         NavigationView {
-          ScrollView {
-            LazyVStack {
-              ForEach(viewModel.topDiscoveries?.playlist?.track ?? [], id: \.identifier) { track in
-                HStack {
-
-
-                  VStack() {
-
-                    Text(track.album)
-                    Text(track.creator)
-                  }
-                  .padding()
+            ScrollView {
+                LazyVStack {
+                    ForEach(viewModel.playlistTopDiscoveriesForYear?.track ?? [], id: \.identifier) { trackElement in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(trackElement.title)
+                                    .font(.headline)
+                                Text(trackElement.creator)
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            .padding()
+                            Spacer()
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    }
                 }
-              }
             }
-          }
             .listStyle(PlainListStyle())
-            .listRowSeparator(.hidden)
             .navigationBarItems(trailing: Button(action: {
                 withAnimation {
                     isShowingList.toggle()

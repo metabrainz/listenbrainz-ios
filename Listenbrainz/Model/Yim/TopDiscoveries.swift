@@ -7,28 +7,19 @@
 
 import Foundation
 
-// MARK: - TopDiscoveries
-struct TopDiscoveries: Codable {
-    let playlist: Playlist?
-}
+// MARK: - PlaylistTopSForYear
+struct PlaylistTopSForYear: Codable {
 
-// MARK: - Playlist
-
-struct Playlist: Codable {
-//    let annotation: String
-//    let creator: Creator
-//    let date: DateEnum
-//    let playlistExtension: PlaylistTopDiscoveriesForYearExtension
-    let identifier: String
-    let title: String
+  let identifier: String
     let track: [TrackElement]?
 
     enum CodingKeys: String, CodingKey {
-//        case annotation, creator, date
-//        case playlistExtension = "extension"
-        case identifier, title, track
+
+      case identifier
+        case track
     }
 }
+
 
 // MARK: - TrackElement
 struct TrackElement: Codable {
@@ -57,12 +48,12 @@ struct TrackExtension: Codable {
 struct HTTPSMusicbrainzOrgDocJspfTrack: Codable {
 
     let additionalMetadata: AdditionalMetadata?
-    let artistIdentifiers: [String]
+ 
 
     enum CodingKeys: String, CodingKey {
 
         case additionalMetadata = "additional_metadata"
-        case artistIdentifiers = "artist_identifiers"
+
     }
 }
 

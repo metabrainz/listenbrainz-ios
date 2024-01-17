@@ -50,6 +50,7 @@
 		BB66C2112AA0F6C500BB4CBA /* ListensArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C2102AA0F6C500BB4CBA /* ListensArtist.swift */; };
 		BB6FF5812B52D3B40057F8C1 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6FF5802B52D3B40057F8C1 /* ExploreView.swift */; };
 		BB7833642B3F2DB3005D7266 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7833632B3F2DB3005D7266 /* ImageLoader.swift */; };
+		BBB115792B57A879004E157E /* TopMissedRecordingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB115782B57A879004E157E /* TopMissedRecordingsView.swift */; };
 		BBC5C7AA2B4FE801000A5EB1 /* YimRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7A92B4FE801000A5EB1 /* YimRepository.swift */; };
 		BBC5C7AC2B4FE80C000A5EB1 /* YimRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7AB2B4FE80C000A5EB1 /* YimRepositoryImpl.swift */; };
 		BBC5C7AE2B4FE817000A5EB1 /* YimViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7AD2B4FE817000A5EB1 /* YimViewModel.swift */; };
@@ -159,6 +160,7 @@
 		BB66C2102AA0F6C500BB4CBA /* ListensArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListensArtist.swift; sourceTree = "<group>"; };
 		BB6FF5802B52D3B40057F8C1 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		BB7833632B3F2DB3005D7266 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		BBB115782B57A879004E157E /* TopMissedRecordingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMissedRecordingsView.swift; sourceTree = "<group>"; };
 		BBC5C7A92B4FE801000A5EB1 /* YimRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YimRepository.swift; sourceTree = "<group>"; };
 		BBC5C7AB2B4FE80C000A5EB1 /* YimRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YimRepositoryImpl.swift; sourceTree = "<group>"; };
 		BBC5C7AD2B4FE817000A5EB1 /* YimViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YimViewModel.swift; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				BBC5C7DE2B4FF09E000A5EB1 /* TopDiscoveriesView.swift */,
+				BBB115782B57A879004E157E /* TopMissedRecordingsView.swift */,
 				BBC5C7E92B512F85000A5EB1 /* PlaylistsTitleView.swift */,
 			);
 			path = Playlists;
@@ -771,6 +774,7 @@
 				BB05865C2A25053600744FF0 /* HomeRepositoryImpl.swift in Sources */,
 				BBC5C7C72B4FEE86000A5EB1 /* ChartsTitleView.swift in Sources */,
 				BBC5C7AE2B4FE817000A5EB1 /* YimViewModel.swift in Sources */,
+				BBB115792B57A879004E157E /* TopMissedRecordingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

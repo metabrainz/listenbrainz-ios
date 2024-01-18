@@ -1,13 +1,13 @@
 //
-//  TopDiscoveriesView.swift
+//  TopMissedRecordingsView.swift
 //  Listenbrainz
 //
-//  Created by Gaurav Bhardwaj on 11/01/24.
+//  Created by Gaurav Bhardwaj on 17/01/24.
 //
 
 import SwiftUI
 
-struct TopDiscoveriesView: View {
+struct TopMissedRecordingsView: View {
     @ObservedObject var viewModel: YIMViewModel
 
     @State private var isShowingList = false
@@ -25,7 +25,7 @@ struct TopDiscoveriesView: View {
 
               Spacer()
                 ZStack {
-                    Image("hug")
+                    Image("arrows")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 330, height: 283)
@@ -33,7 +33,7 @@ struct TopDiscoveriesView: View {
 
                     if !isShowingList {
                         VStack(spacing: 0) {
-                          if let trackElements = viewModel.playlistTopDiscoveriesForYear?.track {
+                          if let trackElements = viewModel.playlistTopMissedRecordingsForYear?.track {
 
                                 ForEach(0..<3) { j in
                                     HStack(spacing: 0) {
@@ -76,7 +76,7 @@ struct TopDiscoveriesView: View {
                     }
 
                 Spacer()
-                Text("top discoveries of 2023".uppercased())
+                Text("missed recordings 2023".uppercased())
                 .font(.system(size: 25, weight: .bold))
                 .tracking(14)
                     .foregroundColor(Color(red: 0.15, green: 0.19, blue: 0.15))
@@ -98,7 +98,7 @@ struct TopDiscoveriesView: View {
 
             if isShowingList {
               GeometryReader { geometry in
-                  AlbumListView(viewModel: viewModel, isShowingList: $isShowingList)
+                  MissedRecordingListView(viewModel: viewModel, isShowingList: $isShowingList)
                   .frame(width: min(300, 300), height: min(geometry.size.height / 1.5, 300))
                   .position(x: geometry.size.width / 2, y: geometry.size.height / 2.5)
                       .transition(.move(edge: .bottom))
@@ -124,15 +124,15 @@ struct TopDiscoveriesView: View {
 
 
 
-struct TopDiscoveriesView_Previews: PreviewProvider {
+struct TopMissedRecordingsViewView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-        TopDiscoveriesView(viewModel: viewModel)
+      TopMissedRecordingsView(viewModel: viewModel)
             .previewLayout(.sizeThatFits)
     }
 }
 
-struct AlbumListView: View {
+struct MissedRecordingListView: View {
     @ObservedObject var viewModel: YIMViewModel
     @Binding var isShowingList: Bool
 
@@ -140,7 +140,7 @@ struct AlbumListView: View {
         NavigationView {
             ScrollView {
                 LazyVStack {
-                    ForEach(viewModel.playlistTopDiscoveriesForYear?.track ?? [], id: \.identifier) { trackElement in
+                    ForEach(viewModel.playlistTopMissedRecordingsForYear?.track ?? [], id: \.identifier) { trackElement in
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(trackElement.title)
@@ -167,4 +167,3 @@ struct AlbumListView: View {
         }
     }
 }
-

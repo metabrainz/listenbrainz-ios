@@ -24,7 +24,8 @@ class YIMViewModel: ObservableObject {
     @Published var userName: String = ""
     @Published var daysOfWeek: String = ""
     @Published var totalReleaseGroupCount: Int = 0
-    @Published var topDiscoveries: TopDiscoveries?
+  @Published var playlistTopDiscoveriesForYear: PlaylistTopSForYear?
+  @Published var playlistTopMissedRecordingsForYear: PlaylistTopSForYear?
     @Published var similarUsers: [String: Double] = [:]
         
     private var cancellables: Set<AnyCancellable> = []
@@ -59,9 +60,21 @@ class YIMViewModel: ObservableObject {
                 self.userName = data.payload.userName
                 self.daysOfWeek = data.payload.data.dayOfWeek
                 self.totalReleaseGroupCount = data.payload.data.totalReleaseGroupsCount
-                self.topDiscoveries = data.payload.data.topDiscoveries
+              self.playlistTopDiscoveriesForYear = data.payload.data.playlistTopDiscoveriesForYear
+              self.playlistTopMissedRecordingsForYear = data.payload.data.playlistTopMissedRecordingsForYear
                 self.similarUsers = data.payload.data.similarUsers
+
+              func makeCoverArtURL(caaReleaseMbid: String, caaID: Int) -> URL? {
+
+                 guard !caaReleaseMbid.isEmpty, caaID > 0 else {
+                     return nil
+                 }
+
+               return URL(string: "\(Constants.COVER_ART_BASE_URL)\(caaReleaseMbid)/\(caaID)-250.jpg")
+             }
             }
+
+      
             .store(in: &cancellables)
     }
 }

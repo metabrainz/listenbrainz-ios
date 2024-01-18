@@ -17,7 +17,7 @@ struct DataClass: Codable {
   let newReleasesOfTopArtists: [NewReleasesOfTopArtist]
 //  let playlistTopDiscoveriesForYear, playlistTopMissedRecordingsForYear: Playlist
   let similarUsers: [String: Double]
-  let topDiscoveries: TopDiscoveries
+  let playlistTopDiscoveriesForYear, playlistTopMissedRecordingsForYear: PlaylistTopSForYear?
   let topArtists: [TopArtistElement]
   let topGenres: [TopGenre]
   let topRecordings: [TopRecording]
@@ -33,10 +33,9 @@ let totalReleaseGroupsCount: Int
     case listensPerDay = "listens_per_day"
     case mostListenedYear = "most_listened_year"
     case newReleasesOfTopArtists = "new_releases_of_top_artists"
-//    case playlistTopDiscoveriesForYear = "playlist-top-discoveries-for-year"
-//    case playlistTopMissedRecordingsForYear = "playlist-top-missed-recordings-for-year"
+    case playlistTopDiscoveriesForYear = "playlist-top-discoveries-for-year"
+    case playlistTopMissedRecordingsForYear = "playlist-top-missed-recordings-for-year"
     case similarUsers = "similar_users"
-    case topDiscoveries = "top-discoveries"
 //    case topMissedRecordings = "top-missed-recordings"
     case topArtists = "top_artists"
     case topGenres = "top_genres"

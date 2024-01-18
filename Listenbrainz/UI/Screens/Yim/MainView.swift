@@ -65,21 +65,25 @@ struct MainView: View {
               .frame(height: pageHeight)
               .offset(y: -CGFloat(currentPage - 11) * pageHeight)
 
-          DiscoverTitleView(viewModel: viewModel)
+          TopMissedRecordingsView(viewModel: viewModel)
               .frame(height: pageHeight)
               .offset(y: -CGFloat(currentPage - 12) * pageHeight)
 
-          NewReleasesView(viewModel: viewModel)
+          DiscoverTitleView(viewModel: viewModel)
               .frame(height: pageHeight)
               .offset(y: -CGFloat(currentPage - 13) * pageHeight)
 
-          MusicBuddiesView(viewModel: viewModel)
+          NewReleasesView(viewModel: viewModel)
               .frame(height: pageHeight)
               .offset(y: -CGFloat(currentPage - 14) * pageHeight)
 
-          YimLastView(viewModel: viewModel)
+          MusicBuddiesView(viewModel: viewModel)
               .frame(height: pageHeight)
               .offset(y: -CGFloat(currentPage - 15) * pageHeight)
+
+          YimLastView(viewModel: viewModel)
+              .frame(height: pageHeight)
+              .offset(y: -CGFloat(currentPage - 16) * pageHeight)
 
 
         }
@@ -93,7 +97,7 @@ struct MainView: View {
             .onEnded { value in
                 let threshold: CGFloat = 50
 
-                if value.translation.height < -threshold && currentPage < 15 {
+                if value.translation.height < -threshold && currentPage < 16 {
                     nextPage()
                 } else if value.translation.height > threshold && currentPage > 0 {
                     previousPage()
@@ -105,7 +109,7 @@ struct MainView: View {
 
     private func nextPage() {
         withAnimation(.spring()) {
-            currentPage = min(currentPage + 1, 15)
+            currentPage = min(currentPage + 1, 16)
         }
     }
 

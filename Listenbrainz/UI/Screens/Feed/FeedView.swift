@@ -14,7 +14,7 @@ struct FeedView: View {
   var body: some View {
     VStack{
 
-      TopBar(isSettingsPressed:$isSettingsPressed)
+      TopBar(isSettingsPressed:$isSettingsPressed, customText: "Feed")
 
 
       List {

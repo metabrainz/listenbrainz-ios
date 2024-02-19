@@ -10,10 +10,15 @@ import SwiftUI
 
 struct ExploreView:View{
   @StateObject var viewModel:YIMViewModel
+  @State private var isSettingsPressed = false
 
   var body: some View{
 
     VStack(spacing:50){
+      TopBar(isSettingsPressed:$isSettingsPressed, customText: "Explore")
+
+      Spacer()
+
       Text("your #yearinmusic".uppercased())
         .font(.system(size: 30, weight: .bold))
         .kerning(10)
@@ -65,9 +70,13 @@ struct ExploreView:View{
         .background(Color.yimBeige)
         .cornerRadius(10)
         .shadow(radius: 10)
+
       }
 
 
+    }
+    .sheet(isPresented: $isSettingsPressed) {
+      SettingsView()
     }
     .padding(.bottom,250)
 

@@ -14,6 +14,7 @@ struct ListensView: View {
   @State private var spotifyID: String = "https://open.spotify.com/track/0DHh3p0g7qmNNfNdRNwL6N"
   @State private var maxTimeStamp:String = "john"
   @State private var minTimeStamp:String = "123456"
+  @State private var isSettingsPressed = false
 
   var params: [String: String] {
     return ["max_ts": maxTimeStamp, "min_ts":minTimeStamp]
@@ -22,8 +23,14 @@ struct ListensView: View {
   var body: some View {
     VStack {
 
+      TopBar(isSettingsPressed:$isSettingsPressed, customText: "Listens")
+
       SongDetailView()
         .environmentObject(homeViewModel)
+        .sheet(isPresented: $isSettingsPressed) {
+          SettingsView()
+        }
+
 
       //           TextField("Enter Spotify ID", text: $spotifyID)
       //               .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -40,6 +47,7 @@ struct ListensView: View {
       //                   .cornerRadius(10)
       //           }
     }
+
   }
 }
 

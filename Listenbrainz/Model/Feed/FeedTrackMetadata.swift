@@ -8,16 +8,14 @@
 import Foundation
 
 struct FeedTrackMetadata: Codable {
-  let additionalInfo: FeedAdditionalInfo
+//  let additionalInfo: FeedAdditionalInfo
   let artistName: String
-  let releaseName: String?
   let trackName: String
   let mbidMapping: FeedMbidMapping?
 
   enum CodingKeys: String, CodingKey {
-    case additionalInfo = "additional_info"
+//    case additionalInfo = "additional_info"
     case artistName = "artist_name"
-    case releaseName = "release_name"
     case trackName = "track_name"
     case mbidMapping = "mbid_mapping"
   }

@@ -41,6 +41,8 @@ struct ListenbrainzApp: App {
             }
         }
       }
+      .navigationViewStyle(.stack)
+
     }
   }
 

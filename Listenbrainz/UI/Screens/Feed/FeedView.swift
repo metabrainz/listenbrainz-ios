@@ -15,33 +15,33 @@ struct FeedView: View {
     VStack{
 
       TopBar(isSettingsPressed:$isSettingsPressed)
-      
-      NavigationView {
-        List {
-          ForEach(viewModel.events, id: \.id) { event in
-            VStack(alignment: .leading){
-              HStack(spacing: 20) {
-                EventImageView(eventType: event.eventType)
-                  .frame(width: 18, height: 18)
-                EventDescriptionView(event: event)
 
-              }
-              if event.eventType != "follow"{
-                TrackInfoView(event: event)
-              }
 
+      List {
+        ForEach(viewModel.events, id: \.id) { event in
+          VStack(alignment: .leading){
+            HStack(spacing: 20) {
+              EventImageView(eventType: event.eventType)
+                .frame(width: 18, height: 18)
+              EventDescriptionView(event: event)
+
+            }
+            if event.eventType != "follow"{
+              TrackInfoView(event: event)
             }
 
           }
+
         }
-        .sheet(isPresented: $isSettingsPressed) {
-                      SettingsView()
-                  }
-        .listStyle(PlainListStyle())
-        .listRowSeparator(.hidden)
-        .listRowInsets(EdgeInsets(top: 0, leading: 36, bottom: 0, trailing: 16))
       }
+      .sheet(isPresented: $isSettingsPressed) {
+        SettingsView()
+      }
+      .listStyle(PlainListStyle())
+      .listRowSeparator(.hidden)
+      .listRowInsets(EdgeInsets(top: 0, leading: 36, bottom: 0, trailing: 16))
     }
   }
-
 }
+
+

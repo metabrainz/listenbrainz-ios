@@ -10,15 +10,9 @@ import Foundation
 
 // MARK: - ListensPayload
 struct ListensPayload: Codable {
-  let count, latestListenTs , oldestListenTs: Int
   let listens: [Listen]
-  let userID: String
 
   enum CodingKeys: String, CodingKey {
-    case count
-    case latestListenTs = "latest_listen_ts"
-    case oldestListenTs = "oldest_listen_ts"
     case listens
-    case userID = "user_id"
   }
 }

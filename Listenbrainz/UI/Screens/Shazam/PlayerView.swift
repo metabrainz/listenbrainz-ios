@@ -15,16 +15,16 @@ struct PlayerView: View {
   @State private var openFile = false
   @StateObject private var shazamViewModel: ShazamViewModel = .init()
   @State private var animateShazamButton = false
-  
+  @State private var isSettingsPressed = false
 
   var body: some View {
-    content
-      .sheet(item: $shazamViewModel.mediaItem) { mediaItem in
-        MediaItemView(mediaItem: mediaItem)
-      }
-      .alert(isPresented: $shazamViewModel.hasError) {
-        Alert(title: Text("Error"), message: Text(shazamViewModel.error?.localizedDescription ?? ""))
-      }
+      content
+        .sheet(item: $shazamViewModel.mediaItem) { mediaItem in
+          MediaItemView(mediaItem: mediaItem)
+        }
+        .alert(isPresented: $shazamViewModel.hasError) {
+          Alert(title: Text("Error"), message: Text(shazamViewModel.error?.localizedDescription ?? ""))
+        }
   }
 
   @ViewBuilder
@@ -35,7 +35,8 @@ struct PlayerView: View {
         .foregroundColor(Color.secondary)
     } else {
       VStack(spacing: 40) {
-        Spacer()
+
+        TopBar(isSettingsPressed:$isSettingsPressed, customText: "Player")
 
         Text("Tap icon to Shazam")
           .font(.largeTitle)
@@ -84,6 +85,9 @@ struct PlayerView: View {
         
 
         Spacer()
+      }
+      .sheet(isPresented: $isSettingsPressed) {
+        SettingsView()
       }
       .fileImporter(isPresented: self.$openFile, allowedContentTypes: [.audio]) { result in
         do {

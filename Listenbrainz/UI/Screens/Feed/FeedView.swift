@@ -5,43 +5,63 @@
 //  Created by Gaurav Bhardwaj on 30/08/23.
 //
 
+
 import SwiftUI
 
 struct FeedView: View {
-  @EnvironmentObject var viewModel: FeedViewModel
-  @State private var isSettingsPressed = false
+    @EnvironmentObject var viewModel: FeedViewModel
+    @State private var isSettingsPressed = false
 
-  var body: some View {
-    VStack{
+    var body: some View {
 
-      TopBar(isSettingsPressed:$isSettingsPressed, customText: "Feed")
+        ZStack {
+            Color(red: 0.16, green: 0.16, blue: 0.16)
 
+            VStack {
 
-      List {
-        ForEach(viewModel.events, id: \.id) { event in
-          VStack(alignment: .leading){
-            HStack(spacing: 20) {
-              EventImageView(eventType: event.eventType)
-                .frame(width: 18, height: 18)
-              EventDescriptionView(event: event)
+                TopBar(isSettingsPressed: $isSettingsPressed, customText: "Feed")
 
+                ScrollView {
+                    ForEach(viewModel.events, id: \.id) { event in
+                        HStack(alignment: .top, spacing: 10) {
+
+                            VStack(alignment: .leading) {
+                                EventImageView(eventType: event.eventType)
+                                    .frame(width: 22, height: 22)
+                                VerticalLine()
+                                    .frame(width: 1, height: event.eventType == "follow" ? 15 : 60)
+                                    .background(Color.white)
+                                    .offset(x: 10, y: 4)
+                            }
+
+                            VStack(alignment: .leading, spacing: 5) {
+                                EventDescriptionView(event: event)
+                                if event.eventType != "follow" {
+                                    TrackInfoView(event: event)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .background(Color.black)
+                                        .cornerRadius(10)
+                                        .shadow(radius: 2)
+                                }
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
+                    }
+                }
+                .sheet(isPresented: $isSettingsPressed) {
+                    SettingsView()
+                }
             }
-            if event.eventType != "follow"{
-              TrackInfoView(event: event)
-            }
-
-          }
-
         }
-      }
-      .sheet(isPresented: $isSettingsPressed) {
-        SettingsView()
-      }
-      .listStyle(PlainListStyle())
-      .listRowSeparator(.hidden)
-      .listRowInsets(EdgeInsets(top: 0, leading: 36, bottom: 0, trailing: 16))
     }
-  }
 }
 
+struct VerticalLine: View {
+    var body: some View {
+        Rectangle()
+            .fill(Color.white)
+            .frame(width: 1)
+    }
+}
 

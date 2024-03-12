@@ -25,7 +25,7 @@ struct TrackInfoView: View {
               image
                 .resizable()
                 .scaledToFit()
-                .frame(width: 40, height: 40)
+                .frame(width: 60, height: 60)
                 .onAppear {
                   imageLoader.loadImage(url: coverArtURL) { loadedImage in
                     if let uiImage = loadedImage {
@@ -38,26 +38,26 @@ struct TrackInfoView: View {
                 Image(uiImage: cachedImage)
                   .resizable()
                   .scaledToFit()
-                  .frame(width: 40, height: 40)
+                  .frame(width: 60, height: 60)
               } else {
                 Image(systemName: "music.note")
                   .resizable()
                   .renderingMode(.template)
                   .foregroundColor(.orange)
                   .scaledToFit()
-                  .frame(width: 40, height: 40)
+                  .frame(width: 60, height: 60)
               }
             }
           }
         )
-        .frame(width: 40, height: 40)
+        .frame(width: 60, height: 60)
       } else {
         Image(systemName: "music.note")
           .resizable()
           .renderingMode(.template)
           .foregroundColor(.orange)
           .scaledToFit()
-          .frame(width: 40, height: 40)
+          .frame(width: 60, height: 60)
       }
 
       VStack(alignment: .leading) {

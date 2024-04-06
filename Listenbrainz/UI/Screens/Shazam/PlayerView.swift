@@ -16,8 +16,11 @@ struct PlayerView: View {
   @StateObject private var shazamViewModel: ShazamViewModel = .init()
   @State private var animateShazamButton = false
   @State private var isSettingsPressed = false
+  @Environment(\.colorScheme) var colorScheme
 
   var body: some View {
+    ZStack {
+      colorScheme == .dark ? Color.backgroundColor : Color.white
       content
         .sheet(item: $shazamViewModel.mediaItem) { mediaItem in
           MediaItemView(mediaItem: mediaItem)
@@ -25,6 +28,7 @@ struct PlayerView: View {
         .alert(isPresented: $shazamViewModel.hasError) {
           Alert(title: Text("Error"), message: Text(shazamViewModel.error?.localizedDescription ?? ""))
         }
+    }
   }
 
   @ViewBuilder

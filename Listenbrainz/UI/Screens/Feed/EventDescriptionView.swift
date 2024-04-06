@@ -24,7 +24,7 @@ struct EventDescriptionView: View {
 
     private func eventDescription(for event: Event) -> Text {
         let usernameText = Text(event.userName)
-            .foregroundColor(.blue)
+        .foregroundColor(Color.LbPurple)
 
         switch event.eventType {
         case "listen":
@@ -49,9 +49,9 @@ struct EventDescriptionView: View {
 
         case "follow":
             let username0Text = Text(event.metadata.userName0 ?? "")
-                .foregroundColor(.blue)
+                .foregroundColor(Color.LbPurple)
             let username1Text = Text(event.metadata.userName1 ?? "")
-                .foregroundColor(.blue)
+                .foregroundColor(Color.LbPurple)
 
             return username0Text
                 + Text(" started following ")

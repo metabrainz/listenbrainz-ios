@@ -11,75 +11,80 @@ import SwiftUI
 struct ExploreView:View{
   @StateObject var viewModel:YIMViewModel
   @State private var isSettingsPressed = false
+  @Environment(\.colorScheme) var colorScheme
 
   var body: some View{
 
-    VStack(spacing:50){
-      TopBar(isSettingsPressed:$isSettingsPressed, customText: "Explore")
+    ZStack {
+      colorScheme == .dark ? Color.backgroundColor : Color.white
 
-      Spacer()
+      VStack(spacing:50){
+        TopBar(isSettingsPressed:$isSettingsPressed, customText: "Explore")
 
-      Text("your #yearinmusic".uppercased())
-        .font(.system(size: 30, weight: .bold))
-        .kerning(10)
-        .multilineTextAlignment(.center)
-        .foregroundColor(Color(red: 0.3, green: 0.43, blue: 0.32))
+        Spacer()
+
+        Text("your #yearinmusic".uppercased())
+          .font(.system(size: 30, weight: .bold))
+          .kerning(10)
+          .multilineTextAlignment(.center)
+          .foregroundColor(Color(red: 0.3, green: 0.43, blue: 0.32))
 
 
 
-      NavigationLink(destination: MainView(viewModel: viewModel)) {
-        VStack() {
+        NavigationLink(destination: MainView(viewModel: viewModel)) {
+          VStack() {
 
-          HStack {
-            VStack(alignment: .leading) {
-              Text("Year In Music")
-                .font(.headline)
-                .fontWeight(.bold)
-                .foregroundColor(Color.yimGreen)
-                .padding(.top)
+            HStack {
+              VStack(alignment: .leading) {
+                Text("Year In Music")
+                  .font(.headline)
+                  .fontWeight(.bold)
+                  .foregroundColor(Color.yimGreen)
+                  .padding(.top)
 
-              Text("Review")
-                .foregroundColor(Color.yimGreen)
+                Text("Review")
+                  .foregroundColor(Color.yimGreen)
+              }
+              Spacer()
+
+              Image(systemName: "hands.sparkles")
+                .resizable()
+                .frame(width: 30, height: 30)
+                .colorMultiply(Color.yimGreen)
+
             }
+            .padding(.horizontal)
             Spacer()
 
-            Image(systemName: "hands.sparkles")
-              .resizable()
-              .frame(width: 30, height: 30)
-              .colorMultiply(Color.yimGreen)
-
+            VStack{
+              Image("plant")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 80, height: 92)
+                .padding(.trailing,60)
+                .padding(.bottom,-60)
+              Image("2023Numeric")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 300, height: 90)
+            }
+            Spacer()
           }
-          .padding(.horizontal)
-          Spacer()
+          .frame(width: UIScreen.main.bounds.size.width, height: 200)
+          .background(Color.yimBeige)
+          .cornerRadius(10)
+          .shadow(radius: 10)
 
-          VStack{
-            Image("plant")
-              .resizable()
-              .aspectRatio(contentMode: .fit)
-              .frame(width: 80, height: 92)
-              .padding(.trailing,60)
-              .padding(.bottom,-60)
-            Image("2023Numeric")
-              .resizable()
-              .aspectRatio(contentMode: .fit)
-              .frame(width: 300, height: 90)
-          }
-          Spacer()
         }
-        .frame(width: UIScreen.main.bounds.size.width, height: 200)
-        .background(Color.yimBeige)
-        .cornerRadius(10)
-        .shadow(radius: 10)
+
 
       }
-
+      .sheet(isPresented: $isSettingsPressed) {
+        SettingsView()
+      }
+      .padding(.bottom,250)
 
     }
-    .sheet(isPresented: $isSettingsPressed) {
-      SettingsView()
-    }
-    .padding(.bottom,250)
-
   }
-}
 
+}

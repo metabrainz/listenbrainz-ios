@@ -17,5 +17,7 @@ extension Color{
   static let yimRed = Color(red: 0.75, green: 0.29, blue: 0.33)
   static let yimAqua = Color(red: 0.34, green: 0.45, blue: 0.46)
   static let yimBrown = Color(red: 0.30, green: 0.27, blue: 0.26)
+  static let backgroundColor = Color(red: 0.16, green: 0.16, blue: 0.16)
+  static let LbPurple = Color(red: 0.60, green: 0.67, blue: 0.81)
 
 }

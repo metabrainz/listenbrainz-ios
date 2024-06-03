@@ -31,7 +31,7 @@ class SearchViewModel: ObservableObject {
             return
         }
 
-        let urlString = "https://api.listenbrainz.org/1/search/users?search_term=\(term)"
+        let urlString = "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/search/users?search_term=\(term)"
         guard let url = URL(string: urlString) else { return }
 
         URLSession.shared.dataTask(with: url) { data, response, error in

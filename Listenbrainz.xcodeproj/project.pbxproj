@@ -289,7 +289,7 @@
 		6F7620A329C66C8000CDA3E8 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				BBFC06722C1EE2E400668E90 /* Search Users */,
+				BBFC06722C1EE2E400668E90 /* SearchUsers */,
 				BBC5C7C22B4FEE31000A5EB1 /* Yim */,
 				BBA32A842AA1D6A500F86779 /* Shazam */,
 				BBA32A832AA1D69A00F86779 /* Feed */,
@@ -572,13 +572,13 @@
 			path = Discover;
 			sourceTree = "<group>";
 		};
-		BBFC06722C1EE2E400668E90 /* Search Users */ = {
+		BBFC06722C1EE2E400668E90 /* SearchUsers */ = {
 			isa = PBXGroup;
 			children = (
 				BB4DF0BB2C0E040000E7B55A /* SearchUsersView.swift */,
 				BBFC06732C1EE2F700668E90 /* UserProfileView.swift */,
 			);
-			path = "Search Users";
+			path = SearchUsers;
 			sourceTree = "<group>";
 		};
 		BBFC06752C1EE48500668E90 /* Search */ = {

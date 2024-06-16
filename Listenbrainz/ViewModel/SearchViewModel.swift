@@ -7,6 +7,7 @@
 
 import Combine
 import SwiftUI
+import Alamofire
 
 class SearchViewModel: ObservableObject {
     @Published var searchTerm: String = ""
@@ -15,8 +16,12 @@ class SearchViewModel: ObservableObject {
     @Published var error: String? = nil
 
     private var cancellable: AnyCancellable?
+    private var subscriptions: Set<AnyCancellable> = []
+    private var repository: SearchRepository
 
-    init() {
+    init(repository: SearchRepository) {
+        self.repository = repository
+
         cancellable = $searchTerm
             .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
             .removeDuplicates()
@@ -31,32 +36,19 @@ class SearchViewModel: ObservableObject {
             return
         }
 
-        let urlString = "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/search/users?search_term=\(term)"
-        guard let url = URL(string: urlString) else { return }
-
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                print("Received Data: \(String(data: data, encoding: .utf8) ?? "No Data")")
-                do {
-                    let decodedResponse = try JSONDecoder().decode(UserSearchResponse.self, from: data)
-                    DispatchQueue.main.async {
-                        self.users = decodedResponse.users
-                        self.error = nil
-                    }
-                } catch {
-                    print("Decoding Error: \(error.localizedDescription)")
-                    DispatchQueue.main.async {
-                        self.error = "Failed to decode response: \(error.localizedDescription)"
-                    }
-                }
-            } else if let error = error {
-                print("Network Error: \(error.localizedDescription)")
-                DispatchQueue.main.async {
+        repository.searchUsers(term: term)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    self.error = nil
+                case .failure(let error):
                     self.error = error.localizedDescription
                 }
-            }
-        }
-        .resume()
+            }, receiveValue: { response in
+                self.users = response.users
+            })
+            .store(in: &subscriptions)
     }
 
     func clearSearch() {
@@ -65,4 +57,5 @@ class SearchViewModel: ObservableObject {
         self.error = nil
     }
 }
+
 

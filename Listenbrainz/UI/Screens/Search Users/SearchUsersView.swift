@@ -11,7 +11,7 @@ import Combine
 struct SearchUsersView: View {
   @Binding var isSearchActive: Bool
   @State private var searchTerm: String = ""
-  @StateObject private var searchViewModel = SearchViewModel()
+  @StateObject private var searchViewModel = SearchViewModel(repository: SearchRepositoryImpl())
 
   var body: some View {
     VStack {
@@ -51,24 +51,6 @@ struct SearchUsersView: View {
       }
     }
   }
-}
-
-struct UserProfileView: View {
-    var user: User
-
-    var body: some View {
-        HStack {
-            Image(systemName: "person.circle")
-                .resizable()
-                .frame(width: 20, height: 20)
-                .padding(.trailing, 4)
-            Text(user.userName)
-                .font(.headline)
-                .foregroundColor(Color.LbPurple)
-            Spacer()
-        }
-        .padding()
-    }
 }
 
 

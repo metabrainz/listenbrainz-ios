@@ -61,8 +61,7 @@ struct TopBar: View {
     }
 }
 
-struct TopBar_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview{
         TopBar(isSettingsPressed: .constant(false), isSearchActive: .constant(false), customText: "Feed")
     }
-}
+

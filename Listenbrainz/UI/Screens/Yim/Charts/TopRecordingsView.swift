@@ -74,10 +74,8 @@ struct TopRecordingsView: View {
   }
 }
 
-struct TopRecordingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-        return TopRecordingsView(viewModel: viewModel)
-    }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return TopRecordingsView(viewModel: viewModel)
 }
 

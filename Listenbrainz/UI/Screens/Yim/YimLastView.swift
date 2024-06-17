@@ -96,9 +96,7 @@ struct YimLastView: View {
 
 }
 
-struct YimLastView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-        return YimLastView(viewModel: viewModel)
-    }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return YimLastView(viewModel: viewModel)
 }

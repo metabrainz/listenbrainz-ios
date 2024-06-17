@@ -62,9 +62,8 @@ struct DiscoverTitleView: View{
   }
 
 
-struct DiscoverTitleView_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview{
       let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
         return DiscoverTitleView(viewModel: viewModel)
     }
-}
+

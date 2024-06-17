@@ -74,11 +74,9 @@ struct TopArtistsView: View {
     }
 }
 
-struct TopArtistsView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-        return TopArtistsView(viewModel: viewModel)
-    }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return TopArtistsView(viewModel: viewModel)
 }
 
 

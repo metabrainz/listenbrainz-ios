@@ -114,10 +114,8 @@ struct BarChartView: View {
 
 
 
-struct ListeningChartView_Previews: PreviewProvider {
-    static var previews: some View {
-      let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-        return ListeningChartView(viewModel: viewModel)
-    }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return ListeningChartView(viewModel: viewModel)
 }
 

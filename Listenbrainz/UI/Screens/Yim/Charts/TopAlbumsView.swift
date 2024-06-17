@@ -60,10 +60,8 @@ struct TopAlbumsView: View {
 }
 
 
-struct TopAlbumsView_Previews: PreviewProvider {
-    static var previews: some View {
-      let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-        return TopAlbumsView(viewModel: viewModel)
-    }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return TopAlbumsView(viewModel: viewModel)
 }
 

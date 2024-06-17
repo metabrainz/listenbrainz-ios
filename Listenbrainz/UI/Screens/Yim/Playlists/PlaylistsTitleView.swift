@@ -61,10 +61,9 @@ struct PlaylistsTitleView: View{
 }
 
 
-struct PlaylistsTitleView_Previews: PreviewProvider {
-  static var previews: some View {
-    let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-    return PlaylistsTitleView(viewModel: viewModel)
-  }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return PlaylistsTitleView(viewModel: viewModel)
 }
+
 

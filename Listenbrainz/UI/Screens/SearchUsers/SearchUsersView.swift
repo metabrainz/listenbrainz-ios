@@ -51,9 +51,7 @@ struct SearchUsersView: View {
     }
 }
 
-struct SearchUsersView_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview{
         SearchUsersView(isSearchActive: .constant(false))
     }
-}
 

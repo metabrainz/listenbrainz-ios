@@ -87,10 +87,9 @@ struct NewReleasesView: View {
 }
 
 
-struct NewReleasesView_Previews: PreviewProvider {
-    static var previews: some View {
-      let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-        return NewReleasesView(viewModel: viewModel)
-    }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return NewReleasesView(viewModel: viewModel)
 }
+
 

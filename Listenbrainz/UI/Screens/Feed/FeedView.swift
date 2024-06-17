@@ -20,6 +20,7 @@ struct FeedView: View {
             VStack {
                 if isSearchActive {
                     SearchUsersView(isSearchActive: $isSearchActive)
+                    .ignoresSafeArea(.keyboard)
                 } else {
                     TopBar(isSettingsPressed: $isSettingsPressed, isSearchActive: $isSearchActive, customText: "Feed")
 
@@ -54,6 +55,7 @@ struct FeedView: View {
                     }
                 }
             }
+            .ignoresSafeArea(.keyboard)
         }
     }
 }

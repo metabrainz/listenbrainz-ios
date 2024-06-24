@@ -18,10 +18,6 @@ struct FeedView: View {
         ZStack {
             colorScheme == .dark ? Color.backgroundColor : Color.white
             VStack {
-                if isSearchActive {
-                    SearchUsersView(isSearchActive: $isSearchActive)
-                    .ignoresSafeArea(.keyboard)
-                } else {
                     TopBar(isSettingsPressed: $isSettingsPressed, isSearchActive: $isSearchActive, customText: "Feed")
 
                     ScrollView {
@@ -58,7 +54,6 @@ struct FeedView: View {
             .ignoresSafeArea(.keyboard)
         }
     }
-}
 
 struct VerticalLine: View {
     var color: Color

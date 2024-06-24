@@ -34,10 +34,7 @@ struct PlayerView: View {
 
   @ViewBuilder
   var content: some View {
-    if isSearchActive{
-      SearchUsersView(isSearchActive: $isSearchActive)
-    }
-    else if shazamViewModel.matching {
+     if shazamViewModel.matching {
       ProgressView("Listening...")
         .tint(Color.primary)
         .foregroundColor(Color.secondary)

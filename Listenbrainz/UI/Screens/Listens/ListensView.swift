@@ -28,10 +28,6 @@ struct ListensView: View {
       colorScheme == .dark ? Color.backgroundColor : Color.white
 
       VStack {
-        if isSearchActive{
-          SearchUsersView(isSearchActive: $isSearchActive)
-        }
-        else{
           TopBar(isSettingsPressed:$isSettingsPressed, isSearchActive: $isSearchActive, customText: "Listens")
 
           SongDetailView()
@@ -63,4 +59,4 @@ struct ListensView: View {
       }
     }
   }
-}
+

@@ -19,10 +19,6 @@ struct ExploreView:View{
     ZStack {
       colorScheme == .dark ? Color.backgroundColor : Color.white
       VStack{
-        if isSearchActive{
-          SearchUsersView(isSearchActive: $isSearchActive)
-        }
-        else{
           VStack(spacing:50){
             TopBar(isSettingsPressed:$isSettingsPressed, isSearchActive: $isSearchActive, customText: "Explore")
 
@@ -92,4 +88,4 @@ struct ExploreView:View{
       }
     }
   }
-}
+

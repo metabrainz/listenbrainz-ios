@@ -218,10 +218,9 @@ struct StatsView: View{
   }
 
 
-struct StatsView_Previews: PreviewProvider {
-    static var previews: some View {
-      let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-        return StatsView(viewModel: viewModel)
-    }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return StatsView(viewModel: viewModel)
 }
+
 

@@ -63,10 +63,8 @@ struct StatsTitleView: View{
 }
 
 
-struct StatsTitleView_Previews: PreviewProvider {
-  static var previews: some View {
-    let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-    return StatsTitleView(viewModel: viewModel)
-  }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return StatsTitleView(viewModel: viewModel)
 }
 

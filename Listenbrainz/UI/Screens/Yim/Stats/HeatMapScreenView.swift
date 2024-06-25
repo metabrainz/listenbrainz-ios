@@ -117,10 +117,8 @@ struct HeatMapView: View {
 
 
 
-struct HeatMapScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-      let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-        return HeatMapScreenView(viewModel: viewModel)
-    }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return HeatMapScreenView(viewModel: viewModel)
 }
 

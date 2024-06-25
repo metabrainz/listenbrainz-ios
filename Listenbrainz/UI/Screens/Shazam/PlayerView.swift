@@ -16,6 +16,7 @@ struct PlayerView: View {
   @StateObject private var shazamViewModel: ShazamViewModel = .init()
   @State private var animateShazamButton = false
   @State private var isSettingsPressed = false
+  @State private var isSearchActive = false
   @Environment(\.colorScheme) var colorScheme
 
   var body: some View {
@@ -33,14 +34,13 @@ struct PlayerView: View {
 
   @ViewBuilder
   var content: some View {
-    if shazamViewModel.matching {
+     if shazamViewModel.matching {
       ProgressView("Listening...")
         .tint(Color.primary)
         .foregroundColor(Color.secondary)
     } else {
       VStack(spacing: 40) {
-
-        TopBar(isSettingsPressed:$isSettingsPressed, customText: "Player")
+        TopBar(isSettingsPressed:$isSettingsPressed, isSearchActive: $isSearchActive, customText: "Player")
 
         Text("Tap icon to Shazam")
           .font(.largeTitle)
@@ -86,7 +86,7 @@ struct PlayerView: View {
             .clipShape(Capsule())
         }
 
-        
+
 
         Spacer()
       }

@@ -141,12 +141,9 @@ extension Collection {
 }
 
 
-struct CoverArtGridView_Previews: PreviewProvider {
-    static var previews: some View {
-      let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-        CoverArtGridView(viewModel: viewModel)
-            .previewLayout(.sizeThatFits)
-
-    }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return CoverArtGridView(viewModel: viewModel)
 }
+
 

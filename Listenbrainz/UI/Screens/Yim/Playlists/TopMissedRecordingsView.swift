@@ -124,13 +124,11 @@ struct TopMissedRecordingsView: View {
 
 
 
-struct TopMissedRecordingsViewView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-      TopMissedRecordingsView(viewModel: viewModel)
-            .previewLayout(.sizeThatFits)
-    }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return TopMissedRecordingsView(viewModel: viewModel)
 }
+
 
 struct MissedRecordingListView: View {
     @ObservedObject var viewModel: YIMViewModel

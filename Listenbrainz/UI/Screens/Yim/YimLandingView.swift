@@ -186,9 +186,7 @@ struct YimLandingView: View{
 
 
 
-struct YimLandingView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-        return YimLandingView(viewModel: viewModel)
-    }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return YimLandingView(viewModel: viewModel)
 }

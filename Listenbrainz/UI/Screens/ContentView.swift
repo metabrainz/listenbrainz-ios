@@ -1,5 +1,6 @@
 // ContentView.swift
 import SwiftUI
+import Combine
 
 struct ContentView: View {
     let screenWidth = UIScreen.main.bounds.size.width
@@ -7,12 +8,12 @@ struct ContentView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var feedViewModel: FeedViewModel
     @StateObject var yimViewModel = YIMViewModel(repository: YIMRepositoryImpl())
-    
+
     init() {
         UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
         UITabBar.appearance().clipsToBounds = true
     }
-    
+
     var body: some View {
         ZStack {
             TabView {
@@ -22,21 +23,21 @@ struct ContentView: View {
                     .tabItem {
                         Label("Feed", systemImage: "bolt")
                     }
-                
+
                 ExploreView(viewModel: yimViewModel)
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: screenWidth, height: screenHeight, alignment: .center)
                     .tabItem {
                         Label("Explore", systemImage: "safari")
                     }
-                
+
                 PlayerView()
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: screenWidth, height: screenHeight, alignment: .center)
                     .tabItem {
                         Label("Player", systemImage: "headphones")
                     }
-                
+
                 ListensView()
                     .environmentObject(homeViewModel)
                     .frame(width: screenWidth, height: screenHeight, alignment: .center)
@@ -48,5 +49,4 @@ struct ContentView: View {
         }
     }
 }
-
 

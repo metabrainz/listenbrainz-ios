@@ -124,12 +124,9 @@ struct TopDiscoveriesView: View {
 
 
 
-struct TopDiscoveriesView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
-        TopDiscoveriesView(viewModel: viewModel)
-            .previewLayout(.sizeThatFits)
-    }
+#Preview{
+  let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
+  return TopDiscoveriesView(viewModel: viewModel)
 }
 
 struct AlbumListView: View {

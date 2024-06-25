@@ -34,9 +34,13 @@
 		BB2A4F5529EB48CC006933BC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F5429EB48CC006933BC /* HomeView.swift */; };
 		BB2A4F5729EB48DF006933BC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F5629EB48DF006933BC /* ProfileView.swift */; };
 		BB2A4F5929EB48ED006933BC /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F5829EB48ED006933BC /* PlayerView.swift */; };
+		BB4DF0B82C0E03D100E7B55A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DF0B72C0E03D100E7B55A /* SearchViewModel.swift */; };
+		BB4DF0BA2C0E03E300E7B55A /* SearchUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DF0B92C0E03E300E7B55A /* SearchUser.swift */; };
+		BB4DF0BC2C0E040000E7B55A /* SearchUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DF0BB2C0E040000E7B55A /* SearchUsersView.swift */; };
 		BB519BAB2B15E72F00766F01 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB519BAA2B15E72F00766F01 /* OnBoardingView.swift */; };
 		BB519BAD2B1DE78200766F01 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB519BAC2B1DE78200766F01 /* WelcomeView.swift */; };
 		BB519BAF2B1DE95E00766F01 /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB519BAE2B1DE95E00766F01 /* UserDetailsView.swift */; };
+		BB59E7ED2C208A8000C8540F /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB59E7EC2C208A8000C8540F /* CustomSearchBar.swift */; };
 		BB66C1FB2A9F3EE700BB4CBA /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C1FA2A9F3EE700BB4CBA /* FeedViewModel.swift */; };
 		BB66C1FD2A9F3EEF00BB4CBA /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C1FC2A9F3EEF00BB4CBA /* FeedView.swift */; };
 		BB66C1FF2A9F3EFD00BB4CBA /* FeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C1FE2A9F3EFD00BB4CBA /* FeedRepository.swift */; };
@@ -95,6 +99,9 @@
 		BBE9630E2B0560FC00AA4219 /* BrainzPlayerMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE9630D2B0560FC00AA4219 /* BrainzPlayerMetadata.swift */; };
 		BBE975B12A67FACD000908B1 /* MediaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE975B02A67FACD000908B1 /* MediaItemView.swift */; };
 		BBE975B32A67FAF3000908B1 /* ShazamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE975B22A67FAF3000908B1 /* ShazamViewModel.swift */; };
+		BBFC06742C1EE2F700668E90 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFC06732C1EE2F700668E90 /* UserProfileView.swift */; };
+		BBFC06772C1EE49000668E90 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFC06762C1EE49000668E90 /* SearchRepository.swift */; };
+		BBFC06792C1EE49C00668E90 /* SearchRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFC06782C1EE49C00668E90 /* SearchRepositoryImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,9 +151,13 @@
 		BB2A4F5429EB48CC006933BC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BB2A4F5629EB48DF006933BC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		BB2A4F5829EB48ED006933BC /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		BB4DF0B72C0E03D100E7B55A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		BB4DF0B92C0E03E300E7B55A /* SearchUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUser.swift; sourceTree = "<group>"; };
+		BB4DF0BB2C0E040000E7B55A /* SearchUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersView.swift; sourceTree = "<group>"; };
 		BB519BAA2B15E72F00766F01 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		BB519BAC2B1DE78200766F01 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		BB519BAE2B1DE95E00766F01 /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
+		BB59E7EC2C208A8000C8540F /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		BB66C1FA2A9F3EE700BB4CBA /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		BB66C1FC2A9F3EEF00BB4CBA /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		BB66C1FE2A9F3EFD00BB4CBA /* FeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRepository.swift; sourceTree = "<group>"; };
@@ -206,6 +217,9 @@
 		BBE975AF2A67FA7F000908B1 /* Listenbrainz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Listenbrainz.entitlements; sourceTree = "<group>"; };
 		BBE975B02A67FACD000908B1 /* MediaItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemView.swift; sourceTree = "<group>"; };
 		BBE975B22A67FAF3000908B1 /* ShazamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamViewModel.swift; sourceTree = "<group>"; };
+		BBFC06732C1EE2F700668E90 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		BBFC06762C1EE49000668E90 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
+		BBFC06782C1EE49C00668E90 /* SearchRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +291,7 @@
 		6F7620A329C66C8000CDA3E8 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				BBFC06722C1EE2E400668E90 /* SearchUsers */,
 				BBC5C7C22B4FEE31000A5EB1 /* Yim */,
 				BBA32A842AA1D6A500F86779 /* Shazam */,
 				BBA32A832AA1D69A00F86779 /* Feed */,
@@ -358,6 +373,7 @@
 				BBE975B22A67FAF3000908B1 /* ShazamViewModel.swift */,
 				BB66C1FA2A9F3EE700BB4CBA /* FeedViewModel.swift */,
 				BBC5C7AD2B4FE817000A5EB1 /* YimViewModel.swift */,
+				BB4DF0B72C0E03D100E7B55A /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -378,6 +394,7 @@
 				BBC5C7AF2B4FE81D000A5EB1 /* Yim */,
 				BBA32A812AA1D63100F86779 /* Feed */,
 				BBA32A802AA1D62700F86779 /* Listens */,
+				BB4DF0B92C0E03E300E7B55A /* SearchUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -385,6 +402,7 @@
 		BB0586582A2504CC00744FF0 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				BBFC06752C1EE48500668E90 /* Search */,
 				BBC5C7A82B4FE7EA000A5EB1 /* Yim */,
 				BBA32A7F2AA1D5F600F86779 /* Feed */,
 				BBA32A7D2AA1D5CE00F86779 /* Listens */,
@@ -556,6 +574,25 @@
 			path = Discover;
 			sourceTree = "<group>";
 		};
+		BBFC06722C1EE2E400668E90 /* SearchUsers */ = {
+			isa = PBXGroup;
+			children = (
+				BB4DF0BB2C0E040000E7B55A /* SearchUsersView.swift */,
+				BBFC06732C1EE2F700668E90 /* UserProfileView.swift */,
+				BB59E7EC2C208A8000C8540F /* CustomSearchBar.swift */,
+			);
+			path = SearchUsers;
+			sourceTree = "<group>";
+		};
+		BBFC06752C1EE48500668E90 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				BBFC06762C1EE49000668E90 /* SearchRepository.swift */,
+				BBFC06782C1EE49C00668E90 /* SearchRepositoryImpl.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -697,7 +734,9 @@
 				BBC5C7DC2B4FF048000A5EB1 /* ListeningChartView.swift in Sources */,
 				BBD28DD72A2F9E0A00AD57C6 /* Listen.swift in Sources */,
 				BB66C1FD2A9F3EEF00BB4CBA /* FeedView.swift in Sources */,
+				BB4DF0B82C0E03D100E7B55A /* SearchViewModel.swift in Sources */,
 				BBD20D5B2A3C7D57007C0C71 /* SettingsView.swift in Sources */,
+				BBFC06772C1EE49000668E90 /* SearchRepository.swift in Sources */,
 				BBC5C7D62B4FF031000A5EB1 /* StatsTitleView.swift in Sources */,
 				BB086C6D2AA6FDD3000A8720 /* EventImageView.swift in Sources */,
 				BBD28DE12A2F9EB900AD57C6 /* Track.swift in Sources */,
@@ -705,18 +744,23 @@
 				BBC5C7D12B4FEEFC000A5EB1 /* TopRecordingsView.swift in Sources */,
 				BBC5C7B72B4FE888000A5EB1 /* TopArtistElement.swift in Sources */,
 				BB09C7C12B0BEB5C00BCF5A9 /* TopBar.swift in Sources */,
+				BB4DF0BC2C0E040000E7B55A /* SearchUsersView.swift in Sources */,
 				6F842DF929C6509300DBBC7B /* SpotifyManager.swift in Sources */,
 				BBC5C7E22B4FF0EE000A5EB1 /* MusicBuddiesView.swift in Sources */,
 				BBC5C7D82B4FF037000A5EB1 /* StatsView.swift in Sources */,
 				6F85B9632B56B23500DBD65F /* AdaptiveImage.swift in Sources */,
 				BB66C20B2AA0F5AD00BB4CBA /* FeedTrackMetadata.swift in Sources */,
+				BB59E7ED2C208A8000C8540F /* CustomSearchBar.swift in Sources */,
 				BB2A4F5329EB48BE006933BC /* ContentView.swift in Sources */,
 				BBD28DDF2A2F9EA300AD57C6 /* ArtistElement.swift in Sources */,
+				BBFC06742C1EE2F700668E90 /* UserProfileView.swift in Sources */,
 				BBD28DD52A2F9DDC00AD57C6 /* ListensPayload.swift in Sources */,
 				BB519BAB2B15E72F00766F01 /* OnBoardingView.swift in Sources */,
 				BBC5C7CB2B4FEE9D000A5EB1 /* BottomYimView.swift in Sources */,
 				BB66C20D2AA0F5DE00BB4CBA /* FeedAdditionalInfo.swift in Sources */,
+				BB4DF0BA2C0E03E300E7B55A /* SearchUser.swift in Sources */,
 				BBD28DDD2A2F9E8B00AD57C6 /* ListensMbidMapping.swift in Sources */,
+				BBFC06792C1EE49C00668E90 /* SearchRepositoryImpl.swift in Sources */,
 				BBE975B12A67FACD000908B1 /* MediaItemView.swift in Sources */,
 				BBC5C7C12B4FE8F7000A5EB1 /* TopDiscoveries.swift in Sources */,
 				BBE975B32A67FAF3000908B1 /* ShazamViewModel.swift in Sources */,

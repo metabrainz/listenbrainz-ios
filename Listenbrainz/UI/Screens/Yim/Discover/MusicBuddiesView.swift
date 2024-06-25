@@ -85,12 +85,11 @@ struct MusicBuddiesView: View {
   }
 }
 
-struct MusicBuddiesView_Previews: PreviewProvider {
-  static var previews: some View {
+#Preview{
     let viewModel = YIMViewModel(repository: YIMRepositoryImpl())
     return MusicBuddiesView(viewModel: viewModel)
   }
-}
+
 
 //struct ProgressBar: View {
 //  @Binding var value: Double

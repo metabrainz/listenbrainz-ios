@@ -10,16 +10,17 @@ import SwiftUI
 
 struct TrackInfoView<T: TrackMetadataProvider>: View {
     let item: T
+    let onPinTrack: (T) -> Void
+    let onRecommendPersonally: (T) -> Void
     @StateObject private var imageLoader = ImageLoader.shared
-    @State private var showPinTrackView = false
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     @EnvironmentObject var feedViewModel: FeedViewModel
-    @State private var showingRecommendToUsersPersonallyView = false
 
-     private var isRecordingRecommendation: Bool {
-         return (item as? Event)?.eventType == "recording_recommendation"
-     }
+
+    private var isRecordingRecommendation: Bool {
+        return (item as? Event)?.eventType == "recording_recommendation"
+    }
 
     var body: some View {
         HStack {
@@ -79,17 +80,17 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
 
             Spacer()
 
-          if isRecordingRecommendation {
-            Button(action: {
-              if let event = item as? Event {
-                feedViewModel.deleteEvent(userName: userName, eventID: event.id ?? 1, userToken: userToken)
-              }
-            }) {
-              Image(systemName: "trash")
-                .foregroundColor(.red)
-                .padding(.horizontal, 10)
+            if isRecordingRecommendation {
+                Button(action: {
+                    if let event = item as? Event {
+                        feedViewModel.deleteEvent(userName: userName, eventID: event.id ?? 1, userToken: userToken)
+                    }
+                }) {
+                    Image(systemName: "trash")
+                        .foregroundColor(.red)
+                        .padding(.horizontal, 10)
+                }
             }
-          }
 
             Menu {
                 if let originURL = item.originURL {
@@ -108,13 +109,13 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
                     }
                 }
                 Button("Pin this track") {
-                    showPinTrackView = true
+                        onPinTrack(item)
                 }
                 Button("Recommend to my followers") {
-                  feedViewModel.recommendToFollowers(userName: userName, item: item, userToken: userToken)
+                    feedViewModel.recommendToFollowers(userName: userName, item: item, userToken: userToken)
                 }
                 Button("Personally recommend") {
-                  showingRecommendToUsersPersonallyView = true
+                        onRecommendPersonally(item)
                 }
                 Button("Write a review") {
                     // Action for Write a review
@@ -126,19 +127,9 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
                     .rotationEffect(.degrees(90))
             }
         }
-        .sheet(isPresented: $showPinTrackView) {
-            PinTrackView(
-                item: item,
-                userToken: userToken
-            )
-            .environmentObject(feedViewModel)
-        }
-        .sheet(isPresented: $showingRecommendToUsersPersonallyView) {
-          RecommendToUsersPersonallyView(item: item, userName: userName, userToken: userToken)
-            .environmentObject(feedViewModel)
-        }
     }
 }
+
 
 
 

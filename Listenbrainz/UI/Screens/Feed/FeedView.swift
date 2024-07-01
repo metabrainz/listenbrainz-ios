@@ -70,14 +70,19 @@ struct FeedView: View {
                 if let event = selectedEvent {
                     PinTrackView(
                       isPresented: $isPresented, item: event,
-                        userToken: userToken
+                        userToken: userToken,
+                      dismissAction: {
+                        showPinTrackView = false
+                      }
                     )
                     .environmentObject(viewModel)
                 }
             }
             .centeredModal(isPresented: $showingRecommendToUsersPersonallyView) {
                 if let event = selectedEvent {
-                    RecommendToUsersPersonallyView(item: event, userName: userName, userToken: userToken)
+                  RecommendToUsersPersonallyView(item: event, userName: userName, userToken: userToken, dismissAction: {
+                    showingRecommendToUsersPersonallyView = false
+                  })
                         .environmentObject(viewModel)
                 }
             }

@@ -14,6 +14,7 @@ struct RecommendToUsersPersonallyView: View {
     var userName: String
     var userToken: String
     @EnvironmentObject var viewModel: FeedViewModel
+   var dismissAction: () -> Void
 
     var body: some View {
         VStack {
@@ -28,6 +29,7 @@ struct RecommendToUsersPersonallyView: View {
             Button(action: {
                 let usersArray = users.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
                 viewModel.recommendToUsersPersonally(userName: userName, item: item, users: usersArray, blurbContent: blurbContent, userToken: userToken)
+              dismissAction()
             }) {
                 Text("Recommend Personally")
                     .padding()

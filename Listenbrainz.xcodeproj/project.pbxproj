@@ -42,6 +42,7 @@
 		BB519BAF2B1DE95E00766F01 /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB519BAE2B1DE95E00766F01 /* UserDetailsView.swift */; };
 		BB5282142C32D86E00743A60 /* PinTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5282132C32D86E00743A60 /* PinTrackView.swift */; };
 		BB5282162C32F9CC00743A60 /* PersonallyRecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5282152C32F9CC00743A60 /* PersonallyRecommendView.swift */; };
+		BB5282182C33125B00743A60 /* CentralModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5282172C33125B00743A60 /* CentralModalView.swift */; };
 		BB59E7ED2C208A8000C8540F /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB59E7EC2C208A8000C8540F /* CustomSearchBar.swift */; };
 		BB66C1FB2A9F3EE700BB4CBA /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C1FA2A9F3EE700BB4CBA /* FeedViewModel.swift */; };
 		BB66C1FD2A9F3EEF00BB4CBA /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C1FC2A9F3EEF00BB4CBA /* FeedView.swift */; };
@@ -161,6 +162,7 @@
 		BB519BAE2B1DE95E00766F01 /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
 		BB5282132C32D86E00743A60 /* PinTrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinTrackView.swift; sourceTree = "<group>"; };
 		BB5282152C32F9CC00743A60 /* PersonallyRecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonallyRecommendView.swift; sourceTree = "<group>"; };
+		BB5282172C33125B00743A60 /* CentralModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralModalView.swift; sourceTree = "<group>"; };
 		BB59E7EC2C208A8000C8540F /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		BB66C1FA2A9F3EE700BB4CBA /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		BB66C1FC2A9F3EEF00BB4CBA /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 				BB086C702AA6FDE9000A8720 /* TrackInfoView.swift */,
 				BB5282132C32D86E00743A60 /* PinTrackView.swift */,
 				BB5282152C32F9CC00743A60 /* PersonallyRecommendView.swift */,
+				BB5282172C33125B00743A60 /* CentralModalView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 				BBC5C7CF2B4FEEDD000A5EB1 /* TopAlbumsView.swift in Sources */,
 				BB0586532A25042C00744FF0 /* HomeViewModel.swift in Sources */,
 				6F155CAA2B08E32A005FE042 /* Extensions.swift in Sources */,
+				BB5282182C33125B00743A60 /* CentralModalView.swift in Sources */,
 				BBC5C7B32B4FE861000A5EB1 /* DataClass.swift in Sources */,
 				BBC5C7D32B4FEF1E000A5EB1 /* TopArtistsView.swift in Sources */,
 				BBC5C7C92B4FEE95000A5EB1 /* TopYimView.swift in Sources */,

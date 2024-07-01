@@ -12,10 +12,12 @@ import Foundation
 struct FeedMbidMapping: Codable {
     let caaID: Int?
     let caaReleaseMbid, releaseMbid: String?
+    let recordingMsid:String?
 
     enum CodingKeys: String, CodingKey {
         case caaID = "caa_id"
         case caaReleaseMbid = "caa_release_mbid"
         case releaseMbid = "release_mbid"
+        case recordingMsid = "recording_msid"
     }
 }

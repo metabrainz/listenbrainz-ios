@@ -29,9 +29,9 @@ struct RecommendToUsersPersonallyView: View {
                 let usersArray = users.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
                 viewModel.recommendToUsersPersonally(userName: userName, item: item, users: usersArray, blurbContent: blurbContent, userToken: userToken)
             }) {
-                Text("Recommend to Users Personally")
+                Text("Recommend Personally")
                     .padding()
-                    .background(Color.blue)
+                    .background(Color.green)
                     .foregroundColor(.white)
                     .cornerRadius(8)
             }

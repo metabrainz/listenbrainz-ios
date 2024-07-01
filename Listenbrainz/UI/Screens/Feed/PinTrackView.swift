@@ -11,6 +11,7 @@ import SwiftUI
 struct PinTrackView<T: TrackMetadataProvider>: View {
     @EnvironmentObject var viewModel: FeedViewModel
     @State private var blurbContent: String = ""
+    @Binding  var isPresented: Bool
     var item: T
     var userToken: String
 
@@ -28,7 +29,7 @@ struct PinTrackView<T: TrackMetadataProvider>: View {
             }) {
                 Text("Pin Track")
                     .padding()
-                    .background(Color.blue)
+                    .background(Color.green)
                     .foregroundColor(.white)
                     .cornerRadius(8)
             }
@@ -50,3 +51,4 @@ struct PinTrackView<T: TrackMetadataProvider>: View {
         )
     }
 }
+

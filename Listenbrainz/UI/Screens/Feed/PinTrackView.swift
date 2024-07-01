@@ -14,6 +14,7 @@ struct PinTrackView<T: TrackMetadataProvider>: View {
     @Binding  var isPresented: Bool
     var item: T
     var userToken: String
+   var dismissAction: () -> Void
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -26,6 +27,7 @@ struct PinTrackView<T: TrackMetadataProvider>: View {
 
             Button(action: {
                 pinTrack()
+              dismissAction()
             }) {
                 Text("Pin Track")
                     .padding()

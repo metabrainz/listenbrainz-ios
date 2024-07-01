@@ -5,7 +5,6 @@ struct SongDetailView: View {
     @StateObject private var imageLoader = ImageLoader.shared
     @State private var isLoading = true
     @Environment(\.colorScheme) var colorScheme
-
     @State private var showPinTrackView = false
     @State private var showingRecommendToUsersPersonallyView = false
     @State private var selectedListen: Listen?
@@ -53,18 +52,23 @@ struct SongDetailView: View {
                 }
             }
             .centeredModal(isPresented: $showPinTrackView) {
-                if let listen = selectedListen {
-                    PinTrackView(
-                      isPresented: $isPresented,
-                      item: listen,
-                      userToken: userToken
-                    )
-                    .environmentObject(homeViewModel)
-                }
+              if let listen = selectedListen {
+                PinTrackView(
+                  isPresented: $showPinTrackView,
+                  item: listen,
+                  userToken: userToken,
+                  dismissAction: {
+                    showPinTrackView = false
+                  }
+                )
+                .environmentObject(homeViewModel)
+              }
             }
             .centeredModal(isPresented: $showingRecommendToUsersPersonallyView) {
                 if let listen = selectedListen {
-                    RecommendToUsersPersonallyView(item: listen, userName: userName, userToken: userToken)
+                  RecommendToUsersPersonallyView(item: listen, userName: userName, userToken: userToken, dismissAction: {
+                    showingRecommendToUsersPersonallyView = false
+                  })
                         .environmentObject(homeViewModel)
                 }
             }

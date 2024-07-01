@@ -14,6 +14,14 @@ struct FeedView: View {
     @State private var isSearchActive = false
     @Environment(\.colorScheme) var colorScheme
 
+    @State private var showPinTrackView = false
+    @State private var showingRecommendToUsersPersonallyView = false
+    @State private var selectedEvent: Event?
+    @State private var isPresented:Bool = false
+
+    @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
+    @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
+
     var body: some View {
         ZStack {
             colorScheme == .dark ? Color.backgroundColor : Color.white
@@ -35,7 +43,13 @@ struct FeedView: View {
                             VStack(alignment: .leading, spacing: 5) {
                                 EventDescriptionView(event: event)
                                 if event.eventType != "follow" {
-                                    TrackInfoView(item: event)
+                                    TrackInfoView(item: event, onPinTrack: { event in
+                                        selectedEvent = event
+                                        showPinTrackView = true
+                                    }, onRecommendPersonally: { event in
+                                        selectedEvent = event
+                                        showingRecommendToUsersPersonallyView = true
+                                    })
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .background(colorScheme == .dark ? Color.black : Color.white)
                                         .cornerRadius(10)
@@ -52,6 +66,21 @@ struct FeedView: View {
                 }
             }
             .ignoresSafeArea(.keyboard)
+            .centeredModal(isPresented: $showPinTrackView) {
+                if let event = selectedEvent {
+                    PinTrackView(
+                      isPresented: $isPresented, item: event,
+                        userToken: userToken
+                    )
+                    .environmentObject(viewModel)
+                }
+            }
+            .centeredModal(isPresented: $showingRecommendToUsersPersonallyView) {
+                if let event = selectedEvent {
+                    RecommendToUsersPersonallyView(item: event, userName: userName, userToken: userToken)
+                        .environmentObject(viewModel)
+                }
+            }
         }
     }
 }
@@ -64,5 +93,7 @@ struct VerticalLine: View {
             .frame(width: 1)
     }
 }
+
+
 
 

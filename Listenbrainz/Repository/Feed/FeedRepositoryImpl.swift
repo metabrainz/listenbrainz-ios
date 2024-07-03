@@ -35,7 +35,7 @@ class FeedRepositoryImpl: FeedRepository {
     }
 
     func pinTrack(recordingMsid: String, recordingMbid: String?, blurbContent: String?, userToken: String) -> AnyPublisher<Void, AFError> {
-        let url = URL(string: "https://api.listenbrainz.org/1/pin")!
+        let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/pin")!
         let parameters: [String: Any] = [
             "recording_msid": recordingMsid,
             "recording_mbid": recordingMbid ?? NSNull(),
@@ -56,7 +56,7 @@ class FeedRepositoryImpl: FeedRepository {
     }
 
     func deleteEvent(userName: String, eventID: Int, userToken: String) -> AnyPublisher<Void, AFError> {
-        let url = URL(string: "https://api.listenbrainz.org/1/user/\(userName)/feed/events/delete")!
+        let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/feed/events/delete")!
         let parameters: [String: Any] = [
             "event_type": "recording_recommendation",
             "id": eventID
@@ -89,7 +89,7 @@ class FeedRepositoryImpl: FeedRepository {
             metadata["recording_mbid"] = NSNull()
         }
 
-        let url = URL(string: "https://api.listenbrainz.org/1/user/\(userName)/timeline-event/create/recording")!
+        let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/timeline-event/create/recording")!
         let parameters: [String: Any] = [
             "metadata": metadata
         ]
@@ -124,7 +124,7 @@ class FeedRepositoryImpl: FeedRepository {
             metadata["recording_mbid"] = NSNull()
         }
 
-        let url = URL(string: "https://api.listenbrainz.org/1/user/\(userName)/timeline-event/create/recording")!
+        let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/timeline-event/create/recording")!
         let parameters: [String: Any] = [
             "metadata": metadata
         ]

@@ -116,6 +116,20 @@ class FeedViewModel: ObservableObject {
             }, receiveValue: { _ in })
             .store(in: &subscriptions)
     }
+
+  func writeAReview(userName:String, item: TrackMetadataProvider, userToken: String, entityName: String, entityId:String, entityType:String, text:String, language:String, rating:Int){
+    repository.writeAReview(userName: userName, item: item, userToken: userToken, entityName: entityName, entityId: entityId, entityType: entityType, text: text, language: language, rating: rating)
+      .receive(on: DispatchQueue.main)
+      .sink(receiveCompletion: { completion in
+          switch completion {
+          case .finished:
+              print("Review added successfully")
+          case .failure(let error):
+              print("Error adding review: \(error)")
+          }
+      }, receiveValue: { _ in })
+      .store(in: &subscriptions)
+  }
 }
 
 

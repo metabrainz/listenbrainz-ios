@@ -40,12 +40,13 @@ class FeedRepositoryImpl: FeedRepository {
             "recording_msid": recordingMsid,
             "recording_mbid": recordingMbid ?? NSNull(),
             "blurb_content": blurbContent ?? "",
-            "pinned_until": Int(Date().timeIntervalSince1970 + 7 * 24 * 60 * 60) // 1 week in the future
+            "pinned_until": Int(Date().timeIntervalSince1970 + 7 * 24 * 60 * 60) 
         ]
         let headers: HTTPHeaders = [
             "Authorization": "Token \(userToken)",
             "Content-Type": "application/json"
         ]
+      print(parameters)
 
         return AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
@@ -140,4 +141,43 @@ class FeedRepositoryImpl: FeedRepository {
             .mapError { $0.asAFError ?? .explicitlyCancelled }
             .eraseToAnyPublisher()
     }
+
+  func writeAReview(userName:String, item: TrackMetadataProvider, userToken: String, entityName: String, entityId:String, entityType:String, text:String, language:String, rating:Int) -> AnyPublisher <Void,AFError>{
+
+    guard let trackName = item.trackName, let recordingMsid = item.recordingMsid else {
+            return Fail(error: AFError.explicitlyCancelled).eraseToAnyPublisher()
+        }
+    guard text.count >= 25 else {
+      return Fail(error: AFError.explicitlyCancelled).eraseToAnyPublisher()
+    }
+
+    guard (1...5).contains(rating) else{
+      return Fail(error: AFError.explicitlyCancelled).eraseToAnyPublisher()
+    }
+
+    let url = "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/timeline-event/create/review"
+    print(url)
+    let parameters: [String: Any] = [
+           "metadata": [
+               "entity_name": trackName,
+               "entity_id": recordingMsid,
+               "entity_type": "recording",
+               "text": text,
+               "language": "en",
+               "rating": rating
+           ]
+       ]
+      print(parameters)
+       let headers: HTTPHeaders = [
+           "Authorization": "Token \(userToken)",
+           "Content-Type": "application/json"
+       ]
+    return AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate()
+            .publishData()
+            .tryMap { _ in () }
+            .mapError { $0.asAFError ?? .explicitlyCancelled }
+            .eraseToAnyPublisher()
+
+  }
 }

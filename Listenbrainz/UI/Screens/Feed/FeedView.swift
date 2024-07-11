@@ -13,11 +13,11 @@ struct FeedView: View {
     @State private var isSettingsPressed = false
     @State private var isSearchActive = false
     @Environment(\.colorScheme) var colorScheme
-
     @State private var showPinTrackView = false
+    @State private var showWriteReview = false
     @State private var showingRecommendToUsersPersonallyView = false
     @State private var selectedEvent: Event?
-    @State private var isPresented:Bool = false
+    @State private var isPresented: Bool = false
 
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
@@ -29,75 +29,199 @@ struct FeedView: View {
             VStack {
                 TopBar(isSettingsPressed: $isSettingsPressed, isSearchActive: $isSearchActive, customText: "Feed")
 
-                ScrollView {
-                    ForEach(viewModel.events, id: \.id) { event in
-                        HStack(alignment: .top, spacing: 10) {
-                            VStack(alignment: .leading) {
-                                EventImageView(eventType: event.eventType)
-                                    .frame(width: 22, height: 22)
-                                VerticalLine(color: colorScheme == .dark ? Color.white : Color.black)
-                                    .frame(width: 1, height: event.eventType == "follow" ? 15 : 60)
-                                    .offset(x: 10, y: 4)
-                            }
+                if viewModel.isLoading && viewModel.isInitialLoad {
+                    ProgressView("Loading...")
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(viewModel.events, id: \.created) { event in
+                                HStack(alignment: .top, spacing: 10) {
+                                    VStack(alignment: .leading) {
+                                        EventImageView(eventType: event.eventType)
+                                            .frame(width: 22, height: 22)
+                                        VerticalLine(color: colorScheme == .dark ? Color.white : Color.black)
+                                            .frame(width: 1, height: verticalLineHeight(for: event))
+                                            .offset(x: 10, y: 4)
+                                    }
 
-                            VStack(alignment: .leading, spacing: 5) {
-                                EventDescriptionView(event: event)
-                                if event.eventType != "follow" {
-                                    TrackInfoView(item: event, onPinTrack: { event in
-                                        selectedEvent = event
-                                        showPinTrackView = true
-                                    }, onRecommendPersonally: { event in
-                                        selectedEvent = event
-                                        showingRecommendToUsersPersonallyView = true
-                                    })
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .background(colorScheme == .dark ? Color.black : Color.white)
-                                        .cornerRadius(10)
-                                        .shadow(radius: 2)
+                                    VStack(alignment: .leading, spacing: 5) {
+                                        EventDescriptionView(event: event)
+                                        if event.eventType != "follow" && event.eventType != "notification" {
+                                            TrackInfoView(item: event, onPinTrack: { event in
+                                                selectedEvent = event
+                                                showPinTrackView = true
+                                            }, onRecommendPersonally: { event in
+                                                selectedEvent = event
+                                                showingRecommendToUsersPersonallyView = true
+                                            }, onWriteReview: { event in
+                                                selectedEvent = event
+                                                showWriteReview = true
+                                            })
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                            .background(colorScheme == .dark ? Color.black : Color.white)
+                                            .cornerRadius(10)
+                                            .shadow(radius: 2)
+
+                                            if event.eventType == "critiquebrainz_review" {
+                                                ReviewView(event: event)
+                                            }
+                                        }
+
+                                        HStack {
+                                            Spacer()
+
+                                            Text(formatDate(epochTime: TimeInterval(event.created)))
+                                                .font(.system(size: 10))
+                                                .foregroundColor(Color.gray)
+                                                .italic()
+
+                                            if event.eventType == "recording_recommendation" {
+                                                Button(action: {
+                                                    viewModel.deleteEvent(userName: userName, eventID: event.id ?? 1, userToken: userToken)
+                                                }) {
+                                                    Image("feed_delete")
+                                                        .renderingMode(.template)
+                                                        .resizable()
+                                                        .frame(width: 18, height: 18)
+                                                        .foregroundColor(Color.LbPurple)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
+                                .onAppear {
+                                    if event == viewModel.events.last && viewModel.canLoadMorePages {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                            Task {
+                                                do {
+                                                    try await viewModel.fetchFeedEvents(username: userName, userToken: userToken)
+                                                } catch {
+                                                    print("Error fetching more events: \(error)")
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
+                      if viewModel.isLoading {
+                        ProgressView()
+                          .progressViewStyle(CircularProgressViewStyle())
+                          .padding(.vertical, 10)
+                      }
+                    }
+                    .sheet(isPresented: $isSettingsPressed) {
+                        SettingsView()
+                    }
+                    .refreshable {
+                        await refreshFeed()
                     }
                 }
-                .sheet(isPresented: $isSettingsPressed) {
-                    SettingsView()
-                }
             }
-            .ignoresSafeArea(.keyboard)
             .centeredModal(isPresented: $showPinTrackView) {
                 if let event = selectedEvent {
                     PinTrackView(
-                      isPresented: $isPresented, item: event,
+                        isPresented: $isPresented,
+                        item: event,
                         userToken: userToken,
-                      dismissAction: {
-                        showPinTrackView = false
-                      }
+                        dismissAction: {
+                            showPinTrackView = false
+                        }
                     )
                     .environmentObject(viewModel)
                 }
             }
             .centeredModal(isPresented: $showingRecommendToUsersPersonallyView) {
                 if let event = selectedEvent {
-                  RecommendToUsersPersonallyView(item: event, userName: userName, userToken: userToken, dismissAction: {
-                    showingRecommendToUsersPersonallyView = false
-                  })
-                        .environmentObject(viewModel)
+                    RecommendToUsersPersonallyView(item: event, userName: userName, userToken: userToken, dismissAction: {
+                        showingRecommendToUsersPersonallyView = false
+                    })
+                    .environmentObject(viewModel)
+                }
+            }
+            .centeredModal(isPresented: $showWriteReview) {
+                if let event = selectedEvent {
+                    WriteAReviewView(isPresented: $showWriteReview, item: event, userToken: userToken, userName: userName) {
+                        showWriteReview = false
+                    }
+                    .environmentObject(viewModel)
                 }
             }
         }
     }
-}
 
-struct VerticalLine: View {
-    var color: Color
-    var body: some View {
-        Rectangle()
-            .fill(color)
-            .frame(width: 1)
+    private func verticalLineHeight(for event: Event) -> CGFloat {
+        switch event.eventType {
+        case "critiquebrainz_review":
+            return 160
+        case "notification":
+          return 15
+        case "follow":
+          return 15
+        default:
+            return 60
+        }
+    }
+
+    private func refreshFeed() async {
+        do {
+            viewModel.resetPagination()
+            try await viewModel.fetchFeedEvents(username: userName, userToken: userToken)
+        } catch {
+            print("Error refreshing feed: \(error)")
+        }
     }
 }
+
+
+struct ReviewView: View {
+    let event: Event
+    @Environment(\.colorScheme) var colorScheme
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            HStack {
+                Text("Rating:")
+                    .fontWeight(.bold)
+                ForEach(0..<5) { index in
+                    Image(systemName: index < (event.metadata.rating ?? 0) ? "star.fill" : "star")
+                        .foregroundColor(.yellow)
+                }
+            }
+            Text(event.metadata.text ?? "")
+                .font(.system(size: 14))
+                .foregroundColor(.gray)
+                .italic()
+        }
+        .padding()
+        .background(colorScheme == .dark ? Color.black : Color.white)
+        .cornerRadius(10)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(colorScheme == .dark ? Color.black : Color.white)
+        )
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+
+
+struct VerticalLine: View {
+  var color: Color
+  var body: some View {
+    Rectangle()
+      .fill(color)
+      .frame(width: 1)
+  }
+
+}
+
+
+
 
 
 

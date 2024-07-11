@@ -12,15 +12,17 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
     let item: T
     let onPinTrack: (T) -> Void
     let onRecommendPersonally: (T) -> Void
+    let onWriteReview: (T) -> Void
     @StateObject private var imageLoader = ImageLoader.shared
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     @EnvironmentObject var feedViewModel: FeedViewModel
 
 
-    private var isRecordingRecommendation: Bool {
-        return (item as? Event)?.eventType == "recording_recommendation"
-    }
+
+  private var isCritiqueBrainzReview: Bool {
+          return (item as? Event)?.eventType == "critiquebrainz_review"
+      }
 
     var body: some View {
         HStack {
@@ -71,26 +73,20 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
             }
 
             VStack(alignment: .leading) {
+              if isCritiqueBrainzReview {
+                Text(item.entityName ?? "Unknown Entity")
+                  .lineLimit(1)
+                  .font(.headline)
+              } else {
                 Text(item.trackName ?? "Unknown Track")
-                    .lineLimit(1)
-                    .font(.headline)
+                  .lineLimit(1)
+                  .font(.headline)
                 Text(item.artistName ?? "Unknown Artist")
-                    .lineLimit(1)
+                  .lineLimit(1)
+              }
             }
 
             Spacer()
-
-            if isRecordingRecommendation {
-                Button(action: {
-                    if let event = item as? Event {
-                        feedViewModel.deleteEvent(userName: userName, eventID: event.id ?? 1, userToken: userToken)
-                    }
-                }) {
-                    Image(systemName: "trash")
-                        .foregroundColor(.red)
-                        .padding(.horizontal, 10)
-                }
-            }
 
             Menu {
                 if let originURL = item.originURL {
@@ -115,10 +111,10 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
                     feedViewModel.recommendToFollowers(userName: userName, item: item, userToken: userToken)
                 }
                 Button("Personally recommend") {
-                        onRecommendPersonally(item)
+                    onRecommendPersonally(item)
                 }
                 Button("Write a review") {
-                    // Action for Write a review
+                  onWriteReview(item)
                 }
 
             } label: {

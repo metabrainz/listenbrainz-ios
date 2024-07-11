@@ -12,6 +12,13 @@ import Foundation
 class FeedViewModel: ObservableObject {
     @Published var feedData: FeedAlbum?
     @Published var events: [Event] = []
+    @Published var isLoading: Bool = false
+    @Published var isInitialLoad = true
+    @Published var canLoadMorePages: Bool = true
+
+      private var currentPage: Int = 1
+      private let itemsPerPage: Int = 25
+      private var loadedEventIDs: Set<Int> = []
 
     private var subscriptions: Set<AnyCancellable> = []
     var repository: FeedRepository
@@ -20,25 +27,50 @@ class FeedViewModel: ObservableObject {
         self.repository = repository
     }
 
-    func fetchFeedEvents(username: String, userToken: String) {
-        repository.fetchFeedData(userName: username, userToken: userToken)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("API Error: \(error)")
-                }
-            }, receiveValue: { data in
-                self.feedData = data
-                self.events = data.payload.events
-                if let firstEvent = self.events.first {
-                    self.fetchCoverArt(for: firstEvent)
-                }
-            })
-            .store(in: &subscriptions)
-    }
+  func fetchFeedEvents(username: String, userToken: String) async throws {
+          guard !isLoading && canLoadMorePages else { return }
+
+          DispatchQueue.main.async {
+              self.isLoading = true
+          }
+
+          defer {
+              DispatchQueue.main.async {
+                  self.isLoading = false
+                  self.isInitialLoad = false
+              }
+          }
+
+          try await withCheckedThrowingContinuation { continuation in
+              repository.fetchFeedData(userName: username, userToken: userToken, page: currentPage, perPage: itemsPerPage)
+                  .receive(on: DispatchQueue.main)
+                  .sink(receiveCompletion: { completion in
+                      switch completion {
+                      case .finished:
+                          continuation.resume()
+                      case .failure(let error):
+                          continuation.resume(throwing: error)
+                      }
+                  }, receiveValue: { data in
+                      let newEvents = data.payload.events
+                      if newEvents.isEmpty {
+                          self.canLoadMorePages = false
+                      } else {
+                          self.currentPage += 1
+                          self.events.append(contentsOf: newEvents)
+                      }
+                  })
+                  .store(in: &self.subscriptions)
+          }
+      }
+
+      func resetPagination() {
+          currentPage = 1
+          canLoadMorePages = true
+          events.removeAll()
+      }
+
+
 
     private func fetchCoverArt(for event: Event) {
         guard let coverArtURL = event.metadata.trackMetadata?.coverArtURL else {

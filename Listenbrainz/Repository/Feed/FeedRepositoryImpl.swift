@@ -11,19 +11,20 @@ import Alamofire
 
 class FeedRepositoryImpl: FeedRepository {
 
-    func fetchFeedData(userName: String, userToken: String) -> AnyPublisher<FeedAlbum, AFError> {
-        let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/feed/events")!
-        let headers: HTTPHeaders = [
-            "Authorization": "Token \(userToken)"
-        ]
+  func fetchFeedData(userName: String, userToken: String, page: Int, perPage: Int) -> AnyPublisher<FeedAlbum, AFError> {
+          let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/feed/events?page=\(page)&perPage=\(perPage)")!
+          let headers: HTTPHeaders = [
+              "Authorization": "Token \(userToken)"
+          ]
 
-        return AF.request(url, method: .get, headers: headers)
-            .validate()
-            .publishDecodable(type: FeedAlbum.self)
-            .value()
-            .mapError { $0.asAFError ?? .explicitlyCancelled }
-            .eraseToAnyPublisher()
-    }
+          return AF.request(url, method: .get, headers: headers)
+              .validate()
+              .publishDecodable(type: FeedAlbum.self)
+              .value()
+              .mapError { $0.asAFError ?? .explicitlyCancelled }
+              .eraseToAnyPublisher()
+      }
+
 
     func fetchCoverArt(url: URL) -> AnyPublisher<Data, AFError> {
         return AF.request(url, method: .get)

@@ -7,15 +7,23 @@
 
 import SwiftUI
 
-
 struct EventDescriptionView: View {
     @Environment(\.colorScheme) var colorScheme
+    @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     let event: Event
 
     var body: some View {
-        eventDescription(for: event)
-            .font(.subheadline)
-            .foregroundColor(foregroundColor)
+        Group {
+            if event.eventType == "notification" {
+                TextViewRepresentable(text: event.metadata.message ?? "", linkColor: .blue, foregroundColor: foregroundColor)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(foregroundColor)
+            } else {
+                eventDescription(for: event)
+                    .font(.subheadline)
+                    .foregroundColor(foregroundColor)
+            }
+        }
     }
 
     private var foregroundColor: Color {
@@ -23,8 +31,8 @@ struct EventDescriptionView: View {
     }
 
     private func eventDescription(for event: Event) -> Text {
-        let usernameText = Text(event.userName)
-        .foregroundColor(Color.LbPurple)
+        let usernameText = Text(replaceUsernameIfNeeded(event.userName))
+            .foregroundColor(Color.LbPurple)
 
         switch event.eventType {
         case "listen":
@@ -48,9 +56,9 @@ struct EventDescriptionView: View {
                 .foregroundColor(foregroundColor)
 
         case "follow":
-            let username0Text = Text(event.metadata.userName0 ?? "")
+            let username0Text = Text(replaceUsernameIfNeeded(event.metadata.userName0 ?? ""))
                 .foregroundColor(Color.LbPurple)
-            let username1Text = Text(event.metadata.userName1 ?? "")
+            let username1Text = Text(replaceUsernameIfNeeded(event.metadata.userName1 ?? ""))
                 .foregroundColor(Color.LbPurple)
 
             return username0Text
@@ -63,4 +71,13 @@ struct EventDescriptionView: View {
                 .foregroundColor(foregroundColor)
         }
     }
+
+    private func replaceUsernameIfNeeded(_ username: String) -> String {
+        return username == userName ? "You" : username
+    }
 }
+
+
+
+
+

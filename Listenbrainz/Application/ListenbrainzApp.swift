@@ -33,8 +33,14 @@ struct ListenbrainzApp: App {
           //.environmentObject(spotifyManager)
             .onAppear {
               //handleSpotifySession()
-              homeViewModel.requestMusicData(userName: userName)
-              feedViewModel.fetchFeedEvents(username: userName, userToken: userToken)
+              Task {
+                do {
+                  try await homeViewModel.requestMusicData(userName: userName)
+                  try await feedViewModel.fetchFeedEvents(username: userName, userToken: userToken)
+                } catch {
+                  print("Error: \(error)")
+                }
+              }
             }
             .onOpenURL { url in
               //spotifyManager.sessionManager.application(UIApplication.shared, open: url, options: [:])

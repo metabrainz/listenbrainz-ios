@@ -14,6 +14,10 @@ struct Metadata: Codable {
     let username: String?
     let userName0: String?
     let userName1: String?
+    let message: String?
+    let text:String?
+    let rating: Int?
+    let entityName:String?
 
     enum CodingKeys: String, CodingKey {
         case trackMetadata = "track_metadata"
@@ -21,5 +25,7 @@ struct Metadata: Codable {
         case username
         case userName0 = "user_name_0"
         case userName1 = "user_name_1"
+        case message,text,rating
+        case entityName = "entity_name"
     }
 }

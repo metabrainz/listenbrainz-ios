@@ -16,12 +16,14 @@ struct ListensTrackMetadata: Codable {
     let artistName: String
     let trackName: String
     let mbidMapping: ListensMbidMapping?
+    let entityName:String?
 
     enum CodingKeys: String, CodingKey {
         case additionalInfo = "additional_info"
         case artistName = "artist_name"
         case trackName = "track_name"
         case mbidMapping = "mbid_mapping"
+        case entityName = "entity_name"
     }
 
   var coverArtURL: URL? {

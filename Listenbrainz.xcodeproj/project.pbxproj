@@ -100,6 +100,7 @@
 		BBD28DDD2A2F9E8B00AD57C6 /* ListensMbidMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DDC2A2F9E8B00AD57C6 /* ListensMbidMapping.swift */; };
 		BBD28DDF2A2F9EA300AD57C6 /* ArtistElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DDE2A2F9EA300AD57C6 /* ArtistElement.swift */; };
 		BBD28DE12A2F9EB900AD57C6 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DE02A2F9EB900AD57C6 /* Track.swift */; };
+		BBE25E992C3FFCBA009C7B65 /* FeedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE25E982C3FFCBA009C7B65 /* FeedHelper.swift */; };
 		BBE9630E2B0560FC00AA4219 /* BrainzPlayerMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE9630D2B0560FC00AA4219 /* BrainzPlayerMetadata.swift */; };
 		BBE975B12A67FACD000908B1 /* MediaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE975B02A67FACD000908B1 /* MediaItemView.swift */; };
 		BBE975B32A67FAF3000908B1 /* ShazamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE975B22A67FAF3000908B1 /* ShazamViewModel.swift */; };
@@ -221,6 +222,7 @@
 		BBD28DDC2A2F9E8B00AD57C6 /* ListensMbidMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListensMbidMapping.swift; sourceTree = "<group>"; };
 		BBD28DDE2A2F9EA300AD57C6 /* ArtistElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistElement.swift; sourceTree = "<group>"; };
 		BBD28DE02A2F9EB900AD57C6 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		BBE25E982C3FFCBA009C7B65 /* FeedHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHelper.swift; sourceTree = "<group>"; };
 		BBE9630D2B0560FC00AA4219 /* BrainzPlayerMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainzPlayerMetadata.swift; sourceTree = "<group>"; };
 		BBE975AF2A67FA7F000908B1 /* Listenbrainz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Listenbrainz.entitlements; sourceTree = "<group>"; };
 		BBE975B02A67FACD000908B1 /* MediaItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemView.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				6F842DFA29C650A600DBBC7B /* Constants.swift */,
 				6F155CA92B08E32A005FE042 /* Extensions.swift */,
 				BB7833632B3F2DB3005D7266 /* ImageLoader.swift */,
+				BBE25E982C3FFCBA009C7B65 /* FeedHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -825,6 +828,7 @@
 				BB519BAD2B1DE78200766F01 /* WelcomeView.swift in Sources */,
 				BB519BAF2B1DE95E00766F01 /* UserDetailsView.swift in Sources */,
 				BB2A4F5729EB48DF006933BC /* ProfileView.swift in Sources */,
+				BBE25E992C3FFCBA009C7B65 /* FeedHelper.swift in Sources */,
 				BBC5C7B12B4FE83D000A5EB1 /* YimData.swift in Sources */,
 				BBC5C7EC2B51311A000A5EB1 /* YimLastView.swift in Sources */,
 				BBD28DDB2A2F9E5400AD57C6 /* ListensAdditionalInfo.swift in Sources */,

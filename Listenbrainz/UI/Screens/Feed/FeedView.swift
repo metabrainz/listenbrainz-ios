@@ -95,7 +95,7 @@ struct FeedView: View {
                                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                                 .onAppear {
                                     if event == viewModel.events.last && viewModel.canLoadMorePages {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
                                             Task {
                                                 do {
                                                     try await viewModel.fetchFeedEvents(username: userName, userToken: userToken)

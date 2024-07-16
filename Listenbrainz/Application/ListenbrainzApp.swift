@@ -16,7 +16,7 @@ struct ListenbrainzApp: App {
   //@StateObject var spotifyManager = SpotifyManager()
   @AppStorage(Strings.AppStorageKeys.isDarkMode) private var isDarkMode = true
   @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
-  @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
+ 
 
   var body: some Scene {
     WindowGroup {
@@ -31,18 +31,12 @@ struct ListenbrainzApp: App {
             .environmentObject(feedViewModel)
             .preferredColorScheme(isDarkMode ? .dark : .light)
           //.environmentObject(spotifyManager)
-            .onAppear {
-              //handleSpotifySession()
-              homeViewModel.requestMusicData(userName: userName)
-              feedViewModel.fetchFeedEvents(username: userName, userToken: userToken)
-            }
             .onOpenURL { url in
               //spotifyManager.sessionManager.application(UIApplication.shared, open: url, options: [:])
             }
         }
       }
       .navigationViewStyle(.stack)
-
     }
   }
 

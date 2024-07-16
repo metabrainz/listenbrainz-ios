@@ -25,8 +25,10 @@ struct EventImageView: View {
             backgroundColor = .orange
         case "follow":
             backgroundColor = .green
+        case "notification":
+            backgroundColor = .blue
         default:
-            backgroundColor = .gray
+            backgroundColor = .cyan
         }
 
         return Image(systemName: symbolName)
@@ -51,6 +53,8 @@ struct EventImageView: View {
             return "pin.circle"
         case "follow":
             return "person.fill.badge.plus"
+        case "notification":
+            return "bell.circle"
         default:
             return "beats.headphones"
         }

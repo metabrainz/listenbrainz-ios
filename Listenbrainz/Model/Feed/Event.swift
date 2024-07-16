@@ -9,7 +9,7 @@ import Foundation
 
 
 // MARK: - Event
-struct Event: Codable, Identifiable, TrackMetadataProvider {
+struct Event: Codable, Identifiable, TrackMetadataProvider, Equatable {
     let created: Int
     let eventType: String
     let hidden: Bool
@@ -30,7 +30,14 @@ struct Event: Codable, Identifiable, TrackMetadataProvider {
     var originURL: String? { metadata.trackMetadata?.additionalInfo?.originURL }
     var recordingMbid: String? { metadata.trackMetadata?.additionalInfo?.recordingMbid }
     var recordingMsid: String? { metadata.trackMetadata?.additionalInfo?.recordingMsid }
+    var entityName: String? {metadata.entityName}
+
+    static func == (lhs: Event, rhs: Event) -> Bool {
+        return lhs.id == rhs.id &&
+               lhs.created == rhs.created
+    }
 }
+
 
 protocol TrackMetadataProvider {
     var trackName: String? { get }
@@ -39,6 +46,7 @@ protocol TrackMetadataProvider {
     var originURL: String? { get }
     var recordingMbid: String? { get }
     var recordingMsid: String? { get }
+    var entityName: String? { get }
 }
 
 

@@ -26,4 +26,5 @@ struct Listen: Codable, TrackMetadataProvider {
     var coverArtURL: URL? { trackMetadata?.coverArtURL }
     var originURL: String? { trackMetadata?.additionalInfo?.originURL }
     var recordingMbid: String? { trackMetadata?.mbidMapping?.recordingMbid }
+    var entityName: String? { trackMetadata?.entityName }
 }

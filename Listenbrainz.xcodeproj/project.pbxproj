@@ -89,6 +89,7 @@
 		BBC5C7E82B512ECD000A5EB1 /* DiscoverTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7E72B512ECD000A5EB1 /* DiscoverTitleView.swift */; };
 		BBC5C7EA2B512F85000A5EB1 /* PlaylistsTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7E92B512F85000A5EB1 /* PlaylistsTitleView.swift */; };
 		BBC5C7EC2B51311A000A5EB1 /* YimLastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C7EB2B513119000A5EB1 /* YimLastView.swift */; };
+		BBC5E6142C3BC6E30046DDD9 /* WriteAReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5E6132C3BC6E30046DDD9 /* WriteAReviewView.swift */; };
 		BBD20D5B2A3C7D57007C0C71 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD20D5A2A3C7D57007C0C71 /* SettingsView.swift */; };
 		BBD28DD12A2F9D9B00AD57C6 /* FeedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DD02A2F9D9B00AD57C6 /* FeedAlbum.swift */; };
 		BBD28DD32A2F9DC400AD57C6 /* FeedArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DD22A2F9DC400AD57C6 /* FeedArtist.swift */; };
@@ -99,6 +100,7 @@
 		BBD28DDD2A2F9E8B00AD57C6 /* ListensMbidMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DDC2A2F9E8B00AD57C6 /* ListensMbidMapping.swift */; };
 		BBD28DDF2A2F9EA300AD57C6 /* ArtistElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DDE2A2F9EA300AD57C6 /* ArtistElement.swift */; };
 		BBD28DE12A2F9EB900AD57C6 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD28DE02A2F9EB900AD57C6 /* Track.swift */; };
+		BBE25E992C3FFCBA009C7B65 /* FeedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE25E982C3FFCBA009C7B65 /* FeedHelper.swift */; };
 		BBE9630E2B0560FC00AA4219 /* BrainzPlayerMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE9630D2B0560FC00AA4219 /* BrainzPlayerMetadata.swift */; };
 		BBE975B12A67FACD000908B1 /* MediaItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE975B02A67FACD000908B1 /* MediaItemView.swift */; };
 		BBE975B32A67FAF3000908B1 /* ShazamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE975B22A67FAF3000908B1 /* ShazamViewModel.swift */; };
@@ -209,6 +211,7 @@
 		BBC5C7E72B512ECD000A5EB1 /* DiscoverTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTitleView.swift; sourceTree = "<group>"; };
 		BBC5C7E92B512F85000A5EB1 /* PlaylistsTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsTitleView.swift; sourceTree = "<group>"; };
 		BBC5C7EB2B513119000A5EB1 /* YimLastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YimLastView.swift; sourceTree = "<group>"; };
+		BBC5E6132C3BC6E30046DDD9 /* WriteAReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteAReviewView.swift; sourceTree = "<group>"; };
 		BBD20D5A2A3C7D57007C0C71 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BBD28DD02A2F9D9B00AD57C6 /* FeedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAlbum.swift; sourceTree = "<group>"; };
 		BBD28DD22A2F9DC400AD57C6 /* FeedArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArtist.swift; sourceTree = "<group>"; };
@@ -219,6 +222,7 @@
 		BBD28DDC2A2F9E8B00AD57C6 /* ListensMbidMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListensMbidMapping.swift; sourceTree = "<group>"; };
 		BBD28DDE2A2F9EA300AD57C6 /* ArtistElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistElement.swift; sourceTree = "<group>"; };
 		BBD28DE02A2F9EB900AD57C6 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		BBE25E982C3FFCBA009C7B65 /* FeedHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHelper.swift; sourceTree = "<group>"; };
 		BBE9630D2B0560FC00AA4219 /* BrainzPlayerMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainzPlayerMetadata.swift; sourceTree = "<group>"; };
 		BBE975AF2A67FA7F000908B1 /* Listenbrainz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Listenbrainz.entitlements; sourceTree = "<group>"; };
 		BBE975B02A67FACD000908B1 /* MediaItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItemView.swift; sourceTree = "<group>"; };
@@ -367,6 +371,7 @@
 				6F842DFA29C650A600DBBC7B /* Constants.swift */,
 				6F155CA92B08E32A005FE042 /* Extensions.swift */,
 				BB7833632B3F2DB3005D7266 /* ImageLoader.swift */,
+				BBE25E982C3FFCBA009C7B65 /* FeedHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -484,6 +489,7 @@
 				BB086C702AA6FDE9000A8720 /* TrackInfoView.swift */,
 				BB5282132C32D86E00743A60 /* PinTrackView.swift */,
 				BB5282152C32F9CC00743A60 /* PersonallyRecommendView.swift */,
+				BBC5E6132C3BC6E30046DDD9 /* WriteAReviewView.swift */,
 				BB5282172C33125B00743A60 /* CentralModalView.swift */,
 			);
 			path = Feed;
@@ -786,6 +792,7 @@
 				BBC5C7E82B512ECD000A5EB1 /* DiscoverTitleView.swift in Sources */,
 				BB66C2052A9F3FD500BB4CBA /* Metadata.swift in Sources */,
 				BBD28DD32A2F9DC400AD57C6 /* FeedArtist.swift in Sources */,
+				BBC5E6142C3BC6E30046DDD9 /* WriteAReviewView.swift in Sources */,
 				BBC5C7CF2B4FEEDD000A5EB1 /* TopAlbumsView.swift in Sources */,
 				BB0586532A25042C00744FF0 /* HomeViewModel.swift in Sources */,
 				6F155CAA2B08E32A005FE042 /* Extensions.swift in Sources */,
@@ -821,6 +828,7 @@
 				BB519BAD2B1DE78200766F01 /* WelcomeView.swift in Sources */,
 				BB519BAF2B1DE95E00766F01 /* UserDetailsView.swift in Sources */,
 				BB2A4F5729EB48DF006933BC /* ProfileView.swift in Sources */,
+				BBE25E992C3FFCBA009C7B65 /* FeedHelper.swift in Sources */,
 				BBC5C7B12B4FE83D000A5EB1 /* YimData.swift in Sources */,
 				BBC5C7EC2B51311A000A5EB1 /* YimLastView.swift in Sources */,
 				BBD28DDB2A2F9E5400AD57C6 /* ListensAdditionalInfo.swift in Sources */,

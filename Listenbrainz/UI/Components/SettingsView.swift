@@ -39,7 +39,6 @@ struct SettingsView: View {
       .navigationBarItems(
         trailing: Button(action: {
           homeViewModel.requestMusicData(userName: userName)
-          feedViewModel.fetchFeedEvents(username: userName, userToken: userToken)
           dismiss()
         }, label: {
           Text("Save")

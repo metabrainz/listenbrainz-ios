@@ -46,9 +46,9 @@ struct SongDetailView: View {
                             .shadow(radius: 2)
                         }
                     }
-                    .refreshable {
-                        await loadListens()
-                    }
+//                    .refreshable {
+//                        await loadListens()
+//                    }
                 }
             }
             .onAppear {

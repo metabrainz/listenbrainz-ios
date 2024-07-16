@@ -17,6 +17,7 @@ struct ListensView: View {
   @State private var isSettingsPressed = false
   @State private var isSearchActive = false
   @Environment(\.colorScheme) var colorScheme
+  @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
 
   var params: [String: String] {
     return ["max_ts": maxTimeStamp, "min_ts":minTimeStamp]
@@ -35,6 +36,9 @@ struct ListensView: View {
             .background(colorScheme == .dark ? Color.black : Color.white)
             .cornerRadius(10)
             .shadow(radius: 2)
+            .onAppear{
+              homeViewModel.requestMusicData(userName: userName)
+            }
             .sheet(isPresented: $isSettingsPressed) {
               SettingsView()
             }

@@ -117,6 +117,15 @@ struct FeedView: View {
                     .sheet(isPresented: $isSettingsPressed) {
                         SettingsView()
                     }
+                    .onAppear{
+                      Task {
+                        do {
+                          try await viewModel.fetchFeedEvents(username: userName, userToken: userToken)
+                        } catch {
+                          print("Error: \(error)")
+                        }
+                      }
+                    }
                     .refreshable {
                         await refreshFeed()
                     }

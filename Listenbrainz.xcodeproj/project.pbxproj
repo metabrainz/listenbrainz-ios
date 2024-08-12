@@ -34,6 +34,7 @@
 		BB2A4F5529EB48CC006933BC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F5429EB48CC006933BC /* HomeView.swift */; };
 		BB2A4F5729EB48DF006933BC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F5629EB48DF006933BC /* ProfileView.swift */; };
 		BB2A4F5929EB48ED006933BC /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2A4F5829EB48ED006933BC /* PlayerView.swift */; };
+		BB31ADBF2C6A05E100D25CCA /* ListensStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB31ADBE2C6A05E100D25CCA /* ListensStatsView.swift */; };
 		BB4DF0B82C0E03D100E7B55A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DF0B72C0E03D100E7B55A /* SearchViewModel.swift */; };
 		BB4DF0BA2C0E03E300E7B55A /* SearchUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DF0B92C0E03E300E7B55A /* SearchUser.swift */; };
 		BB4DF0BC2C0E040000E7B55A /* SearchUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4DF0BB2C0E040000E7B55A /* SearchUsersView.swift */; };
@@ -162,6 +163,7 @@
 		BB2A4F5429EB48CC006933BC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BB2A4F5629EB48DF006933BC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		BB2A4F5829EB48ED006933BC /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		BB31ADBE2C6A05E100D25CCA /* ListensStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListensStatsView.swift; sourceTree = "<group>"; };
 		BB4DF0B72C0E03D100E7B55A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		BB4DF0B92C0E03E300E7B55A /* SearchUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUser.swift; sourceTree = "<group>"; };
 		BB4DF0BB2C0E040000E7B55A /* SearchUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersView.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 			children = (
 				6F842DCC29C64E3E00DBBC7B /* ListensView.swift */,
 				BB05864D2A25034200744FF0 /* SongDetailView.swift */,
+				BB31ADBE2C6A05E100D25CCA /* ListensStatsView.swift */,
 			);
 			path = Listens;
 			sourceTree = "<group>";
@@ -822,6 +825,7 @@
 				6F842DCD29C64E3E00DBBC7B /* ListensView.swift in Sources */,
 				BBC5C7CD2B4FEEC7000A5EB1 /* TopAlbumsGridView.swift in Sources */,
 				BB66C2112AA0F6C500BB4CBA /* ListensArtist.swift in Sources */,
+				BB31ADBF2C6A05E100D25CCA /* ListensStatsView.swift in Sources */,
 				BB66C1FB2A9F3EE700BB4CBA /* FeedViewModel.swift in Sources */,
 				BBC5C7BF2B4FE8D3000A5EB1 /* TopReleaseGroup.swift in Sources */,
 				BBC5C7B92B4FE89E000A5EB1 /* NewRelasesOfTopArtist.swift in Sources */,

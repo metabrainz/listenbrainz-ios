@@ -41,7 +41,7 @@ struct SongDetailView: View {
                                 }
                             )
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(colorScheme == .dark ? Color.black : Color.white)
+                            .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
                             .cornerRadius(10)
                             .shadow(radius: 2)
                         }

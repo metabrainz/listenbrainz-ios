@@ -12,6 +12,7 @@ import SpotifyiOS
 struct ListenbrainzApp: App {
   @StateObject var homeViewModel =  HomeViewModel(repository: HomeRepositoryImpl())
   @StateObject var feedViewModel = FeedViewModel(repository: FeedRepositoryImpl())
+  @StateObject var dashboardViewModel = DashboardViewModel(repository: DashboardRepositoryImpl())
   @AppStorage(Strings.AppStorageKeys.isOnboarding) var isOnboarding: Bool = true
   //@StateObject var spotifyManager = SpotifyManager()
   @AppStorage(Strings.AppStorageKeys.isDarkMode) private var isDarkMode = true
@@ -29,6 +30,7 @@ struct ListenbrainzApp: App {
           ContentView()
             .environmentObject(homeViewModel)
             .environmentObject(feedViewModel)
+            .environmentObject(dashboardViewModel)
             .preferredColorScheme(isDarkMode ? .dark : .light)
           //.environmentObject(spotifyManager)
             .onOpenURL { url in

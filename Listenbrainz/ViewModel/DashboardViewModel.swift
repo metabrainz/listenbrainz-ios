@@ -20,8 +20,13 @@ class DashboardViewModel: ObservableObject {
     @Published var topAlbums: [Release] = []
     @Published var topTracks: [Recording] = []
     @Published var dailyActivities: [String: [Day]] = [:]
-     @Published var hours: [Int] = []
-     @Published var counts: [Int] = []
+    @Published var hours: [Int] = []
+    @Published var counts: [Int] = []
+    @Published var lovedTastes: [Taste] = []
+    @Published var hatedTastes: [Taste] = []
+    @Published var pinnedRecordings: [PinnedRecording] = []
+    @Published var playlists: [Playlist] = []
+  @Published var createdForYou: [CreatedForYou] = []
 
     private var subscriptions: Set<AnyCancellable> = []
     private var repository: DashboardRepository
@@ -251,6 +256,98 @@ class DashboardViewModel: ObservableObject {
          self.hours = allHours
          self.counts = allCounts
      }
+  func getTaste(userName: String) {
+         guard !userName.isEmpty else {
+             self.lovedTastes = []
+             self.hatedTastes = []
+             return
+         }
+
+         repository.getTaste(userName: userName)
+             .receive(on: DispatchQueue.main)
+             .sink(receiveCompletion: { [weak self] completion in
+                 switch completion {
+                 case .finished:
+                     self?.error = nil
+                 case .failure(let error):
+                   self?.error = error.localizedDescription
+                   print("Error fetching da \(error.localizedDescription)")
+                 }
+             }, receiveValue: { [weak self] tasteResponse in
+                 self?.lovedTastes = tasteResponse.feedback.filter { $0.score == 1 }
+                 self?.hatedTastes = tasteResponse.feedback.filter { $0.score == -1 }
+             })
+             .store(in: &subscriptions)
+     }
+
+  func getPinTrack(userName: String) {
+          guard !userName.isEmpty else {
+              self.pinnedRecordings = []
+              return
+          }
+
+          repository.getPinTrack(userName: userName)
+              .receive(on: DispatchQueue.main)
+              .sink(receiveCompletion: { [weak self] completion in
+                  switch completion {
+                  case .finished:
+                      self?.error = nil
+                  case .failure(let error):
+                      self?.error = error.localizedDescription
+                  }
+              }, receiveValue: { [weak self] pins in
+                  self?.pinnedRecordings = pins.pinnedRecordings ?? []
+              })
+              .store(in: &subscriptions)
+      }
+  func getPlaylists(username: String) {
+          print("Fetching playlists for username: \(username)")
+          guard !username.isEmpty else {
+              self.playlists = []
+              return
+          }
+
+          repository.getPlaylists(userName: username)
+              .receive(on: DispatchQueue.main)
+              .sink(receiveCompletion: { [weak self] completion in
+                  switch completion {
+                  case .finished:
+                      self?.error = nil
+                  case .failure(let error):
+                      self?.error = error.localizedDescription
+                      print("Error fetching playlists: \(error.localizedDescription)")
+                  }
+              }, receiveValue: { [weak self] playlistResponse in
+                  print("Received playlist response: \(playlistResponse)")
+                  self?.playlists = playlistResponse.playlists.map { $0.playlist }
+              })
+              .store(in: &subscriptions)
+      }
+
+  func getCreatedForYou(username: String) {
+         print("Fetching CreatedForYou playlists for username: \(username)")
+         guard !username.isEmpty else {
+             self.createdForYou = []
+             return
+         }
+
+         repository.getCreatedForYou(userName: username)
+             .receive(on: DispatchQueue.main)
+             .sink(receiveCompletion: { [weak self] completion in
+                 switch completion {
+                 case .finished:
+                     self?.error = nil
+                 case .failure(let error):
+                     self?.error = error.localizedDescription
+                     print("Error fetching CreatedForYou playlists: \(error.localizedDescription)")
+                 }
+             }, receiveValue: { [weak self] createdForYouContainers in
+                 print("Received CreatedForYou response: \(createdForYouContainers)")
+                 self?.createdForYou = createdForYouContainers.map { $0.playlist }
+             })
+             .store(in: &subscriptions)
+     }
+
 }
 
 

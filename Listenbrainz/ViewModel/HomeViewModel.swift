@@ -18,7 +18,7 @@ class HomeViewModel: ObservableObject {
     private var currentPage: Int = 1
     private let itemsPerPage: Int = 25
     private var subscriptions: Set<AnyCancellable> = []
-    private let subscriptionLimit = 10  // Limit the number of active subscriptions
+    private let subscriptionLimit = 10 
 
     var repository: HomeRepository
 
@@ -61,9 +61,8 @@ class HomeViewModel: ObservableObject {
                 })
                 .store(in: &self.subscriptions)
 
-            
+
             if self.subscriptions.count > self.subscriptionLimit {
-                // Convert to an array, drop the excess, and convert back to a set
                 self.subscriptions = Set(self.subscriptions.suffix(self.subscriptionLimit))
             }
         }

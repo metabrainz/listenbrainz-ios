@@ -11,6 +11,7 @@ import SwiftUI
 struct CreatedForYouView: View {
   @EnvironmentObject var viewModel: DashboardViewModel
   @EnvironmentObject var userSelection: UserSelection
+  @AppStorage(Strings.AppStorageKeys.userName) private var storedUserName: String = ""
 
   var body: some View {
     ScrollView{
@@ -40,7 +41,7 @@ struct CreatedForYouView: View {
         }
       }
       .onAppear {
-        viewModel.getCreatedForYou(username: userSelection.selectedUserName)
+        viewModel.getCreatedForYou(username: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
       }
     }
   }

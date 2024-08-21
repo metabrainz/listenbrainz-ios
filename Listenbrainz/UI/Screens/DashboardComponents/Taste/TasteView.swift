@@ -19,7 +19,7 @@ struct TasteView: View {
     @State private var selectedCategory: SongCategory = .loved
 
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
-    @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
+    @AppStorage(Strings.AppStorageKeys.userName) private var storedUserName: String = ""
 
     var body: some View {
         ScrollView(.vertical) {
@@ -82,7 +82,7 @@ struct TasteView: View {
             }
         }
         .onAppear {
-            viewModel.getTaste(userName: userSelection.selectedUserName)
+            viewModel.getTaste(userName: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
         }
         .centeredModal(isPresented: $showPinTrackView) {
             if let taste = selectedTaste {
@@ -109,12 +109,12 @@ struct TasteView: View {
         }
         .centeredModal(isPresented: $showingRecommendToUsersPersonallyView) {
             if let taste = selectedTaste {
-                RecommendToUsersPersonallyView(item: taste, userName: userName, userToken: userToken, dismissAction: {
+                RecommendToUsersPersonallyView(item: taste, userName: storedUserName, userToken: userToken, dismissAction: {
                     showingRecommendToUsersPersonallyView = false
                 })
                 .environmentObject(viewModel)
             } else if let pinnedRecording = selectedPinnedRecording {
-                RecommendToUsersPersonallyView(item: pinnedRecording, userName: userName, userToken: userToken, dismissAction: {
+                RecommendToUsersPersonallyView(item: pinnedRecording, userName: storedUserName, userToken: userToken, dismissAction: {
                     showingRecommendToUsersPersonallyView = false
                 })
                 .environmentObject(viewModel)
@@ -122,12 +122,12 @@ struct TasteView: View {
         }
         .centeredModal(isPresented: $showWriteReview) {
             if let taste = selectedTaste {
-                WriteAReviewView(isPresented: $showWriteReview, item: taste, userToken: userToken, userName: userName) {
+                WriteAReviewView(isPresented: $showWriteReview, item: taste, userToken: userToken, userName: storedUserName) {
                     showWriteReview = false
                 }
                 .environmentObject(viewModel)
             } else if let pinnedRecording = selectedPinnedRecording {
-                WriteAReviewView(isPresented: $showWriteReview, item: pinnedRecording, userToken: userToken, userName: userName) {
+                WriteAReviewView(isPresented: $showWriteReview, item: pinnedRecording, userToken: userToken, userName: storedUserName) {
                     showWriteReview = false
                 }
                 .environmentObject(viewModel)

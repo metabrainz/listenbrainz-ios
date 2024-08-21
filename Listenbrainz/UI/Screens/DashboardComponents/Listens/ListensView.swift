@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct ListensView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var userSelection: UserSelection
@@ -22,7 +21,7 @@ struct ListensView: View {
     @State private var isPresented: Bool = false
     @Environment(\.colorScheme) var colorScheme
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
-    @AppStorage(Strings.AppStorageKeys.userToken) private var userName: String = ""
+    @AppStorage(Strings.AppStorageKeys.userName) private var storedUserName: String = ""
 
     var body: some View {
         ZStack {
@@ -55,44 +54,45 @@ struct ListensView: View {
 
                 if selectedTab == 0 {
                     ScrollView {
-                      VStack{
-                        ListensStatsView()
-                          .environmentObject(dashboardViewModel)
-                        LazyVStack {
-                          ForEach(homeViewModel.listens, id: \.uuid) { listen in
-                            TrackInfoView(
-                              item: listen,
-                              onPinTrack: { event in
-                                selectedListen = listen
-                                showPinTrackView = true
-                              },
-                              onRecommendPersonally: { event in
-                                selectedListen = listen
-                                showingRecommendToUsersPersonallyView = true
-                              },
-                              onWriteReview: { event in
-                                selectedListen = listen
-                                showWriteReview = true
-                              }
-                            )
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                            .cornerRadius(10)
-                            .shadow(radius: 2)
-                            .onAppear {
-                              if listen == homeViewModel.listens.last && homeViewModel.canLoadMorePages {
-                                Task {
-                                  do {
-                                    try await homeViewModel.fetchMusicData(username: userSelection.selectedUserName)
-                                  } catch {
-                                    print("Error fetching more listens: \(error)")
-                                  }
+                        VStack {
+                          Text(userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
+                            ListensStatsView()
+                                .environmentObject(dashboardViewModel)
+                            LazyVStack {
+                                ForEach(homeViewModel.listens, id: \.uuid) { listen in
+                                    TrackInfoView(
+                                        item: listen,
+                                        onPinTrack: { event in
+                                            selectedListen = listen
+                                            showPinTrackView = true
+                                        },
+                                        onRecommendPersonally: { event in
+                                            selectedListen = listen
+                                            showingRecommendToUsersPersonallyView = true
+                                        },
+                                        onWriteReview: { event in
+                                            selectedListen = listen
+                                            showWriteReview = true
+                                        }
+                                    )
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+                                    .cornerRadius(10)
+                                    .shadow(radius: 2)
+                                    .onAppear {
+                                        if listen == homeViewModel.listens.last && homeViewModel.canLoadMorePages {
+                                            Task {
+                                                do {
+                                                    try await homeViewModel.fetchMusicData(username: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
+                                                } catch {
+                                                    print("Error fetching more listens: \(error)")
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
-                              }
                             }
-                          }
                         }
-                      }
                         if homeViewModel.isLoading {
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle())
@@ -106,7 +106,6 @@ struct ListensView: View {
                     StatisticsView()
                         .environmentObject(dashboardViewModel)
                         .environmentObject(userSelection)
-
                 } else if selectedTab == 2 {
                     TasteView()
                         .environmentObject(dashboardViewModel)
@@ -156,35 +155,11 @@ struct ListensView: View {
             }
         }
         .onAppear {
-            if !userSelection.selectedUserName.isEmpty {
-                Task {
-                    do {
-                        try await homeViewModel.fetchMusicData(username: userSelection.selectedUserName)
-                    } catch {
-                        print("Error: \(error)")
-                    }
-                }
-                dashboardViewModel.userName = userSelection.selectedUserName
-                dashboardViewModel.getListenCount(username: userSelection.selectedUserName)
-                dashboardViewModel.getFollowers(username: userSelection.selectedUserName)
-                dashboardViewModel.getFollowing(username: userSelection.selectedUserName)
-            }
+          fetchData(for: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
         }
         .onChange(of: userSelection.selectedUserName) { newUserName in
             if !newUserName.isEmpty {
-              Task {
-                do {
-                  print("Fetching music data for user: \(newUserName)")
-                  homeViewModel.resetPagination() 
-                  try await homeViewModel.fetchMusicData(username: newUserName)
-                } catch {
-                  print("Error: \(error)")
-                }
-              }
-                dashboardViewModel.userName = newUserName
-                dashboardViewModel.getListenCount(username: newUserName)
-                dashboardViewModel.getFollowers(username: newUserName)
-                dashboardViewModel.getFollowing(username: newUserName)
+                fetchData(for: newUserName)
             }
         }
     }
@@ -192,7 +167,7 @@ struct ListensView: View {
     private func refreshListens() async {
         do {
             homeViewModel.resetPagination()
-            try await homeViewModel.fetchMusicData(username: userSelection.selectedUserName)
+            try await homeViewModel.fetchMusicData(username: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
         } catch {
             print("Error refreshing listens: \(error)")
         }
@@ -206,6 +181,25 @@ struct ListensView: View {
         case 3: return "Playlists"
         case 4: return "Created for You"
         default: return "Listens"
+        }
+    }
+
+    private func fetchData(for username: String? = nil) {
+        let nameToUse = username ?? (userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
+
+        if !nameToUse.isEmpty {
+            Task {
+                do {
+                    homeViewModel.resetPagination()
+                    try await homeViewModel.fetchMusicData(username: nameToUse)
+                } catch {
+                    print("Error fetching music data: \(error)")
+                }
+            }
+            dashboardViewModel.userName = nameToUse
+            dashboardViewModel.getListenCount(username: nameToUse)
+            dashboardViewModel.getFollowers(username: nameToUse)
+            dashboardViewModel.getFollowing(username: nameToUse)
         }
     }
 }

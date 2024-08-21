@@ -10,7 +10,8 @@ import SwiftUI
 struct ListensStatsView: View {
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
     @Environment(\.colorScheme) var colorScheme
-
+    @EnvironmentObject var userSelection:UserSelection
+    @AppStorage(Strings.AppStorageKeys.userName) private var storedUserName: String = ""
     @State private var showingFollowersView = false
     @State private var showingFollowingView = false
 
@@ -68,7 +69,9 @@ struct ListensStatsView: View {
 
 
 struct FollowersView: View {
-    @EnvironmentObject var dashboardViewModel: DashboardViewModel
+  @EnvironmentObject var dashboardViewModel: DashboardViewModel
+  @EnvironmentObject var userSelection: UserSelection
+  @AppStorage(Strings.AppStorageKeys.userName) private var storedUserName: String = ""
 
     var body: some View {
         VStack {
@@ -85,13 +88,15 @@ struct FollowersView: View {
         }
         .padding()
         .onAppear {
-            dashboardViewModel.getFollowers(username: dashboardViewModel.userName)
+            dashboardViewModel.getFollowers(username: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
         }
     }
 }
 
 struct FollowingView: View {
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
+  @EnvironmentObject var userSelection: UserSelection
+  @AppStorage(Strings.AppStorageKeys.userName) private var storedUserName: String = ""
 
     var body: some View {
         VStack {
@@ -108,7 +113,7 @@ struct FollowingView: View {
         }
         .padding()
         .onAppear {
-            dashboardViewModel.getFollowing(username: dashboardViewModel.userName)
+            dashboardViewModel.getFollowing(username: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
         }
     }
 }

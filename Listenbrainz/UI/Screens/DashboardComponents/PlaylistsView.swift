@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PlaylistView: View {
     @EnvironmentObject var viewModel: DashboardViewModel
+  @EnvironmentObject var userSelection: UserSelection
+  @AppStorage(Strings.AppStorageKeys.userName) private var storedUserName: String = ""
   let lightPink = Color(red: 0.75, green: 0.46, blue: 0.65)
 
     var body: some View {
@@ -50,7 +52,7 @@ struct PlaylistView: View {
             .padding()
         }
         .onAppear {
-            viewModel.getPlaylists(username: viewModel.userName)
+            viewModel.getPlaylists(username: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
         }
         .navigationTitle("Playlists")
     }

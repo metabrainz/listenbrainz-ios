@@ -10,13 +10,14 @@ import SwiftUI
 
 struct PinsView: View {
     @EnvironmentObject var viewModel: DashboardViewModel
+  @EnvironmentObject var userSelection:UserSelection
     @Binding var selectedPinnedRecording: PinnedRecording?
     @Binding var showPinTrackView: Bool
     @Binding var showingRecommendToUsersPersonallyView: Bool
     @Binding var showWriteReview: Bool
 
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
-    @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
+    @AppStorage(Strings.AppStorageKeys.userName) private var storedUserName: String = ""
 
     var body: some View {
         VStack {
@@ -47,7 +48,7 @@ struct PinsView: View {
             }
         }
         .onAppear {
-            viewModel.getPinTrack(userName: userName)
+            viewModel.getPinTrack(userName: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
         }
     }
 }

@@ -9,8 +9,9 @@ import Foundation
 
 
 //MARK: - Listen
-struct Listen: Codable, TrackMetadataProvider {
+struct Listen: Codable, TrackMetadataProvider, Equatable {
      var id: Int?
+     var uuid = UUID()
      let recordingMsid: String?
      let trackMetadata: ListensTrackMetadata?
 
@@ -20,6 +21,10 @@ struct Listen: Codable, TrackMetadataProvider {
         case trackMetadata = "track_metadata"
 
     }
+  static func == (lhs: Listen, rhs: Listen) -> Bool {
+      return lhs.id == rhs.id &&
+             lhs.recordingMsid == rhs.recordingMsid
+  }
 
     var trackName: String? { trackMetadata?.trackName }
     var artistName: String? { trackMetadata?.artistName }

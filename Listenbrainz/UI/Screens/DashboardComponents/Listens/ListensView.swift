@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ListensView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
-    @StateObject var dashboardViewModel = DashboardViewModel(repository: DashboardRepositoryImpl())
+    @EnvironmentObject var userSelection: UserSelection
+    @EnvironmentObject var dashboardViewModel: DashboardViewModel
     @State private var selectedTab = 0
     @State private var isSettingsPressed = false
     @State private var isSearchActive = false
@@ -19,8 +20,8 @@ struct ListensView: View {
     @State private var selectedListen: Listen?
     @State private var isPresented: Bool = false
     @Environment(\.colorScheme) var colorScheme
-    @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
+    @AppStorage(Strings.AppStorageKeys.userName) private var storedUserName: String = ""
 
     var body: some View {
         ZStack {
@@ -54,41 +55,69 @@ struct ListensView: View {
                 if selectedTab == 0 {
                     ScrollView {
                         VStack {
+                          Text(userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
                             ListensStatsView()
                                 .environmentObject(dashboardViewModel)
-
-                            SongDetailView(
-                                onPinTrack: { listen in
-                                    selectedListen = listen
-                                    showPinTrackView = true
-                                },
-                                onRecommendPersonally: { listen in
-                                    selectedListen = listen
-                                    showingRecommendToUsersPersonallyView = true
-                                },
-                                onWriteReview: { listen in
-                                    selectedListen = listen
-                                    showWriteReview = true
+                            LazyVStack {
+                                ForEach(homeViewModel.listens, id: \.uuid) { listen in
+                                    TrackInfoView(
+                                        item: listen,
+                                        onPinTrack: { event in
+                                            selectedListen = listen
+                                            showPinTrackView = true
+                                        },
+                                        onRecommendPersonally: { event in
+                                            selectedListen = listen
+                                            showingRecommendToUsersPersonallyView = true
+                                        },
+                                        onWriteReview: { event in
+                                            selectedListen = listen
+                                            showWriteReview = true
+                                        }
+                                    )
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+                                    .cornerRadius(10)
+                                    .shadow(radius: 2)
+                                    .onAppear {
+                                        if listen == homeViewModel.listens.last && homeViewModel.canLoadMorePages {
+                                            Task {
+                                                do {
+                                                    try await homeViewModel.fetchMusicData(username: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
+                                                } catch {
+                                                    print("Error fetching more listens: \(error)")
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
-                            )
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                            .cornerRadius(10)
-                            .shadow(radius: 2)
+                            }
                         }
+                        if homeViewModel.isLoading {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                                .padding(.vertical, 10)
+                        }
+                    }
+                    .refreshable {
+                        await refreshListens()
                     }
                 } else if selectedTab == 1 {
                     StatisticsView()
                         .environmentObject(dashboardViewModel)
+                        .environmentObject(userSelection)
                 } else if selectedTab == 2 {
                     TasteView()
                         .environmentObject(dashboardViewModel)
+                        .environmentObject(userSelection)
                 } else if selectedTab == 3 {
                     PlaylistView()
                         .environmentObject(dashboardViewModel)
+                        .environmentObject(userSelection)
                 } else {
                     CreatedForYouView()
                         .environmentObject(dashboardViewModel)
+                        .environmentObject(userSelection)
                 }
                 Spacer()
             }
@@ -110,7 +139,7 @@ struct ListensView: View {
             }
             .centeredModal(isPresented: $showingRecommendToUsersPersonallyView) {
                 if let listen = selectedListen {
-                    RecommendToUsersPersonallyView(item: listen, userName: userName, userToken: userToken, dismissAction: {
+                    RecommendToUsersPersonallyView(item: listen, userName: userSelection.selectedUserName, userToken: userToken, dismissAction: {
                         showingRecommendToUsersPersonallyView = false
                     })
                     .environmentObject(homeViewModel)
@@ -118,7 +147,7 @@ struct ListensView: View {
             }
             .centeredModal(isPresented: $showWriteReview) {
                 if let listen = selectedListen {
-                    WriteAReviewView(isPresented: $showWriteReview, item: listen, userToken: userToken, userName: userName) {
+                    WriteAReviewView(isPresented: $showWriteReview, item: listen, userToken: userToken, userName: userSelection.selectedUserName) {
                         showWriteReview = false
                     }
                     .environmentObject(homeViewModel)
@@ -126,34 +155,54 @@ struct ListensView: View {
             }
         }
         .onAppear {
-            homeViewModel.requestMusicData(userName: userName)
-            dashboardViewModel.userName = userName
-            dashboardViewModel.getListenCount(username: userName)
-            dashboardViewModel.getFollowers(username: userName)
-            dashboardViewModel.getFollowing(username: userName)
+          fetchData(for: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
+        }
+        .onChange(of: userSelection.selectedUserName) { newUserName in
+            if !newUserName.isEmpty {
+                fetchData(for: newUserName)
+            }
+        }
+    }
+
+    private func refreshListens() async {
+        do {
+            homeViewModel.resetPagination()
+            try await homeViewModel.fetchMusicData(username: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
+        } catch {
+            print("Error refreshing listens: \(error)")
         }
     }
 
     private var topBarTitle: String {
         switch selectedTab {
-        case 0:
-            return "Listens"
-        case 1:
-            return "Statistics"
-        case 2:
-            return "Taste"
-        case 3:
-            return "Playlists"
-        case 4:
-            return "Created for You"
-        default:
-            return "Listens"
+        case 0: return "Listens"
+        case 1: return "Statistics"
+        case 2: return "Taste"
+        case 3: return "Playlists"
+        case 4: return "Created for You"
+        default: return "Listens"
+        }
+    }
+
+    private func fetchData(for username: String? = nil) {
+        let nameToUse = username ?? (userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
+
+        if !nameToUse.isEmpty {
+            Task {
+                do {
+                    homeViewModel.resetPagination()
+                    try await homeViewModel.fetchMusicData(username: nameToUse)
+                } catch {
+                    print("Error fetching music data: \(error)")
+                }
+            }
+            dashboardViewModel.userName = nameToUse
+            dashboardViewModel.getListenCount(username: nameToUse)
+            dashboardViewModel.getFollowers(username: nameToUse)
+            dashboardViewModel.getFollowing(username: nameToUse)
         }
     }
 }
-
-
-
 
 struct TabButton: View {
     let title: String
@@ -173,7 +222,5 @@ struct TabButton: View {
         .frame(maxWidth: .infinity)
     }
 }
-
-
 
 

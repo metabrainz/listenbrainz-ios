@@ -10,7 +10,8 @@ import Charts
 
 struct StatisticsView: View {
   @EnvironmentObject var viewModel: DashboardViewModel
-    @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
+  @EnvironmentObject var userSelection: UserSelection
+    @AppStorage(Strings.AppStorageKeys.userName) private var storedUserName: String = ""
     @State private var isSettingsPressed = false
     @State private var isSearchActive = false
 
@@ -107,11 +108,11 @@ struct StatisticsView: View {
           }
         }
         .onAppear {
-            viewModel.getListeningActivity(username: userName)
-            viewModel.getTopArtists(username: userName)
-            viewModel.getTopAlbums(username: userName)
-            viewModel.getTopTracks(username: userName)
-            viewModel.getDailyActivity(username: userName)
+          viewModel.getListeningActivity(username: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
+          viewModel.getTopArtists(username: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
+          viewModel.getTopAlbums(username: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
+          viewModel.getTopTracks(username: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
+          viewModel.getDailyActivity(username: userSelection.selectedUserName.isEmpty ? storedUserName : userSelection.selectedUserName)
         }
     }
 }

@@ -74,6 +74,7 @@
 		BB8843A92C72BE7F00779ACC /* PinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8843A82C72BE7F00779ACC /* PinsView.swift */; };
 		BB8843AB2C72BE9E00779ACC /* CapsuleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8843AA2C72BE9E00779ACC /* CapsuleBarView.swift */; };
 		BBB115792B57A879004E157E /* TopMissedRecordingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB115782B57A879004E157E /* TopMissedRecordingsView.swift */; };
+		BBB57B6F2C75B44100F3C671 /* NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB57B6E2C75B44100F3C671 /* NavigationViewModel.swift */; };
 		BBC334512C46EF3300A72E07 /* DashboardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC334502C46EF3300A72E07 /* DashboardRepository.swift */; };
 		BBC334532C46EF3F00A72E07 /* DashboardRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC334522C46EF3F00A72E07 /* DashboardRepositoryImpl.swift */; };
 		BBC334562C46EF6200A72E07 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC334552C46EF6200A72E07 /* DashboardViewModel.swift */; };
@@ -218,6 +219,7 @@
 		BB8843A82C72BE7F00779ACC /* PinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsView.swift; sourceTree = "<group>"; };
 		BB8843AA2C72BE9E00779ACC /* CapsuleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleBarView.swift; sourceTree = "<group>"; };
 		BBB115782B57A879004E157E /* TopMissedRecordingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMissedRecordingsView.swift; sourceTree = "<group>"; };
+		BBB57B6E2C75B44100F3C671 /* NavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewModel.swift; sourceTree = "<group>"; };
 		BBC334502C46EF3300A72E07 /* DashboardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRepository.swift; sourceTree = "<group>"; };
 		BBC334522C46EF3F00A72E07 /* DashboardRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardRepositoryImpl.swift; sourceTree = "<group>"; };
 		BBC334552C46EF6200A72E07 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 				BBC5C7AD2B4FE817000A5EB1 /* YimViewModel.swift */,
 				BB4DF0B72C0E03D100E7B55A /* SearchViewModel.swift */,
 				BBC334552C46EF6200A72E07 /* DashboardViewModel.swift */,
+				BBB57B6E2C75B44100F3C671 /* NavigationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -921,6 +924,7 @@
 				BBC5C7BF2B4FE8D3000A5EB1 /* TopReleaseGroup.swift in Sources */,
 				BBC5C7B92B4FE89E000A5EB1 /* NewRelasesOfTopArtist.swift in Sources */,
 				BBC5C7E82B512ECD000A5EB1 /* DiscoverTitleView.swift in Sources */,
+				BBB57B6F2C75B44100F3C671 /* NavigationViewModel.swift in Sources */,
 				BB66C2052A9F3FD500BB4CBA /* Metadata.swift in Sources */,
 				BBD28DD32A2F9DC400AD57C6 /* FeedArtist.swift in Sources */,
 				BBC5E6142C3BC6E30046DDD9 /* WriteAReviewView.swift in Sources */,

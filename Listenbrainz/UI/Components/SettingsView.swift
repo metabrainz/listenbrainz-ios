@@ -38,7 +38,13 @@ struct SettingsView: View {
       }
       .navigationBarItems(
         trailing: Button(action: {
-          homeViewModel.requestMusicData(userName: userName)
+          Task {
+              do {
+                  try await homeViewModel.fetchMusicData(username:userName)
+              } catch {
+                  print("Error fetching more listens: \(error)")
+              }
+          }
           dismiss()
         }, label: {
           Text("Save")

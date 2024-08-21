@@ -12,9 +12,9 @@ import Combine
 class HomeRepositoryImpl: HomeRepository {
 
 
-  func fetchMusicData(userName:String) -> AnyPublisher<Listens, AFError> {
+  func fetchMusicData(userName:String,page:Int,perPage:Int) -> AnyPublisher<Listens, AFError> {
 
-    let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/listens")!
+    let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/listens?page=\(page)&perPage=\(perPage)")!
 
 
     return AF.request(url, method: .get)
@@ -24,3 +24,6 @@ class HomeRepositoryImpl: HomeRepository {
       .eraseToAnyPublisher()
   }
 }
+
+
+

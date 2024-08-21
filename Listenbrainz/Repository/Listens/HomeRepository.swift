@@ -6,6 +6,7 @@
 //
 
 
+
 import Foundation
 import Combine
 import Alamofire
@@ -13,6 +14,5 @@ import Alamofire
 protocol HomeRepository {
 
 
-  func fetchMusicData(userName:String) -> AnyPublisher<Listens, AFError>
+  func fetchMusicData(userName:String,page:Int,perPage:Int) -> AnyPublisher<Listens, AFError>
 }
-

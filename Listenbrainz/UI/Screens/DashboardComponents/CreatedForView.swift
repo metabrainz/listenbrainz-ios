@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CreatedForYouView: View {
   @EnvironmentObject var viewModel: DashboardViewModel
+  @EnvironmentObject var userSelection: UserSelection
 
   var body: some View {
     ScrollView{
@@ -39,7 +40,7 @@ struct CreatedForYouView: View {
         }
       }
       .onAppear {
-        viewModel.getCreatedForYou(username: viewModel.userName)
+        viewModel.getCreatedForYou(username: userSelection.selectedUserName)
       }
     }
   }

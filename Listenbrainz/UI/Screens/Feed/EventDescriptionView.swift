@@ -9,7 +9,11 @@ import SwiftUI
 
 struct EventDescriptionView: View {
     @Environment(\.colorScheme) var colorScheme
-    @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
+    @EnvironmentObject var userSelection: UserSelection
+    @EnvironmentObject var dashboardViewModel: DashboardViewModel
+    @AppStorage(Strings.AppStorageKeys.userName) private var currentUserName: String = ""
+    @EnvironmentObject var homeViewModel: HomeViewModel
+
     let event: Event
 
     var body: some View {
@@ -19,9 +23,18 @@ struct EventDescriptionView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(foregroundColor)
             } else {
-                eventDescription(for: event)
-                    .font(.subheadline)
-                    .foregroundColor(foregroundColor)
+                NavigationLink(destination: listensViewDestination(for: event)) {
+                    HStack(spacing: 0) {
+                        Text(replaceUsernameIfNeeded(event.userName))
+                            .foregroundColor(Color.LbPurple)
+                            .underline()
+
+                        Text(eventDescriptionSuffix(for: event))
+                            .foregroundColor(foregroundColor)
+                    }
+                }
+                .buttonStyle(PlainButtonStyle())  // Ensures the link does not alter the HStack appearance
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
     }
@@ -30,54 +43,34 @@ struct EventDescriptionView: View {
         return colorScheme == .dark ? .white : .black
     }
 
-    private func eventDescription(for event: Event) -> Text {
-        let usernameText = Text(replaceUsernameIfNeeded(event.userName))
-            .foregroundColor(Color.LbPurple)
+    private func replaceUsernameIfNeeded(_ username: String) -> String {
+        return username == currentUserName ? "You" : username
+    }
 
+    private func eventDescriptionSuffix(for event: Event) -> String {
         switch event.eventType {
         case "listen":
-            return usernameText
-                + Text(" listened to a track ")
-                .foregroundColor(foregroundColor)
-
+            return " listened to a track"
         case "recording_recommendation":
-            return usernameText
-                + Text(" recommended a track ")
-                .foregroundColor(foregroundColor)
-
+            return " recommended a track"
         case "critiquebrainz_review":
-            return usernameText
-                + Text(" reviewed a track ")
-                .foregroundColor(foregroundColor)
-
+            return " reviewed a track"
         case "recording_pin":
-            return usernameText
-                + Text(" pinned a track ")
-                .foregroundColor(foregroundColor)
-
+            return " pinned a track"
         case "follow":
-            let username0Text = Text(replaceUsernameIfNeeded(event.metadata.userName0 ?? ""))
-                .foregroundColor(Color.LbPurple)
-            let username1Text = Text(replaceUsernameIfNeeded(event.metadata.userName1 ?? ""))
-                .foregroundColor(Color.LbPurple)
-
-            return username0Text
-                + Text(" started following ")
-                .foregroundColor(foregroundColor)
-                + username1Text
-
+            return " started following"
         default:
-            return Text("An event occurred")
-                .foregroundColor(foregroundColor)
+            return "An event occurred"
         }
     }
 
-    private func replaceUsernameIfNeeded(_ username: String) -> String {
-        return username == userName ? "You" : username
+    private func listensViewDestination(for event: Event) -> some View {
+        ListensView()
+            .environmentObject(homeViewModel)
+            .environmentObject(dashboardViewModel)
+            .environmentObject(userSelection)
+            .onAppear {
+                userSelection.selectUserName(event.userName)
+            }
     }
 }
-
-
-
-
-

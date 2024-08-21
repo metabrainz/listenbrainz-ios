@@ -8,6 +8,8 @@ struct ContentView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var feedViewModel: FeedViewModel
     @StateObject var yimViewModel = YIMViewModel(repository: YIMRepositoryImpl())
+    @EnvironmentObject var dashboardViewModel:DashboardViewModel
+    @EnvironmentObject var userSelection: UserSelection
 
     init() {
         UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
@@ -40,6 +42,8 @@ struct ContentView: View {
 
                 ListensView()
                     .environmentObject(homeViewModel)
+                    .environmentObject(dashboardViewModel)
+                    .environmentObject(userSelection)
                     .frame(width: screenWidth, height: screenHeight, alignment: .center)
                     .tabItem {
                         Label("Listens", systemImage: "person.wave.2")

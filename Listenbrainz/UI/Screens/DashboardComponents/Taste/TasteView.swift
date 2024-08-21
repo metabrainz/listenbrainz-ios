@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TasteView: View {
     @EnvironmentObject var viewModel: DashboardViewModel
+    @EnvironmentObject var userSelection: UserSelection
     @State private var showPinTrackView = false
     @State private var showWriteReview = false
     @State private var showingRecommendToUsersPersonallyView = false
@@ -81,7 +82,7 @@ struct TasteView: View {
             }
         }
         .onAppear {
-            viewModel.getTaste(userName: userName)
+            viewModel.getTaste(userName: userSelection.selectedUserName)
         }
         .centeredModal(isPresented: $showPinTrackView) {
             if let taste = selectedTaste {

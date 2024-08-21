@@ -23,20 +23,17 @@ struct EventDescriptionView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(foregroundColor)
             } else {
-                NavigationLink(destination: listensViewDestination(for: event)) {
-                    HStack(spacing: 0) {
+                HStack {
+                    NavigationLink(destination: listensViewDestination(for: event)) {
                         Text(replaceUsernameIfNeeded(event.userName))
                             .foregroundColor(Color.LbPurple)
-                            .underline()
-
-                        Text(eventDescriptionSuffix(for: event))
-                            .foregroundColor(foregroundColor)
                     }
+                    Text(eventDescriptionSuffix(for: event))
+                        .foregroundColor(foregroundColor)
                 }
-                .buttonStyle(PlainButtonStyle())  // Ensures the link does not alter the HStack appearance
-                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
+
     }
 
     private var foregroundColor: Color {
@@ -72,5 +69,11 @@ struct EventDescriptionView: View {
             .onAppear {
                 userSelection.selectUserName(event.userName)
             }
+            .edgesIgnoringSafeArea(.all)
+            .onDisappear {
+              print("Came out of the view")
+                userSelection.resetUserName()
+            }
     }
 }
+

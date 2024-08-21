@@ -17,6 +17,7 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     @EnvironmentObject var feedViewModel: FeedViewModel
+  @EnvironmentObject var dashboardViewModel: DashboardViewModel
 
 
 

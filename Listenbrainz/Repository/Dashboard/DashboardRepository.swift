@@ -20,4 +20,11 @@ protocol DashboardRepository{
   func getTopAlbums(userName:String) -> AnyPublisher<AlbumsPayload, AFError>
   func getTopTracks(userName:String) -> AnyPublisher<TracksPayload, AFError>
   func getDailyActivity(userName:String) -> AnyPublisher<DailyActivityPayload, AFError>
+  func getTaste(userName: String) -> AnyPublisher<TasteResponse, AFError> 
+  func getPinTrack(userName: String) -> AnyPublisher<Pins, AFError>
+
+  func getPlaylists(userName: String) -> AnyPublisher<PlaylistResponse, AFError>
+  func getCreatedForYou(userName: String) -> AnyPublisher<[CreatedForYouContainer], AFError>
+
+
 }

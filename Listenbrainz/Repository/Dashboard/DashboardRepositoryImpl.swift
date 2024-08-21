@@ -132,6 +132,61 @@ class DashboardRepositoryImpl: DashboardRepository {
         .map { $0.payload }
         .eraseToAnyPublisher()
   }
+  func getTaste(userName: String) -> AnyPublisher<TasteResponse, AFError> {
+          let urlString = "https://api.listenbrainz.org/1/feedback/user/\(userName)/get-feedback?metadata=true"
+          guard let url = URL(string: urlString) else {
+              return Fail(error: AFError.invalidURL(url: urlString)).eraseToAnyPublisher()
+          }
+
+          return AF.request(url, method: .get)
+              .validate()
+              .publishDecodable(type: TasteResponse.self)
+              .value()
+              .eraseToAnyPublisher()
+      }
+
+  func getPinTrack(userName: String) -> AnyPublisher<Pins, AFError> {
+          let urlString = "https://api.listenbrainz.org/1/\(userName)/pins"
+          guard let url = URL(string: urlString) else {
+              return Fail(error: AFError.invalidURL(url: urlString)).eraseToAnyPublisher()
+          }
+
+          return AF.request(url, method: .get)
+              .validate()
+              .publishDecodable(type: Pins.self)
+              .value()
+              .eraseToAnyPublisher()
+      }
+
+  func getPlaylists(userName: String) -> AnyPublisher<PlaylistResponse, AFError> {
+          let urlString = "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/playlists"
+          guard let url = URL(string: urlString) else {
+              return Fail(error: AFError.invalidURL(url: urlString)).eraseToAnyPublisher()
+          }
+
+          return AF.request(url, method: .get)
+              .validate()
+              .publishDecodable(type: PlaylistResponse.self)
+              .value()
+              .eraseToAnyPublisher()
+      }
+
+  func getCreatedForYou(userName: String) -> AnyPublisher<[CreatedForYouContainer], AFError> {
+          let urlString = "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/playlists/createdfor"
+          print(urlString)
+          guard let url = URL(string: urlString) else {
+              return Fail(error: AFError.invalidURL(url: urlString)).eraseToAnyPublisher()
+          }
+
+          return AF.request(url, method: .get)
+              .validate()
+              .publishDecodable(type: CreatedForYouResponse.self)
+              .value()
+              .map { $0.playlists } // Return only the array of CreatedForYouContainer
+              .eraseToAnyPublisher()
+      }
+
+
 
 
  }

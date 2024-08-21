@@ -23,13 +23,13 @@ struct FeedView: View {
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
 
     var body: some View {
-      NavigationView{
+
         ZStack {
           colorScheme == .dark ? Color.backgroundColor : Color.white
-          
+
           VStack {
             TopBar(isSettingsPressed: $isSettingsPressed, isSearchActive: $isSearchActive, customText: "Feed")
-            
+
             if viewModel.isLoading && viewModel.isInitialLoad {
               ProgressView("Loading...")
                 .progressViewStyle(CircularProgressViewStyle())
@@ -46,7 +46,7 @@ struct FeedView: View {
                           .frame(width: 1, height: verticalLineHeight(for: event))
                           .offset(x: 10, y: 4)
                       }
-                      
+
                       VStack(alignment: .leading, spacing: 5) {
                         EventDescriptionView(event: event)
                         if event.eventType != "follow" && event.eventType != "notification" {
@@ -64,20 +64,20 @@ struct FeedView: View {
                           .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
                           .cornerRadius(10)
                           .shadow(radius: 2)
-                          
+
                           if event.eventType == "critiquebrainz_review" {
                             ReviewView(event: event)
                           }
                         }
-                        
+
                         HStack {
                           Spacer()
-                          
+
                           Text(formatDate(epochTime: TimeInterval(event.created)))
                             .font(.system(size: 10))
                             .foregroundColor(Color.gray)
                             .italic()
-                          
+
                           if event.eventType == "recording_recommendation" {
                             Button(action: {
                               viewModel.deleteEvent(userName: userName, eventID: event.id ?? 1, userToken: userToken)
@@ -162,7 +162,6 @@ struct FeedView: View {
             }
           }
         }
-      }
     }
 
     private func verticalLineHeight(for event: Event) -> CGFloat {

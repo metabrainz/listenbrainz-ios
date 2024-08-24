@@ -15,6 +15,7 @@ struct CreatedForYouView: View {
     @State private var showWriteReview = false
     @State private var showingRecommendToUsersPersonallyView = false
     @State private var selectedTrack: PlaylistTrack?
+    @Environment(\.colorScheme) var colorScheme
 
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
@@ -22,7 +23,7 @@ struct CreatedForYouView: View {
     var body: some View {
       ScrollView(.vertical){
         VStack(alignment: .leading) {
-          Text("Created for \(viewModel.userName)")
+          Text("Created for \(userName)")
             .font(.system(size: 20))
             .padding(.leading,20)
           ScrollView(.horizontal, showsIndicators: false) {
@@ -30,7 +31,7 @@ struct CreatedForYouView: View {
               ForEach(viewModel.createdForYou.indices, id: \.self) { index in
                 let playlist = viewModel.createdForYou[index]
                 let imageName = "green-\(index + 1)"
-
+                
                 ZStack(alignment: .leading) {
                   Image(imageName)
                     .resizable()
@@ -38,7 +39,7 @@ struct CreatedForYouView: View {
                     .frame(width: UIScreen.main.bounds.size.width * 0.9, height: 200)
                     .clipped()
                     .shadow(radius: 5)
-
+                  
                   Text(playlist.title.components(separatedBy: ",").first ?? "")
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(Color.LbPurple)
@@ -49,7 +50,9 @@ struct CreatedForYouView: View {
                     .shadow(radius: 2)
                 }
                 .onAppear{
-                  fetchPlaylistDetails(playlist.identifier)
+                  if let firstPlaylist = viewModel.createdForYou.first {
+                    fetchPlaylistDetails(firstPlaylist.identifier)
+                  }
                 }
                 .onTapGesture {
                   fetchPlaylistDetails(playlist.identifier)
@@ -58,11 +61,11 @@ struct CreatedForYouView: View {
             }
             .padding()
           }
-
-          if let selectedPlaylistId, !isLoading {
+          
+          if !isLoading {
             if let details = viewModel.playlistDetails {
               VStack(alignment: .leading) {
-
+                
                 ScrollView {
                   VStack(alignment: .leading, spacing: 16) {
                     ForEach(details.track, id: \.title) { track in
@@ -81,8 +84,10 @@ struct CreatedForYouView: View {
                           showWriteReview = true
                         }
                       )
-                      .padding(.horizontal)
-                      .padding(.vertical, 5)
+                      .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
+                      .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+                      .cornerRadius(10)
+                      .shadow(radius: 2)
                     }
                   }
                   .padding(.horizontal)
@@ -96,11 +101,9 @@ struct CreatedForYouView: View {
               .frame(maxWidth: .infinity,maxHeight: .infinity)
           }
         }
+      }
         .onAppear {
           viewModel.getCreatedForYou(username: userName)
-          if let firstPlaylist = viewModel.createdForYou.first {
-            fetchPlaylistDetails(firstPlaylist.identifier)
-          }
         }
         .centeredModal(isPresented: $showPinTrackView) {
           if let track = selectedTrack {
@@ -141,7 +144,6 @@ struct CreatedForYouView: View {
             .environmentObject(viewModel)
           }
         }
-      }
     }
 
     private func fetchPlaylistDetails(_ identifierURL: String) {

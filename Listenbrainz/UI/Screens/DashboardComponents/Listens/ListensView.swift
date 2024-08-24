@@ -166,8 +166,8 @@ struct TabButton: View {
                 .font(.headline)
                 .padding(.vertical, 8)
                 .padding(.horizontal, 16)
-                .background(isSelected ? Rectangle().fill(Color.secondary) : Rectangle().fill(Color.gray.opacity(0.2)))
-                .foregroundColor(isSelected ? .white : .black)
+                .background(isSelected ? Rectangle().fill(Color.secondary) : Rectangle().fill(Color.black.opacity(0.2)))
+                .foregroundColor(.white)
                 .animation(.easeInOut(duration: 0.2), value: isSelected)
         }
         .frame(maxWidth: .infinity)

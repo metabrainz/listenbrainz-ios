@@ -19,6 +19,10 @@ struct FeedView: View {
     @State private var selectedEvent: Event?
     @State private var isPresented: Bool = false
 
+  private var screenWidth: CGFloat {
+       UIScreen.main.bounds.width * 0.9
+   }
+
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
 
@@ -48,46 +52,49 @@ struct FeedView: View {
 
                                     VStack(alignment: .leading, spacing: 5) {
                                         EventDescriptionView(event: event)
+                                      VStack(spacing:-5){
                                         if event.eventType != "follow" && event.eventType != "notification" {
-                                            TrackInfoView(item: event, onPinTrack: { event in
-                                                selectedEvent = event
-                                                showPinTrackView = true
-                                            }, onRecommendPersonally: { event in
-                                                selectedEvent = event
-                                                showingRecommendToUsersPersonallyView = true
-                                            }, onWriteReview: { event in
-                                                selectedEvent = event
-                                                showWriteReview = true
-                                            })
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                                            .cornerRadius(10)
-                                            .shadow(radius: 2)
+                                          TrackInfoView(item: event, onPinTrack: { event in
+                                            selectedEvent = event
+                                            showPinTrackView = true
+                                          }, onRecommendPersonally: { event in
+                                            selectedEvent = event
+                                            showingRecommendToUsersPersonallyView = true
+                                          }, onWriteReview: { event in
+                                            selectedEvent = event
+                                            showWriteReview = true
+                                          })
+                                          .frame(width: screenWidth, alignment: .leading)
+                                          .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+                                          .cornerRadius(10)
+                                          .shadow(radius: 2)
 
-                                            if event.eventType == "critiquebrainz_review" {
-                                                ReviewView(event: event)
-                                            }
+                                          if event.eventType == "critiquebrainz_review" {
+                                            ReviewView(event: event)
+                                              .frame(width: screenWidth, alignment: .leading)
+                                          }
                                         }
+                                      }
 
                                         HStack {
-                                            Spacer()
+                                          Spacer()
 
-                                            Text(formatDate(epochTime: TimeInterval(event.created)))
-                                                .font(.system(size: 10))
-                                                .foregroundColor(Color.gray)
-                                                .italic()
+                                          Text(formatDate(epochTime: TimeInterval(event.created)))
+                                            .font(.system(size: 10))
+                                            .foregroundColor(Color.gray)
+                                            .italic()
 
-                                            if event.eventType == "recording_recommendation" {
-                                                Button(action: {
-                                                    viewModel.deleteEvent(userName: userName, eventID: event.id ?? 1, userToken: userToken)
-                                                }) {
-                                                    Image("feed_delete")
-                                                        .renderingMode(.template)
-                                                        .resizable()
-                                                        .frame(width: 18, height: 18)
-                                                        .foregroundColor(Color.LbPurple)
-                                                }
+                                          if event.eventType == "recording_recommendation" {
+                                            Button(action: {
+                                              viewModel.deleteEvent(userName: userName, eventID: event.id ?? 1, userToken: userToken)
+                                            }) {
+                                              Image("feed_delete")
+                                                .renderingMode(.template)
+                                                .resizable()
+                                                .frame(width: 18, height: 18)
+                                                .foregroundColor(Color.LbPurple)
                                             }
+                                          }
                                         }
                                     }
                                 }
@@ -187,6 +194,15 @@ struct FeedView: View {
 }
 
 
+struct VerticalLine: View {
+  var color: Color
+  var body: some View {
+    Rectangle()
+      .fill(color)
+      .frame(width: 1)
+  }
+
+}
 struct ReviewView: View {
     let event: Event
     @Environment(\.colorScheme) var colorScheme
@@ -205,28 +221,14 @@ struct ReviewView: View {
                 .font(.system(size: 14))
                 .foregroundColor(.gray)
                 .italic()
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding()
-        .background(colorScheme == .dark ? Color.black : Color.white)
+        .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
         .cornerRadius(10)
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(colorScheme == .dark ? Color.black : Color.white)
-        )
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(width: UIScreen.main.bounds.width * 0.9, alignment: .leading)
+        .padding(.top, 5)
     }
-}
-
-
-
-struct VerticalLine: View {
-  var color: Color
-  var body: some View {
-    Rectangle()
-      .fill(color)
-      .frame(width: 1)
-  }
-
 }
 
 

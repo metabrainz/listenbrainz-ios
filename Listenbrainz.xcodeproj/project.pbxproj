@@ -65,6 +65,7 @@
 		BB66C2112AA0F6C500BB4CBA /* ListensArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66C2102AA0F6C500BB4CBA /* ListensArtist.swift */; };
 		BB6FF5812B52D3B40057F8C1 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6FF5802B52D3B40057F8C1 /* ExploreView.swift */; };
 		BB7833642B3F2DB3005D7266 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7833632B3F2DB3005D7266 /* ImageLoader.swift */; };
+		BB8305BE2C79EC5F00A61411 /* CreatedForYouPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8305BD2C79EC5F00A61411 /* CreatedForYouPlaylist.swift */; };
 		BB88439C2C7245C100779ACC /* Taste.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB88439B2C7245C100779ACC /* Taste.swift */; };
 		BB88439E2C72656D00779ACC /* Pins.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB88439D2C72656D00779ACC /* Pins.swift */; };
 		BB8843A02C72815A00779ACC /* PlaylistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB88439F2C72815A00779ACC /* PlaylistsView.swift */; };
@@ -209,6 +210,7 @@
 		BB66C2102AA0F6C500BB4CBA /* ListensArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListensArtist.swift; sourceTree = "<group>"; };
 		BB6FF5802B52D3B40057F8C1 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		BB7833632B3F2DB3005D7266 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		BB8305BD2C79EC5F00A61411 /* CreatedForYouPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatedForYouPlaylist.swift; sourceTree = "<group>"; };
 		BB88439B2C7245C100779ACC /* Taste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Taste.swift; sourceTree = "<group>"; };
 		BB88439D2C72656D00779ACC /* Pins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pins.swift; sourceTree = "<group>"; };
 		BB88439F2C72815A00779ACC /* PlaylistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsView.swift; sourceTree = "<group>"; };
@@ -455,6 +457,8 @@
 				BBC7CA632C60DC2F00470944 /* Count.swift */,
 				BB88439B2C7245C100779ACC /* Taste.swift */,
 				BB88439D2C72656D00779ACC /* Pins.swift */,
+				BB8843A52C7284DF00779ACC /* CreatedForYou.swift */,
+				BB8305BD2C79EC5F00A61411 /* CreatedForYouPlaylist.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -568,7 +572,6 @@
 				BB66C2022A9F3F8700BB4CBA /* Event.swift */,
 				BBD28DE02A2F9EB900AD57C6 /* Track.swift */,
 				BB8843A12C72821A00779ACC /* Playlist.swift */,
-				BB8843A52C7284DF00779ACC /* CreatedForYou.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -909,6 +912,7 @@
 				BBE975B32A67FAF3000908B1 /* ShazamViewModel.swift in Sources */,
 				BBD28DD92A2F9E2E00AD57C6 /* ListensTrackMetadata.swift in Sources */,
 				BB66C2012A9F3F0900BB4CBA /* FeedRepositoryImpl.swift in Sources */,
+				BB8305BE2C79EC5F00A61411 /* CreatedForYouPlaylist.swift in Sources */,
 				BBC5C7BD2B4FE8C0000A5EB1 /* TopRecording.swift in Sources */,
 				6F842DCD29C64E3E00DBBC7B /* ListensView.swift in Sources */,
 				BB8843AB2C72BE9E00779ACC /* CapsuleBarView.swift in Sources */,

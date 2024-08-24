@@ -16,6 +16,7 @@ struct TasteView: View {
     @State private var selectedPinnedRecording: PinnedRecording?
     @State private var isPresented: Bool = false
     @State private var selectedCategory: SongCategory = .loved
+    @Environment(\.colorScheme) var colorScheme
 
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
@@ -50,8 +51,10 @@ struct TasteView: View {
                                     selectedTaste = taste
                                     showWriteReview = true
                                 })
-                                .padding(.horizontal)
-                                .padding(.vertical, 5)
+                                .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
+                                .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+                                .cornerRadius(10)
+                                .shadow(radius: 2)
                             }
                         } else {
                             ForEach(viewModel.hatedTastes, id: \.id) { taste in
@@ -65,8 +68,10 @@ struct TasteView: View {
                                     selectedTaste = taste
                                     showWriteReview = true
                                 })
-                                .padding(.horizontal)
-                                .padding(.vertical, 5)
+                                .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
+                                .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+                                .cornerRadius(10)
+                                .shadow(radius: 2)
                             }
                         }
                     }

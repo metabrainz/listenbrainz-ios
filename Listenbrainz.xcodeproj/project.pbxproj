@@ -490,17 +490,9 @@
 		BB13BD9F2C6A42CE00807896 /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
-				BB13BDC22C6A710A00807896 /* TopAlbumsSection */,
 				BB46AC752C6A2E24003BE1FC /* StatisticsView.swift */,
 			);
 			path = Statistics;
-			sourceTree = "<group>";
-		};
-		BB13BDC22C6A710A00807896 /* TopAlbumsSection */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TopAlbumsSection;
 			sourceTree = "<group>";
 		};
 		BB46AC742C6A2DF5003BE1FC /* DashboardComponents */ = {

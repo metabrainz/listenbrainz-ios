@@ -13,6 +13,7 @@ struct StatisticsView: View {
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     @State private var isSettingsPressed = false
     @State private var isSearchActive = false
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         ScrollView(.vertical) {
@@ -49,7 +50,10 @@ struct StatisticsView: View {
                 } else {
                     ForEach(viewModel.topArtists.prefix(10), id: \.artistName) { artist in
                         TopArtistRowView(artist: artist)
-                            .padding([.leading, .trailing])
+                        .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
+                        .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 2)
                     }
                 }
             }
@@ -67,7 +71,10 @@ struct StatisticsView: View {
                 } else {
                   ForEach(viewModel.topAlbums.prefix(10), id: \.caaReleaseMbid) { album in
                         TopAlbumRowView(album: album)
-                            .padding([.leading, .trailing])
+                      .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
+                      .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+                      .cornerRadius(10)
+                      .shadow(radius: 2)
                     }
                 }
             }
@@ -86,7 +93,10 @@ struct StatisticsView: View {
                 } else {
                     ForEach(viewModel.topTracks.prefix(10), id: \.caaReleaseMbid) { track in
                         TopTrackRowView(track: track)
-                            .padding([.leading, .trailing])
+                        .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
+                        .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 2)
                     }
                 }
             }
@@ -127,13 +137,18 @@ struct TopArtistRowView: View {
             Spacer()
             Text("\(artist.listenCount)")
                 .font(.subheadline)
-                .foregroundColor(.gray)
+                .foregroundColor(.white)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(Color.secondary)
+                .clipShape(Capsule())
         }
         .padding()
         .background(Color(.systemBackground).opacity(0.1))
         .cornerRadius(8)
     }
 }
+
 
 
 
@@ -170,8 +185,12 @@ struct TopAlbumRowView: View {
             .foregroundColor(Color.LbPurple)
             Spacer()
             Text("\(album.listenCount)")
-                .font(.subheadline)
-                .foregroundColor(.gray)
+            .font(.subheadline)
+            .foregroundColor(.white)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .background(Color.secondary)
+            .clipShape(Capsule())
         }
         .padding()
         .background(Color(.systemBackground).opacity(0.1))
@@ -212,8 +231,12 @@ struct TopTrackRowView: View {
             .foregroundColor(Color.LbPurple)
             Spacer()
             Text("\(track.listenCount)")
-                .font(.subheadline)
-                .foregroundColor(.gray)
+            .font(.subheadline)
+            .foregroundColor(.white)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .background(Color.secondary)
+            .clipShape(Capsule())
         }
         .padding()
         .background(Color(.systemBackground).opacity(0.1))

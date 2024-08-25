@@ -14,6 +14,7 @@ struct PinsView: View {
     @Binding var showPinTrackView: Bool
     @Binding var showingRecommendToUsersPersonallyView: Bool
     @Binding var showWriteReview: Bool
+    @Environment(\.colorScheme) var colorScheme
 
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
@@ -22,7 +23,7 @@ struct PinsView: View {
         VStack {
             HStack {
                 Text("Your Pins")
-                    .font(.headline)
+                    .font(.title2)
                     .padding(.top)
                     .padding(.leading)
                 Spacer()
@@ -40,8 +41,10 @@ struct PinsView: View {
                             selectedPinnedRecording = recording
                             showWriteReview = true
                         })
-                        .padding(.horizontal)
-                        .padding(.vertical, 5)
+                        .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
+                        .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 2)
                     }
                 }
             }

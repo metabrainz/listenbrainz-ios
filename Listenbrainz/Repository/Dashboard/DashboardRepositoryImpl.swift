@@ -182,7 +182,22 @@ class DashboardRepositoryImpl: DashboardRepository {
               .validate()
               .publishDecodable(type: CreatedForYouResponse.self)
               .value()
-              .map { $0.playlists } // Return only the array of CreatedForYouContainer
+              .map { $0.playlists }
+              .eraseToAnyPublisher()
+      }
+
+  func getCreatedForYouPlaylist(playlistId: String) -> AnyPublisher<PlaylistDetails, AFError> {
+          let urlString = "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/playlist/\(playlistId)"
+    print(urlString)
+          guard let url = URL(string: urlString) else {
+              return Fail(error: AFError.invalidURL(url: urlString)).eraseToAnyPublisher()
+          }
+
+          return AF.request(url, method: .get)
+              .validate()
+              .publishDecodable(type: PlaylistDetailsResponse.self)
+              .value()
+              .map { $0.playlist }
               .eraseToAnyPublisher()
       }
 

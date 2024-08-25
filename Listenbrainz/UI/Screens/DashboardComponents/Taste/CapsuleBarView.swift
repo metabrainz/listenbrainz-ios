@@ -24,8 +24,16 @@ struct CapsuleBarView: View {
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 16)
-        .background(isSelected ? Capsule().fill(Color.secondary) : Capsule().fill(Color.gray))
+        .background(
+            Capsule()
+                .fill(isSelected ? Color.secondary : Color.backgroundColor)
+                .overlay(
+                    Capsule()
+                        .stroke(Color.gray, lineWidth: 2)
+                )
+        )
         .foregroundColor(.white)
         .animation(.easeInOut(duration: 0.2), value: isSelected)
     }
 }
+

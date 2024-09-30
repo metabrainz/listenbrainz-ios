@@ -83,6 +83,7 @@ struct FeedView: View {
                                             .font(.system(size: 10))
                                             .foregroundColor(Color.gray)
                                             .italic()
+                                            .padding(.trailing,4)
 
                                           if event.eventType == "recording_recommendation" {
                                             Button(action: {
@@ -115,6 +116,7 @@ struct FeedView: View {
                                 }
                             }
                         }
+                        .padding([.trailing,.leading],6)
                       if viewModel.isLoading {
                         ProgressView()
                           .progressViewStyle(CircularProgressViewStyle())

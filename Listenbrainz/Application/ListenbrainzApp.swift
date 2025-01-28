@@ -32,7 +32,6 @@ struct ListenbrainzApp: App {
             .environmentObject(feedViewModel)
             .environmentObject(dashboardViewModel)
             .preferredColorScheme(isDarkMode ? .dark : .light)
-          //.environmentObject(spotifyManager)
             .onOpenURL { url in
               //spotifyManager.sessionManager.application(UIApplication.shared, open: url, options: [:])
             }

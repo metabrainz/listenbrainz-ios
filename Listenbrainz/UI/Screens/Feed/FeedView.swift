@@ -39,6 +39,13 @@ struct FeedView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     ScrollView {
+                        if viewModel.events.isEmpty {
+                                    Text("No data available")
+                                        .font(.title3)
+                                        .foregroundColor(.gray)
+                                        .padding(.top, 10)
+                                        .padding(.leading, 6)
+                                }
                         LazyVStack {
                             ForEach(viewModel.events, id: \.created) { event in
                                 HStack(alignment: .top, spacing: 10) {
@@ -232,10 +239,3 @@ struct ReviewView: View {
         .padding(.top, 5)
     }
 }
-
-
-
-
-
-
-

@@ -40,7 +40,7 @@ struct FeedView: View {
                 } else {
                     ScrollView {
                         if viewModel.events.isEmpty {
-                                    Text("No data available")
+                                    Text("You are all caught up!")
                                         .font(.title3)
                                         .foregroundColor(.gray)
                                         .padding(.top, 10)

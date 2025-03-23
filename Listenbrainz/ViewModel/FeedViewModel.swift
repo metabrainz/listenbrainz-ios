@@ -27,48 +27,69 @@ class FeedViewModel: ObservableObject {
         self.repository = repository
     }
 
-  func fetchFeedEvents(username: String, userToken: String) async throws {
-          guard !isLoading && canLoadMorePages else { return }
+func fetchFeedEvents(username: String, userToken: String) async throws {
+        guard canLoadMorePages, !isLoading else {
+            return
+        }
 
-          DispatchQueue.main.async {
-              self.isLoading = true
-          }
+        DispatchQueue.main.async {
+            self.isLoading = true
+        }
 
-          defer {
-              DispatchQueue.main.async {
-                  self.isLoading = false
-                  self.isInitialLoad = false
-              }
-          }
+        defer {
+            DispatchQueue.main.async {
+                self.isLoading = false
+                self.isInitialLoad = false
+            }
+        }
+        try await withCheckedThrowingContinuation { continuation in
+            repository.fetchFeedData(userName: username, userToken: userToken, page: currentPage, perPage: itemsPerPage)
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        continuation.resume()
+                    case .failure(let error):
+                        self.canLoadMorePages = false
+                        print("Fetch failed: \(error), stopping pagination")
+                        continuation.resume(throwing: error)
+                    }
+                }, receiveValue: { data in
+                    let newEvents = data.payload.events.filter { !self.loadedEventIDs.contains($0.id ?? -1) }
+                    DispatchQueue.main.async {
+                        if !newEvents.isEmpty {
+                            self.currentPage += 1
+                            self.events.append(contentsOf: newEvents)
+                            self.loadedEventIDs.formUnion(newEvents.compactMap { $0.id })
+                        }
 
-          try await withCheckedThrowingContinuation { continuation in
-              repository.fetchFeedData(userName: username, userToken: userToken, page: currentPage, perPage: itemsPerPage)
-                  .receive(on: DispatchQueue.main)
-                  .sink(receiveCompletion: { completion in
-                      switch completion {
-                      case .finished:
-                          continuation.resume()
-                      case .failure(let error):
-                          continuation.resume(throwing: error)
-                      }
-                  }, receiveValue: { data in
-                      let newEvents = data.payload.events
-                      if newEvents.isEmpty {
-                          self.canLoadMorePages = false
-                      } else {
-                          self.currentPage += 1
-                          self.events.append(contentsOf: newEvents)
-                      }
-                  })
-                  .store(in: &self.subscriptions)
-          }
-      }
+                        if newEvents.count < self.itemsPerPage {
+                            self.canLoadMorePages = false
+                        }
 
-      func resetPagination() {
-          currentPage = 1
-          canLoadMorePages = true
-          events.removeAll()
-      }
+                        self.objectWillChange.send()
+                    }
+                })
+                .store(in: &self.subscriptions)
+        }
+    }
+
+
+
+
+
+
+    func resetPagination() {
+        DispatchQueue.main.async {
+            self.currentPage = 1
+            self.canLoadMorePages = true
+            self.isLoading = false
+            self.isInitialLoad = true
+            self.loadedEventIDs.removeAll()
+            self.events.removeAll()
+        }
+    }
+
 
 
 

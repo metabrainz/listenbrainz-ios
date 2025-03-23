@@ -109,19 +109,23 @@ struct FeedView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                                 .onAppear {
-                                    if event == viewModel.events.last && viewModel.canLoadMorePages {
-                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
-                                            Task {
-                                                do {
-                                                    try await viewModel.fetchFeedEvents(username: userName, userToken: userToken)
-                                                } catch {
-                                                    print("Error fetching more events: \(error)")
-                                                }
+                                    if viewModel.events.isEmpty && !viewModel.isLoading {
+                                        Task {
+                                            do {
+                                                try await viewModel.fetchFeedEvents(username: userName, userToken: userToken)
+                                            } catch {
+                                                print("Error fetching initial data: \(error)")
                                             }
                                         }
                                     }
                                 }
                             }
+                            Text("✓ You are all caught up!")
+                                .font(.title3)
+                                .foregroundColor(Color.LbPurple)
+                                .padding(.vertical, 10)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .padding(.bottom, 100)
                         }
                         .padding([.trailing,.leading],6)
                       if viewModel.isLoading {

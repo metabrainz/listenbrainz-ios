@@ -39,13 +39,6 @@ struct FeedView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     ScrollView {
-                        if viewModel.events.isEmpty {
-                                    Text("You are all caught up!")
-                                        .font(.title3)
-                                        .foregroundColor(.gray)
-                                        .padding(.top, 10)
-                                        .padding(.leading, 6)
-                                }
                         LazyVStack {
                             ForEach(viewModel.events, id: \.created) { event in
                                 HStack(alignment: .top, spacing: 10) {

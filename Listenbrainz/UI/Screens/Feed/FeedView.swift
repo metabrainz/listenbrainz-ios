@@ -102,12 +102,14 @@ struct FeedView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                                 .onAppear {
-                                    if viewModel.events.isEmpty && !viewModel.isLoading {
-                                        Task {
-                                            do {
-                                                try await viewModel.fetchFeedEvents(username: userName, userToken: userToken)
-                                            } catch {
-                                                print("Error fetching initial data: \(error)")
+                                    if event == viewModel.events.last && viewModel.canLoadMorePages {
+                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                            Task {
+                                                do {
+                                                    try await viewModel.fetchFeedEvents(username: userName, userToken: userToken)
+                                                } catch {
+                                                    print("Error fetching more events: \(error)")
+                                                }
                                             }
                                         }
                                     }
@@ -236,3 +238,10 @@ struct ReviewView: View {
         .padding(.top, 5)
     }
 }
+
+
+
+
+
+
+

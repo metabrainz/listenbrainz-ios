@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TasteView: View {
+    @EnvironmentObject var insetsHolder: InsetsHolder
     @EnvironmentObject var viewModel: DashboardViewModel
     @State private var showPinTrackView = false
     @State private var showWriteReview = false
@@ -76,6 +77,7 @@ struct TasteView: View {
                         }
                     }
                 }
+                
                 PinsView(
                     selectedPinnedRecording: $selectedPinnedRecording,
                     showPinTrackView: $showPinTrackView,
@@ -84,7 +86,10 @@ struct TasteView: View {
                 )
                 .environmentObject(viewModel)
             }
+            
+            Spacer(minLength: 8)
         }
+        .padding(.bottom, insetsHolder.tabBarHeight)
         .onAppear {
             viewModel.getTaste(userName: userName)
         }

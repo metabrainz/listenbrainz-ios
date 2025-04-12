@@ -10,6 +10,7 @@ import SwiftUI
 
 struct FeedView: View {
     @EnvironmentObject var viewModel: FeedViewModel
+    @EnvironmentObject var insetsHolder: InsetsHolder
     @State private var isSettingsPressed = false
     @State private var isSearchActive = false
     @Environment(\.colorScheme) var colorScheme
@@ -117,12 +118,15 @@ struct FeedView: View {
                             }
                         }
                         .padding([.trailing,.leading],6)
-                      if viewModel.isLoading {
-                        ProgressView()
-                          .progressViewStyle(CircularProgressViewStyle())
-                          .padding(.vertical, 10)
-                      }
+                        if viewModel.isLoading {
+                          ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .padding(.vertical, 10)
+                        }
+                        
+                        Spacer(minLength: 8)
                     }
+                    .padding(.bottom, insetsHolder.tabBarHeight)
                     .sheet(isPresented: $isSettingsPressed) {
                         SettingsView()
                     }
@@ -232,10 +236,3 @@ struct ReviewView: View {
         .padding(.top, 5)
     }
 }
-
-
-
-
-
-
-

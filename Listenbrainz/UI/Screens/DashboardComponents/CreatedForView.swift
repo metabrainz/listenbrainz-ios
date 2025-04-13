@@ -27,9 +27,9 @@ struct CreatedForYouView: View {
         VStack(alignment: .leading) {
           Text("Created for \(userName)")
             .font(.system(size: 20))
-            .padding(.leading,20)
+            .padding(.leading, theme.spacings.horizontal * 2)
           ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
+              HStack(spacing: theme.spacings.vertical) {
               ForEach(viewModel.createdForYou.indices, id: \.self) { index in
                 let playlist = viewModel.createdForYou[index]
                 let imageName = "green-\(index + 1)"
@@ -46,11 +46,12 @@ struct CreatedForYouView: View {
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(Color.lb_purple)
                     .padding()
-                    .frame(maxWidth: UIScreen.main.bounds.size.width * 0.9 - 32)
+                    .frame(maxWidth: UIScreen.main.bounds.size.width * 0.9 - theme.spacings.horizontal * 2)
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
                     .shadow(radius: 2)
                 }
+                .cornerRadius(theme.sizes.cornerRadius)
                 .onAppear{
                   if let firstPlaylist = viewModel.createdForYou.first {
                     fetchPlaylistDetails(firstPlaylist.identifier)
@@ -61,7 +62,7 @@ struct CreatedForYouView: View {
                 }
               }
             }
-            .padding()
+              .padding(.horizontal, theme.spacings.horizontal)
           }
           
           if !isLoading {

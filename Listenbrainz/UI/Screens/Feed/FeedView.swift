@@ -54,8 +54,10 @@ struct FeedView: View {
 
                                     VStack(alignment: .leading, spacing: 5) {
                                         EventDescriptionView(event: event)
-                                      VStack(spacing:-5){
+                                        
                                         if event.eventType != "follow" && event.eventType != "notification" {
+                                          Spacer(minLength: 8)
+                                            
                                           TrackInfoView(item: event, onPinTrack: { event in
                                             selectedEvent = event
                                             showPinTrackView = true
@@ -66,17 +68,16 @@ struct FeedView: View {
                                             selectedEvent = event
                                             showWriteReview = true
                                           })
-                                          .frame(width: screenWidth, alignment: .leading)
                                           .background(theme.colorScheme.level1)
-                                          .cornerRadius(10)
-                                          .shadow(radius: 2)
+                                          .cornerRadius(theme.sizes.cornerRadius)
+                                          .shadow(radius: theme.sizes.shadowRadius)
+                                          .padding(.horizontal, theme.sizes.shadowRadius)
 
                                           if event.eventType == "critiquebrainz_review" {
                                             ReviewView(event: event)
                                               .frame(width: screenWidth, alignment: .leading)
                                           }
                                         }
-                                      }
 
                                         HStack {
                                           Spacer()
@@ -102,7 +103,7 @@ struct FeedView: View {
                                     }
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
+                                .padding(.vertical, 4)
                                 .onAppear {
                                     if event == viewModel.events.last && viewModel.canLoadMorePages {
                                         DispatchQueue.main.asyncAfter(deadline: .now()) {
@@ -118,7 +119,7 @@ struct FeedView: View {
                                 }
                             }
                         }
-                        .padding([.trailing,.leading],6)
+                        .padding(.horizontal, theme.spacings.horizontal)
                         if viewModel.isLoading {
                           ProgressView()
                             .progressViewStyle(CircularProgressViewStyle())
@@ -177,6 +178,7 @@ struct FeedView: View {
         }
     }
 
+    // TODO: Make heights not depend on event but layout bounds
     private func verticalLineHeight(for event: Event) -> CGFloat {
         switch event.eventType {
         case "critiquebrainz_review":
@@ -186,7 +188,7 @@ struct FeedView: View {
         case "follow":
           return 15
         default:
-            return 60
+            return 80
         }
     }
 

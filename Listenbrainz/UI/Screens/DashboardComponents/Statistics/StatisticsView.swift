@@ -148,10 +148,10 @@ struct TopArtistRowView: View {
             Spacer()
             Text("\(artist.listenCount)")
                 .font(.subheadline)
-                .foregroundColor(.white)
+                .foregroundColor(theme.colorScheme.onLbSignature)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
-                .background(Color.secondary)
+                .background(theme.colorScheme.lbSignature)
                 .clipShape(Capsule())
         }
         .padding()

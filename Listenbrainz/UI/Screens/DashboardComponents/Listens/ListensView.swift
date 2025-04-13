@@ -58,6 +58,8 @@ struct ListensView: View {
                         VStack {
                             ListensStatsView()
                                 .environmentObject(dashboardViewModel)
+                                .padding(.horizontal, theme.spacings.horizontal)
+                                .padding(.vertical, theme.sizes.shadowRadius)   // Shadow breathing room
 
                             SongDetailView(
                                 onPinTrack: { listen in
@@ -167,7 +169,7 @@ struct TabButton: View {
                 .background(isSelected ? theme.colorScheme.chipSelected : theme.colorScheme.chipUnselected)
                 .foregroundColor(theme.colorScheme.text)
                 .cornerRadius(4)
-                .shadow(radius: 2)
+                .shadow(radius: theme.sizes.shadowRadius)
                 .animation(.easeInOut(duration: 0.2), value: isSelected)
         }
         .frame(maxWidth: .infinity)

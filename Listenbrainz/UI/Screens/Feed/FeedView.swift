@@ -124,7 +124,7 @@ struct FeedView: View {
                             .padding(.vertical, 10)
                         }
                         
-                        Spacer(minLength: 8)
+                        Spacer(minLength: 12)
                     }
                     .padding(.bottom, insetsHolder.tabBarHeight)
                     .sheet(isPresented: $isSettingsPressed) {

@@ -47,7 +47,7 @@ struct FeedView: View {
                                     VStack(alignment: .leading) {
                                         EventImageView(eventType: event.eventType)
                                             .frame(width: 22, height: 22)
-                                        VerticalLine(color: colorScheme == .dark ? Color.white : Color.black)
+                                        VerticalLine(color: theme.colorScheme.text)
                                             .frame(width: 1, height: verticalLineHeight(for: event))
                                             .offset(x: 10, y: 4)
                                     }
@@ -67,7 +67,7 @@ struct FeedView: View {
                                             showWriteReview = true
                                           })
                                           .frame(width: screenWidth, alignment: .leading)
-                                          .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+                                          .background(theme.colorScheme.level1)
                                           .cornerRadius(10)
                                           .shadow(radius: 2)
 
@@ -83,7 +83,7 @@ struct FeedView: View {
 
                                           Text(formatDate(epochTime: TimeInterval(event.created)))
                                             .font(.system(size: 10))
-                                            .foregroundColor(Color.gray)
+                                            .foregroundColor(theme.colorScheme.hint)
                                             .italic()
                                             .padding(.trailing,4)
 
@@ -95,7 +95,7 @@ struct FeedView: View {
                                                 .renderingMode(.template)
                                                 .resizable()
                                                 .frame(width: 18, height: 18)
-                                                .foregroundColor(Color.LbPurple)
+                                                .foregroundColor(theme.colorScheme.lbSignature)
                                             }
                                           }
                                         }
@@ -212,6 +212,7 @@ struct VerticalLine: View {
 }
 struct ReviewView: View {
     let event: Event
+    @EnvironmentObject var theme: Theme
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
@@ -231,7 +232,7 @@ struct ReviewView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding()
-        .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+        .background(theme.colorScheme.level1)
         .cornerRadius(10)
         .frame(width: UIScreen.main.bounds.width * 0.9, alignment: .leading)
         .padding(.top, 5)

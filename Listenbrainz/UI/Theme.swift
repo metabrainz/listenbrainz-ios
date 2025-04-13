@@ -45,6 +45,7 @@ struct Sizes {
 struct Spacings {
     let screenBottom: CGFloat = 12
     let horizontal: CGFloat = 8
+    let vertical: CGFloat = 8
 }
 
 // Colors

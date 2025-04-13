@@ -11,24 +11,25 @@ import Charts
 struct StatisticsView: View {
     @EnvironmentObject var insetsHolder: InsetsHolder
     @EnvironmentObject var viewModel: DashboardViewModel
+    @EnvironmentObject var theme: Theme
+    
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     @State private var isSettingsPressed = false
     @State private var isSearchActive = false
-    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         ScrollView(.vertical) {
             ScrollView(.horizontal) {
                 VStack(alignment: .leading) {
-
                     Text("Listening Activity")
                         .font(.title)
+                        .foregroundColor(theme.colorScheme.text)
                         .padding([.top, .leading])
 
                     if viewModel.listeningActivity.isEmpty {
                         Text("No listening activity available")
                             .font(.headline)
-                            .foregroundColor(.white)
+                            .foregroundColor(theme.colorScheme.text)
                             .padding([.leading, .trailing])
                     } else {
                         ListeningActivityBarChart(listeningActivity: viewModel.listeningActivity)
@@ -41,41 +42,47 @@ struct StatisticsView: View {
             VStack(alignment: .leading) {
                 Text("Top Artists")
                     .font(.title)
+                    .foregroundColor(theme.colorScheme.text)
                     .padding([.top, .leading])
 
                 if viewModel.topArtists.isEmpty {
                     Text("No top artists available")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(theme.colorScheme.text)
                         .padding([.leading, .trailing])
                 } else {
+                    Spacer(minLength: theme.sizes.shadowRadius)
+                    
                     ForEach(viewModel.topArtists.prefix(10), id: \.artistName) { artist in
                         TopArtistRowView(artist: artist)
                         .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                        .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                        .cornerRadius(10)
-                        .shadow(radius: 2)
+                        .background(theme.colorScheme.level1)
+                        .cornerRadius(theme.sizes.cornerRadius)
+                        .shadow(radius: theme.sizes.shadowRadius)
                     }
+                    
+                    Spacer(minLength: theme.sizes.shadowRadius)
                 }
             }
 
             VStack(alignment: .leading) {
                 Text("Top Albums")
                     .font(.title)
+                    .foregroundColor(theme.colorScheme.text)
                     .padding([.top, .leading])
 
                 if viewModel.topAlbums.isEmpty {
                     Text("No top albums available")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(theme.colorScheme.text)
                         .padding([.leading, .trailing])
                 } else {
                   ForEach(viewModel.topAlbums.prefix(10), id: \.caaReleaseMbid) { album in
                         TopAlbumRowView(album: album)
                       .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                      .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                      .cornerRadius(10)
-                      .shadow(radius: 2)
+                      .background(theme.colorScheme.level1)
+                      .cornerRadius(theme.sizes.cornerRadius)
+                      .shadow(radius: theme.sizes.shadowRadius)
                     }
                 }
             }
@@ -84,20 +91,21 @@ struct StatisticsView: View {
             VStack(alignment: .leading) {
                 Text("Top Tracks")
                     .font(.title)
+                    .foregroundColor(theme.colorScheme.text)
                     .padding([.top, .leading])
 
                 if viewModel.topTracks.isEmpty {
                     Text("No top tracks available")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(theme.colorScheme.text)
                         .padding([.leading, .trailing])
                 } else {
                     ForEach(viewModel.topTracks.prefix(10), id: \.caaReleaseMbid) { track in
                         TopTrackRowView(track: track)
                         .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                        .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                        .cornerRadius(10)
-                        .shadow(radius: 2)
+                        .background(theme.colorScheme.level1)
+                        .cornerRadius(theme.sizes.cornerRadius)
+                        .shadow(radius: theme.sizes.shadowRadius)
                     }
                 }
             }
@@ -105,15 +113,14 @@ struct StatisticsView: View {
           VStack(alignment:.leading){
               Text("Daily Activity")
                 .font(.title)
+                .foregroundColor(theme.colorScheme.text)
                 .padding([.top, .leading])
-            ScrollView(.horizontal){
               if !viewModel.hours.isEmpty && !viewModel.counts.isEmpty {
                 HeatMapActivityView(hours: viewModel.hours, counts: viewModel.counts)
                   .frame(height: 200)
               } else {
                 Text("Loading...")
               }
-            }
 
               Spacer(minLength: 12)
           }
@@ -131,12 +138,13 @@ struct StatisticsView: View {
 
 struct TopArtistRowView: View {
     let artist: ArtistElement
+    @EnvironmentObject var theme: Theme
 
     var body: some View {
         HStack {
             Text(artist.artistName)
                 .font(.headline)
-                .foregroundColor(Color.LbPurple)
+                .foregroundColor(theme.colorScheme.listenText)
             Spacer()
             Text("\(artist.listenCount)")
                 .font(.subheadline)
@@ -157,6 +165,7 @@ struct TopArtistRowView: View {
 
 struct TopAlbumRowView: View {
     let album: Release
+    @EnvironmentObject var theme: Theme
 
     var body: some View {
         HStack {
@@ -185,24 +194,25 @@ struct TopAlbumRowView: View {
               Text(album.artistName)
                     .font(.subheadline)
             }
-            .foregroundColor(Color.LbPurple)
+            .foregroundColor(theme.colorScheme.listenText)
             Spacer()
             Text("\(album.listenCount)")
             .font(.subheadline)
-            .foregroundColor(.white)
+            .foregroundColor(theme.colorScheme.onLbSignature)
             .padding(.horizontal, 12)
             .padding(.vertical, 6)
-            .background(Color.secondary)
+            .background(theme.colorScheme.lbSignature)
             .clipShape(Capsule())
         }
         .padding()
-        .background(Color(.systemBackground).opacity(0.1))
+        .background(theme.colorScheme.level1)
         .cornerRadius(8)
     }
 }
 
 struct TopTrackRowView: View {
     let track: Recording
+    @EnvironmentObject var theme: Theme
 
     var body: some View {
         HStack {
@@ -231,18 +241,18 @@ struct TopTrackRowView: View {
                 Text(track.artistName)
                     .font(.subheadline)
             }
-            .foregroundColor(Color.LbPurple)
+            .foregroundColor(theme.colorScheme.lbSignature)
             Spacer()
             Text("\(track.listenCount)")
             .font(.subheadline)
-            .foregroundColor(.white)
+            .foregroundColor(theme.colorScheme.onLbSignature)
             .padding(.horizontal, 12)
             .padding(.vertical, 6)
-            .background(Color.secondary)
+            .background(theme.colorScheme.level1)
             .clipShape(Capsule())
         }
         .padding()
-        .background(Color(.systemBackground).opacity(0.1))
+        .background(theme.colorScheme.level1)
         .cornerRadius(8)
     }
 }
@@ -251,11 +261,13 @@ struct TopTrackRowView: View {
 
 
 struct HeatMapActivityView: View {
+    @EnvironmentObject var theme: Theme
+    
     let hours: [Int]
     let counts: [Int]
 
     var body: some View {
-        ScrollView(.horizontal) {
+        ScrollView(.horizontal, showsIndicators: false) {
             LazyHGrid(rows: Array(repeating: GridItem(.flexible()), count: 7), spacing: 1) {
                 ForEach(0..<hours.count, id: \.self) { index in
                     Rectangle()
@@ -265,7 +277,11 @@ struct HeatMapActivityView: View {
             }
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 10))
+        .background(theme.colorScheme.level1)
+        .cornerRadius(theme.sizes.cornerRadius)
+        .shadow(radius: theme.sizes.shadowRadius)
+        .padding(.all, theme.sizes.shadowRadius)    // Shadow breathing room
+        .padding(.horizontal, theme.spacings.horizontal)
     }
 
     private func heatMapColor(for listenCount: Int) -> Color {

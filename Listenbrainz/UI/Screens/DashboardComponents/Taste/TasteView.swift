@@ -41,6 +41,8 @@ struct TasteView: View {
 
                 ScrollView {
                     LazyVStack {
+                        Spacer(minLength: theme.sizes.shadowRadius)
+                        
                         if selectedCategory == .loved {
                             ForEach(viewModel.lovedTastes, id: \.id) { taste in
                                 TrackInfoView(item: taste, onPinTrack: { taste in
@@ -53,10 +55,10 @@ struct TasteView: View {
                                     selectedTaste = taste
                                     showWriteReview = true
                                 })
-                                .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
                                 .background(theme.colorScheme.level1)
                                 .cornerRadius(theme.sizes.cornerRadius)
                                 .shadow(radius: theme.sizes.shadowRadius)
+                                .padding(.horizontal, theme.spacings.horizontal)
                             }
                         } else {
                             ForEach(viewModel.hatedTastes, id: \.id) { taste in
@@ -70,12 +72,14 @@ struct TasteView: View {
                                     selectedTaste = taste
                                     showWriteReview = true
                                 })
-                                .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
                                 .background(theme.colorScheme.level1)
                                 .cornerRadius(theme.sizes.cornerRadius)
                                 .shadow(radius: theme.sizes.shadowRadius)
+                                .padding(.horizontal, theme.spacings.horizontal)
                             }
                         }
+                        
+                        Spacer(minLength: theme.sizes.shadowRadius)
                     }
                 }
                 

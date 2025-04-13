@@ -11,6 +11,7 @@ import SwiftUI
 struct FeedView: View {
     @EnvironmentObject var viewModel: FeedViewModel
     @EnvironmentObject var insetsHolder: InsetsHolder
+    @EnvironmentObject var theme: Theme
     @State private var isSettingsPressed = false
     @State private var isSearchActive = false
     @Environment(\.colorScheme) var colorScheme
@@ -29,7 +30,7 @@ struct FeedView: View {
 
     var body: some View {
         ZStack {
-            colorScheme == .dark ? Color.backgroundColor : Color.white
+            theme.colorScheme.background
 
             VStack {
                 TopBar(isSettingsPressed: $isSettingsPressed, isSearchActive: $isSearchActive, customText: "Feed")
@@ -124,7 +125,7 @@ struct FeedView: View {
                             .padding(.vertical, 10)
                         }
                         
-                        Spacer(minLength: 12)
+                        Spacer(minLength: theme.spacings.screenBottom)
                     }
                     .padding(.bottom, insetsHolder.tabBarHeight)
                     .sheet(isPresented: $isSettingsPressed) {

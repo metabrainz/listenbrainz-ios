@@ -10,6 +10,7 @@ import SwiftUI
 struct TasteView: View {
     @EnvironmentObject var insetsHolder: InsetsHolder
     @EnvironmentObject var viewModel: DashboardViewModel
+    @EnvironmentObject var theme: Theme
     @State private var showPinTrackView = false
     @State private var showWriteReview = false
     @State private var showingRecommendToUsersPersonallyView = false
@@ -87,7 +88,7 @@ struct TasteView: View {
                 .environmentObject(viewModel)
             }
             
-            Spacer(minLength: 12)
+            Spacer(minLength: theme.spacings.screenBottom)
         }
         .padding(.bottom, insetsHolder.tabBarHeight)
         .onAppear {

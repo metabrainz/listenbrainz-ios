@@ -51,6 +51,8 @@ protocol AppColorScheme {
     var text: Color { get }
     var listenText: Color { get }
     var hint: Color { get }
+    var chipUnselected: Color { get }
+    var chipSelected: Color { get }
 }
 
 struct DarkColors: AppColorScheme {
@@ -65,6 +67,8 @@ struct DarkColors: AppColorScheme {
     let text: Color = Color.white
     let listenText: Color = Color.white
     let hint: Color = Color(hex: "FF8C8C8C")
+    let chipSelected: Color = Color.black
+    let chipUnselected: Color = Color(hex: "FF1E1E1E")
 }
 
 struct LightColors: AppColorScheme {
@@ -79,4 +83,6 @@ struct LightColors: AppColorScheme {
     let text: Color = Color.black
     let listenText: Color = Color.lb_purple
     let hint: Color = Color(hex: "FF707070")
+    let chipSelected: Color = Color(hex: "FFB6B6B6")
+    let chipUnselected: Color = Color.white
 }

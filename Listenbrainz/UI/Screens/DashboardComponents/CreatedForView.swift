@@ -49,7 +49,6 @@ struct CreatedForYouView: View {
                     .frame(maxWidth: UIScreen.main.bounds.size.width * 0.9 - theme.spacings.horizontal * 2)
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
-                    .shadow(radius: 2)
                 }
                 .cornerRadius(theme.sizes.cornerRadius)
                 .onAppear{

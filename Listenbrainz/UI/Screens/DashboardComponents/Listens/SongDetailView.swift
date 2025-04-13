@@ -4,7 +4,7 @@ struct SongDetailView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @StateObject private var imageLoader = ImageLoader.shared
     @State private var isLoading = true
-    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var theme: Theme
 
     var onPinTrack: (Listen) -> Void
     var onRecommendPersonally: (Listen) -> Void
@@ -12,8 +12,6 @@ struct SongDetailView: View {
 
     var body: some View {
         ZStack {
-            colorScheme == .dark ? Color.backgroundColor : Color.white
-
             VStack {
                 if isLoading {
                     ProgressView()
@@ -21,6 +19,9 @@ struct SongDetailView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     ScrollView {
+                        // For when shadow cuts off for first ever item.
+                        Spacer(minLength: theme.sizes.shadowRadius)
+                        
                         ForEach(homeViewModel.listens, id: \.recordingMsid) { listen in
                             TrackInfoView(
                                 item: listen,
@@ -35,10 +36,14 @@ struct SongDetailView: View {
                                 }
                             )
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+                            .background(theme.colorScheme.level1)
                             .cornerRadius(10)
-                            .shadow(radius: 2)
+                            .shadow(radius: theme.sizes.shadowRadius)
+                            .padding(.horizontal, theme.spacings.horizontal)
                         }
+                        
+                        // For when shadow cuts off for last ever item.
+                        Spacer(minLength: theme.sizes.shadowRadius)
                     }
 //                    .refreshable {
 //                        await loadListens()

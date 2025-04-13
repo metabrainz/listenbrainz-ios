@@ -8,67 +8,67 @@
 import SwiftUI
 
 struct EventDescriptionView: View {
-    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var theme: Theme
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     let event: Event
 
     var body: some View {
         Group {
             if event.eventType == "notification" {
-                TextViewRepresentable(text: event.metadata.message ?? "", linkColor: .blue, foregroundColor: foregroundColor)
+                TextViewRepresentable(
+                    text: event.metadata.message ?? "",
+                    linkColor: theme.colorScheme.lbSignature,
+                    foregroundColor: theme.colorScheme.text
+                )
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundColor(foregroundColor)
+                    .foregroundColor(theme.colorScheme.text)
             } else {
                 eventDescription(for: event)
                     .font(.subheadline)
-                    .foregroundColor(foregroundColor)
+                    .foregroundColor(theme.colorScheme.text)
             }
         }
     }
 
-    private var foregroundColor: Color {
-        return colorScheme == .dark ? .white : .black
-    }
-
     private func eventDescription(for event: Event) -> Text {
         let usernameText = Text(replaceUsernameIfNeeded(event.userName))
-            .foregroundColor(Color.LbPurple)
+            .foregroundColor(theme.colorScheme.lbSignature)
 
         switch event.eventType {
         case "listen":
             return usernameText
                 + Text(" listened to a track ")
-                .foregroundColor(foregroundColor)
+                .foregroundColor(theme.colorScheme.text)
 
         case "recording_recommendation":
             return usernameText
                 + Text(" recommended a track ")
-                .foregroundColor(foregroundColor)
+                .foregroundColor(theme.colorScheme.text)
 
         case "critiquebrainz_review":
             return usernameText
                 + Text(" reviewed a track ")
-                .foregroundColor(foregroundColor)
+                .foregroundColor(theme.colorScheme.text)
 
         case "recording_pin":
             return usernameText
                 + Text(" pinned a track ")
-                .foregroundColor(foregroundColor)
+                .foregroundColor(theme.colorScheme.text)
 
         case "follow":
             let username0Text = Text(replaceUsernameIfNeeded(event.metadata.userName0 ?? ""))
-                .foregroundColor(Color.LbPurple)
+                .foregroundColor(theme.colorScheme.lbSignature)
             let username1Text = Text(replaceUsernameIfNeeded(event.metadata.userName1 ?? ""))
-                .foregroundColor(Color.LbPurple)
+                .foregroundColor(theme.colorScheme.lbSignature)
 
             return username0Text
                 + Text(" started following ")
-                .foregroundColor(foregroundColor)
+                .foregroundColor(theme.colorScheme.text)
                 + username1Text
 
         default:
             return Text("An event occurred")
-                .foregroundColor(foregroundColor)
+                .foregroundColor(theme.colorScheme.text)
         }
     }
 

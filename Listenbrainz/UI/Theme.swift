@@ -44,7 +44,7 @@ protocol AppColorScheme {
 }
 
 struct DarkColors: AppColorScheme {
-    let background: Color = Color.blue//Color(hex: "FF292929")
+    let background: Color = Color(hex: "FF292929")
 }
 
 struct LightColors: AppColorScheme {

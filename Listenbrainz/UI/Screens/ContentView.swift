@@ -25,7 +25,9 @@ struct ContentView: View {
                     .frame(width: screenWidth, height: screenHeight, alignment: .center)
                     .tabBarAccessor({ UITabBar in
                         // Update tab bar height only here since rest of the tab bars will have same height.
-                        insetsHolder.tabBarHeight = UITabBar.bounds.height
+                        DispatchQueue.main.async {
+                            insetsHolder.tabBarHeight = UITabBar.bounds.height
+                        }
                     })
                     .tabItem {
                         Label("Feed", systemImage: "bolt")

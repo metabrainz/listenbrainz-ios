@@ -10,6 +10,7 @@ import SwiftUI
 struct ListensView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var insetsHolder: InsetsHolder
+    @EnvironmentObject var theme: Theme
     @StateObject var dashboardViewModel = DashboardViewModel(repository: DashboardRepositoryImpl())
     @State private var selectedTab = 0
     @State private var isSettingsPressed = false
@@ -19,13 +20,13 @@ struct ListensView: View {
     @State private var showWriteReview = false
     @State private var selectedListen: Listen?
     @State private var isPresented: Bool = false
-    @Environment(\.colorScheme) var colorScheme
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
 
     var body: some View {
         ZStack {
-            colorScheme == .dark ? Color.backgroundColor : Color.white
+            theme.colorScheme.background
+            
             VStack {
                 TopBar(isSettingsPressed: $isSettingsPressed, isSearchActive: $isSearchActive, customText: topBarTitle)
 
@@ -72,12 +73,8 @@ struct ListensView: View {
                                     showWriteReview = true
                                 }
                             )
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                            .cornerRadius(10)
-                            .shadow(radius: 2)
                             
-                            Spacer(minLength: 12)
+                            Spacer(minLength: theme.spacings.screenBottom)
                         }
                     }.padding(.bottom, insetsHolder.tabBarHeight)
                 } else if selectedTab == 1 {
@@ -161,6 +158,7 @@ struct TabButton: View {
     let title: String
     let isSelected: Bool
     let action: () -> Void
+    @EnvironmentObject var theme: Theme
 
     var body: some View {
         Button(action: action) {
@@ -168,8 +166,10 @@ struct TabButton: View {
                 .font(.headline)
                 .padding(.vertical, 8)
                 .padding(.horizontal, 16)
-                .background(isSelected ? Rectangle().fill(Color.secondary) : Rectangle().fill(Color.black.opacity(0.2)))
-                .foregroundColor(.white)
+                .background(isSelected ? theme.colorScheme.chipSelected : theme.colorScheme.chipUnselected)
+                .foregroundColor(theme.colorScheme.text)
+                .cornerRadius(2)
+                .shadow(radius: 2)
                 .animation(.easeInOut(duration: 0.2), value: isSelected)
         }
         .frame(maxWidth: .infinity)

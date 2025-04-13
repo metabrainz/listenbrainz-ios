@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CreatedForYouView: View {
     @EnvironmentObject var viewModel: DashboardViewModel
+    @EnvironmentObject var theme: Theme
+    @EnvironmentObject var insetsHolder: InsetsHolder
     @State private var selectedPlaylistId: String?
     @State private var isLoading = false
     @State private var showPinTrackView = false
@@ -21,7 +23,7 @@ struct CreatedForYouView: View {
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
 
     var body: some View {
-      ScrollView(.vertical){
+      ScrollView(.vertical) {
         VStack(alignment: .leading) {
           Text("Created for \(userName)")
             .font(.system(size: 20))
@@ -42,7 +44,7 @@ struct CreatedForYouView: View {
                   
                   Text(playlist.title.components(separatedBy: ",").first ?? "")
                     .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(Color.LbPurple)
+                    .foregroundColor(Color.lb_purple)
                     .padding()
                     .frame(maxWidth: UIScreen.main.bounds.size.width * 0.9 - 32)
                     .lineLimit(2)
@@ -67,7 +69,7 @@ struct CreatedForYouView: View {
               VStack(alignment: .leading) {
                 
                 ScrollView {
-                  VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading, spacing: theme.spacings.vertical) {
                     ForEach(details.track, id: \.title) { track in
                       TrackInfoView(
                         item: track,
@@ -84,13 +86,14 @@ struct CreatedForYouView: View {
                           showWriteReview = true
                         }
                       )
-                      .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                      .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                      .cornerRadius(10)
-                      .shadow(radius: 2)
+                      .background(theme.colorScheme.level1)
+                      .cornerRadius(theme.sizes.cornerRadius)
+                      .shadow(radius: theme.sizes.shadowRadius)
+                      .padding(.horizontal, theme.spacings.horizontal)
                     }
+                        
+                        Spacer(minLength: theme.spacings.screenBottom)
                   }
-                  .padding(.horizontal)
                 }
               }
               .padding(.top)
@@ -102,6 +105,7 @@ struct CreatedForYouView: View {
           }
         }
       }
+        .padding(.bottom, insetsHolder.tabBarHeight)
         .onAppear {
           viewModel.getCreatedForYou(username: userName)
         }

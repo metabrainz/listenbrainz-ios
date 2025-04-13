@@ -11,7 +11,7 @@ struct TopBar: View {
     @Binding var isSettingsPressed: Bool
     @Binding var isSearchActive: Bool
     var customText: String
-    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var theme: Theme
 
     var body: some View {
         VStack {
@@ -28,7 +28,7 @@ struct TopBar: View {
                 }
 
                 Text(customText)
-                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                    .foregroundColor(theme.colorScheme.text)
                     .font(.title2)
                     .fontWeight(.bold)
                     .padding(.trailing, 20)
@@ -38,21 +38,23 @@ struct TopBar: View {
                 Button(action: {
                     isSearchActive.toggle()
                 }) {
-                    Image(systemName: "magnifyingglass")
+                    Image("search")
                         .resizable()
+                        .renderingMode(.template)
                         .frame(width: 24, height: 24)
                         .padding(.trailing)
-                        .foregroundColor(Color.primary)
+                        .foregroundColor(theme.colorScheme.text.opacity(0.7))
                 }
 
                 Button(action: {
                     isSettingsPressed.toggle()
                 }) {
-                    Image(systemName: "gear")
+                    Image("settings")
                         .resizable()
+                        .renderingMode(.template)
                         .frame(width: 24, height: 24)
                         .padding(.trailing)
-                        .foregroundColor(Color.primary)
+                        .foregroundColor(theme.colorScheme.text.opacity(0.7))
                 }
             }
             .fullScreenCover(isPresented: $isSearchActive) {

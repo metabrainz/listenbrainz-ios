@@ -29,12 +29,21 @@ class Theme: ObservableObject {
     }
     
     let spacings = Spacings()
+    
+    let sizes = Sizes()
+}
+
+// Sizes
+
+struct Sizes {
+    let shadowRadius: CGFloat = 2
 }
 
 // Spacings
 
 struct Spacings {
     let screenBottom: CGFloat = 12
+    let horizontal: CGFloat = 8
 }
 
 // Colors

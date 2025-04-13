@@ -13,9 +13,10 @@ struct ListenbrainzApp: App {
     @StateObject var homeViewModel =  HomeViewModel(repository: HomeRepositoryImpl())
     @StateObject var feedViewModel = FeedViewModel(repository: FeedRepositoryImpl())
     @StateObject var dashboardViewModel = DashboardViewModel(repository: DashboardRepositoryImpl())
+    @StateObject var theme = Theme()
+    
     @AppStorage(Strings.AppStorageKeys.isOnboarding) var isOnboarding: Bool = true
     //@StateObject var spotifyManager = SpotifyManager()
-    @AppStorage(Strings.AppStorageKeys.isDarkMode) private var isDarkMode = true
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     
     
@@ -30,7 +31,8 @@ struct ListenbrainzApp: App {
                         .environmentObject(homeViewModel)
                         .environmentObject(feedViewModel)
                         .environmentObject(dashboardViewModel)
-                        .preferredColorScheme(isDarkMode ? .dark : .light)
+                        .environmentObject(theme)
+                        .preferredColorScheme(theme.systemColorScheme)
                         .onOpenURL { url in
                             //spotifyManager.sessionManager.application(UIApplication.shared, open: url, options: [:])
                         }

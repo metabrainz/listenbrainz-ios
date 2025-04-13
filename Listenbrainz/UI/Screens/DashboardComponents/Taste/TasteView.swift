@@ -87,7 +87,7 @@ struct TasteView: View {
                 .environmentObject(viewModel)
             }
             
-            Spacer(minLength: 8)
+            Spacer(minLength: 12)
         }
         .padding(.bottom, insetsHolder.tabBarHeight)
         .onAppear {

@@ -77,7 +77,7 @@ struct ListensView: View {
                             .cornerRadius(10)
                             .shadow(radius: 2)
                             
-                            Spacer(minLength: 8)
+                            Spacer(minLength: 12)
                         }
                     }.padding(.bottom, insetsHolder.tabBarHeight)
                 } else if selectedTab == 1 {

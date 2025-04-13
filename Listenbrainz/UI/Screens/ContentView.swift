@@ -56,7 +56,7 @@ struct ContentView: View {
                         Label("Listens", systemImage: "person.wave.2")
                     }
             }
-            .accentColor(Color.gray)
+            .accentColor(Color.blue)
         }
     }
 }

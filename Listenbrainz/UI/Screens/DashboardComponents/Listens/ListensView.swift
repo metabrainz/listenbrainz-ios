@@ -152,8 +152,6 @@ struct ListensView: View {
 }
 
 
-
-
 struct TabButton: View {
     let title: String
     let isSelected: Bool
@@ -168,7 +166,7 @@ struct TabButton: View {
                 .padding(.horizontal, 16)
                 .background(isSelected ? theme.colorScheme.chipSelected : theme.colorScheme.chipUnselected)
                 .foregroundColor(theme.colorScheme.text)
-                .cornerRadius(2)
+                .cornerRadius(4)
                 .shadow(radius: 2)
                 .animation(.easeInOut(duration: 0.2), value: isSelected)
         }

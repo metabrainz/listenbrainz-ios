@@ -155,8 +155,8 @@ struct TopArtistRowView: View {
                 .clipShape(Capsule())
         }
         .padding()
-        .background(Color(.systemBackground).opacity(0.1))
-        .cornerRadius(8)
+        .background(theme.colorScheme.level1)
+        .cornerRadius(theme.sizes.cornerRadius)
     }
 }
 
@@ -206,7 +206,7 @@ struct TopAlbumRowView: View {
         }
         .padding()
         .background(theme.colorScheme.level1)
-        .cornerRadius(8)
+        .cornerRadius(theme.sizes.cornerRadius)
     }
 }
 
@@ -253,7 +253,7 @@ struct TopTrackRowView: View {
         }
         .padding()
         .background(theme.colorScheme.level1)
-        .cornerRadius(8)
+        .cornerRadius(theme.sizes.cornerRadius)
     }
 }
 

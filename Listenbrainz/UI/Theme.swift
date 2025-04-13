@@ -37,6 +37,7 @@ class Theme: ObservableObject {
 
 struct Sizes {
     let shadowRadius: CGFloat = 2
+    let cornerRadius: CGFloat = 8
 }
 
 // Spacings

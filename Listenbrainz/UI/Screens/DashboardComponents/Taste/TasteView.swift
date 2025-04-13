@@ -54,9 +54,9 @@ struct TasteView: View {
                                     showWriteReview = true
                                 })
                                 .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                                .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                                .cornerRadius(10)
-                                .shadow(radius: 2)
+                                .background(theme.colorScheme.level1)
+                                .cornerRadius(theme.sizes.cornerRadius)
+                                .shadow(radius: theme.sizes.shadowRadius)
                             }
                         } else {
                             ForEach(viewModel.hatedTastes, id: \.id) { taste in
@@ -71,9 +71,9 @@ struct TasteView: View {
                                     showWriteReview = true
                                 })
                                 .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                                .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                                .cornerRadius(10)
-                                .shadow(radius: 2)
+                                .background(theme.colorScheme.level1)
+                                .cornerRadius(theme.sizes.cornerRadius)
+                                .shadow(radius: theme.sizes.shadowRadius)
                             }
                         }
                     }

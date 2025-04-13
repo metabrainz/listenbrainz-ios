@@ -8,6 +8,7 @@ struct ContentView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var feedViewModel: FeedViewModel
     @StateObject var yimViewModel = YIMViewModel(repository: YIMRepositoryImpl())
+    @StateObject var insetsHolder: InsetsHolder = InsetsHolder()
 
     init() {
         UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
@@ -19,20 +20,28 @@ struct ContentView: View {
             TabView {
                 FeedView()
                     .environmentObject(feedViewModel)
+                    .environmentObject(insetsHolder)
+                    .ignoresSafeArea()
                     .frame(width: screenWidth, height: screenHeight, alignment: .center)
+                    .tabBarAccessor({ UITabBar in
+                        // Update tab bar height only here since rest of the tab bars will have same height.
+                        insetsHolder.tabBarHeight = UITabBar.bounds.height
+                    })
                     .tabItem {
                         Label("Feed", systemImage: "bolt")
                     }
 
                 ExploreView(viewModel: yimViewModel)
-                    .edgesIgnoringSafeArea(.all)
+                    .environmentObject(insetsHolder)
+                    .ignoresSafeArea()
                     .frame(width: screenWidth, height: screenHeight, alignment: .center)
                     .tabItem {
                         Label("Explore", systemImage: "safari")
                     }
 
                 PlayerView()
-                    .edgesIgnoringSafeArea(.all)
+                    .environmentObject(insetsHolder)
+                    .ignoresSafeArea()
                     .frame(width: screenWidth, height: screenHeight, alignment: .center)
                     .tabItem {
                         Label("Player", systemImage: "headphones")
@@ -40,12 +49,14 @@ struct ContentView: View {
 
                 ListensView()
                     .environmentObject(homeViewModel)
+                    .environmentObject(insetsHolder)
+                    .ignoresSafeArea()
                     .frame(width: screenWidth, height: screenHeight, alignment: .center)
                     .tabItem {
                         Label("Listens", systemImage: "person.wave.2")
                     }
             }
-            .accentColor(Color.gray)
+            .accentColor(Color.blue)
         }
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ListensView: View {
     @EnvironmentObject var homeViewModel: HomeViewModel
+    @EnvironmentObject var insetsHolder: InsetsHolder
     @StateObject var dashboardViewModel = DashboardViewModel(repository: DashboardRepositoryImpl())
     @State private var selectedTab = 0
     @State private var isSettingsPressed = false
@@ -75,8 +76,10 @@ struct ListensView: View {
                             .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
                             .cornerRadius(10)
                             .shadow(radius: 2)
+                            
+                            Spacer(minLength: 12)
                         }
-                    }
+                    }.padding(.bottom, insetsHolder.tabBarHeight)
                 } else if selectedTab == 1 {
                     StatisticsView()
                         .environmentObject(dashboardViewModel)
@@ -90,7 +93,6 @@ struct ListensView: View {
                     CreatedForYouView()
                         .environmentObject(dashboardViewModel)
                 }
-                Spacer()
             }
             .sheet(isPresented: $isSettingsPressed) {
                 SettingsView()

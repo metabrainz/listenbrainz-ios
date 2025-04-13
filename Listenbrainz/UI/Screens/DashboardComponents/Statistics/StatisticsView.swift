@@ -9,7 +9,8 @@ import SwiftUI
 import Charts
 
 struct StatisticsView: View {
-  @EnvironmentObject var viewModel: DashboardViewModel
+    @EnvironmentObject var insetsHolder: InsetsHolder
+    @EnvironmentObject var viewModel: DashboardViewModel
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     @State private var isSettingsPressed = false
     @State private var isSearchActive = false
@@ -114,8 +115,10 @@ struct StatisticsView: View {
               }
             }
 
+              Spacer(minLength: 12)
           }
         }
+        .padding(.bottom, insetsHolder.tabBarHeight)
         .onAppear {
             viewModel.getListeningActivity(username: userName)
             viewModel.getTopArtists(username: userName)

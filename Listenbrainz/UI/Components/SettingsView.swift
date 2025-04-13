@@ -9,13 +9,12 @@ import SwiftUI
 
 
 struct SettingsView: View {
-    @AppStorage(Strings.AppStorageKeys.isDarkMode) private var isDarkMode = true
+    @EnvironmentObject var theme: Theme
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var feedViewModel: FeedViewModel
     @Environment(\.dismiss) var dismiss
-    
     
     var body: some View  {
         NavigationView {
@@ -23,7 +22,7 @@ struct SettingsView: View {
                 Section(header: Text("Turn On Dark Mode"),
                         content: {
                     HStack{
-                        Toggle("Dark Mode", isOn: $isDarkMode)
+                        Toggle("Dark Mode", isOn: $theme.isDarkMode)
                     }
                 })
                 Section(header: Text("Enter User Token"),
@@ -45,7 +44,7 @@ struct SettingsView: View {
                 }))
             .navigationBarTitle(Text("Settings"))
         }
-        .preferredColorScheme(isDarkMode ? .dark : .light)
+        .preferredColorScheme(theme.systemColorScheme)
     }
     
 }

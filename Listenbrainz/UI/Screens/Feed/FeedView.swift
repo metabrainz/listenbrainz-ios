@@ -20,6 +20,7 @@ struct FeedView: View {
     @State private var showingRecommendToUsersPersonallyView = false
     @State private var selectedEvent: Event?
     @State private var isPresented: Bool = false
+    @State private var topBarSize: CGSize = .zero
 
   private var screenWidth: CGFloat {
        UIScreen.main.bounds.width * 0.9
@@ -29,12 +30,19 @@ struct FeedView: View {
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .topLeading) {
             theme.colorScheme.background
 
-            VStack {
-                TopBar(isSettingsPressed: $isSettingsPressed, isSearchActive: $isSearchActive, customText: "Feed")
+            TopBar(
+                isSettingsPressed: $isSettingsPressed,
+                isSearchActive: $isSearchActive,
+                customText: "Feed"
+            )
+            .background(.ultraThinMaterial)
+            .zIndex(1)
+            .readSize($topBarSize)
 
+            VStack {
                 if viewModel.isLoading && viewModel.isInitialLoad {
                     ProgressView("Loading...")
                         .progressViewStyle(CircularProgressViewStyle())
@@ -42,6 +50,8 @@ struct FeedView: View {
                 } else {
                     ScrollView {
                         LazyVStack {
+                            Spacer(minLength: topBarSize.height + theme.spacings.vertical)
+                            
                             ForEach(viewModel.events, id: \.created) { event in
                                 HStack(alignment: .top, spacing: 10) {
                                     VStack(alignment: .leading) {

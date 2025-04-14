@@ -63,6 +63,7 @@ struct TopBar: View {
         .frame(maxWidth: .infinity)
         .padding(.horizontal, theme.spacings.horizontal)
         .padding(.top, 70)
+        .padding(.bottom)
     }
 }
 

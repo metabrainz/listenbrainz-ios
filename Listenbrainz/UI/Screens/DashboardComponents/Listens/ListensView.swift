@@ -62,50 +62,33 @@ struct ListensView: View {
             .readSize($topBarSize)
             .zIndex(1)
             
-            ListensContent(
-                selectedTab: $selectedTab,
-                isSettingsPressed: $isSettingsPressed,
-                isSearchActive: $isSearchActive,
-                showPinTrackView: $showPinTrackView,
-                showingRecommendToUsersPersonallyView: $showingRecommendToUsersPersonallyView,
-                showWriteReview: $showWriteReview,
-                selectedListen: $selectedListen,
-                isPresented: $isPresented,
-                topBarSize: $topBarSize
-            )
-            .environmentObject(dashboardViewModel)
-            .padding(.bottom, insetsHolder.tabBarHeight)
-            .sheet(isPresented: $isSettingsPressed) {
-                SettingsView()
-            }
-            .centeredModal(isPresented: $showPinTrackView) {
-                if let listen = selectedListen {
-                    PinTrackView(
-                        isPresented: $showPinTrackView,
-                        item: listen,
-                        userToken: userToken,
-                        dismissAction: {
-                            showPinTrackView = false
-                        }
-                    )
-                    .environmentObject(homeViewModel)
-                }
-            }
-            .centeredModal(isPresented: $showingRecommendToUsersPersonallyView) {
-                if let listen = selectedListen {
-                    RecommendToUsersPersonallyView(item: listen, userName: userName, userToken: userToken, dismissAction: {
-                        showingRecommendToUsersPersonallyView = false
-                    })
-                    .environmentObject(homeViewModel)
-                }
-            }
-            .centeredModal(isPresented: $showWriteReview) {
-                if let listen = selectedListen {
-                    WriteAReviewView(isPresented: $showWriteReview, item: listen, userToken: userToken, userName: userName) {
-                        showWriteReview = false
-                    }
-                    .environmentObject(homeViewModel)
-                }
+            if #available(iOS 17.0, *) {
+                ListensContent(
+                    selectedTab: $selectedTab,
+                    isSettingsPressed: $isSettingsPressed,
+                    isSearchActive: $isSearchActive,
+                    showPinTrackView: $showPinTrackView,
+                    showingRecommendToUsersPersonallyView: $showingRecommendToUsersPersonallyView,
+                    showWriteReview: $showWriteReview,
+                    selectedListen: $selectedListen,
+                    isPresented: $isPresented,
+                    topBarSize: $topBarSize
+                )
+                .environmentObject(dashboardViewModel)
+                .contentMargins(.top, topBarSize.height, for: .scrollIndicators)
+            } else {
+                ListensContent(
+                    selectedTab: $selectedTab,
+                    isSettingsPressed: $isSettingsPressed,
+                    isSearchActive: $isSearchActive,
+                    showPinTrackView: $showPinTrackView,
+                    showingRecommendToUsersPersonallyView: $showingRecommendToUsersPersonallyView,
+                    showWriteReview: $showWriteReview,
+                    selectedListen: $selectedListen,
+                    isPresented: $isPresented,
+                    topBarSize: $topBarSize
+                )
+                .environmentObject(dashboardViewModel)
             }
         }
         .onAppear {
@@ -116,7 +99,7 @@ struct ListensView: View {
             dashboardViewModel.getFollowing(username: userName)
         }
     }
-
+    
     private var topBarTitle: String {
         switch selectedTab {
         case 0:
@@ -220,6 +203,39 @@ struct ListensContent: View {
             } else {
                 CreatedForYouView()
                     .environmentObject(dashboardViewModel)
+            }
+        }
+        .padding(.bottom, insetsHolder.tabBarHeight)
+        .sheet(isPresented: $isSettingsPressed) {
+            SettingsView()
+        }
+        .centeredModal(isPresented: $showPinTrackView) {
+            if let listen = selectedListen {
+                PinTrackView(
+                    isPresented: $showPinTrackView,
+                    item: listen,
+                    userToken: userToken,
+                    dismissAction: {
+                        showPinTrackView = false
+                    }
+                )
+                .environmentObject(homeViewModel)
+            }
+        }
+        .centeredModal(isPresented: $showingRecommendToUsersPersonallyView) {
+            if let listen = selectedListen {
+                RecommendToUsersPersonallyView(item: listen, userName: userName, userToken: userToken, dismissAction: {
+                    showingRecommendToUsersPersonallyView = false
+                })
+                .environmentObject(homeViewModel)
+            }
+        }
+        .centeredModal(isPresented: $showWriteReview) {
+            if let listen = selectedListen {
+                WriteAReviewView(isPresented: $showWriteReview, item: listen, userToken: userToken, userName: userName) {
+                    showWriteReview = false
+                }
+                .environmentObject(homeViewModel)
             }
         }
     }

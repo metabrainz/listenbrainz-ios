@@ -34,7 +34,7 @@ struct StatisticsView: View {
                     } else {
                         ListeningActivityBarChart(listeningActivity: viewModel.listeningActivity)
                             .frame(height: 300)
-                            .padding()
+                            .padding(.horizontal, theme.spacings.horizontal)
                     }
                 }
             }
@@ -43,7 +43,7 @@ struct StatisticsView: View {
                 Text("Top Artists")
                     .font(.title)
                     .foregroundColor(theme.colorScheme.text)
-                    .padding([.top, .leading])
+                    .padding()
 
                 if viewModel.topArtists.isEmpty {
                     Text("No top artists available")
@@ -55,10 +55,10 @@ struct StatisticsView: View {
                     
                     ForEach(viewModel.topArtists.prefix(10), id: \.artistName) { artist in
                         TopArtistRowView(artist: artist)
-                        .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
                         .background(theme.colorScheme.level1)
                         .cornerRadius(theme.sizes.cornerRadius)
                         .shadow(radius: theme.sizes.shadowRadius)
+                        .padding(.horizontal, theme.spacings.horizontal)
                     }
                     
                     Spacer(minLength: theme.sizes.shadowRadius)
@@ -69,7 +69,7 @@ struct StatisticsView: View {
                 Text("Top Albums")
                     .font(.title)
                     .foregroundColor(theme.colorScheme.text)
-                    .padding([.top, .leading])
+                    .padding()
 
                 if viewModel.topAlbums.isEmpty {
                     Text("No top albums available")
@@ -79,10 +79,10 @@ struct StatisticsView: View {
                 } else {
                   ForEach(viewModel.topAlbums.prefix(10), id: \.caaReleaseMbid) { album in
                         TopAlbumRowView(album: album)
-                      .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
                       .background(theme.colorScheme.level1)
                       .cornerRadius(theme.sizes.cornerRadius)
                       .shadow(radius: theme.sizes.shadowRadius)
+                      .padding(.horizontal, theme.spacings.horizontal)
                     }
                 }
             }
@@ -92,7 +92,7 @@ struct StatisticsView: View {
                 Text("Top Tracks")
                     .font(.title)
                     .foregroundColor(theme.colorScheme.text)
-                    .padding([.top, .leading])
+                    .padding()
 
                 if viewModel.topTracks.isEmpty {
                     Text("No top tracks available")
@@ -102,10 +102,10 @@ struct StatisticsView: View {
                 } else {
                     ForEach(viewModel.topTracks.prefix(10), id: \.caaReleaseMbid) { track in
                         TopTrackRowView(track: track)
-                        .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
                         .background(theme.colorScheme.level1)
                         .cornerRadius(theme.sizes.cornerRadius)
                         .shadow(radius: theme.sizes.shadowRadius)
+                        .padding(.horizontal, theme.spacings.horizontal)
                     }
                 }
             }

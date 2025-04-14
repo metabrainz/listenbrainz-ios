@@ -37,6 +37,7 @@ struct ListensView: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
+                        
                         TabButton(title: "Listens", isSelected: selectedTab == 0) {
                             selectedTab = 0
                         }
@@ -53,9 +54,9 @@ struct ListensView: View {
                             selectedTab = 4
                         }
                     }
-                    .padding()
+                    .padding(.vertical)
+                    .padding(.horizontal, theme.spacings.horizontal)
                     .cornerRadius(10)
-                    .padding(.horizontal)
                 }
             }
             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 0.0))

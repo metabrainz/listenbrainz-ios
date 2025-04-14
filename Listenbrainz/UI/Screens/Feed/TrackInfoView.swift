@@ -53,10 +53,8 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
                                     .scaledToFit()
                                     .frame(width: 60, height: 60)
                             } else {
-                                Image(systemName: "music.note")
+                                Image("caa_logo")
                                     .resizable()
-                                    .renderingMode(.template)
-                                    .foregroundColor(.orange)
                                     .scaledToFit()
                                     .frame(width: 60, height: 60)
                             }
@@ -65,10 +63,8 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
                 )
                 .frame(width: 60, height: 60)
             } else {
-                Image(systemName: "music.note")
+                Image("caa_logo")
                     .resizable()
-                    .renderingMode(.template)
-                    .foregroundColor(.orange)
                     .scaledToFit()
                     .frame(width: 60, height: 60)
             }

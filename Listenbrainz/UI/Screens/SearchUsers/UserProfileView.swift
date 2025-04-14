@@ -18,7 +18,7 @@ struct UserProfileView: View {
                 .padding(.trailing, 4)
             Text(user.userName)
                 .font(.headline)
-                .foregroundColor(Color.LbPurple)
+                .foregroundColor(Color.lb_purple)
             Spacer()
         }
         .padding()

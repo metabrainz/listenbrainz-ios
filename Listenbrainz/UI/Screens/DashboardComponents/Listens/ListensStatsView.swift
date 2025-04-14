@@ -114,6 +114,8 @@ struct FollowingView: View {
 }
 
 struct FollowerRow: View {
+    @EnvironmentObject var theme: Theme
+    
     let follower: String
 
     var body: some View {
@@ -124,7 +126,7 @@ struct FollowerRow: View {
                 .padding(.trailing, 4)
             Text(follower)
                 .font(.headline)
-                .foregroundColor(Color.LbPurple)
+                .foregroundColor(theme.colorScheme.lbSignature)
             Spacer()
         }
         .padding()

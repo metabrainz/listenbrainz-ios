@@ -78,7 +78,7 @@ extension View {
         self.modifier(HeightModifier(size: size))
     }
     
-    // Adds scroll indicator padding or nothing if iOS version is above iOS 17.
+    /** Adds scroll indicator padding or nothing if iOS version is above iOS 17. */
     func addScrollIndicatorPaddingTop(height: CGFloat) -> some View {
         if #available(iOS 17.0, *) {
             return self.contentMargins(.top, height, for: .scrollIndicators)

@@ -62,34 +62,19 @@ struct ListensView: View {
             .readSize($topBarSize)
             .zIndex(1)
             
-            if #available(iOS 17.0, *) {
-                ListensContent(
-                    selectedTab: $selectedTab,
-                    isSettingsPressed: $isSettingsPressed,
-                    isSearchActive: $isSearchActive,
-                    showPinTrackView: $showPinTrackView,
-                    showingRecommendToUsersPersonallyView: $showingRecommendToUsersPersonallyView,
-                    showWriteReview: $showWriteReview,
-                    selectedListen: $selectedListen,
-                    isPresented: $isPresented,
-                    topBarSize: $topBarSize
-                )
-                .environmentObject(dashboardViewModel)
-                .contentMargins(.top, topBarSize.height, for: .scrollIndicators)
-            } else {
-                ListensContent(
-                    selectedTab: $selectedTab,
-                    isSettingsPressed: $isSettingsPressed,
-                    isSearchActive: $isSearchActive,
-                    showPinTrackView: $showPinTrackView,
-                    showingRecommendToUsersPersonallyView: $showingRecommendToUsersPersonallyView,
-                    showWriteReview: $showWriteReview,
-                    selectedListen: $selectedListen,
-                    isPresented: $isPresented,
-                    topBarSize: $topBarSize
-                )
-                .environmentObject(dashboardViewModel)
-            }
+            ListensContent(
+                selectedTab: $selectedTab,
+                isSettingsPressed: $isSettingsPressed,
+                isSearchActive: $isSearchActive,
+                showPinTrackView: $showPinTrackView,
+                showingRecommendToUsersPersonallyView: $showingRecommendToUsersPersonallyView,
+                showWriteReview: $showWriteReview,
+                selectedListen: $selectedListen,
+                isPresented: $isPresented,
+                topBarSize: $topBarSize
+            )
+            .environmentObject(dashboardViewModel)
+            .addScrollIndicatorPaddingTop(height: topBarSize.height)
         }
         .onAppear {
             homeViewModel.requestMusicData(userName: userName)
@@ -135,13 +120,14 @@ struct TabButton: View {
                 .foregroundColor(theme.colorScheme.text)
                 .cornerRadius(4)
                 .shadow(radius: theme.sizes.shadowRadius)
+                .padding(.all, theme.sizes.shadowRadius)
                 .animation(.easeInOut(duration: 0.2), value: isSelected)
         }
         .frame(maxWidth: .infinity)
     }
 }
 
-struct ListensContent: View {
+private struct ListensContent: View {
     @Binding var selectedTab: Int
     @Binding var isSettingsPressed: Bool
     @Binding var isSearchActive: Bool

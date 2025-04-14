@@ -138,6 +138,7 @@ struct FeedView: View {
                         
                         Spacer(minLength: theme.spacings.screenBottom)
                     }
+                    .addScrollIndicatorPaddingTop(height: topBarSize.height)
                     .padding(.bottom, insetsHolder.tabBarHeight)
                     .sheet(isPresented: $isSettingsPressed) {
                         SettingsView()

@@ -14,7 +14,7 @@ struct WriteAReviewView<T: TrackMetadataProvider>: View {
     @State private var language: String = "English"
     @State private var agreedToTerms: Bool = false
     @Binding var isPresented: Bool
-    @Environment (\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) var colorScheme
     var item: T
     var userToken: String
     var userName: String

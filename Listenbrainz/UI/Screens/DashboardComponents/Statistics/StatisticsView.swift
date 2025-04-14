@@ -18,7 +18,7 @@ struct StatisticsView: View {
     @State private var isSearchActive = false
 
     var body: some View {
-        ScrollView(.vertical) {
+        LazyVStack {
             ScrollView(.horizontal) {
                 VStack(alignment: .leading) {
                     Text("Listening Activity")
@@ -39,9 +39,10 @@ struct StatisticsView: View {
                 }
             }
 
-            VStack(alignment: .leading) {
+            
                 Text("Top Artists")
                     .font(.title)
+                    .frame(alignment: .leading)
                     .foregroundColor(theme.colorScheme.text)
                     .padding()
 
@@ -63,11 +64,12 @@ struct StatisticsView: View {
                     
                     Spacer(minLength: theme.sizes.shadowRadius)
                 }
-            }
+            
 
-            VStack(alignment: .leading) {
+            
                 Text("Top Albums")
                     .font(.title)
+                    .frame(alignment: .leading)
                     .foregroundColor(theme.colorScheme.text)
                     .padding()
 
@@ -85,12 +87,10 @@ struct StatisticsView: View {
                       .padding(.horizontal, theme.spacings.horizontal)
                     }
                 }
-            }
-
-
-            VStack(alignment: .leading) {
+            
                 Text("Top Tracks")
                     .font(.title)
+                    .frame(alignment: .leading)
                     .foregroundColor(theme.colorScheme.text)
                     .padding()
 
@@ -108,11 +108,10 @@ struct StatisticsView: View {
                         .padding(.horizontal, theme.spacings.horizontal)
                     }
                 }
-            }
-
-          VStack(alignment:.leading){
+            
               Text("Daily Activity")
                 .font(.title)
+                .frame(alignment: .leading)
                 .foregroundColor(theme.colorScheme.text)
                 .padding([.top, .leading])
               if !viewModel.hours.isEmpty && !viewModel.counts.isEmpty {
@@ -122,10 +121,9 @@ struct StatisticsView: View {
                 Text("Loading...")
               }
 
-              Spacer(minLength: 12)
-          }
+            Spacer(minLength: theme.spacings.screenBottom)
+          
         }
-        .padding(.bottom, insetsHolder.tabBarHeight)
         .onAppear {
             viewModel.getListeningActivity(username: userName)
             viewModel.getTopArtists(username: userName)

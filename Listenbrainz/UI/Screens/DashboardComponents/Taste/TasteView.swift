@@ -19,12 +19,12 @@ struct TasteView: View {
     @State private var isPresented: Bool = false
     @State private var selectedCategory: SongCategory = .loved
     @Environment(\.colorScheme) var colorScheme
-
+    
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
-
+    
     var body: some View {
-        ScrollView(.vertical) {
+        LazyVStack {
             VStack {
                 HStack {
                     CapsuleBarView(title: "Loved", isSelected: selectedCategory == .loved, imageName: "heart")
@@ -36,52 +36,48 @@ struct TasteView: View {
                             selectedCategory = .hated
                         }
                 }
-                .padding(.top)
+                .padding(.vertical)
                 .padding(.trailing, 140)
-
-                ScrollView {
-                    LazyVStack {
-                        Spacer(minLength: theme.sizes.shadowRadius)
-                        
-                        if selectedCategory == .loved {
-                            ForEach(viewModel.lovedTastes, id: \.id) { taste in
-                                TrackInfoView(item: taste, onPinTrack: { taste in
-                                    selectedTaste = taste
-                                    showPinTrackView = true
-                                }, onRecommendPersonally: { taste in
-                                    selectedTaste = taste
-                                    showingRecommendToUsersPersonallyView = true
-                                }, onWriteReview: { taste in
-                                    selectedTaste = taste
-                                    showWriteReview = true
-                                })
-                                .background(theme.colorScheme.level1)
-                                .cornerRadius(theme.sizes.cornerRadius)
-                                .shadow(radius: theme.sizes.shadowRadius)
-                                .padding(.horizontal, theme.spacings.horizontal)
-                            }
-                        } else {
-                            ForEach(viewModel.hatedTastes, id: \.id) { taste in
-                                TrackInfoView(item: taste, onPinTrack: { taste in
-                                    selectedTaste = taste
-                                    showPinTrackView = true
-                                }, onRecommendPersonally: { taste in
-                                    selectedTaste = taste
-                                    showingRecommendToUsersPersonallyView = true
-                                }, onWriteReview: { taste in
-                                    selectedTaste = taste
-                                    showWriteReview = true
-                                })
-                                .background(theme.colorScheme.level1)
-                                .cornerRadius(theme.sizes.cornerRadius)
-                                .shadow(radius: theme.sizes.shadowRadius)
-                                .padding(.horizontal, theme.spacings.horizontal)
-                            }
-                        }
-                        
-                        Spacer(minLength: theme.sizes.shadowRadius)
+                
+                Spacer(minLength: theme.sizes.shadowRadius)
+                
+                if selectedCategory == .loved {
+                    ForEach(viewModel.lovedTastes, id: \.id) { taste in
+                        TrackInfoView(item: taste, onPinTrack: { taste in
+                            selectedTaste = taste
+                            showPinTrackView = true
+                        }, onRecommendPersonally: { taste in
+                            selectedTaste = taste
+                            showingRecommendToUsersPersonallyView = true
+                        }, onWriteReview: { taste in
+                            selectedTaste = taste
+                            showWriteReview = true
+                        })
+                        .background(theme.colorScheme.level1)
+                        .cornerRadius(theme.sizes.cornerRadius)
+                        .shadow(radius: theme.sizes.shadowRadius)
+                        .padding(.horizontal, theme.spacings.horizontal)
+                    }
+                } else {
+                    ForEach(viewModel.hatedTastes, id: \.id) { taste in
+                        TrackInfoView(item: taste, onPinTrack: { taste in
+                            selectedTaste = taste
+                            showPinTrackView = true
+                        }, onRecommendPersonally: { taste in
+                            selectedTaste = taste
+                            showingRecommendToUsersPersonallyView = true
+                        }, onWriteReview: { taste in
+                            selectedTaste = taste
+                            showWriteReview = true
+                        })
+                        .background(theme.colorScheme.level1)
+                        .cornerRadius(theme.sizes.cornerRadius)
+                        .shadow(radius: theme.sizes.shadowRadius)
+                        .padding(.horizontal, theme.spacings.horizontal)
                     }
                 }
+                
+                Spacer(minLength: theme.sizes.shadowRadius)
                 
                 PinsView(
                     selectedPinnedRecording: $selectedPinnedRecording,
@@ -94,7 +90,6 @@ struct TasteView: View {
             
             Spacer(minLength: theme.spacings.screenBottom)
         }
-        .padding(.bottom, insetsHolder.tabBarHeight)
         .onAppear {
             viewModel.getTaste(userName: userName)
         }

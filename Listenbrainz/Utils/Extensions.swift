@@ -54,3 +54,27 @@ extension Color {
         )
     }
 }
+
+
+struct HeightModifier: ViewModifier {
+    @Binding var size: CGSize
+    
+    func body(content: Content) -> some View {
+        content
+            .background(
+                GeometryReader { geometry in
+                    Color.clear.onAppear {
+                        DispatchQueue.main.async {
+                            size = geometry.size
+                        }
+                    }
+                }
+            )
+    }
+}
+
+extension View {
+    func readSize(_ size: Binding<CGSize>) -> some View {
+        self.modifier(HeightModifier(size: size))
+    }
+}

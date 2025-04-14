@@ -18,36 +18,31 @@ struct SongDetailView: View {
                         .progressViewStyle(CircularProgressViewStyle())
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
-                    ScrollView {
-                        // For when shadow cuts off for first ever item.
-                        Spacer(minLength: theme.sizes.shadowRadius)
-                        
-                        ForEach(homeViewModel.listens, id: \.recordingMsid) { listen in
-                            TrackInfoView(
-                                item: listen,
-                                onPinTrack: { event in
-                                    onPinTrack(listen)
-                                },
-                                onRecommendPersonally: { event in
-                                    onRecommendPersonally(listen)
-                                },
-                                onWriteReview: { event in
-                                    onWriteReview(listen)
-                                }
-                            )
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(theme.colorScheme.level1)
-                            .cornerRadius(10)
-                            .shadow(radius: theme.sizes.shadowRadius)
-                            .padding(.horizontal, theme.spacings.horizontal)
-                        }
-                        
-                        // For when shadow cuts off for last ever item.
-                        Spacer(minLength: theme.sizes.shadowRadius)
+                    // For when shadow cuts off for first ever item.
+                    Spacer(minLength: theme.sizes.shadowRadius)
+                    
+                    ForEach(homeViewModel.listens, id: \.recordingMsid) { listen in
+                        TrackInfoView(
+                            item: listen,
+                            onPinTrack: { event in
+                                onPinTrack(listen)
+                            },
+                            onRecommendPersonally: { event in
+                                onRecommendPersonally(listen)
+                            },
+                            onWriteReview: { event in
+                                onWriteReview(listen)
+                            }
+                        )
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(theme.colorScheme.level1)
+                        .cornerRadius(10)
+                        .shadow(radius: theme.sizes.shadowRadius)
+                        .padding(.horizontal, theme.spacings.horizontal)
                     }
-//                    .refreshable {
-//                        await loadListens()
-//                    }
+                    
+                    // For when shadow cuts off for last ever item.
+                    Spacer(minLength: theme.sizes.shadowRadius)
                 }
             }
             .onAppear {

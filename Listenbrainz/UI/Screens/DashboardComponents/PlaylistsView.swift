@@ -11,33 +11,32 @@ struct PlaylistView: View {
     @EnvironmentObject var viewModel: DashboardViewModel
     @EnvironmentObject var theme: Theme
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
-
+    
     var body: some View {
-        ScrollView {
-            VStack(spacing: theme.spacings.vertical) {
-                if viewModel.playlists.isEmpty {
-                    Text("No playlists available")
-                        .foregroundColor(.gray)
-                        .padding()
-                } else {
-                    ForEach(viewModel.playlists, id: \.identifier) { playlist in
-                        if let playlistId = viewModel.extractPlaylistId(from: playlist.identifier) {
-                            NavigationLink(
-                                destination: PlaylistDetailsView(
-                                    playlistId: playlistId,
-                                    playlistName: playlist.title
-                                ).environmentObject(viewModel)
-                            ) {
-                                PlaylistCardView(
-                                    playlist: playlist,
-                                    playlistId: playlistId
-                                )
-                            }
+        LazyVStack(spacing: theme.spacings.vertical) {
+            if viewModel.playlists.isEmpty {
+                Text("No playlists available")
+                    .foregroundColor(.gray)
+                    .padding()
+            } else {
+                ForEach(viewModel.playlists, id: \.identifier) { playlist in
+                    if let playlistId = viewModel.extractPlaylistId(from: playlist.identifier) {
+                        NavigationLink(
+                            destination: PlaylistDetailsView(
+                                playlistId: playlistId,
+                                playlistName: playlist.title
+                            ).environmentObject(viewModel)
+                        ) {
+                            PlaylistCardView(
+                                playlist: playlist,
+                                playlistId: playlistId
+                            )
                         }
                     }
                 }
             }
         }
+        
         .onAppear {
             viewModel.getPlaylists(username: userName)
         }
@@ -49,7 +48,7 @@ struct PlaylistCardView: View {
     
     let playlist: Playlist
     let playlistId: String
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(playlist.title)
@@ -80,7 +79,7 @@ struct PlaylistCardView: View {
 private func formattedDate(_ dateString: String) -> String {
     let formatter = ISO8601DateFormatter()
     formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-
+    
     if let date = formatter.date(from: dateString) {
         let displayFormatter = DateFormatter()
         displayFormatter.dateFormat = "dd/MM/yyyy"

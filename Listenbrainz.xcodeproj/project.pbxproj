@@ -131,6 +131,7 @@
 		BBFC06742C1EE2F700668E90 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFC06732C1EE2F700668E90 /* UserProfileView.swift */; };
 		BBFC06772C1EE49000668E90 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFC06762C1EE49000668E90 /* SearchRepository.swift */; };
 		BBFC06792C1EE49C00668E90 /* SearchRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFC06782C1EE49C00668E90 /* SearchRepositoryImpl.swift */; };
+		EB1FB62C2DABD6770064297D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1FB62A2DABD6730064297D /* Theme.swift */; };
 		EBB788DA2DAA9818008F4B7E /* TabBarAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB788D92DAA9818008F4B7E /* TabBarAccessor.swift */; };
 /* End PBXBuildFile section */
 
@@ -279,6 +280,7 @@
 		BBFC06732C1EE2F700668E90 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		BBFC06762C1EE49000668E90 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
 		BBFC06782C1EE49C00668E90 /* SearchRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryImpl.swift; sourceTree = "<group>"; };
+		EB1FB62A2DABD6730064297D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		EBB788D92DAA9818008F4B7E /* TabBarAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAccessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -331,6 +333,7 @@
 			children = (
 				6F7620A329C66C8000CDA3E8 /* Screens */,
 				6F7620A229C66C7900CDA3E8 /* Components */,
+				EB1FB62A2DABD6730064297D /* Theme.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -925,6 +928,7 @@
 				BBC5C7E82B512ECD000A5EB1 /* DiscoverTitleView.swift in Sources */,
 				BB66C2052A9F3FD500BB4CBA /* Metadata.swift in Sources */,
 				BBD28DD32A2F9DC400AD57C6 /* FeedArtist.swift in Sources */,
+				EB1FB62C2DABD6770064297D /* Theme.swift in Sources */,
 				BBC5E6142C3BC6E30046DDD9 /* WriteAReviewView.swift in Sources */,
 				BBC5C7CF2B4FEEDD000A5EB1 /* TopAlbumsView.swift in Sources */,
 				BBC334512C46EF3300A72E07 /* DashboardRepository.swift in Sources */,

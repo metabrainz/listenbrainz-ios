@@ -11,6 +11,7 @@ import SwiftUI
 struct FeedView: View {
     @EnvironmentObject var viewModel: FeedViewModel
     @EnvironmentObject var insetsHolder: InsetsHolder
+    @EnvironmentObject var theme: Theme
     @State private var isSettingsPressed = false
     @State private var isSearchActive = false
     @Environment(\.colorScheme) var colorScheme
@@ -19,6 +20,7 @@ struct FeedView: View {
     @State private var showingRecommendToUsersPersonallyView = false
     @State private var selectedEvent: Event?
     @State private var isPresented: Bool = false
+    @State private var topBarSize: CGSize = .zero
 
   private var screenWidth: CGFloat {
        UIScreen.main.bounds.width * 0.9
@@ -28,12 +30,19 @@ struct FeedView: View {
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
 
     var body: some View {
-        ZStack {
-            colorScheme == .dark ? Color.backgroundColor : Color.white
+        ZStack(alignment: .topLeading) {
+            theme.colorScheme.background
+
+            TopBar(
+                isSettingsPressed: $isSettingsPressed,
+                isSearchActive: $isSearchActive,
+                customText: "Feed"
+            )
+            .background(.ultraThinMaterial)
+            .zIndex(1)
+            .readSize($topBarSize)
 
             VStack {
-                TopBar(isSettingsPressed: $isSettingsPressed, isSearchActive: $isSearchActive, customText: "Feed")
-
                 if viewModel.isLoading && viewModel.isInitialLoad {
                     ProgressView("Loading...")
                         .progressViewStyle(CircularProgressViewStyle())
@@ -41,20 +50,24 @@ struct FeedView: View {
                 } else {
                     ScrollView {
                         LazyVStack {
+                            Spacer(minLength: topBarSize.height + theme.spacings.vertical)
+                            
                             ForEach(viewModel.events, id: \.created) { event in
                                 HStack(alignment: .top, spacing: 10) {
                                     VStack(alignment: .leading) {
                                         EventImageView(eventType: event.eventType)
                                             .frame(width: 22, height: 22)
-                                        VerticalLine(color: colorScheme == .dark ? Color.white : Color.black)
+                                        VerticalLine(color: theme.colorScheme.text)
                                             .frame(width: 1, height: verticalLineHeight(for: event))
                                             .offset(x: 10, y: 4)
                                     }
 
                                     VStack(alignment: .leading, spacing: 5) {
                                         EventDescriptionView(event: event)
-                                      VStack(spacing:-5){
+                                        
                                         if event.eventType != "follow" && event.eventType != "notification" {
+                                          Spacer(minLength: 8)
+                                            
                                           TrackInfoView(item: event, onPinTrack: { event in
                                             selectedEvent = event
                                             showPinTrackView = true
@@ -65,24 +78,23 @@ struct FeedView: View {
                                             selectedEvent = event
                                             showWriteReview = true
                                           })
-                                          .frame(width: screenWidth, alignment: .leading)
-                                          .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                                          .cornerRadius(10)
-                                          .shadow(radius: 2)
+                                          .background(theme.colorScheme.level1)
+                                          .cornerRadius(theme.sizes.cornerRadius)
+                                          .shadow(radius: theme.sizes.shadowRadius)
+                                          .padding(.horizontal, theme.sizes.shadowRadius)
 
                                           if event.eventType == "critiquebrainz_review" {
                                             ReviewView(event: event)
                                               .frame(width: screenWidth, alignment: .leading)
                                           }
                                         }
-                                      }
 
                                         HStack {
                                           Spacer()
 
                                           Text(formatDate(epochTime: TimeInterval(event.created)))
                                             .font(.system(size: 10))
-                                            .foregroundColor(Color.gray)
+                                            .foregroundColor(theme.colorScheme.hint)
                                             .italic()
                                             .padding(.trailing,4)
 
@@ -94,14 +106,14 @@ struct FeedView: View {
                                                 .renderingMode(.template)
                                                 .resizable()
                                                 .frame(width: 18, height: 18)
-                                                .foregroundColor(Color.LbPurple)
+                                                .foregroundColor(theme.colorScheme.lbSignature)
                                             }
                                           }
                                         }
                                     }
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
+                                .padding(.vertical, 4)
                                 .onAppear {
                                     if event == viewModel.events.last && viewModel.canLoadMorePages {
                                         DispatchQueue.main.asyncAfter(deadline: .now()) {
@@ -117,15 +129,16 @@ struct FeedView: View {
                                 }
                             }
                         }
-                        .padding([.trailing,.leading],6)
+                        .padding(.horizontal, theme.spacings.horizontal)
                         if viewModel.isLoading {
                           ProgressView()
                             .progressViewStyle(CircularProgressViewStyle())
                             .padding(.vertical, 10)
                         }
                         
-                        Spacer(minLength: 12)
+                        Spacer(minLength: theme.spacings.screenBottom)
                     }
+                    .addScrollIndicatorPaddingTop(height: topBarSize.height)
                     .padding(.bottom, insetsHolder.tabBarHeight)
                     .sheet(isPresented: $isSettingsPressed) {
                         SettingsView()
@@ -176,6 +189,7 @@ struct FeedView: View {
         }
     }
 
+    // TODO: Make heights not depend on event but layout bounds
     private func verticalLineHeight(for event: Event) -> CGFloat {
         switch event.eventType {
         case "critiquebrainz_review":
@@ -185,7 +199,7 @@ struct FeedView: View {
         case "follow":
           return 15
         default:
-            return 60
+            return 80
         }
     }
 
@@ -211,6 +225,7 @@ struct VerticalLine: View {
 }
 struct ReviewView: View {
     let event: Event
+    @EnvironmentObject var theme: Theme
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
@@ -230,7 +245,7 @@ struct ReviewView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding()
-        .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+        .background(theme.colorScheme.level1)
         .cornerRadius(10)
         .frame(width: UIScreen.main.bounds.width * 0.9, alignment: .leading)
         .padding(.top, 5)

@@ -10,6 +10,14 @@ import UIKit
 
 class InsetsHolder: ObservableObject {
     @Published var tabBarHeight: CGFloat = 0
+    var insets: EdgeInsets {
+        (UIApplication
+            .shared
+            .connectedScenes
+            .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+            .first { $0.isKeyWindow }?.safeAreaInsets ?? .zero
+        ).insets
+    }
 }
 
 struct TabBarAccessor: UIViewControllerRepresentable {
@@ -42,5 +50,11 @@ struct TabBarAccessor: UIViewControllerRepresentable {
 extension View {
     func tabBarAccessor(_ callback: @escaping (UITabBar) -> Void) -> some View {
         background(TabBarAccessor(callback: callback))
+    }
+}
+
+private extension UIEdgeInsets {
+    var insets: EdgeInsets {
+        EdgeInsets(top: top, leading: left, bottom: bottom, trailing: right)
     }
 }

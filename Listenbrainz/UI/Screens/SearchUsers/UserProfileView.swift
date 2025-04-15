@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserProfileView: View {
     var user: User
+    @EnvironmentObject var theme: Theme
 
     var body: some View {
         HStack {
@@ -18,7 +19,7 @@ struct UserProfileView: View {
                 .padding(.trailing, 4)
             Text(user.userName)
                 .font(.headline)
-                .foregroundColor(Color.lb_purple)
+                .foregroundColor(theme.colorScheme.lbSignature)
             Spacer()
         }
         .padding()

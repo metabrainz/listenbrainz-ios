@@ -41,7 +41,6 @@ struct CustomSearchBar: View {
             )
             .padding(.horizontal, 10)
         }
-        .padding(.top, 8)
     }
 }
 

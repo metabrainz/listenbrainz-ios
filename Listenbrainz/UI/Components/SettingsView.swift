@@ -12,6 +12,7 @@ struct SettingsView: View {
     @EnvironmentObject var theme: Theme
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
+    @AppStorage(Strings.AppStorageKeys.isOnboarding) private var isOnboarding: Bool = false
     @EnvironmentObject var homeViewModel: HomeViewModel
     @EnvironmentObject var feedViewModel: FeedViewModel
     @Environment(\.dismiss) var dismiss
@@ -40,6 +41,7 @@ struct SettingsView: View {
                     Button("Logout") {
                         userToken = ""
                         userName = ""
+                        isOnboarding = true
                     }
                     .foregroundColor(Color.red)
                 }

@@ -61,6 +61,7 @@ struct LoginView: View {
                                             isOnboarding = false
                                             tokenFound = true
                                         } else {
+                                            print("Token validation failed: \(String(describing: tokenValidation?.message))")
                                             retriesLeft -= 1
                                         }
                                         

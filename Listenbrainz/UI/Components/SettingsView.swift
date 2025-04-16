@@ -16,24 +16,33 @@ struct SettingsView: View {
     @EnvironmentObject var feedViewModel: FeedViewModel
     @Environment(\.dismiss) var dismiss
     
+    @State var showLoginView: Bool = false
+    
     var body: some View  {
         NavigationView {
-            Form{
-                Section(header: Text("Turn On Dark Mode"),
-                        content: {
-                    HStack{
-                        Toggle("Dark Mode", isOn: $theme.isDarkMode)
+            Form {
+                Section(header: Text("Theme")) {
+                    Toggle("Dark Mode", isOn: $theme.isDarkMode)
+                }
+                
+                Section(header: Text("User name")) {
+                    Text(userName)
+                        .foregroundStyle(theme.colorScheme.text)
+                }
+                
+                if userToken.isEmpty {
+                    Button("Login") {
+                        showLoginView = !showLoginView
                     }
-                })
-                Section(header: Text("Enter User Token"),
-                        footer: Text("Enter User Token from https://listenbrainz.org/profile/"),
-                        content: {
-                    TextField("Enter User Token", text: $userToken)
-                })
-                Section(header: Text("Enter User Name"),
-                        content: {
-                    TextField("Enter User Name", text: $userName)
-                })
+                } else {
+                    Button("Logout") {
+                        userToken = ""
+                    }
+                    .foregroundColor(Color.red)
+                }
+            }
+            .sheet(isPresented: $showLoginView) {
+                LoginView()
             }
             .navigationBarItems(
                 trailing: Button(action: {

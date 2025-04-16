@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct LoginView: View {
+    // We'll create a new instance as of now.
+    private let dashboardRepository: DashboardRepository = DashboardRepositoryImpl()
+    
     @Environment(\.dismiss) private var dismiss
+    
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
+    @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
+    @AppStorage(Strings.AppStorageKeys.isOnboarding) private var isOnboarding: Bool = false
     
     var body: some View {
         WebViewLB(
@@ -26,21 +32,46 @@ struct LoginView: View {
                     
                     func getToken() {
                         webView.evaluateJavaScript("document.getElementById('auth-token').value;") { (result, error) in
-                            if result != nil && error == nil {
-                                userToken = result as! String
-                                tokenFound = true
-                            } else {
-                                print("Failed to get token: \(String(describing: error?.localizedDescription))")
-                                retriesLeft -= 1
-                            }
-                            
-                            if (!tokenFound && retriesLeft > 0) {
-                                // 1 second delay.
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                    getToken()
+                            DispatchQueue.main.async {
+                                func retryOrDismiss() {
+                                    if !tokenFound && retriesLeft > 0 {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                            getToken()
+                                        }
+                                    } else {
+                                        dismiss()
+                                    }
                                 }
-                            } else {
-                                dismiss()
+                                
+                                if let acquiredToken = result as? String, error == nil {
+                                    // Async task lets go
+                                    Task {
+                                        var tokenValidation: TokenValidation? = nil
+                                        do {
+                                            tokenValidation = try await dashboardRepository.validateUserToken(userToken: acquiredToken)
+                                        } catch {
+                                            print("Token validation failed: \(error)")
+                                            tokenValidation = nil
+                                        }
+                                        
+                                        if tokenValidation?.valid == true {
+                                            userToken = acquiredToken
+                                            userName = tokenValidation!.username!
+                                            
+                                            isOnboarding = false
+                                            tokenFound = true
+                                        } else {
+                                            retriesLeft -= 1
+                                        }
+                                        
+                                        retryOrDismiss()
+                                    }
+                                } else {
+                                    print("Failed to get token: \(String(describing: error?.localizedDescription))")
+                                    retriesLeft -= 1
+                                    
+                                    retryOrDismiss()
+                                }
                             }
                         }
                     }

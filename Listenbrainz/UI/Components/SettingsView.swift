@@ -37,6 +37,7 @@ struct SettingsView: View {
                 } else {
                     Button("Logout") {
                         userToken = ""
+                        userName = ""
                     }
                     .foregroundColor(Color.red)
                 }

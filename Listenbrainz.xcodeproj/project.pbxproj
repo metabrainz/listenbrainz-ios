@@ -132,6 +132,7 @@
 		BBFC06792C1EE49C00668E90 /* SearchRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFC06782C1EE49C00668E90 /* SearchRepositoryImpl.swift */; };
 		EB1FB62C2DABD6770064297D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1FB62A2DABD6730064297D /* Theme.swift */; };
 		EBB788DA2DAA9818008F4B7E /* TabBarAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB788D92DAA9818008F4B7E /* TabBarAccessor.swift */; };
+		EBCC17132DB0466600457471 /* TokenValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCC17122DB0466000457471 /* TokenValidation.swift */; };
 		EBF663F72DB00F310013E9C6 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF663F62DB00F310013E9C6 /* WebView.swift */; };
 		EBF663F92DB016420013E9C6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF663F82DB016420013E9C6 /* LoginView.swift */; };
 /* End PBXBuildFile section */
@@ -282,6 +283,7 @@
 		BBFC06782C1EE49C00668E90 /* SearchRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryImpl.swift; sourceTree = "<group>"; };
 		EB1FB62A2DABD6730064297D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		EBB788D92DAA9818008F4B7E /* TabBarAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAccessor.swift; sourceTree = "<group>"; };
+		EBCC17122DB0466000457471 /* TokenValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenValidation.swift; sourceTree = "<group>"; };
 		EBF663F62DB00F310013E9C6 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		EBF663F82DB016420013E9C6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -460,6 +462,7 @@
 		BB0586552A25049100744FF0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EBCC17122DB0466000457471 /* TokenValidation.swift */,
 				BBC334542C46EF5000A72E07 /* Dashboard */,
 				BBC5C7AF2B4FE81D000A5EB1 /* Yim */,
 				BBA32A812AA1D63100F86779 /* Feed */,
@@ -898,6 +901,7 @@
 				6F85B9632B56B23500DBD65F /* AdaptiveImage.swift in Sources */,
 				BB66C20B2AA0F5AD00BB4CBA /* FeedTrackMetadata.swift in Sources */,
 				BB59E7ED2C208A8000C8540F /* CustomSearchBar.swift in Sources */,
+				EBCC17132DB0466600457471 /* TokenValidation.swift in Sources */,
 				BB2A4F5329EB48BE006933BC /* ContentView.swift in Sources */,
 				BBD28DDF2A2F9EA300AD57C6 /* ArtistElement.swift in Sources */,
 				BBFC06742C1EE2F700668E90 /* UserProfileView.swift in Sources */,

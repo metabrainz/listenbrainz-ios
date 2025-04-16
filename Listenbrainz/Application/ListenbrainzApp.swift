@@ -25,6 +25,7 @@ struct ListenbrainzApp: App {
             NavigationView {
                 if isOnboarding {
                     OnBoardingView()
+                        .environmentObject(theme)
                 }
                 else{
                     ContentView()

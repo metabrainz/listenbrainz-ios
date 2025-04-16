@@ -26,4 +26,5 @@ protocol DashboardRepository{
   func getPlaylists(userName: String) -> AnyPublisher<PlaylistResponse, AFError>
   func getCreatedForYou(userName: String) -> AnyPublisher<[CreatedForYouContainer], AFError>
   func getCreatedForYouPlaylist(playlistId: String) -> AnyPublisher<PlaylistDetails, AFError>
+  func validateUserToken(userToken: String) async throws -> TokenValidation
 }

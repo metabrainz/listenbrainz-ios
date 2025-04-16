@@ -25,9 +25,11 @@ struct SettingsView: View {
                     Toggle("Dark Mode", isOn: $theme.isDarkMode)
                 }
                 
-                Section(header: Text("User name")) {
-                    Text(userName)
-                        .foregroundStyle(theme.colorScheme.text)
+                if !userName.isEmpty {
+                    Section(header: Text("User name")) {
+                        Text(userName)
+                            .foregroundStyle(theme.colorScheme.text)
+                    }
                 }
                 
                 if userToken.isEmpty {

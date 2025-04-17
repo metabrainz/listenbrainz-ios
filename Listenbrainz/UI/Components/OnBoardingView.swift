@@ -7,8 +7,12 @@ struct OnBoardingView: View {
         VStack {
             Spacer()
             
-            Text("Welcome To ListenBrainz")
+            Text("""
+                Welcome to
+                ListenBrainz
+                """)
                 .font(.system(size: 48, weight: .semibold))
+                .multilineTextAlignment(.center)
                 .padding(.bottom)
             
             Spacer()

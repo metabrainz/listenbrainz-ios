@@ -128,6 +128,12 @@ struct FeedView: View {
                                     }
                                 }
                             }
+                            Text("✓ You are all caught up!")
+                                .font(.title3)
+                                .foregroundColor(Color.LbPurple)
+                                .padding(.vertical, 10)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .padding(.bottom, 100)
                         }
                         .padding(.horizontal, theme.spacings.horizontal)
                         if viewModel.isLoading {

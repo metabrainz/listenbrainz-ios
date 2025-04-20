@@ -27,105 +27,120 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
     }
     
     var body: some View {
-        HStack {
-            if let coverArtURL = item.coverArtURL {
-                AsyncImage(
-                    url: coverArtURL,
-                    scale: 0.1,
-                    transaction: Transaction(animation: nil),
-                    content: { phase in
-                        switch phase {
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 60, height: 60)
-                                .onAppear {
-                                    imageLoader.loadImage(url: coverArtURL) { loadedImage in
-                                        if let uiImage = loadedImage {
-                                            ImageCache.shared.insertImage(uiImage, for: coverArtURL)
+        VStack(spacing: 0) {
+            HStack {
+                if let coverArtURL = item.coverArtURL {
+                    AsyncImage(
+                        url: coverArtURL,
+                        scale: 0.1,
+                        transaction: Transaction(animation: nil),
+                        content: { phase in
+                            switch phase {
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 60, height: 60)
+                                    .onAppear {
+                                        imageLoader.loadImage(url: coverArtURL) { loadedImage in
+                                            if let uiImage = loadedImage {
+                                                ImageCache.shared.insertImage(uiImage, for: coverArtURL)
+                                            }
                                         }
                                     }
+                            default:
+                                if let cachedImage = ImageCache.shared.image(for: coverArtURL) {
+                                    Image(uiImage: cachedImage)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 60, height: 60)
+                                } else {
+                                    Image("caa_logo")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 60, height: 60)
                                 }
-                        default:
-                            if let cachedImage = ImageCache.shared.image(for: coverArtURL) {
-                                Image(uiImage: cachedImage)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 60, height: 60)
-                            } else {
-                                Image("caa_logo")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 60, height: 60)
+                            }
+                        }
+                    )
+                    .frame(width: 60, height: 60)
+                } else {
+                    Image("caa_logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 60, height: 60)
+                }
+                
+                VStack(alignment: .leading) {
+                    if isCritiqueBrainzReview {
+                        Text(item.entityName ?? "Unknown Entity")
+                            .lineLimit(1)
+                            .font(.system(size: 14, weight: .bold))
+                    } else {
+                        Text(item.trackName ?? "Unknown Track")
+                            .font(.system(size: 14, weight: .bold))
+                            .lineLimit(1)
+                            .foregroundStyle(theme.colorScheme.listenText)
+                        Text(item.artistName ?? "Unknown Artist")
+                            .font(.system(size: 12, weight: .bold))
+                            .lineLimit(1)
+                            .foregroundStyle(theme.colorScheme.listenText.opacity(0.7))
+                    }
+                }
+                .padding(.leading, 3)
+                
+                Spacer()
+                
+                Menu {
+                    if let originURL = item.originURL {
+                        Button("Open in Spotify") {
+                            if let url = URL(string: originURL) {
+                                UIApplication.shared.open(url)
                             }
                         }
                     }
-                )
-                .frame(width: 60, height: 60)
-            } else {
-                Image("caa_logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 60, height: 60)
-            }
-            
-            VStack(alignment: .leading) {
-                if isCritiqueBrainzReview {
-                    Text(item.entityName ?? "Unknown Entity")
-                        .lineLimit(1)
-                        .font(.system(size: 14, weight: .bold))
-                } else {
-                    Text(item.trackName ?? "Unknown Track")
-                        .font(.system(size: 14, weight: .bold))
-                        .lineLimit(1)
-                        .foregroundStyle(theme.colorScheme.listenText)
-                    Text(item.artistName ?? "Unknown Artist")
-                        .font(.system(size: 12, weight: .bold))
-                        .lineLimit(1)
-                        .foregroundStyle(theme.colorScheme.listenText.opacity(0.7))
-                }
-            }
-            .padding(.leading, 3)
-            
-            Spacer()
-            
-            Menu {
-                if let originURL = item.originURL {
-                    Button("Open in Spotify") {
-                        if let url = URL(string: originURL) {
-                            UIApplication.shared.open(url)
+                    
+                    if let recordingMbid = item.recordingMbid {
+                        Button("Open in MusicBrainz") {
+                            if let url = URL(string: "https://musicbrainz.org/recording/\(recordingMbid)") {
+                                UIApplication.shared.open(url)
+                            }
                         }
                     }
-                }
-                
-                if let recordingMbid = item.recordingMbid {
-                    Button("Open in MusicBrainz") {
-                        if let url = URL(string: "https://musicbrainz.org/recording/\(recordingMbid)") {
-                            UIApplication.shared.open(url)
-                        }
+                    Button("Pin this track") {
+                        onPinTrack(item)
                     }
+                    Button("Recommend to my followers") {
+                        feedViewModel.recommendToFollowers(userName: userName, item: item, userToken: userToken)
+                    }
+                    Button("Personally recommend") {
+                        onRecommendPersonally(item)
+                    }
+                    Button("Write a review") {
+                        onWriteReview(item)
+                    }
+                    
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .padding(.horizontal, 10)
+                        .rotationEffect(.degrees(90))
+                        .foregroundColor(.gray)
+                        .frame(width: 40, height: 40)
+                        .contentShape(Rectangle())
                 }
-                Button("Pin this track") {
-                    onPinTrack(item)
-                }
-                Button("Recommend to my followers") {
-                    feedViewModel.recommendToFollowers(userName: userName, item: item, userToken: userToken)
-                }
-                Button("Personally recommend") {
-                    onRecommendPersonally(item)
-                }
-                Button("Write a review") {
-                    onWriteReview(item)
-                }
+            }
+            
+            let blurbContent = (item as? Event)?.blurbContent
+            if blurbContent != nil && blurbContent?.isEmpty == false {
+                Divider()
+                    .frame(height: 1)
+                    .overlay(theme.colorScheme.hint)
                 
-            } label: {
-                Image(systemName: "ellipsis")
-                    .padding(.horizontal, 10)
-                    .rotationEffect(.degrees(90))
-                    .foregroundColor(.gray)
-                    .frame(width: 40, height: 40)
-                    .contentShape(Rectangle())
+                Text(blurbContent ?? "")
+                    .font(.system(size: 14, weight: .regular))
+                    .italic()
+                    .foregroundColor(theme.colorScheme.text)
+                    .padding(.all, theme.spacings.horizontal)
             }
         }
     }

@@ -86,7 +86,7 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
                         .foregroundStyle(theme.colorScheme.listenText.opacity(0.7))
                 }
             }
-            .padding(.leading, 4)
+            .padding(.leading, 3)
             
             Spacer()
             

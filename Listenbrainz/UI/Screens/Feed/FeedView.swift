@@ -21,18 +21,18 @@ struct FeedView: View {
     @State private var selectedEvent: Event?
     @State private var isPresented: Bool = false
     @State private var topBarSize: CGSize = .zero
-
-  private var screenWidth: CGFloat {
-       UIScreen.main.bounds.width * 0.9
-   }
-
+    
+    private var screenWidth: CGFloat {
+        UIScreen.main.bounds.width * 0.9
+    }
+    
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
-
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
             theme.colorScheme.background
-
+            
             TopBar(
                 isSettingsPressed: $isSettingsPressed,
                 isSearchActive: $isSearchActive,
@@ -41,7 +41,7 @@ struct FeedView: View {
             .background(.ultraThinMaterial)
             .zIndex(1)
             .readSize($topBarSize)
-
+            
             VStack {
                 if viewModel.isLoading && viewModel.isInitialLoad {
                     ProgressView("Loading...")
@@ -61,54 +61,56 @@ struct FeedView: View {
                                             .frame(width: 1, height: verticalLineHeight(for: event))
                                             .offset(x: 10, y: 4)
                                     }
-
+                                    
                                     VStack(alignment: .leading, spacing: 5) {
                                         EventDescriptionView(event: event)
                                         
                                         if event.eventType != "follow" && event.eventType != "notification" {
-                                          Spacer(minLength: 8)
+                                            Spacer(minLength: 8)
                                             
-                                          TrackInfoView(item: event, onPinTrack: { event in
-                                            selectedEvent = event
-                                            showPinTrackView = true
-                                          }, onRecommendPersonally: { event in
-                                            selectedEvent = event
-                                            showingRecommendToUsersPersonallyView = true
-                                          }, onWriteReview: { event in
-                                            selectedEvent = event
-                                            showWriteReview = true
-                                          })
-                                          .background(theme.colorScheme.level1)
-                                          .cornerRadius(theme.sizes.cornerRadius)
-                                          .shadow(radius: theme.sizes.shadowRadius)
-                                          .padding(.horizontal, theme.sizes.shadowRadius)
-
-                                          if event.eventType == "critiquebrainz_review" {
-                                            ReviewView(event: event)
-                                              .frame(width: screenWidth, alignment: .leading)
-                                          }
-                                        }
-
-                                        HStack {
-                                          Spacer()
-
-                                          Text(formatDate(epochTime: TimeInterval(event.created)))
-                                            .font(.system(size: 10))
-                                            .foregroundColor(theme.colorScheme.hint)
-                                            .italic()
-                                            .padding(.trailing,4)
-
-                                          if event.eventType == "recording_recommendation" {
-                                            Button(action: {
-                                              viewModel.deleteEvent(userName: userName, eventID: event.id ?? 1, userToken: userToken)
-                                            }) {
-                                              Image("feed_delete")
-                                                .renderingMode(.template)
-                                                .resizable()
-                                                .frame(width: 18, height: 18)
-                                                .foregroundColor(theme.colorScheme.lbSignature)
+                                            TrackInfoView(
+                                                item: event, onPinTrack: { event in
+                                                    selectedEvent = event
+                                                    showPinTrackView = true
+                                                }, onRecommendPersonally: { event in
+                                                    selectedEvent = event
+                                                    showingRecommendToUsersPersonallyView = true
+                                                }, onWriteReview: { event in
+                                                    selectedEvent = event
+                                                    showWriteReview = true
+                                                }
+                                            )
+                                            .background(theme.colorScheme.level1)
+                                            .cornerRadius(theme.sizes.cornerRadius)
+                                            .shadow(radius: theme.sizes.shadowRadius)
+                                            .padding(.horizontal, theme.sizes.shadowRadius)
+                                            
+                                            if event.eventType == "critiquebrainz_review" {
+                                                ReviewView(event: event)
+                                                    .frame(width: screenWidth, alignment: .leading)
                                             }
-                                          }
+                                        }
+                                        
+                                        HStack {
+                                            Spacer()
+                                            
+                                            Text(formatDate(epochTime: TimeInterval(event.created)))
+                                                .font(.system(size: 10))
+                                                .foregroundColor(theme.colorScheme.hint)
+                                                .italic()
+                                                .padding(.trailing,4)
+                                            
+                                            if event.eventType == "recording_recommendation" {
+                                                Button(action: {
+                                                    viewModel.deleteEvent(userName: userName, eventID: event.id ?? 1, userToken: userToken)
+                                                }) {
+                                                    Image("feed_delete")
+                                                        .renderingMode(.template)
+                                                        .resizable()
+                                                        .frame(width: 18, height: 18)
+                                                        .foregroundColor(theme.colorScheme.lbSignature)
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -131,9 +133,9 @@ struct FeedView: View {
                         }
                         .padding(.horizontal, theme.spacings.horizontal)
                         if viewModel.isLoading {
-                          ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle())
-                            .padding(.vertical, 10)
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                                .padding(.vertical, 10)
                         }
                         
                         Spacer(minLength: theme.spacings.screenBottom)
@@ -144,13 +146,13 @@ struct FeedView: View {
                         SettingsView()
                     }
                     .onAppear{
-                      Task {
-                        do {
-                          try await viewModel.fetchFeedEvents(username: userName, userToken: userToken)
-                        } catch {
-                          print("Error: \(error)")
+                        Task {
+                            do {
+                                try await viewModel.fetchFeedEvents(username: userName, userToken: userToken)
+                            } catch {
+                                print("Error: \(error)")
+                            }
                         }
-                      }
                     }
                     .refreshable {
                         await refreshFeed()
@@ -188,21 +190,21 @@ struct FeedView: View {
             }
         }
     }
-
+    
     // TODO: Make heights not depend on event but layout bounds
     private func verticalLineHeight(for event: Event) -> CGFloat {
         switch event.eventType {
         case "critiquebrainz_review":
             return 160
         case "notification":
-          return 15
+            return 15
         case "follow":
-          return 15
+            return 15
         default:
             return 80
         }
     }
-
+    
     private func refreshFeed() async {
         do {
             viewModel.resetPagination()
@@ -215,19 +217,21 @@ struct FeedView: View {
 
 
 struct VerticalLine: View {
-  var color: Color
-  var body: some View {
-    Rectangle()
-      .fill(color)
-      .frame(width: 1)
-  }
-
+    var color: Color
+    var body: some View {
+        Rectangle()
+            .fill(color)
+            .frame(width: 1)
+    }
+    
 }
+
+
 struct ReviewView: View {
     let event: Event
     @EnvironmentObject var theme: Theme
     @Environment(\.colorScheme) var colorScheme
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {

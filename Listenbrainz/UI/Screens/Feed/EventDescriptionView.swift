@@ -20,8 +20,8 @@ struct EventDescriptionView: View {
                     linkColor: theme.colorScheme.lbSignature,
                     foregroundColor: theme.colorScheme.text
                 )
+                    .font(.subheadline)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundColor(theme.colorScheme.text)
             } else {
                 eventDescription(for: event)
                     .font(.subheadline)

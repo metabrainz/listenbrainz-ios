@@ -131,6 +131,7 @@
 		BBFC06772C1EE49000668E90 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFC06762C1EE49000668E90 /* SearchRepository.swift */; };
 		BBFC06792C1EE49C00668E90 /* SearchRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFC06782C1EE49C00668E90 /* SearchRepositoryImpl.swift */; };
 		EB1FB62C2DABD6770064297D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1FB62A2DABD6730064297D /* Theme.swift */; };
+		EB721C1E2DB5625400EFFB09 /* BaseFeedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB721C1D2DB5625400EFFB09 /* BaseFeedLayout.swift */; };
 		EBB788DA2DAA9818008F4B7E /* TabBarAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB788D92DAA9818008F4B7E /* TabBarAccessor.swift */; };
 		EBCC17132DB0466600457471 /* TokenValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCC17122DB0466000457471 /* TokenValidation.swift */; };
 		EBF663F72DB00F310013E9C6 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF663F62DB00F310013E9C6 /* WebView.swift */; };
@@ -282,6 +283,7 @@
 		BBFC06762C1EE49000668E90 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
 		BBFC06782C1EE49C00668E90 /* SearchRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryImpl.swift; sourceTree = "<group>"; };
 		EB1FB62A2DABD6730064297D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		EB721C1D2DB5625400EFFB09 /* BaseFeedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFeedLayout.swift; sourceTree = "<group>"; };
 		EBB788D92DAA9818008F4B7E /* TabBarAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAccessor.swift; sourceTree = "<group>"; };
 		EBCC17122DB0466000457471 /* TokenValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenValidation.swift; sourceTree = "<group>"; };
 		EBF663F62DB00F310013E9C6 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -596,6 +598,7 @@
 		BBA32A832AA1D69A00F86779 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				EB721C1D2DB5625400EFFB09 /* BaseFeedLayout.swift */,
 				BB66C1FC2A9F3EEF00BB4CBA /* FeedView.swift */,
 				BB086C6C2AA6FDD3000A8720 /* EventImageView.swift */,
 				BB086C6E2AA6FDDF000A8720 /* EventDescriptionView.swift */,
@@ -986,6 +989,7 @@
 				BB519BAF2B1DE95E00766F01 /* UserDetailsView.swift in Sources */,
 				EBB788DA2DAA9818008F4B7E /* TabBarAccessor.swift in Sources */,
 				BBE25E992C3FFCBA009C7B65 /* FeedHelper.swift in Sources */,
+				EB721C1E2DB5625400EFFB09 /* BaseFeedLayout.swift in Sources */,
 				BB46AC782C6A2E2B003BE1FC /* TasteView.swift in Sources */,
 				BBC5C7B12B4FE83D000A5EB1 /* YimData.swift in Sources */,
 				BBC5C7EC2B51311A000A5EB1 /* YimLastView.swift in Sources */,

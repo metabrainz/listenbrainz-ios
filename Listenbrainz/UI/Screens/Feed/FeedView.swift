@@ -53,69 +53,66 @@ struct FeedView: View {
                             Spacer(minLength: topBarSize.height + theme.spacings.vertical)
                             
                             ForEach(viewModel.events, id: \.created) { event in
-                                HStack(alignment: .top, spacing: 10) {
-                                    VStack(alignment: .leading) {
+                                BaseFeedView(
+                                    icon: {
                                         EventImageView(eventType: event.eventType)
                                             .frame(width: 22, height: 22)
-                                        VerticalLine(color: theme.colorScheme.text)
-                                            .frame(width: 1, height: verticalLineHeight(for: event))
-                                            .offset(x: 10, y: 4)
-                                    }
-                                    
-                                    VStack(alignment: .leading, spacing: 5) {
+                                    },
+                                    title: {
                                         EventDescriptionView(event: event)
-                                        
-                                        if event.eventType != "follow" && event.eventType != "notification" {
-                                            Spacer(minLength: 8)
-                                            
-                                            TrackInfoView(
-                                                item: event, onPinTrack: { event in
-                                                    selectedEvent = event
-                                                    showPinTrackView = true
-                                                }, onRecommendPersonally: { event in
-                                                    selectedEvent = event
-                                                    showingRecommendToUsersPersonallyView = true
-                                                }, onWriteReview: { event in
-                                                    selectedEvent = event
-                                                    showWriteReview = true
-                                                }
-                                            )
-                                            .background(theme.colorScheme.level1)
-                                            .cornerRadius(theme.sizes.cornerRadius)
-                                            .shadow(radius: theme.sizes.shadowRadius)
-                                            .padding(.horizontal, theme.sizes.shadowRadius)
-                                            
-                                            if event.eventType == "critiquebrainz_review" {
-                                                ReviewView(event: event)
-                                                    .frame(width: screenWidth, alignment: .leading)
-                                            }
-                                        }
-                                        
-                                        HStack {
-                                            Spacer()
-                                            
-                                            Text(formatDate(epochTime: TimeInterval(event.created)))
-                                                .font(.system(size: 10))
-                                                .foregroundColor(theme.colorScheme.hint)
-                                                .italic()
-                                                .padding(.trailing,4)
-                                            
-                                            if event.eventType == "recording_recommendation" {
-                                                Button(action: {
-                                                    viewModel.deleteEvent(userName: userName, eventID: event.id ?? 1, userToken: userToken)
-                                                }) {
-                                                    Image("feed_delete")
-                                                        .renderingMode(.template)
-                                                        .resizable()
-                                                        .frame(width: 18, height: 18)
-                                                        .foregroundColor(theme.colorScheme.lbSignature)
+                                    },
+                                    content: {
+                                        VStack {
+                                            if event.eventType != "follow" && event.eventType != "notification" {
+                                                TrackInfoView(
+                                                    item: event, onPinTrack: { event in
+                                                        selectedEvent = event
+                                                        showPinTrackView = true
+                                                    }, onRecommendPersonally: { event in
+                                                        selectedEvent = event
+                                                        showingRecommendToUsersPersonallyView = true
+                                                    }, onWriteReview: { event in
+                                                        selectedEvent = event
+                                                        showWriteReview = true
+                                                    }
+                                                )
+                                                .background(theme.colorScheme.level1)
+                                                .cornerRadius(theme.sizes.cornerRadius)
+                                                .shadow(radius: theme.sizes.shadowRadius)
+                                                .padding(.horizontal, theme.sizes.shadowRadius)
+                                                
+                                                if event.eventType == "critiquebrainz_review" {
+                                                    ReviewView(event: event)
+                                                        .frame(width: screenWidth, alignment: .leading)
                                                 }
                                             }
+                                            
+                                            HStack {
+                                                Spacer()
+                                                
+                                                Text(formatDate(epochTime: TimeInterval(event.created)))
+                                                    .font(.system(size: 10))
+                                                    .foregroundColor(theme.colorScheme.hint)
+                                                    .italic()
+                                                    .padding(.trailing,4)
+                                                
+                                                if event.eventType == "recording_recommendation" {
+                                                    Button(action: {
+                                                        viewModel.deleteEvent(userName: userName, eventID: event.id ?? 1, userToken: userToken)
+                                                    }) {
+                                                        Image("feed_delete")
+                                                            .renderingMode(.template)
+                                                            .resizable()
+                                                            .frame(width: 18, height: 18)
+                                                            .foregroundColor(theme.colorScheme.lbSignature)
+                                                    }
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.vertical, 4)
+                                    },
+                                    lineColor: theme.colorScheme.hint,
+                                )
+                                .frame(maxWidth: .infinity)
                                 .onAppear {
                                     if event == viewModel.events.last && viewModel.canLoadMorePages {
                                         DispatchQueue.main.asyncAfter(deadline: .now()) {
@@ -130,8 +127,10 @@ struct FeedView: View {
                                     }
                                 }
                             }
+                            .padding(.bottom, theme.spacings.vertical)
                         }
                         .padding(.horizontal, theme.spacings.horizontal)
+                        
                         if viewModel.isLoading {
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle())
@@ -191,20 +190,6 @@ struct FeedView: View {
         }
     }
     
-    // TODO: Make heights not depend on event but layout bounds
-    private func verticalLineHeight(for event: Event) -> CGFloat {
-        switch event.eventType {
-        case "critiquebrainz_review":
-            return 160
-        case "notification":
-            return 15
-        case "follow":
-            return 15
-        default:
-            return 80
-        }
-    }
-    
     private func refreshFeed() async {
         do {
             viewModel.resetPagination()
@@ -221,9 +206,9 @@ struct VerticalLine: View {
     var body: some View {
         Rectangle()
             .fill(color)
-            .frame(width: 1)
+            .cornerRadius(0.75)
+            .frame(width: 1.5)
     }
-    
 }
 
 

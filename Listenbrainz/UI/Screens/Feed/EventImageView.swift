@@ -12,51 +12,32 @@ struct EventImageView: View {
     let eventType: String
 
     var body: some View {
-        var backgroundColor: Color
-
-        switch eventType {
-        case "listen":
-          backgroundColor = Color.secondary
-        case "recording_recommendation":
-            backgroundColor = .blue
-        case "critiquebrainz_review":
-            backgroundColor = .green
-        case "recording_pin":
-            backgroundColor = .orange
-        case "follow":
-            backgroundColor = .green
-        case "notification":
-            backgroundColor = .blue
-        default:
-            backgroundColor = .cyan
-        }
-
-        return Image(systemName: symbolName)
+        return Image(symbolName)
             .resizable()
             .scaledToFit()
-            .frame(width: 20, height: 20)
-            .foregroundColor(.white)
-            .background(backgroundColor)
-            .cornerRadius(20)
-            .clipShape(Circle())
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private var symbolName: String {
         switch eventType {
         case "listen":
-            return "headphones.circle"
+            return "feed_listen"
         case "recording_recommendation":
-            return "paperplane.circle"
+            return "feed_send"
+        case "personal_recording_recommendation":
+            return "feed_send"
         case "critiquebrainz_review":
-            return "eye"
+            return "feed_review"
         case "recording_pin":
-            return "pin.circle"
+            return "feed_pin"
+        case "like":
+            return "feed_love"
         case "follow":
-            return "person.fill.badge.plus"
+            return "feed_follow"
         case "notification":
-            return "bell.circle"
+            return "feed_notification"
         default:
-            return "beats.headphones"
+            return "feed_unknown"
         }
     }
 }

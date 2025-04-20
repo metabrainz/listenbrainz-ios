@@ -18,13 +18,14 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     @EnvironmentObject var feedViewModel: FeedViewModel
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
-
-
-
-  private var isCritiqueBrainzReview: Bool {
-          return (item as? Event)?.eventType == "critiquebrainz_review"
-      }
-
+    @EnvironmentObject var theme: Theme
+    
+    
+    
+    private var isCritiqueBrainzReview: Bool {
+        return (item as? Event)?.eventType == "critiquebrainz_review"
+    }
+    
     var body: some View {
         HStack {
             if let coverArtURL = item.coverArtURL {
@@ -37,7 +38,7 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
                         case .success(let image):
                             image
                                 .resizable()
-                                .scaledToFit()
+                                .scaledToFill()
                                 .frame(width: 60, height: 60)
                                 .onAppear {
                                     imageLoader.loadImage(url: coverArtURL) { loadedImage in
@@ -68,23 +69,27 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
                     .scaledToFit()
                     .frame(width: 60, height: 60)
             }
-
+            
             VStack(alignment: .leading) {
-              if isCritiqueBrainzReview {
-                Text(item.entityName ?? "Unknown Entity")
-                  .lineLimit(1)
-                  .font(.headline)
-              } else {
-                Text(item.trackName ?? "Unknown Track")
-                  .lineLimit(1)
-                  .font(.headline)
-                Text(item.artistName ?? "Unknown Artist")
-                  .lineLimit(1)
-              }
+                if isCritiqueBrainzReview {
+                    Text(item.entityName ?? "Unknown Entity")
+                        .lineLimit(1)
+                        .font(.system(size: 14, weight: .bold))
+                } else {
+                    Text(item.trackName ?? "Unknown Track")
+                        .font(.system(size: 14, weight: .bold))
+                        .lineLimit(1)
+                        .foregroundStyle(theme.colorScheme.listenText)
+                    Text(item.artistName ?? "Unknown Artist")
+                        .font(.system(size: 12, weight: .bold))
+                        .lineLimit(1)
+                        .foregroundStyle(theme.colorScheme.listenText.opacity(0.7))
+                }
             }
-
+            .padding(.leading, 4)
+            
             Spacer()
-
+            
             Menu {
                 if let originURL = item.originURL {
                     Button("Open in Spotify") {
@@ -93,7 +98,7 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
                         }
                     }
                 }
-
+                
                 if let recordingMbid = item.recordingMbid {
                     Button("Open in MusicBrainz") {
                         if let url = URL(string: "https://musicbrainz.org/recording/\(recordingMbid)") {
@@ -102,7 +107,7 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
                     }
                 }
                 Button("Pin this track") {
-                        onPinTrack(item)
+                    onPinTrack(item)
                 }
                 Button("Recommend to my followers") {
                     feedViewModel.recommendToFollowers(userName: userName, item: item, userToken: userToken)
@@ -111,22 +116,42 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
                     onRecommendPersonally(item)
                 }
                 Button("Write a review") {
-                  onWriteReview(item)
+                    onWriteReview(item)
                 }
-
+                
             } label: {
                 Image(systemName: "ellipsis")
-                .padding(.horizontal, 10)
-                .rotationEffect(.degrees(90))
-                .foregroundColor(.gray)
-                .frame(width: 40, height: 40) 
-                .contentShape(Rectangle())
+                    .padding(.horizontal, 10)
+                    .rotationEffect(.degrees(90))
+                    .foregroundColor(.gray)
+                    .frame(width: 40, height: 40)
+                    .contentShape(Rectangle())
             }
         }
     }
 }
 
 
+#Preview {
+    TrackInfoView(
+        item: Listen(
+            recordingMsid: "",
+            trackMetadata: ListensTrackMetadata(
+                additionalInfo: ListensAdditionalInfo(originURL: ":"),
+                artistName: "Artist name",
+                trackName: "Track name",
+                mbidMapping: ListensMbidMapping(caaID: nil, caaReleaseMbid: nil, recordingMbid: nil),
+                entityName: "Entity name"
+            )
+        ),
+        onPinTrack: { listen in },
+        onRecommendPersonally: { listen in },
+        onWriteReview: { listen in }
+    )
+    .environmentObject(FeedViewModel(repository: FeedRepositoryImpl()))
+    .environmentObject(DashboardViewModel(repository: DashboardRepositoryImpl()))
+    .environmentObject(Theme())
+}
 
 
 

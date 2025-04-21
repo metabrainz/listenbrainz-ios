@@ -52,7 +52,7 @@ class FeedViewModel: ObservableObject {
                           continuation.resume(throwing: error)
                       }
                   }, receiveValue: { data in
-                      let newEvents = data.payload.events
+                      let newEvents = data.payload.events.filter { !self.events.contains($0) }
                       if newEvents.isEmpty {
                           self.canLoadMorePages = false
                       } else {

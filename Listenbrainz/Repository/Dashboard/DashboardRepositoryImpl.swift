@@ -200,11 +200,24 @@ class DashboardRepositoryImpl: DashboardRepository {
               .map { $0.playlist }
               .eraseToAnyPublisher()
       }
-
-
-
-
- }
+    
+    func validateUserToken(userToken: String) async throws -> TokenValidation {
+        let urlString = "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/validate-token"
+        
+        guard let url = URL(string: urlString) else {
+            throw AFError.invalidURL(url: urlString)
+        }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Token \(userToken)",
+            "Content-Type": "application/json"
+        ]
+        
+        return try await AF.request(url, method: .get, headers: headers)
+            .validate()
+            .serializingDecodable(TokenValidation.self).value
+    }
+}
 
 
 

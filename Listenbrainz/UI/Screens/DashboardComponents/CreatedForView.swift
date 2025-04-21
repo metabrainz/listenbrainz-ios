@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CreatedForYouView: View {
     @EnvironmentObject var viewModel: DashboardViewModel
+    @EnvironmentObject var theme: Theme
+    @EnvironmentObject var insetsHolder: InsetsHolder
     @State private var selectedPlaylistId: String?
     @State private var isLoading = false
     @State private var showPinTrackView = false
@@ -16,136 +18,132 @@ struct CreatedForYouView: View {
     @State private var showingRecommendToUsersPersonallyView = false
     @State private var selectedTrack: PlaylistTrack?
     @Environment(\.colorScheme) var colorScheme
-
+    
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
-
+    
     var body: some View {
-      ScrollView(.vertical){
-        VStack(alignment: .leading) {
-          Text("Created for \(userName)")
-            .font(.system(size: 20))
-            .padding(.leading,20)
-          ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
-              ForEach(viewModel.createdForYou.indices, id: \.self) { index in
-                let playlist = viewModel.createdForYou[index]
-                let imageName = "green-\(index + 1)"
-                
-                ZStack(alignment: .leading) {
-                  Image(imageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: UIScreen.main.bounds.size.width * 0.9, height: 200)
-                    .clipped()
-                    .shadow(radius: 5)
-                  
-                  Text(playlist.title.components(separatedBy: ",").first ?? "")
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(Color.LbPurple)
-                    .padding()
-                    .frame(maxWidth: UIScreen.main.bounds.size.width * 0.9 - 32)
-                    .lineLimit(2)
-                    .multilineTextAlignment(.leading)
-                    .shadow(radius: 2)
-                }
-                .onAppear{
-                  if let firstPlaylist = viewModel.createdForYou.first {
-                    fetchPlaylistDetails(firstPlaylist.identifier)
-                  }
-                }
-                .onTapGesture {
-                  fetchPlaylistDetails(playlist.identifier)
-                }
-              }
-            }
-            .padding()
-          }
-          
-          if !isLoading {
-            if let details = viewModel.playlistDetails {
-              VStack(alignment: .leading) {
-                
-                ScrollView {
-                  VStack(alignment: .leading, spacing: 16) {
-                    ForEach(details.track, id: \.title) { track in
-                      TrackInfoView(
-                        item: track,
-                        onPinTrack: { track in
-                          selectedTrack = track
-                          showPinTrackView = true
-                        },
-                        onRecommendPersonally: { track in
-                          selectedTrack = track
-                          showingRecommendToUsersPersonallyView = true
-                        },
-                        onWriteReview: { track in
-                          selectedTrack = track
-                          showWriteReview = true
+        LazyVStack {
+            VStack(alignment: .leading) {
+                Text("Created for \(userName)")
+                    .font(.system(size: 20))
+                    .padding(.leading, theme.spacings.horizontal * 2)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: theme.spacings.vertical) {
+                        ForEach(viewModel.createdForYou.indices, id: \.self) { index in
+                            let playlist = viewModel.createdForYou[index]
+                            let imageName = "green-\(index + 1)"
+                            
+                            ZStack(alignment: .leading) {
+                                Image(imageName)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: UIScreen.main.bounds.size.width * 0.9, height: 200)
+                                    .clipped()
+                                    .shadow(radius: 5)
+                                
+                                Text(playlist.title.components(separatedBy: ",").first ?? "")
+                                    .font(.system(size: 24, weight: .bold))
+                                    .foregroundColor(Color.lb_purple)
+                                    .padding()
+                                    .frame(maxWidth: UIScreen.main.bounds.size.width * 0.9 - theme.spacings.horizontal * 2)
+                                    .lineLimit(2)
+                                    .multilineTextAlignment(.leading)
+                            }
+                            .cornerRadius(theme.sizes.cornerRadius)
+                            .onAppear{
+                                if let firstPlaylist = viewModel.createdForYou.first {
+                                    fetchPlaylistDetails(firstPlaylist.identifier)
+                                }
+                            }
+                            .onTapGesture {
+                                fetchPlaylistDetails(playlist.identifier)
+                            }
                         }
-                      )
-                      .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                      .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                      .cornerRadius(10)
-                      .shadow(radius: 2)
                     }
-                  }
-                  .padding(.horizontal)
+                    .padding(.horizontal, theme.spacings.horizontal)
                 }
-              }
-              .padding(.top)
+                
+                if !isLoading {
+                    if let details = viewModel.playlistDetails {
+                        LazyVStack(alignment: .leading, spacing: theme.spacings.vertical) {
+                            ForEach(details.track, id: \.title) { track in
+                                TrackInfoView(
+                                    item: track,
+                                    onPinTrack: { track in
+                                        selectedTrack = track
+                                        showPinTrackView = true
+                                    },
+                                    onRecommendPersonally: { track in
+                                        selectedTrack = track
+                                        showingRecommendToUsersPersonallyView = true
+                                    },
+                                    onWriteReview: { track in
+                                        selectedTrack = track
+                                        showWriteReview = true
+                                    }
+                                )
+                                .background(theme.colorScheme.level1)
+                                .cornerRadius(theme.sizes.cornerRadius)
+                                .shadow(radius: theme.sizes.shadowRadius)
+                                .padding(.horizontal, theme.spacings.horizontal)
+                            }
+                            
+                            Spacer(minLength: theme.spacings.screenBottom)
+                        }
+                        .padding(.top)
+                    }
+                } else {
+                    ProgressView("Loading...")
+                        .padding()
+                        .frame(maxWidth: .infinity,maxHeight: .infinity)
+                }
             }
-          } else {
-            ProgressView("Loading...")
-              .padding()
-              .frame(maxWidth: .infinity,maxHeight: .infinity)
-          }
         }
-      }
         .onAppear {
-          viewModel.getCreatedForYou(username: userName)
+            viewModel.getCreatedForYou(username: userName)
         }
         .centeredModal(isPresented: $showPinTrackView) {
-          if let track = selectedTrack {
-            PinTrackView(
-              isPresented: $showPinTrackView,
-              item: track,
-              userToken: userToken,
-              dismissAction: {
-                showPinTrackView = false
-              }
-            )
-            .environmentObject(viewModel)
-          }
+            if let track = selectedTrack {
+                PinTrackView(
+                    isPresented: $showPinTrackView,
+                    item: track,
+                    userToken: userToken,
+                    dismissAction: {
+                        showPinTrackView = false
+                    }
+                )
+                .environmentObject(viewModel)
+            }
         }
         .centeredModal(isPresented: $showingRecommendToUsersPersonallyView) {
-          if let track = selectedTrack {
-            RecommendToUsersPersonallyView(
-              item: track,
-              userName: userName,
-              userToken: userToken,
-              dismissAction: {
-                showingRecommendToUsersPersonallyView = false
-              }
-            )
-            .environmentObject(viewModel)
-          }
+            if let track = selectedTrack {
+                RecommendToUsersPersonallyView(
+                    item: track,
+                    userName: userName,
+                    userToken: userToken,
+                    dismissAction: {
+                        showingRecommendToUsersPersonallyView = false
+                    }
+                )
+                .environmentObject(viewModel)
+            }
         }
         .centeredModal(isPresented: $showWriteReview) {
-          if let track = selectedTrack {
-            WriteAReviewView(
-              isPresented: $showWriteReview,
-              item: track,
-              userToken: userToken,
-              userName: userName
-            ) {
-              showWriteReview = false
+            if let track = selectedTrack {
+                WriteAReviewView(
+                    isPresented: $showWriteReview,
+                    item: track,
+                    userToken: userToken,
+                    userName: userName
+                ) {
+                    showWriteReview = false
+                }
+                .environmentObject(viewModel)
             }
-            .environmentObject(viewModel)
-          }
         }
     }
-
+    
     private func fetchPlaylistDetails(_ identifierURL: String) {
         if let playlistId = viewModel.extractPlaylistId(from: identifierURL) {
             selectedPlaylistId = identifierURL

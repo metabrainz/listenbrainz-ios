@@ -30,7 +30,8 @@ struct Event: Codable, Identifiable, TrackMetadataProvider, Equatable {
     var originURL: String? { metadata.trackMetadata?.additionalInfo?.originURL }
     var recordingMbid: String? { metadata.trackMetadata?.additionalInfo?.recordingMbid }
     var recordingMsid: String? { metadata.trackMetadata?.additionalInfo?.recordingMsid }
-    var entityName: String? {metadata.entityName}
+    var entityName: String? { metadata.entityName }
+    var blurbContent: String? { metadata.message ?? metadata.blurbContent ?? metadata.text }
 
     static func == (lhs: Event, rhs: Event) -> Bool {
         return lhs.id == rhs.id &&

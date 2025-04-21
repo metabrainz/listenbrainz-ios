@@ -9,12 +9,14 @@ import SwiftUI
 
 struct WriteAReviewView<T: TrackMetadataProvider>: View {
     @EnvironmentObject var viewModel: FeedViewModel
+    @EnvironmentObject var theme: Theme
+    
     @State private var text: String = ""
     @State private var rating: Int = 0
     @State private var language: String = "English"
     @State private var agreedToTerms: Bool = false
     @Binding var isPresented: Bool
-    @Environment (\.colorScheme) var colorScheme
+    
     var item: T
     var userToken: String
     var userName: String
@@ -44,7 +46,7 @@ struct WriteAReviewView<T: TrackMetadataProvider>: View {
           Text("for ")
 
           Text("CritiqueBrainz.")
-            .foregroundColor(Color.LbPurple)
+                .foregroundColor(theme.colorScheme.lbSignature)
             .fontWeight(.bold)
             .onTapGesture {
               if let url = URL(string: "https://critiquebrainz.org") {
@@ -61,6 +63,7 @@ struct WriteAReviewView<T: TrackMetadataProvider>: View {
         HStack {
           Text("Rating (optional):")
             .padding(.top, 5)
+            .foregroundColor(theme.colorScheme.text)
 
           StarRatingView(rating: $rating)
             .padding(.vertical, 5)
@@ -69,10 +72,13 @@ struct WriteAReviewView<T: TrackMetadataProvider>: View {
         HStack {
           Text("Language of your review:")
             .padding(.top, 5)
+            .foregroundColor(theme.colorScheme.text)
 
           Picker("Select Language", selection: $language) {
             ForEach(["English", "Spanish", "French", "German", "Chinese"], id: \.self) { lang in
-              Text(lang).tag(lang)
+              Text(lang)
+                    .tag(lang)
+                    .foregroundColor(theme.colorScheme.text)
             }
           }
           .pickerStyle(MenuPickerStyle())
@@ -82,6 +88,7 @@ struct WriteAReviewView<T: TrackMetadataProvider>: View {
         Toggle(isOn: $agreedToTerms) {
           Text("You acknowledge and agree that your contributed reviews to CritiqueBrainz are licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) license. You agree to license your work under this license. You represent and warrant that you own or control all rights in and to the work, that nothing in the work infringes the rights of any third-party, and that you have the permission to use and to license the work under the selected Creative Commons license. Finally, you give the MetaBrainz Foundation permission to license this content for commercial use outside of Creative Commons licenses in order to support the operations of the organization.")
             .font(.system(size: 10))
+            .foregroundColor(theme.colorScheme.text)
         }
         .toggleStyle(CheckboxToggleStyle())
         .padding(.vertical, 5)

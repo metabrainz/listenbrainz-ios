@@ -14,13 +14,13 @@ struct PinsView: View {
     @Binding var showPinTrackView: Bool
     @Binding var showingRecommendToUsersPersonallyView: Bool
     @Binding var showWriteReview: Bool
-    @Environment(\.colorScheme) var colorScheme
-
+    @EnvironmentObject var theme: Theme
+    
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
-
+    
     var body: some View {
-        VStack {
+        LazyVStack {
             HStack {
                 Text("Your Pins")
                     .font(.title2)
@@ -28,25 +28,23 @@ struct PinsView: View {
                     .padding(.leading)
                 Spacer()
             }
-            ScrollView {
-                LazyVStack {
-                    ForEach(viewModel.pinnedRecordings, id: \.id) { pinnedRecording in
-                        TrackInfoView(item: pinnedRecording, onPinTrack: { recording in
-                            selectedPinnedRecording = recording
-                            showPinTrackView = true
-                        }, onRecommendPersonally: { recording in
-                            selectedPinnedRecording = recording
-                            showingRecommendToUsersPersonallyView = true
-                        }, onWriteReview: { recording in
-                            selectedPinnedRecording = recording
-                            showWriteReview = true
-                        })
-                        .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                        .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                        .cornerRadius(10)
-                        .shadow(radius: 2)
-                    }
-                }
+            
+            ForEach(viewModel.pinnedRecordings, id: \.id) { pinnedRecording in
+                TrackInfoView(item: pinnedRecording, onPinTrack: { recording in
+                    selectedPinnedRecording = recording
+                    showPinTrackView = true
+                }, onRecommendPersonally: { recording in
+                    selectedPinnedRecording = recording
+                    showingRecommendToUsersPersonallyView = true
+                }, onWriteReview: { recording in
+                    selectedPinnedRecording = recording
+                    showWriteReview = true
+                })
+                .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
+                .background(theme.colorScheme.background)
+                .cornerRadius(theme.sizes.cornerRadius)
+                .shadow(radius: theme.sizes.shadowRadius)
+                .padding(.all, theme.sizes.shadowRadius)
             }
         }
         .onAppear {

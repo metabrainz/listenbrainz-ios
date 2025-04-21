@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct TasteView: View {
+    @EnvironmentObject var insetsHolder: InsetsHolder
     @EnvironmentObject var viewModel: DashboardViewModel
+    @EnvironmentObject var theme: Theme
     @State private var showPinTrackView = false
     @State private var showWriteReview = false
     @State private var showingRecommendToUsersPersonallyView = false
@@ -17,12 +19,12 @@ struct TasteView: View {
     @State private var isPresented: Bool = false
     @State private var selectedCategory: SongCategory = .loved
     @Environment(\.colorScheme) var colorScheme
-
+    
     @AppStorage(Strings.AppStorageKeys.userToken) private var userToken: String = ""
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
-
+    
     var body: some View {
-        ScrollView(.vertical) {
+        LazyVStack {
             VStack {
                 HStack {
                     CapsuleBarView(title: "Loved", isSelected: selectedCategory == .loved, imageName: "heart")
@@ -34,48 +36,49 @@ struct TasteView: View {
                             selectedCategory = .hated
                         }
                 }
-                .padding(.top)
+                .padding(.vertical)
                 .padding(.trailing, 140)
-
-                ScrollView {
-                    LazyVStack {
-                        if selectedCategory == .loved {
-                            ForEach(viewModel.lovedTastes, id: \.id) { taste in
-                                TrackInfoView(item: taste, onPinTrack: { taste in
-                                    selectedTaste = taste
-                                    showPinTrackView = true
-                                }, onRecommendPersonally: { taste in
-                                    selectedTaste = taste
-                                    showingRecommendToUsersPersonallyView = true
-                                }, onWriteReview: { taste in
-                                    selectedTaste = taste
-                                    showWriteReview = true
-                                })
-                                .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                                .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                                .cornerRadius(10)
-                                .shadow(radius: 2)
-                            }
-                        } else {
-                            ForEach(viewModel.hatedTastes, id: \.id) { taste in
-                                TrackInfoView(item: taste, onPinTrack: { taste in
-                                    selectedTaste = taste
-                                    showPinTrackView = true
-                                }, onRecommendPersonally: { taste in
-                                    selectedTaste = taste
-                                    showingRecommendToUsersPersonallyView = true
-                                }, onWriteReview: { taste in
-                                    selectedTaste = taste
-                                    showWriteReview = true
-                                })
-                                .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                                .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                                .cornerRadius(10)
-                                .shadow(radius: 2)
-                            }
-                        }
+                
+                Spacer(minLength: theme.sizes.shadowRadius)
+                
+                if selectedCategory == .loved {
+                    ForEach(viewModel.lovedTastes, id: \.id) { taste in
+                        TrackInfoView(item: taste, onPinTrack: { taste in
+                            selectedTaste = taste
+                            showPinTrackView = true
+                        }, onRecommendPersonally: { taste in
+                            selectedTaste = taste
+                            showingRecommendToUsersPersonallyView = true
+                        }, onWriteReview: { taste in
+                            selectedTaste = taste
+                            showWriteReview = true
+                        })
+                        .background(theme.colorScheme.level1)
+                        .cornerRadius(theme.sizes.cornerRadius)
+                        .shadow(radius: theme.sizes.shadowRadius)
+                        .padding(.horizontal, theme.spacings.horizontal)
+                    }
+                } else {
+                    ForEach(viewModel.hatedTastes, id: \.id) { taste in
+                        TrackInfoView(item: taste, onPinTrack: { taste in
+                            selectedTaste = taste
+                            showPinTrackView = true
+                        }, onRecommendPersonally: { taste in
+                            selectedTaste = taste
+                            showingRecommendToUsersPersonallyView = true
+                        }, onWriteReview: { taste in
+                            selectedTaste = taste
+                            showWriteReview = true
+                        })
+                        .background(theme.colorScheme.level1)
+                        .cornerRadius(theme.sizes.cornerRadius)
+                        .shadow(radius: theme.sizes.shadowRadius)
+                        .padding(.horizontal, theme.spacings.horizontal)
                     }
                 }
+                
+                Spacer(minLength: theme.sizes.shadowRadius)
+                
                 PinsView(
                     selectedPinnedRecording: $selectedPinnedRecording,
                     showPinTrackView: $showPinTrackView,
@@ -84,6 +87,8 @@ struct TasteView: View {
                 )
                 .environmentObject(viewModel)
             }
+            
+            Spacer(minLength: theme.spacings.screenBottom)
         }
         .onAppear {
             viewModel.getTaste(userName: userName)

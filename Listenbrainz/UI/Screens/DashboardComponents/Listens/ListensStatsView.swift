@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListensStatsView: View {
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
-    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var theme: Theme
 
     @State private var showingFollowersView = false
     @State private var showingFollowingView = false
@@ -34,7 +34,7 @@ struct ListensStatsView: View {
                     Text("Followers")
                         .font(.subheadline)
                 }
-                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                .foregroundColor(theme.colorScheme.text)
                 .onTapGesture {
                     showingFollowersView = true
                 }
@@ -49,7 +49,7 @@ struct ListensStatsView: View {
                     Text("Following")
                         .font(.subheadline)
                 }
-                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                .foregroundColor(theme.colorScheme.text)
                 .onTapGesture {
                     showingFollowingView = true
                 }
@@ -60,9 +60,9 @@ struct ListensStatsView: View {
             .padding(.top, 8)
         }
         .padding()
-        .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
+        .background(theme.colorScheme.level1)
         .cornerRadius(10)
-        .shadow(radius: 2)
+        .shadow(radius: theme.sizes.shadowRadius)
     }
 }
 
@@ -114,6 +114,8 @@ struct FollowingView: View {
 }
 
 struct FollowerRow: View {
+    @EnvironmentObject var theme: Theme
+    
     let follower: String
 
     var body: some View {
@@ -124,7 +126,7 @@ struct FollowerRow: View {
                 .padding(.trailing, 4)
             Text(follower)
                 .font(.headline)
-                .foregroundColor(Color.LbPurple)
+                .foregroundColor(theme.colorScheme.lbSignature)
             Spacer()
         }
         .padding()

@@ -36,7 +36,7 @@ struct TextViewRepresentable: UIViewRepresentable {
             let linkText = nsText.substring(with: linkTextRange)
             let linkAttributedString = NSAttributedString(string: linkText, attributes: [
                 .link: URL(string: url)!,
-                .foregroundColor: UIColor(linkColor)
+                .foregroundColor: UIColor(linkColor),
             ])
 
             attributedString.replaceCharacters(in: match.range(at: 0), with: linkAttributedString)
@@ -44,6 +44,7 @@ struct TextViewRepresentable: UIViewRepresentable {
 
         uiView.attributedText = attributedString
         uiView.textColor = UIColor(foregroundColor)
+        uiView.tintColor = UIColor(linkColor)
     }
 }
 
@@ -80,7 +81,7 @@ struct DismissableTextView: UIViewRepresentable {
         textView.isScrollEnabled = true
         textView.font = UIFont.systemFont(ofSize: 17)
         textView.returnKeyType = .done
-        textView.backgroundColor = UIColor.systemGray6
+        textView.backgroundColor = UIColor.systemGray6  // ??
         textView.layer.cornerRadius = 5
         return textView
     }

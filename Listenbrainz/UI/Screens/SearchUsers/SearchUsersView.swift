@@ -12,51 +12,59 @@ struct SearchUsersView: View {
     @Binding var isSearchActive: Bool
     @State private var searchTerm: String = ""
     @StateObject private var searchViewModel = SearchViewModel(repository: SearchRepositoryImpl())
-  @Environment(\.colorScheme) var colorScheme
-
+    @EnvironmentObject var theme: Theme
+    @EnvironmentObject var insetsHolder: InsetsHolder
+    
     var body: some View {
-      ZStack {
-        colorScheme == .dark ? Color.backgroundColor : Color.white
-        VStack {
-          HStack {
-            Button(action: {
-              isSearchActive = false
-              searchTerm = ""
-              searchViewModel.clearSearch()
-            }) {
-              Image(systemName: "arrow.backward")
-                .resizable()
-                .frame(width: 20, height: 16)
-                .foregroundColor(Color.primary)
-                .padding(.leading)
-                .padding(.top,5)
-            }
+        ZStack {
+            theme.colorScheme.background
             
-            CustomSearchBar(text: $searchTerm, onSearchButtonClicked: {
-              searchViewModel.searchTerm = searchTerm
-            })
-          }
-          .padding(.top, 50)
-          .ignoresSafeArea(.keyboard)
-
-          if let error = searchViewModel.error {
-            Text(error)
-              .foregroundColor(.red)
-              .padding()
-          }
-          ScrollView(.vertical) {
-            VStack(spacing: 2) {
-              ForEach(searchViewModel.users) { user in
-                UserProfileView(user: user)
-              }
+            VStack {
+                
+                HStack(alignment: .center) {
+                    Button(
+                        action: {
+                            isSearchActive = false
+                            searchTerm = ""
+                            searchViewModel.clearSearch()
+                        }
+                    ) {
+                        Image(systemName: "chevron.backward")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 20, height: 20, alignment: .center)
+                            .foregroundColor(theme.colorScheme.lbSignature)
+                            .padding(.leading, 16)
+                    }
+                    .frame(alignment: .center)
+                    
+                    CustomSearchBar(text: $searchTerm, onSearchButtonClicked: {
+                        searchViewModel.searchTerm = searchTerm
+                    })
+                }
+                .padding(.top, insetsHolder.insets.top)
+                .ignoresSafeArea(.keyboard)
+                
+                
+                if let error = searchViewModel.error {
+                    Text(error)
+                        .foregroundColor(.red)
+                        .padding()
+                }
+                ScrollView(.vertical) {
+                    VStack(spacing: 2) {
+                        ForEach(searchViewModel.users) { user in
+                            UserProfileView(user: user)
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
 }
 
 #Preview{
-        SearchUsersView(isSearchActive: .constant(false))
-    }
+    SearchUsersView(isSearchActive: .constant(false))
+        .environmentObject(Theme())
+}
 

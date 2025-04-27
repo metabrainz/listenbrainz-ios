@@ -50,7 +50,7 @@ struct FeedView: View {
                 } else {
                     ScrollView {
                         LazyVStack {
-                            Spacer(minLength: topBarSize.height + theme.spacings.vertical)
+                            Spacer(minLength: topBarSize.height + theme.spacings.vertical * 2)
                             
                             ForEach(viewModel.events, id: \.created) { event in
                                 BaseFeedView(

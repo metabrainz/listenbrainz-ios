@@ -11,19 +11,17 @@ struct EventDescriptionView: View {
     @EnvironmentObject var theme: Theme
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     let event: Event
-    
-    var attributedString: AttributedString {
-        AttributedString(
-            convertLinkToAttributedString(
-                text: event.metadata.message ?? "",
-                linkColor: theme.colorScheme.lbSignature
-            )
-        )
-    }
 
     var body: some View {
         Group {
             if event.eventType == "notification" {
+                let attributedString = AttributedString(
+                    convertLinkToAttributedString(
+                        text: event.metadata.message ?? "",
+                        linkColor: theme.colorScheme.lbSignature
+                    )
+                )
+                
                 Text(attributedString)
                     .font(.subheadline)
                     .foregroundColor(theme.colorScheme.text)
@@ -62,9 +60,9 @@ struct EventDescriptionView: View {
                 .foregroundColor(theme.colorScheme.text)
 
         case "follow":
-            let username0Text = Text(replaceUsernameIfNeeded(event.metadata.userName0 ?? ""))
+            let username0Text = Text(replaceUsernameIfNeeded(event.metadata.userName0 ?? "").lowercased())
                 .foregroundColor(theme.colorScheme.lbSignature)
-            let username1Text = Text(replaceUsernameIfNeeded(event.metadata.userName1 ?? ""))
+            let username1Text = Text(replaceUsernameIfNeeded(event.metadata.userName1 ?? "").lowercased())
                 .foregroundColor(theme.colorScheme.lbSignature)
 
             return username0Text

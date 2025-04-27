@@ -105,13 +105,12 @@ struct BaseFeedLayout: Layout {
             proposal: ProposedViewSize(cache.iconSize)
         )
         
-        let titleOffsetFromTop = {
+        let titleOffsetFromTop =
             if cache.iconSize.height > cache.originalTitleSize.height {
-                return (cache.iconSize.height - cache.originalTitleSize.height) / 2
+                (cache.iconSize.height - cache.originalTitleSize.height) / 2
             } else {
-                return 0
+                CGFloat.zero
             }
-        }()
         
         subviews[1].place(
             at: CGPoint(

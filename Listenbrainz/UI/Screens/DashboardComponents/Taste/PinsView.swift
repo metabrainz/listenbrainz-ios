@@ -30,7 +30,7 @@ struct PinsView: View {
             }
             
             ForEach(viewModel.pinnedRecordings, id: \.id) { pinnedRecording in
-                TrackInfoView(item: pinnedRecording, onPinTrack: { recording in
+                ListenCardView(item: pinnedRecording, onPinTrack: { recording in
                     selectedPinnedRecording = recording
                     showPinTrackView = true
                 }, onRecommendPersonally: { recording in
@@ -41,10 +41,6 @@ struct PinsView: View {
                     showWriteReview = true
                 })
                 .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                .background(theme.colorScheme.background)
-                .cornerRadius(theme.sizes.cornerRadius)
-                .shadow(radius: theme.sizes.shadowRadius)
-                .padding(.all, theme.sizes.shadowRadius)
             }
         }
         .onAppear {

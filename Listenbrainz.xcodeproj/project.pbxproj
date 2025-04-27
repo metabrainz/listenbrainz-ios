@@ -28,7 +28,7 @@
 		BB05865C2A25053600744FF0 /* HomeRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05865B2A25053600744FF0 /* HomeRepositoryImpl.swift */; };
 		BB086C6D2AA6FDD3000A8720 /* EventImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB086C6C2AA6FDD3000A8720 /* EventImageView.swift */; };
 		BB086C6F2AA6FDE0000A8720 /* EventDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB086C6E2AA6FDDF000A8720 /* EventDescriptionView.swift */; };
-		BB086C712AA6FDE9000A8720 /* TrackInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB086C702AA6FDE9000A8720 /* TrackInfoView.swift */; };
+		BB086C712AA6FDE9000A8720 /* ListenCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB086C702AA6FDE9000A8720 /* ListenCardView.swift */; };
 		BB09C7C12B0BEB5C00BCF5A9 /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB09C7C02B0BEB5C00BCF5A9 /* TopBar.swift */; };
 		BB13BD9E2C6A361800807896 /* ListeningActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13BD9D2C6A361800807896 /* ListeningActivity.swift */; };
 		BB13BDA32C6A44B000807896 /* TopArtists.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13BDA22C6A44B000807896 /* TopArtists.swift */; };
@@ -179,7 +179,7 @@
 		BB05865B2A25053600744FF0 /* HomeRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRepositoryImpl.swift; sourceTree = "<group>"; };
 		BB086C6C2AA6FDD3000A8720 /* EventImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventImageView.swift; sourceTree = "<group>"; };
 		BB086C6E2AA6FDDF000A8720 /* EventDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDescriptionView.swift; sourceTree = "<group>"; };
-		BB086C702AA6FDE9000A8720 /* TrackInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackInfoView.swift; sourceTree = "<group>"; };
+		BB086C702AA6FDE9000A8720 /* ListenCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenCardView.swift; sourceTree = "<group>"; };
 		BB09C7C02B0BEB5C00BCF5A9 /* TopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBar.swift; sourceTree = "<group>"; };
 		BB13BD9D2C6A361800807896 /* ListeningActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListeningActivity.swift; sourceTree = "<group>"; };
 		BB13BDA22C6A44B000807896 /* TopArtists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopArtists.swift; sourceTree = "<group>"; };
@@ -602,7 +602,7 @@
 				BB66C1FC2A9F3EEF00BB4CBA /* FeedView.swift */,
 				BB086C6C2AA6FDD3000A8720 /* EventImageView.swift */,
 				BB086C6E2AA6FDDF000A8720 /* EventDescriptionView.swift */,
-				BB086C702AA6FDE9000A8720 /* TrackInfoView.swift */,
+				BB086C702AA6FDE9000A8720 /* ListenCardView.swift */,
 				BB5282132C32D86E00743A60 /* PinTrackView.swift */,
 				BB5282152C32F9CC00743A60 /* PersonallyRecommendView.swift */,
 				BBC5E6132C3BC6E30046DDD9 /* WriteAReviewView.swift */,
@@ -960,7 +960,7 @@
 				BB6FF5812B52D3B40057F8C1 /* ExploreView.swift in Sources */,
 				BBC5C7E42B4FF11C000A5EB1 /* NewReleasesView.swift in Sources */,
 				BBD28DD12A2F9D9B00AD57C6 /* FeedAlbum.swift in Sources */,
-				BB086C712AA6FDE9000A8720 /* TrackInfoView.swift in Sources */,
+				BB086C712AA6FDE9000A8720 /* ListenCardView.swift in Sources */,
 				BB8843A92C72BE7F00779ACC /* PinsView.swift in Sources */,
 				BBC7CA662C60E29D00470944 /* Followers.swift in Sources */,
 				BBC7CA682C60E2DA00470944 /* Following.swift in Sources */,

@@ -68,7 +68,7 @@ struct CreatedForYouView: View {
                     if let details = viewModel.playlistDetails {
                         LazyVStack(alignment: .leading, spacing: theme.spacings.vertical) {
                             ForEach(details.track, id: \.title) { track in
-                                TrackInfoView(
+                                ListenCardView(
                                     item: track,
                                     onPinTrack: { track in
                                         selectedTrack = track
@@ -83,9 +83,6 @@ struct CreatedForYouView: View {
                                         showWriteReview = true
                                     }
                                 )
-                                .background(theme.colorScheme.level1)
-                                .cornerRadius(theme.sizes.cornerRadius)
-                                .shadow(radius: theme.sizes.shadowRadius)
                                 .padding(.horizontal, theme.spacings.horizontal)
                             }
                             

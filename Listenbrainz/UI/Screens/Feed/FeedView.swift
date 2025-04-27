@@ -64,7 +64,7 @@ struct FeedView: View {
                                     content: {
                                         VStack {
                                             if event.eventType != "follow" && event.eventType != "notification" {
-                                                TrackInfoView(
+                                                ListenCardView(
                                                     item: event, onPinTrack: { event in
                                                         selectedEvent = event
                                                         showPinTrackView = true
@@ -76,9 +76,6 @@ struct FeedView: View {
                                                         showWriteReview = true
                                                     }
                                                 )
-                                                .background(theme.colorScheme.level1)
-                                                .cornerRadius(theme.sizes.cornerRadius)
-                                                .shadow(radius: theme.sizes.shadowRadius)
                                                 .padding(.horizontal, theme.sizes.shadowRadius)
                                                 
                                                 if event.eventType == "critiquebrainz_review" {

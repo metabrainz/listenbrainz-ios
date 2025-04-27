@@ -20,8 +20,6 @@ struct ListenCardView<T: TrackMetadataProvider>: View {
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
     @EnvironmentObject var theme: Theme
     
-    
-    
     private var isCritiqueBrainzReview: Bool {
         return (item as? Event)?.eventType == "critiquebrainz_review"
     }
@@ -171,10 +169,3 @@ struct ListenCardView<T: TrackMetadataProvider>: View {
     .environmentObject(DashboardViewModel(repository: DashboardRepositoryImpl()))
     .environmentObject(Theme())
 }
-
-
-
-
-
-
-

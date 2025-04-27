@@ -48,7 +48,7 @@ struct PlaylistDetailsView: View {
 
 
                                 ForEach(details.track, id: \.id) { track in
-                                    TrackInfoView(
+                                    ListenCardView(
                                         item: track,
                                         onPinTrack: { track in
                                             selectedTrack = track
@@ -64,9 +64,6 @@ struct PlaylistDetailsView: View {
                                         }
                                     )
                                     .frame(width:  UIScreen.main.bounds.width * 0.9, alignment: .leading)
-                                    .background(colorScheme == .dark ? Color(.systemBackground).opacity(0.1) : Color.white)
-                                    .cornerRadius(10)
-                                    .shadow(radius: 2)
                                 }
                             }
                             .padding(.top,50)

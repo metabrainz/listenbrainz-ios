@@ -22,7 +22,7 @@ struct SongDetailView: View {
                     Spacer(minLength: theme.sizes.shadowRadius)
                     
                     ForEach(homeViewModel.listens, id: \.recordingMsid) { listen in
-                        TrackInfoView(
+                        ListenCardView(
                             item: listen,
                             onPinTrack: { event in
                                 onPinTrack(listen)
@@ -35,9 +35,6 @@ struct SongDetailView: View {
                             }
                         )
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(theme.colorScheme.level1)
-                        .cornerRadius(10)
-                        .shadow(radius: theme.sizes.shadowRadius)
                         .padding(.horizontal, theme.spacings.horizontal)
                     }
                     

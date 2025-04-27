@@ -15,13 +15,16 @@ struct EventDescriptionView: View {
     var body: some View {
         Group {
             if event.eventType == "notification" {
-                TextViewRepresentable(
-                    text: event.metadata.message ?? "",
-                    linkColor: theme.colorScheme.lbSignature,
-                    foregroundColor: theme.colorScheme.text
+                let attributedString = AttributedString(
+                    convertLinkToAttributedString(
+                        text: event.metadata.message ?? "",
+                        linkColor: theme.colorScheme.lbSignature
+                    )
                 )
+                
+                Text(attributedString)
                     .font(.subheadline)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(theme.colorScheme.text)
             } else {
                 eventDescription(for: event)
                     .font(.subheadline)
@@ -33,6 +36,7 @@ struct EventDescriptionView: View {
     private func eventDescription(for event: Event) -> Text {
         let usernameText = Text(replaceUsernameIfNeeded(event.userName))
             .foregroundColor(theme.colorScheme.lbSignature)
+
 
         switch event.eventType {
         case "listen":
@@ -56,9 +60,9 @@ struct EventDescriptionView: View {
                 .foregroundColor(theme.colorScheme.text)
 
         case "follow":
-            let username0Text = Text(replaceUsernameIfNeeded(event.metadata.userName0 ?? ""))
+            let username0Text = Text(replaceUsernameIfNeeded(event.metadata.userName0 ?? "").lowercased())
                 .foregroundColor(theme.colorScheme.lbSignature)
-            let username1Text = Text(replaceUsernameIfNeeded(event.metadata.userName1 ?? ""))
+            let username1Text = Text(replaceUsernameIfNeeded(event.metadata.userName1 ?? "").lowercased())
                 .foregroundColor(theme.colorScheme.lbSignature)
 
             return username0Text

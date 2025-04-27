@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct TrackInfoView<T: TrackMetadataProvider>: View {
+struct ListenCardView<T: TrackMetadataProvider>: View {
     let item: T
     let onPinTrack: (T) -> Void
     let onRecommendPersonally: (T) -> Void
@@ -19,8 +19,6 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
     @EnvironmentObject var feedViewModel: FeedViewModel
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
     @EnvironmentObject var theme: Theme
-    
-    
     
     private var isCritiqueBrainzReview: Bool {
         return (item as? Event)?.eventType == "critiquebrainz_review"
@@ -143,12 +141,16 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
                     .padding(.all, theme.spacings.horizontal)
             }
         }
+            .background(theme.colorScheme.level1)
+            .cornerRadius(theme.sizes.cornerRadius)
+            .shadow(radius: theme.sizes.shadowRadius)
+            .padding(.all, theme.sizes.shadowRadius)
     }
 }
 
 
 #Preview {
-    TrackInfoView(
+    ListenCardView(
         item: Listen(
             recordingMsid: "",
             trackMetadata: ListensTrackMetadata(
@@ -167,10 +169,3 @@ struct TrackInfoView<T: TrackMetadataProvider>: View {
     .environmentObject(DashboardViewModel(repository: DashboardRepositoryImpl()))
     .environmentObject(Theme())
 }
-
-
-
-
-
-
-

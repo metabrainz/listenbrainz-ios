@@ -11,13 +11,26 @@ import SwiftUI
  *
  * This will be a 4 item grid layout where number of subviews must be exactly 4.
  * Subviews will be processed in the following order: Top-left (icon) -> top-right  (tagline)-> bottom-right (main content) -> bottom-left (essentially our dynamic line)
+ *
+ * - Parameters:
+ *   - spacing: Spacing between all 4 elements of the layout.
  */
 struct BaseFeedLayout: Layout {
+    let spacing: CGFloat
+    
     struct Cache {
         var iconSize: CGSize = .zero
-        var titleSize: CGSize = .zero
+        var originalTitleSize: CGSize = .zero
         var contentSize: CGSize = .zero
         var lineSize: CGSize = .zero
+        
+        var titleSize: CGSize {
+            return CGSize(
+                width: originalTitleSize.width,
+                // Coerce title height with minimum of icon height.
+                height: max(originalTitleSize.height, iconSize.height)
+            )
+        }
     }
     
     func makeCache(subviews: Subviews) -> Cache {
@@ -38,25 +51,34 @@ struct BaseFeedLayout: Layout {
             max(proposal.height!, cache.iconSize.height)
         }
         
-        cache.titleSize = subviews[1].sizeThatFits(
+        let proposedTitleWidth: CGFloat? = if proposal.width == nil {
+            nil
+        }  else {
+            proposal.width! - (cache.iconSize.width + spacing)
+        }
+        
+        cache.originalTitleSize = subviews[1].sizeThatFits(
             ProposedViewSize(
-                width: proposal.width! - cache.iconSize.width,
+                width: proposedTitleWidth,
                 height: proposedTitleHeight
             )
         )
         
-        // Coerce title height with minimum of icon height.
-        cache.titleSize.height = max(cache.titleSize.height, cache.iconSize.height)
-        
         let proposedContentHeight: CGFloat? = if proposal.height == nil {
             nil
         }  else {
-            proposal.height! - cache.iconSize.height
+            proposal.height! - (cache.titleSize.height + spacing)
+        }
+        
+        let proposedContentWidth: CGFloat? = if proposal.width == nil {
+            nil
+        }  else {
+            proposal.width! - (cache.iconSize.width + spacing)
         }
         
         cache.contentSize = subviews[2].sizeThatFits(
             ProposedViewSize(
-                width: proposal.width! - cache.iconSize.width,
+                width: proposedContentWidth,
                 height: proposedContentHeight
             )
         )
@@ -64,13 +86,13 @@ struct BaseFeedLayout: Layout {
         cache.lineSize = subviews[3].sizeThatFits(
             ProposedViewSize(
                 width: cache.iconSize.width,
-                height: cache.titleSize.height + cache.contentSize.height - cache.iconSize.height
+                height: cache.titleSize.height + cache.contentSize.height + spacing - (cache.iconSize.height + spacing)
             )
         )
         
         return CGSize(
-            width: proposal.width ?? cache.iconSize.width + max(cache.contentSize.width, cache.titleSize.width),
-            height: cache.titleSize.height + cache.contentSize.height
+            width: proposal.width ?? cache.iconSize.width + max(cache.contentSize.width, cache.titleSize.width) + spacing,
+            height: cache.titleSize.height + cache.contentSize.height + spacing
         )
     }
     
@@ -83,18 +105,34 @@ struct BaseFeedLayout: Layout {
             proposal: ProposedViewSize(cache.iconSize)
         )
         
+        let titleOffsetFromTop =
+            if cache.iconSize.height > cache.originalTitleSize.height {
+                (cache.iconSize.height - cache.originalTitleSize.height) / 2
+            } else {
+                CGFloat.zero
+            }
+        
         subviews[1].place(
-            at: CGPoint(x: start + cache.iconSize.width, y: top),
-            proposal: ProposedViewSize(cache.titleSize)
+            at: CGPoint(
+                x: start + cache.iconSize.width + spacing,
+                y: top + titleOffsetFromTop
+            ),
+            proposal: ProposedViewSize(cache.originalTitleSize)
         )
         
         subviews[2].place(
-            at: CGPoint(x: start + cache.iconSize.width, y: top + cache.titleSize.height),
+            at: CGPoint(
+                x: start + cache.iconSize.width + spacing,
+                y: top + cache.titleSize.height + spacing
+            ),
             proposal: ProposedViewSize(cache.contentSize)
         )
         
         subviews[3].place(
-            at: CGPoint(x: start, y: top + cache.iconSize.height),
+            at: CGPoint(
+                x: start,
+                y: top + cache.iconSize.height + spacing
+            ),
             proposal: ProposedViewSize(cache.lineSize)
         )
     }
@@ -106,18 +144,15 @@ struct BaseFeedView<Icon: View, Title: View, Content: View>: View {
     @ViewBuilder let content: () -> Content
     
     let lineColor: Color
-    let spacing: CGFloat = 8
+    let spacing: CGFloat
     
     var body: some View {
-        BaseFeedLayout {
-            icon()
-                .padding(.bottom, spacing)
+        BaseFeedLayout(spacing: spacing) {
+            ZStack(content: icon)
             
-            title()
-                .padding(.leading, spacing)
+            ZStack(content: title)
             
-            content()
-                .padding(.leading, spacing)
+            ZStack(content: content)
             
             ZStack(alignment: .center) {
                 VerticalLine(color: lineColor)
@@ -145,6 +180,7 @@ struct BaseFeedView<Icon: View, Title: View, Content: View>: View {
                 .frame(maxWidth: .infinity)
                 .background(Color.blue)
         },
-        lineColor: Color.white
+        lineColor: Color.white,
+        spacing: 8,
     )
 }

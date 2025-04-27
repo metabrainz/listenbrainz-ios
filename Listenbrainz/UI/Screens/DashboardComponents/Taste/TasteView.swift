@@ -43,7 +43,7 @@ struct TasteView: View {
                 
                 if selectedCategory == .loved {
                     ForEach(viewModel.lovedTastes, id: \.id) { taste in
-                        TrackInfoView(item: taste, onPinTrack: { taste in
+                        ListenCardView(item: taste, onPinTrack: { taste in
                             selectedTaste = taste
                             showPinTrackView = true
                         }, onRecommendPersonally: { taste in
@@ -53,14 +53,11 @@ struct TasteView: View {
                             selectedTaste = taste
                             showWriteReview = true
                         })
-                        .background(theme.colorScheme.level1)
-                        .cornerRadius(theme.sizes.cornerRadius)
-                        .shadow(radius: theme.sizes.shadowRadius)
                         .padding(.horizontal, theme.spacings.horizontal)
                     }
                 } else {
                     ForEach(viewModel.hatedTastes, id: \.id) { taste in
-                        TrackInfoView(item: taste, onPinTrack: { taste in
+                        ListenCardView(item: taste, onPinTrack: { taste in
                             selectedTaste = taste
                             showPinTrackView = true
                         }, onRecommendPersonally: { taste in
@@ -70,9 +67,6 @@ struct TasteView: View {
                             selectedTaste = taste
                             showWriteReview = true
                         })
-                        .background(theme.colorScheme.level1)
-                        .cornerRadius(theme.sizes.cornerRadius)
-                        .shadow(radius: theme.sizes.shadowRadius)
                         .padding(.horizontal, theme.spacings.horizontal)
                     }
                 }

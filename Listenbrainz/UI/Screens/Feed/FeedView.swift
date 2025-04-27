@@ -49,7 +49,7 @@ struct FeedView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     ScrollView {
-                        LazyVStack {
+                        LazyVStack(spacing: theme.spacings.vertical) {
                             Spacer(minLength: topBarSize.height + theme.spacings.vertical)
                             
                             ForEach(viewModel.events, id: \.created) { event in
@@ -64,7 +64,7 @@ struct FeedView: View {
                                     content: {
                                         VStack {
                                             if event.eventType != "follow" && event.eventType != "notification" {
-                                                TrackInfoView(
+                                                ListenCardView(
                                                     item: event, onPinTrack: { event in
                                                         selectedEvent = event
                                                         showPinTrackView = true
@@ -76,9 +76,6 @@ struct FeedView: View {
                                                         showWriteReview = true
                                                     }
                                                 )
-                                                .background(theme.colorScheme.level1)
-                                                .cornerRadius(theme.sizes.cornerRadius)
-                                                .shadow(radius: theme.sizes.shadowRadius)
                                                 .padding(.horizontal, theme.sizes.shadowRadius)
                                                 
                                                 if event.eventType == "critiquebrainz_review" {
@@ -111,6 +108,7 @@ struct FeedView: View {
                                         }
                                     },
                                     lineColor: theme.colorScheme.hint,
+                                    spacing: theme.spacings.horizontal
                                 )
                                 .frame(maxWidth: .infinity)
                                 .onAppear {
@@ -127,7 +125,6 @@ struct FeedView: View {
                                     }
                                 }
                             }
-                            .padding(.bottom, theme.spacings.vertical)
                         }
                         .padding(.horizontal, theme.spacings.horizontal)
                         

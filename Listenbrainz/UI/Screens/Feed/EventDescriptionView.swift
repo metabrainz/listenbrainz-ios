@@ -11,17 +11,22 @@ struct EventDescriptionView: View {
     @EnvironmentObject var theme: Theme
     @AppStorage(Strings.AppStorageKeys.userName) private var userName: String = ""
     let event: Event
+    
+    var attributedString: AttributedString {
+        AttributedString(
+            convertLinkToAttributedString(
+                text: event.metadata.message ?? "",
+                linkColor: theme.colorScheme.lbSignature
+            )
+        )
+    }
 
     var body: some View {
         Group {
             if event.eventType == "notification" {
-                TextViewRepresentable(
-                    text: event.metadata.message ?? "",
-                    linkColor: theme.colorScheme.lbSignature,
-                    foregroundColor: theme.colorScheme.text
-                )
+                Text(attributedString)
                     .font(.subheadline)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(theme.colorScheme.text)
             } else {
                 eventDescription(for: event)
                     .font(.subheadline)
@@ -33,6 +38,7 @@ struct EventDescriptionView: View {
     private func eventDescription(for event: Event) -> Text {
         let usernameText = Text(replaceUsernameIfNeeded(event.userName))
             .foregroundColor(theme.colorScheme.lbSignature)
+
 
         switch event.eventType {
         case "listen":

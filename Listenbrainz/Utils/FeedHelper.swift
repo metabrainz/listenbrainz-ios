@@ -23,29 +23,38 @@ struct TextViewRepresentable: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UITextView, context: Context) {
-        let attributedString = NSMutableAttributedString(string: text)
-        let regex = try! NSRegularExpression(pattern: "<a href=\"([^\"]+)\">([^<]+)</a>")
-        let nsText = text as NSString
-        let matches = regex.matches(in: text, range: NSRange(location: 0, length: nsText.length))
-
-        for match in matches {
-            let urlRange = match.range(at: 1)
-            let linkTextRange = match.range(at: 2)
-
-            let url = nsText.substring(with: urlRange)
-            let linkText = nsText.substring(with: linkTextRange)
-            let linkAttributedString = NSAttributedString(string: linkText, attributes: [
-                .link: URL(string: url)!,
-                .foregroundColor: UIColor(linkColor),
-            ])
-
-            attributedString.replaceCharacters(in: match.range(at: 0), with: linkAttributedString)
-        }
+        let attributedString = convertLinkToAttributedString(text: text)
 
         uiView.attributedText = attributedString
         uiView.textColor = UIColor(foregroundColor)
         uiView.tintColor = UIColor(linkColor)
     }
+}
+
+func convertLinkToAttributedString(
+    text: String,
+    linkColor: Color = .blue,
+) -> NSMutableAttributedString {
+    let attributedString = NSMutableAttributedString(string: text)
+    let regex = try! NSRegularExpression(pattern: "<a href=\"([^\"]+)\">([^<]+)</a>")
+    let nsText = text as NSString
+    let matches = regex.matches(in: text, range: NSRange(location: 0, length: nsText.length))
+
+    for match in matches {
+        let urlRange = match.range(at: 1)
+        let linkTextRange = match.range(at: 2)
+
+        let url = nsText.substring(with: urlRange)
+        let linkText = nsText.substring(with: linkTextRange)
+        let linkAttributedString = NSAttributedString(string: linkText, attributes: [
+            .link: URL(string: url)!,
+            .foregroundColor: UIColor(linkColor),
+        ])
+
+        attributedString.replaceCharacters(in: match.range(at: 0), with: linkAttributedString)
+    }
+    
+    return attributedString
 }
 
 struct DismissableTextView: UIViewRepresentable {

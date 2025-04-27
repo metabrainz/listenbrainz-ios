@@ -108,6 +108,7 @@ struct FeedView: View {
                                         }
                                     },
                                     lineColor: theme.colorScheme.hint,
+                                    spacing: theme.spacings.horizontal
                                 )
                                 .frame(maxWidth: .infinity)
                                 .onAppear {

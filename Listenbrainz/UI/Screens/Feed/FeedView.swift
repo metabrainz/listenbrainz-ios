@@ -49,8 +49,8 @@ struct FeedView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     ScrollView {
-                        LazyVStack {
-                            Spacer(minLength: topBarSize.height + theme.spacings.vertical * 2)
+                        LazyVStack(spacing: theme.spacings.vertical) {
+                            Spacer(minLength: topBarSize.height + theme.spacings.vertical)
                             
                             ForEach(viewModel.events, id: \.created) { event in
                                 BaseFeedView(
@@ -125,7 +125,6 @@ struct FeedView: View {
                                     }
                                 }
                             }
-                            .padding(.bottom, theme.spacings.vertical)
                         }
                         .padding(.horizontal, theme.spacings.horizontal)
                         

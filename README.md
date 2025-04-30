@@ -3,7 +3,7 @@
   <a href="https://github.com/metabrainz/listenbrainz-ios/archive/master.zip"><img src="https://github.com/metabrainz/metabrainz-logos/blob/master/logos/ListenBrainz/SVG/ListenBrainz_logo.svg" alt="ListenBrainz iOS"></a>
 </h1>
 
-<h4 align="center">ListenBrainz iOS</h4>
+<h4 align="center">ListenBrainz iOS App</h4>
 
 <p align="center">
     <a href="https://github.com/metabrainz/listenbrainz-ios/commits/master">

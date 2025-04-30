@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/metabrainz/listenbrainz-ios/archive/master.zip"><img src="https://github.com/metabrainz/metabrainz-logos/blob/master/logos/ListenBrainz/SVG/ListenBrainz_logo.svg" alt="ListenBrainz iOS"></a>
+  <a href="https://github.com/metabrainz/listenbrainz-ios/archive/master.zip"><img src="https://github.com/metabrainz/metabrainz-logos/blob/master/logos/ListenBrainz/SVG/ListenBrainz_logo.svg" alt="ListenBrainz iOS App"></a>
 </h1>
 
 <h4 align="center">ListenBrainz iOS App</h4>

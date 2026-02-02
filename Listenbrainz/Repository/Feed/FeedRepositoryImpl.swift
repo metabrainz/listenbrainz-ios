@@ -11,28 +11,37 @@ import Alamofire
 
 class FeedRepositoryImpl: FeedRepository {
 
-  func fetchFeedData(userName: String, userToken: String, page: Int, perPage: Int) -> AnyPublisher<FeedAlbum, AFError> {
-          let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/feed/events?page=\(page)&perPage=\(perPage)")!
-          let headers: HTTPHeaders = [
-              "Authorization": "Token \(userToken)"
-          ]
+    func fetchFeedData(userName: String, userToken: String, count: Int, maxTs: Int64?, minTs: Int64?) -> AnyPublisher<FeedAlbum, AFError> {
+        let urlString = "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/feed/events"
+        return makeFeedRequest(url: urlString, userToken: userToken, count: count, maxTs: maxTs, minTs: minTs)
+    }
+    
+    func fetchFollowListens(userName: String, userToken: String, count: Int, maxTs: Int64?, minTs: Int64?) -> AnyPublisher<FeedAlbum, AFError> {
+        let urlString = "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/feed/events/listens/following"
+        return makeFeedRequest(url: urlString, userToken: userToken, count: count, maxTs: maxTs, minTs: minTs)
+    }
+    
+    func fetchSimilarListens(userName: String, userToken: String, count: Int, maxTs: Int64?, minTs: Int64?) -> AnyPublisher<FeedAlbum, AFError> {
+        let urlString = "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/feed/events/listens/similar"
+        return makeFeedRequest(url: urlString, userToken: userToken, count: count, maxTs: maxTs, minTs: minTs)
+    }
+    
+    private func makeFeedRequest(url: String, userToken: String, count: Int, maxTs: Int64?, minTs: Int64?) -> AnyPublisher<FeedAlbum, AFError> {
+        var parameters: [String: Any] = ["count": count]
+        if let maxTs = maxTs { parameters["max_ts"] = maxTs }
+        if let minTs = minTs { parameters["min_ts"] = minTs }
 
-          return AF.request(url, method: .get, headers: headers)
-              .validate()
-              .publishDecodable(type: FeedAlbum.self)
-              .value()
-              .mapError { $0.asAFError ?? .explicitlyCancelled }
-              .eraseToAnyPublisher()
-      }
+        let headers: HTTPHeaders = ["Authorization": "Token \(userToken)"]
 
-
-    func fetchCoverArt(url: URL) -> AnyPublisher<Data, AFError> {
-        return AF.request(url, method: .get)
+        return AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers)
             .validate()
-            .publishData()
+            .publishDecodable(type: FeedAlbum.self)
             .value()
-            .mapError { $0.asAFError ?? .explicitlyCancelled }
             .eraseToAnyPublisher()
+    }
+    
+    func fetchCoverArt(url: URL) -> AnyPublisher<Data, AFError> {
+        return AF.request(url, method: .get).validate().publishData().value().eraseToAnyPublisher()
     }
 
     func pinTrack(recordingMsid: String, recordingMbid: String?, blurbContent: String?, userToken: String) -> AnyPublisher<Void, AFError> {
@@ -41,144 +50,66 @@ class FeedRepositoryImpl: FeedRepository {
             "recording_msid": recordingMsid,
             "recording_mbid": recordingMbid ?? NSNull(),
             "blurb_content": blurbContent ?? "",
-            "pinned_until": Int(Date().timeIntervalSince1970 + 7 * 24 * 60 * 60) 
+            "pinned_until": Int(Date().timeIntervalSince1970 + 7 * 24 * 60 * 60)
         ]
-        let headers: HTTPHeaders = [
-            "Authorization": "Token \(userToken)",
-            "Content-Type": "application/json"
-        ]
-      print(parameters)
-
+        let headers: HTTPHeaders = ["Authorization": "Token \(userToken)", "Content-Type": "application/json"]
         return AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            .validate()
-            .publishData()
-            .tryMap { _ in () }
-            .mapError { $0.asAFError ?? .explicitlyCancelled }
-            .eraseToAnyPublisher()
+            .validate().publishData().value().map { _ in () }.eraseToAnyPublisher()
     }
 
-    func deleteEvent(userName: String, eventID: Int, userToken: String) -> AnyPublisher<Void, AFError> {
+    func deleteEvent(userName: String, eventID: Int, eventType: String, userToken: String) -> AnyPublisher<Void, AFError> {
         let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/feed/events/delete")!
-        let parameters: [String: Any] = [
-            "event_type": "recording_recommendation",
-            "id": eventID
-        ]
-        let headers: HTTPHeaders = [
-            "Authorization": "Token \(userToken)",
-            "Content-Type": "application/json"
-        ]
-
+        let parameters: [String: Any] = ["event_type": eventType, "id": eventID]
+        let headers: HTTPHeaders = ["Authorization": "Token \(userToken)", "Content-Type": "application/json"]
         return AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            .validate()
-            .publishData()
-            .tryMap { _ in () }
-            .mapError { $0.asAFError ?? .explicitlyCancelled }
-            .eraseToAnyPublisher()
+            .validate().publishData().value().map { _ in () }.eraseToAnyPublisher()
     }
 
     func recommendToFollowers(userName: String, item: TrackMetadataProvider, userToken: String) -> AnyPublisher<Void, AFError> {
         var metadata: [String: Any] = [:]
-
-        if let recordingMsid = item.recordingMsid {
-            metadata["recording_msid"] = recordingMsid
-        } else {
-            metadata["recording_msid"] = NSNull()
-        }
-
-        if let recordingMbid = item.recordingMbid {
-            metadata["recording_mbid"] = recordingMbid
-        } else {
-            metadata["recording_mbid"] = NSNull()
-        }
+        metadata["recording_msid"] = item.recordingMsid ?? NSNull()
+        metadata["recording_mbid"] = item.recordingMbid ?? NSNull()
 
         let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/timeline-event/create/recording")!
-        let parameters: [String: Any] = [
-            "metadata": metadata
-        ]
-        let headers: HTTPHeaders = [
-            "Authorization": "Token \(userToken)",
-            "Content-Type": "application/json"
-        ]
-
+        let parameters: [String: Any] = ["metadata": metadata]
+        let headers: HTTPHeaders = ["Authorization": "Token \(userToken)", "Content-Type": "application/json"]
         return AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            .validate()
-            .publishData()
-            .tryMap { _ in () }
-            .mapError { $0.asAFError ?? .explicitlyCancelled }
-            .eraseToAnyPublisher()
+            .validate().publishData().value().map { _ in () }.eraseToAnyPublisher()
     }
 
     func recommendToUsersPersonally(userName: String, item: TrackMetadataProvider, users: [String], blurbContent: String, userToken: String) -> AnyPublisher<Void, AFError> {
-        var metadata: [String: Any] = [
-            "users": users,
-            "blurb_content": blurbContent
-        ]
-
-        if let recordingMsid = item.recordingMsid {
-            metadata["recording_msid"] = recordingMsid
-        } else {
-            metadata["recording_msid"] = NSNull()
-        }
-
-        if let recordingMbid = item.recordingMbid {
-            metadata["recording_mbid"] = recordingMbid
-        } else {
-            metadata["recording_mbid"] = NSNull()
-        }
+        var metadata: [String: Any] = ["users": users, "blurb_content": blurbContent]
+        metadata["recording_msid"] = item.recordingMsid ?? NSNull()
+        metadata["recording_mbid"] = item.recordingMbid ?? NSNull()
 
         let url = URL(string: "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/timeline-event/create/recording")!
-        let parameters: [String: Any] = [
-            "metadata": metadata
-        ]
-        let headers: HTTPHeaders = [
-            "Authorization": "Token \(userToken)",
-            "Content-Type": "application/json"
-        ]
-
+        let parameters: [String: Any] = ["metadata": metadata]
+        let headers: HTTPHeaders = ["Authorization": "Token \(userToken)", "Content-Type": "application/json"]
         return AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            .validate()
-            .publishData()
-            .tryMap { _ in () }
-            .mapError { $0.asAFError ?? .explicitlyCancelled }
-            .eraseToAnyPublisher()
+            .validate().publishData().value().map { _ in () }.eraseToAnyPublisher()
     }
 
-  func writeAReview(userName:String, item: TrackMetadataProvider, userToken: String, entityName: String, entityId:String, entityType:String, text:String, language:String, rating:Int) -> AnyPublisher <Void,AFError>{
-
-    guard let trackName = item.trackName, let recordingMsid = item.recordingMsid else {
-            return Fail(error: AFError.explicitlyCancelled).eraseToAnyPublisher()
+    func writeAReview(userName: String, item: TrackMetadataProvider, userToken: String, entityName: String, entityId: String, entityType: String, text: String, language: String, rating: Int) -> AnyPublisher<Void, AFError> {
+        guard item.trackName != nil,
+              item.recordingMsid != nil,
+              text.count >= 25,
+              (1...5).contains(rating) else {
+            return Fail<Void, AFError>(error: AFError.explicitlyCancelled).eraseToAnyPublisher()
         }
-    guard text.count >= 25 else {
-      return Fail(error: AFError.explicitlyCancelled).eraseToAnyPublisher()
+
+        let url = "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/timeline-event/create/review"
+        let parameters: [String: Any] = [
+            "metadata": [
+                "entity_name": entityName,
+                "entity_id": entityId,
+                "entity_type": entityType,
+                "text": text,
+                "language": "en",
+                "rating": rating
+            ]
+        ]
+        let headers: HTTPHeaders = ["Authorization": "Token \(userToken)", "Content-Type": "application/json"]
+        return AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate().publishData().value().map { _ in () }.eraseToAnyPublisher()
     }
-
-    guard (1...5).contains(rating) else{
-      return Fail(error: AFError.explicitlyCancelled).eraseToAnyPublisher()
-    }
-
-    let url = "\(BuildConfiguration.shared.API_LISTENBRAINZ_BASE_URL)/user/\(userName)/timeline-event/create/review"
-    print(url)
-    let parameters: [String: Any] = [
-           "metadata": [
-               "entity_name": trackName,
-               "entity_id": recordingMsid,
-               "entity_type": "recording",
-               "text": text,
-               "language": "en",
-               "rating": rating
-           ]
-       ]
-      print(parameters)
-       let headers: HTTPHeaders = [
-           "Authorization": "Token \(userToken)",
-           "Content-Type": "application/json"
-       ]
-    return AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-            .validate()
-            .publishData()
-            .tryMap { _ in () }
-            .mapError { $0.asAFError ?? .explicitlyCancelled }
-            .eraseToAnyPublisher()
-
-  }
 }
